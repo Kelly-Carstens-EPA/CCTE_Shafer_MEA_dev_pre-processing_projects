@@ -3,12 +3,16 @@
 ###################################################################################
 # set working directory as the location of the source file
 # this is also where the output file will go
-setwd("C:/Users/Acarpe01/Documents/Testing MEA Script Dev")
+setwd("L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output/")
 # set the output file name
-outfile = "MEA_NTP_mc0_pre-trim_test1.csv"
-AUCsourcefilename = "C:/Users/Acarpe01/Documents/NTP tcpl prep/Intermediate Output/AUC_NTP.csv"
-cytotox_filename = "C:/Users/Acarpe01/Documents/NTP tcpl prep/Intermediate Output/NTP_cytotoxicity.csv"
-ControlTreatmentName = "DMSO" # e.g., DMSO or Water
+outfile = "MEA_Frank_mc0.csv"
+AUCsourcefilename = "L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output/Frank86_AUC_2.csv"
+cytotox_filename = "L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output/Frank86_cytotoxicity_2.csv"
+default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
+# Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
+different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
+# Eneter the names of the vehicle controls as they correspond to the compounds in the previous list
+different_vehicleControls = c() # e.g. c("Water", "Water")
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -66,6 +70,7 @@ AUC_smaller_melted$wllt = "t"
 AUC_smaller_melted$wllq = 1
 AUC_smaller_melted[, srcf := AUCsourcefilename]
 
+
 # remove unneeded columns
 AUC_smaller_melted = AUC_smaller_melted[, c("treatment","apid","rowi","coli","wllt","wllq","conc","rval", "srcf", "acsn")]
 # remove columns and make sure columns in same order
@@ -74,13 +79,19 @@ cytotox_data = cytotox_data[, c("treatment","apid","rowi","coli","wllt","wllq","
 # rbind the cytotox data
 mc0_data = rbind(AUC_smaller_melted, cytotox_data)
 
-# change untreated wells to Control
-mc0_data[mc0_data$conc == 0, "treatment"] = ControlTreatmentName
+# change untreated wells to Control Treatment
+compoundlist = unique(mc0_data$treatment)
+for (compound in compoundlist) {
+  if (is.element(compound, different_vehicleControlCompounds)) {
+    # then assign treatment column to corresponding value in vehicle control list
+    mc0_data[(mc0_data$treatment == compound)&(mc0_data$conc == 0), "treatment"] = different_vehicleControls[which(different_vehicleControlCompounds == compound)]
+  } else {
+    mc0_data[(mc0_data$treatment == compound)&(mc0_data$conc == 0), "treatment"] = default_ControlTreatmentName
+  }
+}
+
 # change wllt for untreated wells to n
 mc0_data[ conc == 0, wllt := "n"] # I changed AUC_smaller_melted to mc0_data
-
-# # spid will be added in next script
-# names(mc0_data)[names(mc0_data) == "treatment"] = "spid"
-
+stop()
 write.table(mc0_data, file = outfile, row.names = FALSE, sep = ",")
 cat(outfile, "is ready\n")
