@@ -6,10 +6,10 @@
 # USER INPUTS
 ##########################################################
 # Set directory for output location
-basepath = "C:/Users/Acarpe01/Documents/ToxCast tcpl prep/"
+basepath = ""
 setwd(basepath)
 # Set output file name
-filename = "AUC_TC_normalized_zero_center_up.csv"
+filename = ""
 # set file with the 16 parameters for all culture dates
 parameter_data = read.csv("Published Source Data/All_TC.csv", sep = ",")
 # set file with mi data for all culture dates
