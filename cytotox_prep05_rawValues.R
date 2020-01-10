@@ -27,7 +27,7 @@ LDHname = "LDH" # e.g. "LDH", "Total LDH"
 # If you want to append data to an existing file with the same name, set newFile = FALSE
 newFile = TRUE
 
-# This script extracts the values under "Corrected Optical Denisty 490 nm"
+# This script extracts the values under "Corrected for Blank", "Corrected Optical Denisty 490 nm", or "Corrected Fluorescence"
 ###################################################################################
 # END USER INPUT
 ###################################################################################
