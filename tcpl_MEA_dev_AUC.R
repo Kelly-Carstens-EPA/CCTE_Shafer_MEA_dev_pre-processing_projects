@@ -35,6 +35,9 @@ components <- names(unique(AUC[, 7:ncol(AUC)])) # replaced 23 with ncol(AUC)
 names(AUC)[names(AUC) == 'dose'] <- "conc"
 names(AUC)[names(AUC) == 'plate.SN'] <- "apid"
 
+# use check_unique_apid.R to confirm that all apid's are unique for each culture date
+# source("check_unique_apid.R")
+
 ## split well_id to rows and columns
 ## Defining coli
 # library(stringr)
