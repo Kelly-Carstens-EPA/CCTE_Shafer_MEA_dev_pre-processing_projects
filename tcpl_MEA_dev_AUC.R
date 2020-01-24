@@ -92,6 +92,6 @@ for (compound in compoundlist) {
 
 # change wllt for untreated wells to n
 mc0_data[ conc == 0, wllt := "n"] # I changed AUC_smaller_melted to mc0_data
-stop()
+
 write.table(mc0_data, file = outfile, row.names = FALSE, sep = ",")
 cat(outfile, "is ready\n")
