@@ -6,28 +6,30 @@
 # - "ON_20160720_MW1139-19_Summary.xlsx" - these contain data for 1 plate per sheet (LDH and Alamar Blue)
 # - "20171011_ON G8_2 Calculations.xlsx" - these contain data for 3 plates per sheet (LDH and Alamar Blue)
 
-# any value that is 
+# changes:
+# this script sets any negative raw values to zero
+# this script addes a date column (for integration with check_unique_apid.R)
 
 ###################################################################################
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-setwd("L:/Lab/NHEERL_MEA/Project - Glufosinate/Network Formation Assay/Spike List to mc0/Intermediate output files")
+setwd("L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output")
 # set the name of the output file
-outfile = "glufosinate_cytotoxicity_rawVals.csv"
+outfile = "Frank86_cytotoxicity3.csv"
 
 # Do your individual input excel sheets contain data for one plates or three plates per sheet?
-sheetdata = "three" # set to "one" or "three"
+sheetdata = "one" # set to "one" or "three"
 
 # what are the Alamar Blue and LDH sheets names in your input files?
 ABname = "Alamar Blue" # e.g. "CTB", "Alamar Blue"
-LDHname = "LDH" # e.g. "LDH", "Total LDH"
+LDHname = "Total LDH" # e.g. "LDH", "Total LDH"
 
 # If you are creating a new file or want to overwrite an existing file of the same name, set newFile = TRUE
 # If you want to append data to an existing file with the same name, set newFile = FALSE
 newFile = TRUE
 
-# This script extracts the values under "Corrected for Blank", "Corrected Optical Denisty 490 nm", or "Corrected Fluorescence"
+# This script extracts the values under "Corrected Optical Denisty 490 nm"
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -60,7 +62,19 @@ returnindex = function(value, mydata) {
 createCytoTable = function(sourcefile,firstround) {
   
   AB_data = read.xlsx(sourcefile, sheetName = ABname, stringsAsFactors = FALSE)
-  LDH_data = read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
+  # LDH_data = read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
+  
+  # adding in trycatch for files where LDH sheet does not exist in summary file
+  LDH_data <- tryCatch({
+      # The code you want run
+      read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
+    }, warning = function(war) {
+      # Is executed if warning encountered
+      read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
+    }, error = function(err) {
+      # Is executed if error encountered
+      NULL
+    })
   
   # get source file name
   filenamesplit = strsplit(sourcefile, split = "/")
@@ -70,15 +84,18 @@ createCytoTable = function(sourcefile,firstround) {
   namesplit = strsplit(srcname, split ="_")
   apid = namesplit[[1]][grep(pattern="-",namesplit[[1]])]
   
+  # get the date from file name:
+  date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
+  
   if (isempty(AB_data)) {
     print("AB data not found")
   } else {
-    createCytoData(AB_data, "AB", firstround, apid, srcname)
+    createCytoData(AB_data, "AB", firstround, apid, srcname, date)
   }
   if(isempty(LDH_data)) {
     print("LDH data not found")
   } else {
-    createCytoData(LDH_data, "LDH", 0, apid, srcname)
+    createCytoData(LDH_data, "LDH", 0, apid, srcname, date)
   }
   
 }
@@ -88,8 +105,11 @@ createCytoTable = function(sourcefile,firstround) {
 createCytoTable2 = function(sourcefile, firstround) {
   
   # get source file name
-  filenamesplit = strsplit(sourcefile, split = "/")
-  srcname = tail(filenamesplit[[1]], n = 1)
+  srcname = basename(sourcefile)
+  
+  # get the date from filename
+  namesplit = strsplit(srcname, split ="_")
+  date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
   
   AB_data_all = read.xlsx(sourcefile, sheetName = ABname, header = FALSE, stringsAsFactors = FALSE)
   LDH_data_all = read.xlsx(sourcefile, sheetName = LDHname, header = FALSE, stringsAsFactors = FALSE)
@@ -114,20 +134,20 @@ createCytoTable2 = function(sourcefile, firstround) {
     if (isempty(AB_data)) {
       print("AB data not found")
     } else {
-      createCytoData(AB_data, "AB", firstround, ABapid, srcname)
+      createCytoData(AB_data, "AB", firstround, ABapid, srcname, date)
       firstround = FALSE
     }
     if(isempty(LDH_data)) {
       print("LDH data not found")
     } else {
-      createCytoData(LDH_data, "LDH", firstround, LDHapid, srcname)
+      createCytoData(LDH_data, "LDH", firstround, LDHapid, srcname, date)
       firstround = FALSE
     }
   }
   
 }
 
-createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcname = NULL) {
+createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcname = NULL, date = NULL) {
   
   cat(apid,cyto_type,"\n")
   
@@ -171,9 +191,10 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   if (any(is.na(valuemap))) {
     stop("valuemap contains NAs")
   }
+  
   # if any blank-corrected values are negative, then we should set these to zero
   if (any(valuemap < 0)) {
-    valuemap[which(valuemap) < 0 ] = 0.0
+    valuemap[valuemap < 0] = 0.0
     print("some blank-corrected values are negative. Setting these to zero")
   }
   
@@ -215,6 +236,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   
   sourcedata$srcf = srcname
   sourcedata$apid = apid
+  sourcedata$date = date # optional, adding this in to differentiate between plates that were reused in separate culture dates
   sourcedata$wllt = "t" # well type "t" for treated
   # For control wells, make well type "n" for neutral control
   sourcedata[sourcedata$conc == 0, "wllt"] = "n"
@@ -222,7 +244,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   sourcedata$srcf = srcname
   
   # reorder columns
-  sourcedata = sourcedata[,c("treatment","apid","rowi","coli","wllt","wllq","conc","rval","srcf","acsn")]
+  sourcedata = sourcedata[,c("treatment","apid","rowi","coli","wllt","wllq","conc","rval","srcf","acsn", "date")]
   
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) == 0) {
@@ -259,7 +281,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
 
 
 cytoFiles = tk_choose.files(caption = paste("Select all files containing cytotoxicity data with",sheetdata,"plates per sheet",sep=" "))
-masterChemFiles = tk_choose.files(caption = "(optional) Select all Master Chemical Lists Files for these plates")
+masterChemFiles = tk_choose.files(caption = "(optional) Select all Master Chemical Lists Files fot these plates")
 
 
 for (i in 1:length(cytoFiles)) {

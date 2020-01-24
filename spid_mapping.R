@@ -51,7 +51,7 @@ for (chem in chemlist) {
   correct_spid = spidmap[spidmap[,mapMatchCol] == chem, spidCol]
   
   # check for common potential errors with correct_spid
-  if (length(correct_spid) > 1) {
+  if (length(correct_spid) != 1) {
     stop(paste("spid formatting incorrectly for ", chem, ": ", correct_spid, sep =""))
   } 
   else if (is.na(correct_spid)) {
