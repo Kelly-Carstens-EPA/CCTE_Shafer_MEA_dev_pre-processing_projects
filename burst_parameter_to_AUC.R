@@ -14,6 +14,8 @@ filename = ""
 parameter_data = read.csv("Published Source Data/All_TC.csv", sep = ",")
 # set file with mi data for all culture dates
 mi_data = read.csv("Published Source Data/All_MI_TC.csv", sep = ",")
+
+# don't change these parameters if you are preparing the data for tcpl
 # do you want to normalize the data in this script?
 normalize = FALSE
 # do you want to make the normalized response positive?
