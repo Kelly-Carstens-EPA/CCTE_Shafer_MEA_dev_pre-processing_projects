@@ -1,5 +1,16 @@
 # Microelectrode Array Network Formation Assay Spike List Pe-Processing Scripts
 
+testing issue with table formatting:
+
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
+
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+
 ## to do:
 * define bursts, active electrodes?
 * go over some details for some endpoints
@@ -32,7 +43,7 @@ For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Below is a
 ### Raw data: spike list files
 The inital raw data is the recordings of the activity in each well, called spike list files. These files are outputted by an Axion Maestro amplifier and software interfaces. There will be a spike list file for each plate and for each day of recording, days in vitro (DIV) 5, 7, 9, and 12. The spike list files are csv files with columns
 | Time (s) | Electrode | Amplitude(mV) |
-| ----------- | ----------- | ----------- |,
+| ----------- | ----------- | ----------- |
 where the first column records the time of each spike, the second column records the ID of the electrode that spiked, and the third column records the amplitude of the spike. Each recording spans ~900 seconds (15 minutes).
 
 ### h5 files
