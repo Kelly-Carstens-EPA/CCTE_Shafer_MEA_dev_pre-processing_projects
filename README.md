@@ -2,8 +2,7 @@
 
 testing issue with table formatting:
 
-| Syntax | Description |
-| ----------- | ----------- |
+
 | Header | Title |
 | Paragraph | Text |
 
@@ -28,15 +27,15 @@ We want to graph the dose response for each compound and each endpoint, calculat
 
 ## History of these scripts:
 
-1. Diana Hall, and sjmea person - wrote most of the scripts that calculate the endpoints, see her github repo meadq
-2. Chris Frank, especially AUC parts? - developed the process, especially the AUC part?, and worked with Ken to calculate MI? (or that someone else?)
-3. Brittany Lynch, starting on comprehensive AUC analysis, created a word doc standardizing the process
-4. Amy C, compiling all scripts to work here
+1. Diana Hall, and person behind sjmea package - wrote most of the scripts that calculate the endpoints, see her github repo meadq
+2. Chris Frank, - developed the process, especially the AUC devvelopment, and worked with Ken to calculate MI? (or that someone else?)
+3. Brittany Lynch - started comprehensive AUC analysis, created a word doc standardizing the process
+4. Amy C - compiling scripts to work here
 
 ## How to use these scripts
 
 For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Below is a diagram showing the general flow of the process and the scripts used at each step. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
-![spikelist_to_mc0_overview](/images/SpikeList_to_mc0_overview.png)
+
 
 ## Narrative of the process
 
@@ -44,6 +43,9 @@ For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Below is a
 The inital raw data is the recordings of the activity in each well, called spike list files. These files are outputted by an Axion Maestro amplifier and software interfaces. There will be a spike list file for each plate and for each day of recording, days in vitro (DIV) 5, 7, 9, and 12. The spike list files are csv files with columns
 | Time (s) | Electrode | Amplitude(mV) |
 | ----------- | ----------- | ----------- |
+
+| Syntax | Description |
+| ----------- | ----------- |
 where the first column records the time of each spike, the second column records the ID of the electrode that spiked, and the third column records the amplitude of the spike. Each recording spans ~900 seconds (15 minutes).
 
 ### h5 files
@@ -146,4 +148,6 @@ These tasks are not currently integrated into any scripts in this repository.
 The script `spid_mapping.R` maps the treatment names to the corresponding sample IDs. Because the chemical names in the data are derived from the names used in the Master Chemical Lists, sometimes the names do not match up. Best judgement, and consulting the lab notebook should be used to rename the compounds as needed. In the future, the chemical names in the Master Chemical Lists may be replaced with CASN's in order to clean up this process.
 
 Now the file should be ready to be processed with the ToxCast Pipeline.
+
+![spikelist_to_mc0_overview](/images/SpikeList_to_mc0_overview.png)
 
