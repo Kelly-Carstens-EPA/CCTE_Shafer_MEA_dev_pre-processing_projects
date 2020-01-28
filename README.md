@@ -1,14 +1,4 @@
-# Microelectrode Array Network Formation Assay Spike List Pe-Processing Scripts
-
-testing issue with table formatting:
-
-
-| Header | Title |
-| Paragraph | Text |
-
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
+# Microelectrode Array Network Formation Assay Pre-Processing Scripts
 
 ## to do:
 * define bursts, active electrodes?
@@ -17,7 +7,7 @@ Content from cell 1 | Content from cell 2
 * fix local.corr script location in image
 * read over all - esp after cytotox
 
-## Purpose of these scripts
+## Purpose
 
 These scripts are designed to process the raw data for the microelectrode array network formation concentration-response assay.
 
@@ -36,16 +26,16 @@ We want to graph the dose response for each compound and each endpoint, calculat
 
 For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Below is a diagram showing the general flow of the process and the scripts used at each step. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
 
+![spikelist_to_mc0_overview](L:/Lab/NHEERL_MEA/NFA Spike List to mc0 R Scripts/BitBucket Connect/images/SpikeList_to_mc0_overview.png)
+
 
 ## Narrative of the process
 
 ### Raw data: spike list files
 The inital raw data is the recordings of the activity in each well, called spike list files. These files are outputted by an Axion Maestro amplifier and software interfaces. There will be a spike list file for each plate and for each day of recording, days in vitro (DIV) 5, 7, 9, and 12. The spike list files are csv files with columns
+
 | Time (s) | Electrode | Amplitude(mV) |
 | ----------- | ----------- | ----------- |
-
-| Syntax | Description |
-| ----------- | ----------- |
 where the first column records the time of each spike, the second column records the ID of the electrode that spiked, and the third column records the amplitude of the spike. Each recording spans ~900 seconds (15 minutes).
 
 ### h5 files
@@ -54,6 +44,7 @@ The scripts `h5_conversion.R` and `spike_list_functions.R` convert the raw data 
 ### 16 parameters values
 
 The scripts `create_burst_ont_Data.R`, `local.corr.all.ont.ae.filter.R`, and `create_ont_csv.R` calculate 16 parameters from the spike list files. The table below summarizes the 16 parameters.
+
 | Name | Description | name in MEA DEV scripts | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
 | Mean Firing Rate | # spikes per second, averaged for active electrodes in well | meanfiringrate | NHEERL_MEA_dev_firing_rate_mean |
@@ -90,6 +81,7 @@ The scripts `spikeLoadRoutines.R`, `nmi_wrapper.R`, and `nmi2_final.R` contain t
 The calculation of the mutual information is computationally intensive. Therefore, this parameter is calculated separatley from the rest of the parameters. The script `MI_script_all.R` is designed to calculate the mutual information for all plates, so that the task could be done overnight or remotely for the entire dataset. One csv file will be created for all 3 replicate plates in each culture date. These files will be combined into one csv file for all the plates using `comb.summary.R` (or your own implementation of `rbind`) before calculating the area under the curve.
 
 As above, here are the names used for this parameter
+
 | Name | Description | name in MEA DEV scripts | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
 | Normalized Mutual Information | concurrently measures synchrony and activity of the neural network | mi | NHEERL_MEA_dev_mutual_information_norm |
@@ -98,7 +90,11 @@ As above, here are the names used for this parameter
 
 We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. If we were to plot the value of a given parameter and a given well over time, we would expect to see something like this:
 
-![Mean Firing Rate example](/images/meanfiringrate_development_example.jpeg)
+image 1:
+<img src="L:/Lab/NHEERL_MEA/NFA Spike List to mc0 R Scripts/BitBucket Connect/images/meanfiringrate_development_example.jpeg" alt="drawing" width="300"/>
+
+image 2:
+<img src="https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=re-org" alt="drawing" width="300"/>
 
 In order to "sum up" the overall change in a parameter value, we calculate the trapezoidal area under the curve. This value will be used to compare the overall increase or decrease of a parameter in treated wells and control wells.
 
@@ -106,6 +102,7 @@ The script `burst_parameter_to_AUC.R` uses the `trapz` function from the pracma 
 
 Notes:
 - When there are no bursts or network spikes in a well, many parameters that measure some aspect of bursts or network spikes are NA. In order to calculate the area under the curve, these NA values are set to 0. Below is a summary of the parameters that are sometimes NA. For some of these, setting NA instances to zero might be counterintuitive, particularly for the latter four in the list. For example, if there are no network spikes, the Standard Deviation of Network Spike Duration is NA. If we set the standard deviation to 0 in this instance, it implies that the duration of the network spikes is extremely consistent (which we might expect of a very well developed, organized, network). More analysis will be done on these parameters. Perhaps these latter 4 should be calculated differently, or excluded entitrely from the AUC analysis.
+
 | Name | Description | name in MEA DEV scripts | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
 | Mean Burst Duration | Mean burst duration (s), averaged on ABE | mean.dur | NHEERL_MEA_dev_burst_duration_mean |
@@ -131,7 +128,7 @@ The viability is assessed with 2 assays: CellTiter-Blue Cell Viability Assay (al
 ### Format all into long file format
 
 The script `tcpl_MEA_dev_AUC.R` formats all of the AUC and cytotoxicity data into one long file with the columns needed for an mc0 file in the TosCast Pipeline. (except with "treatment" column instead of "spid".)
-<br>This script will also:
+This script will also:
 - Set wllt to 't' for all treated wells and 'n' for all control wells (where conc = 0)
 - Set the treatment column to the corresponding vehicle control for control wells
 - Check for any recycled plate ID's within the current data set and within previously pipelined data sets. (coming in re-org branch).<br>Any re-used plate ID will be renamed to ensure unique plate IDs for each culture date
@@ -148,6 +145,4 @@ These tasks are not currently integrated into any scripts in this repository.
 The script `spid_mapping.R` maps the treatment names to the corresponding sample IDs. Because the chemical names in the data are derived from the names used in the Master Chemical Lists, sometimes the names do not match up. Best judgement, and consulting the lab notebook should be used to rename the compounds as needed. In the future, the chemical names in the Master Chemical Lists may be replaced with CASN's in order to clean up this process.
 
 Now the file should be ready to be processed with the ToxCast Pipeline.
-
-![spikelist_to_mc0_overview](/images/SpikeList_to_mc0_overview.png)
 
