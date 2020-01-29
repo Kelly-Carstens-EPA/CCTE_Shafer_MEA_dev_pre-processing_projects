@@ -1,6 +1,8 @@
 # Microelectrode Array Network Formation Assay Pre-Processing Scripts
 
 ## to do:
+* clean up cytotoxicity section
+* fix table formatting, image formatting
 * define bursts, active electrodes?
 * go over some details for some endpoints
 * See Diana Hall's notes on references for all endpoints, in make DIV?

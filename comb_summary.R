@@ -5,14 +5,16 @@
 ###################################################################################
 # Set the name of the output file
 
-outfile = "prepared_data_OPs_All_combined.csv"
+outfile = "op_mi_most.csv"
 
 ###################################################################################
 # END USER INPUT
 ###################################################################################
 
+library(tcltk)
+
 comb_data<-function(file_path = NULL, outfile) {
-  all_data<-choose.files("Select files to combine")
+  all_data<-tk_choose.files("Select files to combine")
   if (is.null(file_path)) {
     file_path = paste(dirname(all_data[1]), outfile, sep="/")
   }

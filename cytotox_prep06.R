@@ -14,7 +14,8 @@
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-setwd("L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output")
+basepath <- "L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output"
+
 # set the name of the output file
 outfile = "Frank86_cytotoxicity3.csv"
 
@@ -22,8 +23,8 @@ outfile = "Frank86_cytotoxicity3.csv"
 sheetdata = "one" # set to "one" or "three"
 
 # what are the Alamar Blue and LDH sheets names in your input files?
-ABname = "Alamar Blue" # e.g. "CTB", "Alamar Blue"
-LDHname = "Total LDH" # e.g. "LDH", "Total LDH"
+# ABname = "Alamar Blue" # e.g. "CTB", "Alamar Blue"
+# LDHname = "Total LDH" # e.g. "LDH", "Total LDH"
 
 # If you are creating a new file or want to overwrite an existing file of the same name, set newFile = TRUE
 # If you want to append data to an existing file with the same name, set newFile = FALSE
@@ -34,11 +35,15 @@ newFile = TRUE
 # END USER INPUT
 ###################################################################################
 
+# possible assay names
+ABnames <- c("Alamar Blue", "AB", "CTB", "CellTiter Blue")
+LDHnames <- c("LDH", "Total LDH")
+
 library(xlsx)
 library(tcltk)
 library(pracma)
 
-########### FUNCTIONS
+###################### FUNCTIONS
 
 # function to  look up index of value in a data frame
 #  there probably is a more efficient, data table way to do this...

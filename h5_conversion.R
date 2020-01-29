@@ -7,16 +7,16 @@ library(tcltk)
 library(meadq)
 
 #get files
-analysis<-tk_choose.files(caption="Select spike list Files") 
+analysis<-tk_choose.files(caption="Select spike list files") 
 spkListFiles=sort(analysis)
 
 ###################################################################################
 # USER INPUT
 ###################################################################################
 # set location where you want the "h5Files" folder to be created
-basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA"
+# basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA"
 # # if you want the h5Files folder to be created next the spike list files folder, use the following line
-# basepath = dirname(dirname(spkListFiles[1]))
+basepath = dirname(dirname(spkListFiles[1]))
 # If an h5Files folder already exists in  this location, the h5Files created will overwrite what is there
 ###################################################################################
 # END USER INPUT
@@ -27,7 +27,7 @@ suppressWarnings( dir.create(paste(basepath,'/h5Files',sep='') ) )
 h5.dir<-paste(basepath, "/h5Files",sep="")
 
 #get master chemical list
-masterChemFiles <- tk_choose.files(caption="Select Master Chemical File")
+masterChemFiles <- tk_choose.files(caption="Select Master Chemical lists")
 
 if (length(spkListFiles)/4 > length(masterChemFiles)) {
   stop("Too few Master Chemical Lists selected")

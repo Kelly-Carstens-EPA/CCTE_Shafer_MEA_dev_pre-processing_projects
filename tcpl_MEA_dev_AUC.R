@@ -2,11 +2,11 @@
 # USER INPUT
 ###################################################################################
 # set working directory for where the output file will go
-setwd("C:/Users/Acarpe01/Documents/tcpl MEA DEV")
+setwd("C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/")
 # set the output file name
-outfile = "MEA_Frank_mc0_test.csv"
-AUCsourcefilename = "L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output/deprecated/Frank86_AUC_2.csv"
-cytotox_filename = "L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output/Frank86_cytotoxicity3.csv"
+filename = "op_mc0.csv"
+AUCsourcefilename = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/op_AUC.csv"
+cytotox_filename = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/op_cytotoxicity3.csv"
 default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
 # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
 different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
@@ -112,7 +112,7 @@ if (check_unique_apid) {
       # just going to add the suffix "a" to the new version of the apid
       new_apid <- paste0(cur_plate, "a")
       mc0_data[apid == cur_plate, "apid"] <- new_apid
-      print(paste0(cur_plate, " is now assigned to ", new_apid, " in  the current data set."))
+      print(paste0(cur_plate, " is now assigned to ", new_apid, " in the current data set."))
     }
   }
 }
@@ -134,5 +134,5 @@ for (compound in compoundlist) {
 # change wllt for untreated wells to n
 mc0_data[ conc == 0, wllt := "n"] # I changed AUC_smaller_melted to mc0_data
 
-fwrite(mc0_data, file = outfile, row.names = FALSE, sep = ",")
-cat(outfile, "is ready\n")
+fwrite(mc0_data, file = filename, row.names = FALSE, sep = ",")
+cat(filename, "is ready\n")

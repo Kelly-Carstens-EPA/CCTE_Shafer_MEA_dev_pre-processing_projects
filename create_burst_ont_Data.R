@@ -5,6 +5,9 @@ create_burst_ont_Data <-
   function(h5Files,  save.rdata=F, add.silent.wells=T , AEfile = F){
     write.header=T
     plates = unique( sapply(strsplit(basename(h5Files), split="_"), function(x) x[3]) )
+    # alternate way to find plates
+    # plates <- unique( sapply(strsplit(basename(h5Files), split="_"), function(x) grep("MW[0-9]", x, value=TRUE) ) )
+    
     num.plates = length( plates )
     
     for (cur.plate in 1:num.plates){
