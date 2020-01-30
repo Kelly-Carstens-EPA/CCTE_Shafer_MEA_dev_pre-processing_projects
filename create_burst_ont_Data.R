@@ -52,6 +52,7 @@ create_burst_ont_Data <-
           
         }
         
+        # calculating parameters related to bursting
         allb=list()
         allb <- lapply(s[[cur.file]]$spikes, mi.find.bursts)
         s[[cur.file]]$allb <- allb       

@@ -1,35 +1,26 @@
 # Microelectrode Array Network Formation Assay Pre-Processing Scripts
 
 ## to do:
-* clean up cytotoxicity section
-* fix table formatting, image formatting
-* define bursts, active electrodes?
-* go over some details for some endpoints
-* See Diana Hall's notes on references for all endpoints, in make DIV?
-* fix local.corr script location in image
-* read over all - esp after cytotox
+* clear up definition of network spikes, or just refer to paper (see networkspikes.R in sjemea)
+* See Diana Hall's notes on references for other endpoints, in make DIV?
+* read over all, when eyes not glazed over...
+* merge with master! (will probs need to repalce image links)
 
 ## Purpose
 
 These scripts are designed to process the raw data for the microelectrode array network formation concentration-response assay.
 
-Briefly, cortical cells are grown on 48-well microelectrode-containing plates. On each plate, 6 compounds are tested at 7 concentrations, plus 6 control wells. Each group of compounds and concentrations is replicated on 3 plates. The electrical activity of the neurons are recorded as the network develops, on days 5, 7, 9, and 12. The recording provide a lot of information concerning the general activity, organization, and connectivity of the neurons in each well. These scripts calculate several parameters from the recordings in order to describe these 3 aspects of the developing neuronal networks.
+Briefly, cortical cells are grown on 48-well microelectrode-containing plates. On each plate, 6 compounds are tested at 7 concentrations, plus 6 control wells. Each group of compounds and concentrations is replicated on 3 plates. The test compounds are added to the wells on days 0, 5, and 9. The electrical activity of the neurons are recorded as the network develops, on days 5, 7, 9, and 12. The recording provide a lot of information concerning the general activity, organization, and connectivity of the neurons in each well. These scripts calculate several parameters from the recordings in order to describe these 3 aspects of the developing neuronal networks.
 
 We want to graph the dose response for each compound and each endpoint, calculate an EC50 value, and determine if the compound is positive hit. These scripts transform the raw the recording data into a long file format. Then, the data can be process with the functions in the ToxCast Pipeline to fit the dose response curves and determine the hit calls for each compound.
 
-## History of these scripts:
+## Background
 
-1. Diana Hall, and person behind sjmea package - wrote most of the scripts that calculate the endpoints, see her github repo meadq
-2. Chris Frank, - developed the process, especially the AUC devvelopment, and worked with Ken to calculate MI? (or that someone else?)
-3. Brittany Lynch - started comprehensive AUC analysis, created a word doc standardizing the process
-4. Amy C - compiling scripts to work here
+These script rely  heavily on functions in the packages `sjemea` and `meadq`, available on github. The scripts in these packages are the work of several people over several years.
 
 ## How to use these scripts
 
-For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Below is a diagram showing the general flow of the process and the scripts used at each step. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
-
-![spikelist_to_mc0_overview](L:/Lab/NHEERL_MEA/NFA Spike List to mc0 R Scripts/BitBucket Connect/images/SpikeList_to_mc0_overview.png)
-
+For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Checkout this [diagram](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/SpikeList_to_mc0_overview.png?at=refs%2Fheads%2Fre-org) that shows the flow of the process and the scripts used at each step. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
 
 ## Narrative of the process
 
@@ -47,22 +38,40 @@ The scripts `h5_conversion.R` and `spike_list_functions.R` convert the raw data 
 
 The scripts `create_burst_ont_Data.R`, `local.corr.all.ont.ae.filter.R`, and `create_ont_csv.R` calculate 16 parameters from the spike list files. The table below summarizes the 16 parameters.
 
-| Name | Description | name in MEA DEV scripts | TCPL acsn |
+Note that these are all well-level values. 
+
+(See Brown et al)
+A "burst" on an electrode is a set of spikes is rapid succession. Specifically, using the max-interval method, the set of spikes must satisfy these conditions in order to be considered a burst:
+- The number of spikes in the burst >= 5 spikes
+- The duration of the burst >= 0.05s
+- The time in between the first 2 spikes in the burst <= 0.1s
+- The time in between the last 2 spikes in the burst <= 0.25s
+- The amount of time between bursts >= 0.8s
+
+A "network spike" is a group of spikes that occur on a several electrodes in a well at the same time. A set of spikes is a network spike if:
+
+- if at least 1/4 of the active electrodes (electrodes that firing at least 1.2/min throughout the recording)
+    all fire within 0.003s of each other, a network spike is said to have started (cite?)
+
+| Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
-| Mean Firing Rate | # spikes per second, averaged for active electrodes in well | meanfiringrate | NHEERL_MEA_dev_firing_rate_mean |
 | Number of Active Electrodes (AE) | # of electrodes where mean firing rate >= 5 spikes/min | nAE | NHEERL_MEA_dev_active_electrodes_number |
-| Burst Rate | bursts per minute on AE (a burst is a series of spikes in rapid succession on an electrode) | burst.per.min | NHEERL_MEA_dev_burst_rate |
+| Mean Firing Rate | # spikes per second, averaged over all AE in each well | meanfiringrate | NHEERL_MEA_dev_firing_rate_mean |
+| Burst Rate | # bursts per minute, averaged over all AE in each well | burst.per.min | NHEERL_MEA_dev_burst_rate |
 | Number of Actively Bursting Electrodes (ABE) | # of electrodes where burst rate >= 0.5 bursts/min | nABE | NHEERL_MEA_dev_bursting_electrodes_number |
-| Mean Burst Duration | Mean burst duration (s), averaged on ABE | mean.dur | NHEERL_MEA_dev_burst_duration_mean |
-| Mean Interburst interval | Mean interval between bursts (s), averaged on ABE | mean.IBIs | NHEERL_MEA_dev_interburst_interval_mean |
-| Interspike Interval in a Burst | Inter spike interval (s) within a burst, averaged on ABE | mean.isis | NHEERL_MEA_dev_per_burst_interspike_interval |
-| Percent of Spikes in Burst | % of spikes in bursts, averaged on ABE | per.spikes.in.burst | NHEERL_MEA_dev_per_burst_spike_percent |
-| Number of Network Spikes | # of network spikes in well over 15 minute recording | ns.n | NHEERL_MEA_dev_network_spike_number |
+| Mean Burst Duration | mean duration of bursts (s), averaged over all ABE in each well | mean.dur | NHEERL_MEA_dev_burst_duration_mean |
+| Mean Interburst Interval | mean interval between bursts (s), averaged over all ABE in each well | mean.IBIs | NHEERL_MEA_dev_interburst_interval_mean |
+| Interspike Interval in a Burst | mean interspike interval (s) within a burst, averaged over all ABE in each well | mean.isis | NHEERL_MEA_dev_per_burst_interspike_interval |
+| Percent of Spikes in Burst | # of spikes within burst divided by total spike count, averaged over all ABE in each well | per.spikes.in.burst | NHEERL_MEA_dev_per_burst_spike_percent |
+
+(just need to confirm def of network spike)
+| Number of Network Spikes | # of network spikes in each well during the 15 minute recording | ns.n | NHEERL_MEA_dev_network_spike_number |
+| Network Spike Duration | mean duration of network spikes in well (s) | ns.durn.m | NHEERL_MEA_dev_spike_duration_mean |
+
+(still need to confirm/check)
 | Network Spike Peak | # of spikes (or electrodes, or ae) at the peak of network spike | ns.peak.m | NHEERL_MEA_dev_network_spike_peak |**desp blah bc don't understand 
-| Network Spike Duration | mean of the duration of network spikes in mean (s) | ns.durn.m | NHEERL_MEA_dev_spike_duration_mean |
 | Percent of Spikes in Network Spike | % of spikes (in all electrodes? all ae?) that are part of network spikes (or, for each ae, percent in ns, then average those %'s) | ns.percent.of.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_percent |
-| Interspike Interval in Network Spikes | mean interspike interval of spikes in a network spike (s) | ns.mean.insis |** confirm, units etc
-NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
+| Interspike Interval in Network Spikes | mean interspike interval of spikes in a network spike (s) (confirm units) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
 | Mean Number of Spikes in Network Spikes | number of spikes in newtork spike, averaged on ae?| ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
 | Standard Deviation of Network Spike Duration | standard deviation of network spike duration | ns.durn.sd | NHEERL_MEA_dev_network_spike_duration_std |
 | Mean correlation | spike time tiling coefficient, averaged on AE | r | NHEERL_MEA_dev_correlation_coefficient_mean |
@@ -84,19 +93,13 @@ The calculation of the mutual information is computationally intensive. Therefor
 
 As above, here are the names used for this parameter
 
-| Name | Description | name in MEA DEV scripts | TCPL acsn |
+| Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
 | Normalized Mutual Information | concurrently measures synchrony and activity of the neural network | mi | NHEERL_MEA_dev_mutual_information_norm |
 
 ### Area Under the Curve
 
-We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. If we were to plot the value of a given parameter and a given well over time, we would expect to see something like this:
-
-image 1:
-<img src="L:/Lab/NHEERL_MEA/NFA Spike List to mc0 R Scripts/BitBucket Connect/images/meanfiringrate_development_example.jpeg" alt="drawing" width="300"/>
-
-image 2:
-<img src="https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=re-org" alt="drawing" width="300"/>
+We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. See this [example](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=refs%2Fheads%2Fre-org) of a typical plot of a given parameter and a given well over time.
 
 In order to "sum up" the overall change in a parameter value, we calculate the trapezoidal area under the curve. This value will be used to compare the overall increase or decrease of a parameter in treated wells and control wells.
 
@@ -105,7 +108,7 @@ The script `burst_parameter_to_AUC.R` uses the `trapz` function from the pracma 
 Notes:
 - When there are no bursts or network spikes in a well, many parameters that measure some aspect of bursts or network spikes are NA. In order to calculate the area under the curve, these NA values are set to 0. Below is a summary of the parameters that are sometimes NA. For some of these, setting NA instances to zero might be counterintuitive, particularly for the latter four in the list. For example, if there are no network spikes, the Standard Deviation of Network Spike Duration is NA. If we set the standard deviation to 0 in this instance, it implies that the duration of the network spikes is extremely consistent (which we might expect of a very well developed, organized, network). More analysis will be done on these parameters. Perhaps these latter 4 should be calculated differently, or excluded entitrely from the AUC analysis.
 
-| Name | Description | name in MEA DEV scripts | TCPL acsn |
+| Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
 | Mean Burst Duration | Mean burst duration (s), averaged on ABE | mean.dur | NHEERL_MEA_dev_burst_duration_mean |
 | Network Spike Peak | # of spikes (or electrodes, or ae) at the peak of network spike | ns.peak.m | NHEERL_MEA_dev_network_spike_peak |
@@ -113,19 +116,20 @@ Notes:
 | Mean Number of Spikes in Network Spikes | number of spikes in newtork spike, averaged on ae?| ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
 | Interspike Interval | Inter spike interval (s) within a burst, averaged on ABE | mean.isis | NHEERL_MEA_dev_per_burst_interspike_interval |
 | Mean Interburst interval | Mean interval between bursts (s), averaged on ABE | mean.IBIs | NHEERL_MEA_dev_interburst_interval_mean |
-| Interspike Interval in Network Spikes | mean interspike interval of spikes in a network spike (s) | ns.mean.insis |
-NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
+| Interspike Interval in Network Spikes | mean interspike interval of spikes in a network spike (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
 | Standard Deviation of Network Spike Duration | standard deviation of network spike duration | ns.durn.sd | NHEERL_MEA_dev_network_spike_duration_std |
 
 - Historically, activity was recorded on DIV 2. There was usually very little activity in these recordings. At some point, it was decided that all DIV 2 parameter values should be set to 0 before calculating the AUC in `burst_parameter_to_AUC.R`. Now, even though activity is no longer recorded on DIV 2, we still calculate the area under the curve with the first point at (2, 0) (instead of just starting at DIV 5).
 
 ### Cytotoxicity data
 
-possibilities:
-- there are 2 assays, one which was developed more recently, which measures the LDH in different ways
-- just a confusion on whether up or down.
+After the cells are grown on the plates for 12 days, two assays are used to assess to the cell viability - CellTiter-Blue and Lactate Dehydrogenase.
 
-The viability is assessed with 2 assays: CellTiter-Blue Cell Viability Assay (also called Alamar Blue, AB) and total lactate dehydrogenase release (LDH). Briefly, the cells are tagged... I believe they both measure the percent survival in each well. The script `cytotox_prep05_rawValues.R` (will delete and change to `cytotox_prep06.R` soon) extracts the blank-corrected fluorescense or optical density values from each well and formats the data in the long file format. Any negative raw values are set to zero in this script.
+The CellTiter-Blue assay (also called Alamar Blue) measures the amount of reagent metabolized by living cells in each well. First, reagent is added to each well. Then, some media from each well is transferred to an opaque 96-well plate. The fluorescense of resazurin, a metabolite of the reagent, is measured. Three blank wells that contain only reagent are used as a baseline fluorescense values. The average of the fluorescence in the three blank-corrected wells is substracted from the raw fluorescence values in the remaining 48 wells. (See [Brown *et al.* (2016)](https://academic.oup.com/toxsci/article/154/1/126/2422066) for more information). The blank-corrected values in the treated wells will be normalized to the median value in control wells in the ToxCast Pipeline. 
+
+The total lactate dehydrogenase (LDH) assay is also used to quantify the number of living cells in treated wells versus control wells. First, all of the media is removed from each well in order to remove any LDH already released from dying cells. Then, a lysis solution is added to lyse all living cells. Next, the lysis solution is transfered to another plate with a solution containing tetrazolium salt. The LDH in the solution is allowed to transfrom the the tetrazolium salt in red formazan for 30 minutes until a stop solution is added. The optical density of red formazan is measured. The amount of red formazan produced reflects the amount of LDH released from the cells that were living at the start of the assay. Three blank wells containing only lysis solution are used as a baseline optical density value. This information was synthesized from [Frank *et al.* (2017)](https://academic.oup.com/toxsci/article/160/1/121/4083261), the product description for [CytoTox 96 Non-Radioactive Cytotoxicity Assay](https://www.promega.com/products/cell-health-assays/cell-viability-and-cytotoxicity-assays/cytotox-96-non_radioactive-cytotoxicity-assay/?catNum=G1780), and from the LDH Assay Summary file *NHEERL_MWP_LDHo_dn_final.docx*. The blank-corrected values in the treated wells will be normalized to the median value in control wells in the ToxCast Pipeline.
+
+For both assays, the script `cytotox_prep06.R` extracts these blank-corrected values from the excel sheets created by the lab technicians. Any negative values are set to zero.
 
 ### Format all into long file format
 
