@@ -8,8 +8,7 @@ library(sjemea)
 library(rhdf5)
 library(lattice)
 # library(tcltk) # tk_choose.files() is intolerant of spaces in file names
-# actually, I think all you need is data("chgv.parameters")
-library(meadq) # added this 11/21/2019, because got error that "mi.par" was missing - which I think is an object in diana hall's package
+library(meadq)
 
 create_ont_csv<-function( h5Files = NULL, save.rdata = FALSE, param.file = NULL, AEfile = FALSE){  
   

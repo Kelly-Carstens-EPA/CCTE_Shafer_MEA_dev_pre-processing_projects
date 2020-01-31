@@ -13,6 +13,7 @@ local.corr.all.ont.ae.filter = function (s, t.p, ae.index.v)
     if(length(index.ch) == 0) {
       # In create_burst_ont_Data, we only select [well.names] (wells with active electrodes)
       # So it does not matter what we assign to inactive wells here
+      # NA values in r will be assigned to 0 in create_burst_ont_Data
       r.vector[[cur.well]] = NA
       next
     }

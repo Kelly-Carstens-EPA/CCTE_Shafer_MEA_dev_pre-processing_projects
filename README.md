@@ -1,8 +1,6 @@
 # Microelectrode Array Network Formation Assay Pre-Processing Scripts
 
 ## to do:
-* clear up definition of network spikes, or just refer to paper (see networkspikes.R in sjemea)
-* See Diana Hall's notes on references for other endpoints, in make DIV?
 * read over all, when eyes not glazed over...
 * merge with master! (will probs need to repalce image links)
 
@@ -14,13 +12,13 @@ Briefly, cortical cells are grown on 48-well microelectrode-containing plates. O
 
 We want to graph the dose response for each compound and each endpoint, calculate an EC50 value, and determine if the compound is positive hit. These scripts transform the raw the recording data into a long file format. Then, the data can be process with the functions in the ToxCast Pipeline to fit the dose response curves and determine the hit calls for each compound.
 
-## Background
+## Acknowledgements
 
-These script rely  heavily on functions in the packages `sjemea` and `meadq`, available on github. The scripts in these packages are the work of several people over several years.
+These script rely  heavily on functions in the packages `sjemea` and `meadq`, available on github. The scripts in these packages are availabe on GitHub and contain most of the functions used to calculate the parameter values in these scripts. 
 
 ## How to use these scripts
 
-For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Checkout this [diagram](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/SpikeList_to_mc0_overview.png?at=refs%2Fheads%2Fre-org) that shows the flow of the process and the scripts used at each step. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
+For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Checkout this [diagram](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/SpikeList_to_mc0_overview.png?at=refs%2Fheads%2Fre-org) to visualize the steps. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
 
 ## Narrative of the process
 
@@ -40,18 +38,17 @@ The scripts `create_burst_ont_Data.R`, `local.corr.all.ont.ae.filter.R`, and `cr
 
 Note that these are all well-level values. 
 
-(See Brown et al)
-A "burst" on an electrode is a set of spikes is rapid succession. Specifically, using the max-interval method, the set of spikes must satisfy these conditions in order to be considered a burst:
+A "burst" on an electrode is a set of spikes in rapid succession. Using the max-interval method, a set of spikes must satisfy these conditions in order to be considered a burst:
 - The number of spikes in the burst >= 5 spikes
 - The duration of the burst >= 0.05s
 - The time in between the first 2 spikes in the burst <= 0.1s
 - The time in between the last 2 spikes in the burst <= 0.25s
-- The amount of time between bursts >= 0.8s
+- The amount of time in between bursts >= 0.8s
+(Taken from [Brown *et al*., 2016](https://academic.oup.com/toxsci/article/154/1/126/2422066))
 
-A "network spike" is a group of spikes that occur on a several electrodes in a well at the same time. A set of spikes is a network spike if:
+A "network spike" is a group of spikes that occur on across several electrodes at the same time. The definition for a network spike was inspired by [Eytan & Marom, 2006](https://www.jneurosci.org/content/26/33/8465). In this code, a network spike is calculated by:
 
-- if at least 1/4 of the active electrodes (electrodes that firing at least 1.2/min throughout the recording)
-    all fire within 0.003s of each other, a network spike is said to have started (cite?)
+The entire recording is divided into 0.05 s time bins. A network spike occurs when at least 5 electrodes fire within a time bin. The peak of a network spike is the maximum number of electrodes involved in a spike. The duration of a network spike is the length of time between when half of the peak number of electrodes spiked before and after the time at the peak. See *parameter_calcuation_notes.md* for more details.
 
 | Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
@@ -63,18 +60,16 @@ A "network spike" is a group of spikes that occur on a several electrodes in a w
 | Mean Interburst Interval | mean interval between bursts (s), averaged over all ABE in each well | mean.IBIs | NHEERL_MEA_dev_interburst_interval_mean |
 | Interspike Interval in a Burst | mean interspike interval (s) within a burst, averaged over all ABE in each well | mean.isis | NHEERL_MEA_dev_per_burst_interspike_interval |
 | Percent of Spikes in Burst | # of spikes within burst divided by total spike count, averaged over all ABE in each well | per.spikes.in.burst | NHEERL_MEA_dev_per_burst_spike_percent |
-
-(just need to confirm def of network spike)
 | Number of Network Spikes | # of network spikes in each well during the 15 minute recording | ns.n | NHEERL_MEA_dev_network_spike_number |
-| Network Spike Duration | mean duration of network spikes in well (s) | ns.durn.m | NHEERL_MEA_dev_spike_duration_mean |
+| Network Spike Peak | max # of electrodes particpating in a network spike, averaged over all network spikes during recording | ns.peak.m | NHEERL_MEA_dev_network_spike_peak |
+| Mean Network Spike Duration | mean duration (s) of all network spikes in each well | ns.durn.m | NHEERL_MEA_dev_spike_duration_mean |
+| Standard Deviation of Network Spike Duration | standard deviation of duration of all network spikes in well | ns.durn.sd | NHEERL_MEA_dev_network_spike_duration_std |
+| Mean correlation | mean Pearson correlations between pairs of AE, averaged on AE | r | NHEERL_MEA_dev_correlation_coefficient_mean |
+| Percent of Spikes in Network Spike | total # of spikes from an electrode in network spikes * / total # of spikes in well during recording | ns.percent.of.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_percent |
+| Mean Number of Spikes in Network Spikes |  total # of spikes from an electrode in network spikes * / # of network spikes | ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
+| Interspike Interval in Network Spikes | mean time between peaks of consecutive network spikes (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
 
-(still need to confirm/check)
-| Network Spike Peak | # of spikes (or electrodes, or ae) at the peak of network spike | ns.peak.m | NHEERL_MEA_dev_network_spike_peak |**desp blah bc don't understand 
-| Percent of Spikes in Network Spike | % of spikes (in all electrodes? all ae?) that are part of network spikes (or, for each ae, percent in ns, then average those %'s) | ns.percent.of.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_percent |
-| Interspike Interval in Network Spikes | mean interspike interval of spikes in a network spike (s) (confirm units) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
-| Mean Number of Spikes in Network Spikes | number of spikes in newtork spike, averaged on ae?| ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
-| Standard Deviation of Network Spike Duration | standard deviation of network spike duration | ns.durn.sd | NHEERL_MEA_dev_network_spike_duration_std |
-| Mean correlation | spike time tiling coefficient, averaged on AE | r | NHEERL_MEA_dev_correlation_coefficient_mean |
+\* I have concerns about how the number of spikes in network spikes is calculated. See *parameter_calculation_notes.md*.
 
 One csv file containing these parameter values will be created for each plate. Value for each DIV recording will be in separate rows. These files will be combined into one csv file for all the plates using `comb.summary.R` (or your own implementation of `rbind`) before calculating the area under the curve.
 
@@ -99,7 +94,7 @@ As above, here are the names used for this parameter
 
 ### Area Under the Curve
 
-We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. See this [example](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=refs%2Fheads%2Fre-org) of a typical plot of a given parameter and a given well over time.
+We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. See this [example](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=refs%2Fheads%2Fre-org) of the development of the mean firing rate in a given well over time.
 
 In order to "sum up" the overall change in a parameter value, we calculate the trapezoidal area under the curve. This value will be used to compare the overall increase or decrease of a parameter in treated wells and control wells.
 
@@ -131,7 +126,7 @@ The total lactate dehydrogenase (LDH) assay is also used to quantify the number 
 
 For both assays, the script `cytotox_prep06.R` extracts these blank-corrected values from the excel sheets created by the lab technicians. Any negative values are set to zero.
 
-### Format all into long file format
+### Format all data into long file
 
 The script `tcpl_MEA_dev_AUC.R` formats all of the AUC and cytotoxicity data into one long file with the columns needed for an mc0 file in the TosCast Pipeline. (except with "treatment" column instead of "spid".)
 This script will also:
