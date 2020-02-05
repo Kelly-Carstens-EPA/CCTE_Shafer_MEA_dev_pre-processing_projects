@@ -1,9 +1,5 @@
 # Microelectrode Array Network Formation Assay Pre-Processing Scripts
 
-## to do:
-* read over all, when eyes not glazed over...
-* merge with master! (will probs need to repalce image links)
-
 ## Purpose
 
 These scripts are designed to process the raw data for the microelectrode array network formation concentration-response assay.
@@ -44,7 +40,7 @@ A "burst" on an electrode is a set of spikes in rapid succession. Using the max-
 - The time in between the first 2 spikes in the burst <= 0.1s
 - The time in between the last 2 spikes in the burst <= 0.25s
 - The amount of time in between bursts >= 0.8s
-(Taken from [Brown *et al*., 2016](https://academic.oup.com/toxsci/article/154/1/126/2422066))
+<br>(Taken from [Brown *et al*., 2016](https://academic.oup.com/toxsci/article/154/1/126/2422066))
 
 A "network spike" is a group of spikes that occur on across several electrodes at the same time. The definition for a network spike was inspired by [Eytan & Marom, 2006](https://www.jneurosci.org/content/26/33/8465). In this code, a network spike is calculated by:
 
@@ -67,7 +63,7 @@ The entire recording is divided into 0.05 s time bins. A network spike occurs wh
 | Mean correlation | mean Pearson correlations between pairs of AE, averaged on AE | r | NHEERL_MEA_dev_correlation_coefficient_mean |
 | Percent of Spikes in Network Spike | total # of spikes from an electrode in network spikes * / total # of spikes in well during recording | ns.percent.of.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_percent |
 | Mean Number of Spikes in Network Spikes |  total # of spikes from an electrode in network spikes * / # of network spikes | ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
-| Interspike Interval in Network Spikes | mean time between peaks of consecutive network spikes (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
+| Inter-Network Spike Interval | mean time between peaks of consecutive network spikes (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
 
 \* I have concerns about how the number of spikes in network spikes is calculated. See *parameter_calculation_notes.md*.
 
