@@ -14,13 +14,13 @@
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-basepath <- "L:/Lab/NHEERL_MEA/Frank 86 tcpl prep/Intermediate Output"
+basepath <- "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output"
 
 # set the name of the output file
-outfile = "Frank86_cytotoxicity3.csv"
+filename = "gf_cytotoxicity_test.csv"
 
 # Do your individual input excel sheets contain data for one plates or three plates per sheet?
-sheetdata = "one" # set to "one" or "three"
+sheetdata = "three" # set to "one" or "three"
 
 # what are the Alamar Blue and LDH sheets names in your input files?
 # ABname = "Alamar Blue" # e.g. "CTB", "Alamar Blue"
@@ -28,16 +28,12 @@ sheetdata = "one" # set to "one" or "three"
 
 # If you are creating a new file or want to overwrite an existing file of the same name, set newFile = TRUE
 # If you want to append data to an existing file with the same name, set newFile = FALSE
-newFile = TRUE
+newFile = FALSE
 
 # This script extracts the values under "Corrected Optical Denisty 490 nm"
 ###################################################################################
 # END USER INPUT
 ###################################################################################
-
-# possible assay names
-ABnames <- c("Alamar Blue", "AB", "CTB", "CellTiter Blue")
-LDHnames <- c("LDH", "Total LDH")
 
 library(xlsx)
 library(tcltk)
@@ -62,24 +58,49 @@ returnindex = function(value, mydata) {
   return(NULL)
 }
 
-
-# use this function if the data from each plate comes from a separate file or sheet
-createCytoTable = function(sourcefile,firstround) {
+# uses the list of possible tab names to get the AB or LDH data from excel sheet
+findTabData <- function(sourcefile, assay = c("AB", "LDH")) {
   
-  AB_data = read.xlsx(sourcefile, sheetName = ABname, stringsAsFactors = FALSE)
-  # LDH_data = read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
+  ABnames <- c("Alamar Blue", "AB", "CTB", "CellTiter Blue")
+  LDHnames <- c("LDH", "Total LDH")
   
-  # adding in trycatch for files where LDH sheet does not exist in summary file
-  LDH_data <- tryCatch({
+  tabNames <- switch(assay, 
+         AB = ABnames,
+         LDH = LDHnames)
+  
+  # get the source data, trying all common names
+  i <- 1
+  repeat {
+    if (i > length(tabNames)) {
+      # print(paste0("Could not find sheet for AB data in ", basename(sourcefile)))
+      tabName <- readline(prompt = paste0("Enter name of tab in ", basename(sourcefile)," for Alamar Blue data: "))
+    } 
+    else {
+      tabName <- tabNames[i]
+    }
+    
+    my_data <-  tryCatch({
       # The code you want run
-      read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
-    }, warning = function(war) {
-      # Is executed if warning encountered
-      read.xlsx(sourcefile, sheetName = LDHname, stringsAsFactors = FALSE)
+      read.xlsx(sourcefile, sheetName = tabName, header = FALSE, stringsAsFactors = FALSE)
     }, error = function(err) {
       # Is executed if error encountered
       NULL
     })
+    
+    if (!is.null(my_data)) {
+      break
+    }
+    i <- i+1
+  }
+  return(my_data)
+}
+
+
+# use this function if the data from each plate comes from a separate file or sheet
+createCytoTable = function(sourcefile,firstround) {
+  
+  AB_data <- findTabData(sourcefile, "AB")
+  LDH_data <- findTabData(sourcefile, "LDH")
   
   # get source file name
   filenamesplit = strsplit(sourcefile, split = "/")
@@ -116,8 +137,8 @@ createCytoTable2 = function(sourcefile, firstround) {
   namesplit = strsplit(srcname, split ="_")
   date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
   
-  AB_data_all = read.xlsx(sourcefile, sheetName = ABname, header = FALSE, stringsAsFactors = FALSE)
-  LDH_data_all = read.xlsx(sourcefile, sheetName = LDHname, header = FALSE, stringsAsFactors = FALSE)
+  AB_data_all = findTabData(sourcefile, "AB")
+  LDH_data_all = findTabData(sourcefile, "LDH")
   
   # split the data wherever there is a new occurrence of the word "Chemical" in the first column
   # Only want the first 3 - because these should correspond to the first 3 plates
@@ -252,9 +273,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   sourcedata = sourcedata[,c("treatment","apid","rowi","coli","wllt","wllq","conc","rval","srcf","acsn", "date")]
   
   # if provided, replace the treatment names with the names in the master chemical lists
-  if (length(masterChemFiles) == 0) {
-    print("no master chem list found, using treatment names from input data")
-  } else {
+  if (length(masterChemFiles) != 0) {
     # Get the masterChemFile with the same plate number
     masterChemFile = masterChemFiles[ grep(pattern = apid, masterChemFiles) ]
     if (length(masterChemFile) != 1) {
@@ -275,9 +294,9 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   
   # write the data to a table
   if (firstround) {
-    write.table(sourcedata, file = outfile, sep = ",", row.names = FALSE, col.names = TRUE, append = FALSE)
+    write.table(sourcedata, file = paste(basepath, filename, sep = "/"), sep = ",", row.names = FALSE, col.names = TRUE, append = FALSE)
   } else {
-    write.table(sourcedata, file = outfile, sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
+    write.table(sourcedata, file = paste(basepath, filename, sep = "/"), sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
   }
   
 }
@@ -285,9 +304,12 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
 ###################### END FUNCTIONS
 
 
-cytoFiles = tk_choose.files(caption = paste("Select all files containing cytotoxicity data with",sheetdata,"plates per sheet",sep=" "))
+cytoFiles = tk_choose.files(caption = paste("Select all files containing cytotoxicity data with",sheetdata,"plate(s) per sheet",sep=" "))
 masterChemFiles = tk_choose.files(caption = "(optional) Select all Master Chemical Lists Files fot these plates")
 
+if (length(masterChemFiles) == 0) {
+  print("no master chem list found, using treatment names from input data")
+}
 
 for (i in 1:length(cytoFiles)) {
   
@@ -303,4 +325,4 @@ for (i in 1:length(cytoFiles)) {
 
 }
 
-cat(outfile,"is ready\n")
+cat(filename,"is ready\n")
