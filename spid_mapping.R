@@ -6,21 +6,21 @@
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-basepath = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output"
+basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test"
 
 # set the name of the output file
-filename = "OP_all_MEA_mc0_withspids.csv"
+filename = "DNT_NFA_Test_MEA_mc0_withspids.csv"
 
 # input is the usually the output file from tcpl_MEA_dev_AUC.R
-mc0_filename = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/op_mc0.csv"
-spidmap_filename = "C:/Users/Acarpe01/Documents/MEA_dev_testing/EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx"
+mc0_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/DNT_NFA_Test_mc0.csv"
+spidmap_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/All Assays_list_toxcast_OECD 20190524.xlsx"
 # Name of sheet in spidmap_filename that contains the spid's
-sheetName = "Mundy corrected map"
+sheetName = "Chemical List"
 
 # specify the column name of spids in the spid map file
-spidCol = "EPA_SAMPLE_ID"
+spidCol = "NCCT ID"
 # specify the column name in the spidmap file you will match to the treatment column in the mc0data 
-mapMatchCol = "preferred_name"
+mapMatchCol = "Chemical ID"
 # specify the column name in the mc0 file that you will match to the mapMatchColName.
 # This column will be replaced with SPIDs
 mc0MatchCol = "treatment" # this will always be treatment, unless you are using something other than standard tcpl_MEA_dev_AUC.R output file mc0 file
@@ -32,7 +32,7 @@ mc0MatchCol = "treatment" # this will always be treatment, unless you are using 
 library(xlsx)
 
 mc0data = read.csv(mc0_filename, stringsAsFactors = FALSE)
-spidmap = read.xlsx(spidmap_filename, stringsAsFactors = FALSE, sheetName = sheetName)
+spidmap = read.xlsx(spidmap_filename, stringsAsFactors = FALSE, sheetName = sheetName, check.names = FALSE)
 
 # If using chemical name as mapMatchCol, may need to fix slight differences in naming, such as
 mc0data[mc0data$treatment == "Diazonon", "treatment"] = "Diazinon"
