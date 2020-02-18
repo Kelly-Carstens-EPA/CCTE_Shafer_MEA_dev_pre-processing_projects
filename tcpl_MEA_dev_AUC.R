@@ -2,11 +2,11 @@
 # USER INPUT
 ###################################################################################
 # set working directory for where the output file will go
-setwd("C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/")
+setwd("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test")
 # set the output file name
-filename = "op_mc0.csv"
-AUCsourcefilename = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/op_AUC.csv"
-cytotox_filename = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output/op_cytotoxicity3.csv"
+filename = "DNT_NFA_Test_mc0.csv"
+AUCsourcefilename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/Intermediate Output/DNT_AUC.csv"
+cytotox_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/all calculation/DNT_Test_cytotoxicity_test.csv"
 default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
 # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
 different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")

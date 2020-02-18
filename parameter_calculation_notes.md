@@ -94,7 +94,7 @@ For each well, the average bursts per minute of active elctrodes is found
 in `calc.burst.summary` in `create_ont_burst_Data.R`:
 `mean.dur` is the average "durn" from the burst table for each electrode
 It is the found by spikes[data[,"beg"]] - spikes[data[,"end"]] - i.e., the time at the index of the first spike, to the time at the index of the last spike in teh burst.
-For each well, the average mean duration of bursts on active elctrodes is found
+For each well, the average mean duration of bursts on actively bursting elctrodes is found
 
 ## Mean Interburst Interval * Recently revised
 (location in `s` object: `s[[cur.file]]$bs$mean.IBIs`)
@@ -102,14 +102,24 @@ Scripts: `calc.ibi` -> `calc.all.ibi`
 
 In the burst summary table above, the IBI column is the time from the last spike of the previous burst to the first spike of the current burst.
 For each electrode, find the average inter burst interval.
-For each well, find the average of the mean inter burst intervals on each AE
+For each well, find the average of the mean inter burst intervals on each actively bursting electrode
 
 ## Interspike Interval in a Burst * need to figure this one out
-`calc.ibi` -> `calc.all.ibi`
+`create_burst_ont_Data.R`
+calls `calc.burst.summary`
+calls `calc.all.isi` (sjemea)
 
-hmmm.. this si call isi instead of isis... maybe this is calculated a bit differently
-`s[[cur.file]]$bs$mean.isi` in `create_ont_burst_Data.R`:
-averaged on ABE
+
+`create_burst_ont_Data.R`
+calls `calc.burst.summary`
+
+calls `calc.all.isi` (sjemea) - for each electrode, returns a vector of the time between all spikes that were in bursts
+calls `calc.burst.summary` - averages the interspike intervals within bursts for each electrode. Returned in res$mean.isis
+
+in `create_burst_ont_Data.R`, stored in `s[[cur.file]]$bs$mean.isi`. averaged over actively bursting electrodes
+
+(note: the "SI" (spike interval?) is calculated in `calc.burst.summary` as well. However, this value is not used in create_burst_ont_Data.R)
+
 
 ## Percent of Spikes in Burst * Recently revised (only change a little bc of burst creation and extension)
 (location in `s` object: `s[[cur.file]]$bs$per.spikes.in.burst`)
@@ -117,7 +127,7 @@ averaged on ABE
 in `calc.burst.summary` called in `create_ont_burst_Data.R`:
 For each electrode, sum up total number of spikes in burst from burst table (the "len" column).
 Then divide by total number of spikes on that electrode.
-For each well, find the average percent of spikes in burst on AE
+For each well, find the average percent of spikes in burst on ABE
 
 
 
@@ -140,6 +150,9 @@ Sum of the number of elctrodes where the bursts.per.min >= 0.5 (s[[cur.file]]\$b
     
 ## Number of Network Spikes * minor bug
 Scripts: `create_burst_ont_Data.R` -> ... -> `sjemea.c` (fun: `ns_count_activity`) and `find.peaks()`
+
+Note: 
+Here, the network *spikes* are calculated. Network bursts are a different phenomena, which require that electrodes are bursting invidually, before it can be considered part of a network burst.
 
 How it's calculated:
 Divide entire recording into time bins of length ns.T = 0.05. (`networkspikes.R` (sjemea))

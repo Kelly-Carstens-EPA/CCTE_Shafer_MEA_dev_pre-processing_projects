@@ -5,7 +5,7 @@
 ###################################################################################
 # Set the name of the output file
 
-outfile = "op_mi_most.csv"
+outfile = '' # e.g. [dataset]_prepared_data.csv
 
 ###################################################################################
 # END USER INPUT

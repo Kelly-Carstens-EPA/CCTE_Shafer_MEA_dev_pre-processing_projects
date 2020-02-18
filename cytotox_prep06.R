@@ -14,10 +14,10 @@
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-basepath <- "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output"
+basepath <- "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/all calculation"
 
 # set the name of the output file
-filename = "gf_cytotoxicity_test.csv"
+filename = "DNT_Test_cytotoxicity_test.csv"
 
 # Do your individual input excel sheets contain data for one plates or three plates per sheet?
 sheetdata = "three" # set to "one" or "three"
@@ -28,7 +28,7 @@ sheetdata = "three" # set to "one" or "three"
 
 # If you are creating a new file or want to overwrite an existing file of the same name, set newFile = TRUE
 # If you want to append data to an existing file with the same name, set newFile = FALSE
-newFile = FALSE
+newFile = TRUE
 
 # This script extracts the values under "Corrected Optical Denisty 490 nm"
 ###################################################################################

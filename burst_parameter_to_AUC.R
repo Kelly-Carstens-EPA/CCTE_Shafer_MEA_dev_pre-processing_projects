@@ -6,13 +6,13 @@
 # USER INPUTS
 ##########################################################
 # Set directory for output location
-basepath = "C:/Users/Acarpe01/Documents/MEA_dev_testing/Intermediate Output"
+basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/Intermediate Output"
 # Set output file name
-filename = "op_AUC.csv"
+filename = "DNT_AUC.csv"
 # set file with the 16 parameters for all culture dates
-parameter_data = read.csv("C:/Users/Acarpe01/Documents/MEA_dev_testing/prepared_data/op_all_prepared_data.csv", sep = ",")
+parameter_data = read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/20191113 Culture DNT Group 12/prepared_data/prepared_data_DNT_2019_All_combined.csv", sep = ",")
 # set file with mi data for all culture dates
-mi_data = read.csv("C:/Users/Acarpe01/Documents/MEA_dev_testing/All_MI/op_mi_most.csv", sep = ",")
+mi_data = read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/MI_All_DNT_2019_combined.csv", sep = ",")
 
 ##########################################################
 # END USER INPUTS
