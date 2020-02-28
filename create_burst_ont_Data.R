@@ -66,6 +66,7 @@ create_burst_ont_Data <-
         
         s[[cur.file]]$ns.all <- nspikes.old$ns.all
         
+        # this script get the parameter values of nsN and ns.T from each well individually, so those values could be changed individually
         nspikes <- summary.network.spikes.dh(s[[cur.file]],nspikes.old, ns.E = 2, sur)
         
         s[[cur.file]]$ns.all <- nspikes$ns.all

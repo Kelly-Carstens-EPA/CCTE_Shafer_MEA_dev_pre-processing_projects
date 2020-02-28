@@ -34,13 +34,13 @@ The scripts `create_burst_ont_Data.R`, `local.corr.all.ont.ae.filter.R`, and `cr
 
 Note that these are all well-level values. 
 
-A "burst" on an electrode is a set of spikes in rapid succession. Using the max-interval method, a set of spikes must satisfy these conditions in order to be considered a burst:
+A "burst" on an electrode is a set of spikes that occur in rapid succession. Using the max-interval method with the default set of parameters, a set of spikes must satisfy these conditions in order to be considered a burst:
+- The time in between the first 2 spikes in the burst <= 0.1s
+- The maximum time in between any 2 spikes in the burst <= 0.25s\* (there can be an interspike interval up to 0.8s in a burst, if those spikes followed by another set of spikes with ISI less than 0.1)
 - The number of spikes in the burst >= 5 spikes
 - The duration of the burst >= 0.05s
-- The time in between the first 2 spikes in the burst <= 0.1s
-- The time in between the last 2 spikes in the burst <= 0.25s
 - The amount of time in between bursts >= 0.8s
-<br>(Taken from [Brown *et al*., 2016](https://academic.oup.com/toxsci/article/154/1/126/2422066))
+<br>(adapted from [Brown *et al*., 2016](https://academic.oup.com/toxsci/article/154/1/126/2422066))
 
 A "network spike" is a group of spikes that occur on across several electrodes at the same time. The definition for a network spike was inspired by [Eytan & Marom, 2006](https://www.jneurosci.org/content/26/33/8465). In this code, a network spike is calculated by:
 

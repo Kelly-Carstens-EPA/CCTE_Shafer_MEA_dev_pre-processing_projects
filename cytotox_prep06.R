@@ -275,7 +275,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) != 0) {
     # Get the masterChemFile with the same plate number
-    masterChemFile = masterChemFiles[ grep(pattern = apid, masterChemFiles) ]
+    masterChemFile = grep(pattern = paste0("_",apid,"_"), masterChemFiles, value = T)
     if (length(masterChemFile) != 1) {
       stop(paste("master chem file match not found for",apid,sep = " "))
     }

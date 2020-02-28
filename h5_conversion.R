@@ -43,7 +43,7 @@ for (i in 1:L){
   spikefilename_split = strsplit(spikefilename, split = "_")
   platename = spikefilename_split[[1]][ grep(pattern = "-", spikefilename_split[[1]]) ]
   # Get the masterChemFile with the same plate number
-  masterChemFile = masterChemFiles[ grep(pattern = platename, masterChemFiles) ]
+  masterChemFile = grep(pattern = paste0("_",platename,"_"), masterChemFiles, value = T)
   if (length(masterChemFile) != 1) {
     stop(paste("master chem file match not found for",spikefilename,sep = " "))
   } 
