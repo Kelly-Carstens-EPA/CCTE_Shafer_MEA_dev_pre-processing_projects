@@ -14,7 +14,7 @@ These script rely  heavily on functions in the packages `sjemea` and `meadq`, av
 
 ## How to use these scripts
 
-For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Checkout this [diagram](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/SpikeList_to_mc0_overview.png?at=refs%2Fheads%2Fre-org) to visualize the steps. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
+For a step-by-step guide, see the document *Step-by-Step_Guide.docx*. Checkout this [diagram](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/SpikeList_to_mc0_overview.jpg) to visualize the steps. Raw data files are shown in blue, intermediate output files are in purple, and scripts are in orange.
 
 ## Narrative of the process
 
@@ -90,7 +90,7 @@ As above, here are the names used for this feature
 
 ### Area Under the Curve
 
-We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. See this [example](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=refs%2Fheads%2Fre-org) of the development of the mean firing rate in a given well over time.
+We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. See this [example](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg) of the development of the mean firing rate in a given well over time.
 
 In order to "sum up" the overall change in a feature value, we calculate the trapezoidal area under the curve. This value will be used to compare the overall increase or decrease of a feature in treated wells and control wells.
 
