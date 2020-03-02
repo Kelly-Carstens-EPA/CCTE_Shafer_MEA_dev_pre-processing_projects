@@ -1,8 +1,8 @@
 require('pracma')
 library('compiler')
-require('h5')
 require('Matrix')
 require('gtools')
+library(rhdf5) # this is the library from Bio Conductor
 
 # use this script to calculate the normalized mutual information endpoint for one plate
 

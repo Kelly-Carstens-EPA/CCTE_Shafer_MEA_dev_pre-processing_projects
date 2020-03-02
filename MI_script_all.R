@@ -2,9 +2,9 @@
 # Notes:
 # - Must input all 4 DIV h5 files for each plate
 
+library(rhdf5) # this is the library from Bio Conductor
 require('pracma')
 library('compiler')
-require('h5')
 require('Matrix')
 require('gtools')
 

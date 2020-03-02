@@ -1,5 +1,4 @@
-require('h5')
-require('Matrix')
+require('rhdf5')
 require('gtools')
 
 load.spikedata_final <- function(pseudoSamplingRate,fileName){
@@ -11,30 +10,32 @@ load.spikedata_final <- function(pseudoSamplingRate,fileName){
   meta<-list()
   for (j in 1:length(fileName)){
     
-  file <- h5file(fileName[[j]], 'r')
-  test_h5<-try(file['/Well'],silent=T)
+  # file <- h5read(fileName[[j]], 'r') # changing this to instead read each object from h5file individually
+  # other option: file <- H5Fopen(fileName[[j]])
+    # then access objects by file$spikes, etc. Then don't have to open as often...? see which is faster/more data efficient
+  test_h5<-try(h5read(fileName[[j]], '/Well'), silent=T) # checking capitalization of objects in fileName[[j]]
   if (inherits(test_h5,"try-error")){
   
-  spikes <- file['/spikes']
-  well <- file['/well']
-  names <- file['/names']
-  sCount <- file['/sCount']
-  treatment<-file['/treatment']
-  dose<-file['/dose']
-  units<-file['/units']
-  #plate<-file['/Plate.SN']
-  #date<-file['/Experiment.Date']
-  #div<-file['/DIV']
+  spikes <- h5read(fileName[[j]], '/spikes')
+  well <- h5read(fileName[[j]], '/well')
+  names <- h5read(fileName[[j]], '/names')
+  sCount <- h5read(fileName[[j]], '/sCount')
+  treatment<-h5read(fileName[[j]], '/treatment')
+  dose<-h5read(fileName[[j]], '/dose')
+  units<-h5read(fileName[[j]], '/units')
+  #plate<-h5read(fileName[[j]], '/Plate.SN')
+  #date<-h5read(fileName[[j]], '/Experiment.Date')
+  #div<-h5read(fileName[[j]], '/DIV')
   }  else{
-  spikes <- file['/spikes']
-  well <- file['/Well']
-  names <- file['/names']
-  sCount <- file['/sCount']
-  treatment<-file['/Treatment']
-  dose<-file['/Dose']
-  units<-file['/Units']
-  plate<-file['/Plate.SN']
-  date<-file['/Experiment.Date']
+  spikes <- h5read(fileName[[j]], '/spikes')
+  well <- h5read(fileName[[j]], '/Well')
+  names <- h5read(fileName[[j]], '/names')
+  sCount <- h5read(fileName[[j]], '/sCount')
+  treatment<-h5read(fileName[[j]], '/Treatment')
+  dose<-h5read(fileName[[j]], '/Dose')
+  units<-h5read(fileName[[j]], '/Units')
+  plate<-h5read(fileName[[j]], '/Plate.SN')
+  date<-h5read(fileName[[j]], '/Experiment.Date')
   }
   file.name<-basename(fileName[[j]])
   
@@ -46,7 +47,8 @@ load.spikedata_final <- function(pseudoSamplingRate,fileName){
   # Initialize spiking array of zeros for each well
   for (rr in 1:6) {
     for (cc in 1:8) {
-      spikeStreamArray[[rr,cc]] <- Matrix(0,nrow = 16, ncol = (length(t)))
+      # spikeStreamArray[[rr,cc]] <- Matrix(0,nrow = 16, ncol = (length(t)))
+      spikeStreamArray[[rr,cc]] <- matrix(0,nrow = 16, ncol = (length(t))) # trying to use a normal matrix instead. Seems to be working...
     }
   }
   
@@ -62,7 +64,7 @@ load.spikedata_final <- function(pseudoSamplingRate,fileName){
   recallIndex = 1
   
   for (ii in 1:length(sCount[])) {
-    rr <- substr(names[ii],1,1)
+    rr <- substr(names[ii],1,1) # the spiking electrode names
     # Well row number:
     # Convert character to ascii code value.. then normalize:
     # [A,B,C,D,E,F] -> [65,66,67,68,69,70] -> '' - 64 ->[1,2,3,4,5,6]
@@ -79,9 +81,9 @@ load.spikedata_final <- function(pseudoSamplingRate,fileName){
     # Retrieve the spiking times:
     spikeTimes <- spikes[recallIndex:(recallIndex+sCount[ii]-1)]
     # Convert to indices:
-    spikeTimes <- floor((spikeTimes-t0)*pseudoSamplingRate)+1
+    spikeTimes <- floor((spikeTimes-t0)*pseudoSamplingRate)+1 # convert time in s to num of 'samples'/bins after start
     # Assign binary 1 values to array where spikes occur:
-    spikeStreamArray[[rr,cc]][ee,spikeTimes] <- 1
+    spikeStreamArray[[rr,cc]][ee,spikeTimes] <- 1 # error here: Error in .local(x, i, j, ..., value) : not-yet-implemented 'Matrix[<-' method
     
     # Update the recallIndex value so we crawl ahead through spikes
     recallIndex <- recallIndex + sCount[ii]
