@@ -7,10 +7,8 @@ library('compiler')
 require('h5')
 require('Matrix')
 require('gtools')
-library(tcltk)
 
-
-h5Files<-tk_choose.files(caption="Choose .h5 Files")
+h5Files<-choose.files(caption="Choose .h5 Files")
 h5Files = sort(h5Files)
 
 ###################################################################################

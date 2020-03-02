@@ -6,20 +6,14 @@
 # USER INPUTS
 ##########################################################
 # Set directory for output location
-basepath = ""
-setwd(basepath)
+basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/Intermediate Output"
 # Set output file name
-filename = ""
+filename = "DNT_AUC.csv"
 # set file with the 16 parameters for all culture dates
-parameter_data = read.csv("Published Source Data/All_TC.csv", sep = ",")
+parameter_data = read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/20191113 Culture DNT Group 12/prepared_data/prepared_data_DNT_2019_All_combined.csv", sep = ",")
 # set file with mi data for all culture dates
-mi_data = read.csv("Published Source Data/All_MI_TC.csv", sep = ",")
+mi_data = read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/MI_All_DNT_2019_combined.csv", sep = ",")
 
-# don't change these parameters if you are preparing the data for tcpl
-# do you want to normalize the data in this script?
-normalize = FALSE
-# do you want to make the normalized response positive?
-zero_center_positive_response = FALSE
 ##########################################################
 # END USER INPUTS
 ##########################################################
@@ -126,72 +120,12 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
   sum_table
 }
 
-## function to normalize by plate for each ontogeny parameter
-auc_summary <- function(summary_table) {
-  
-  # Split data set by plate (date as well because plateIDs get reused)
-  per_plate_split <- split(summary_table, interaction(summary_table[,"date"], summary_table[,"plate.SN"], drop=TRUE))
-  
-  # Normalize each plate by percent of control median and combine into single data frame
-  norm_plates <- list() # initialize list
-  
-  # Loop through each plate
-  for (i in per_plate_split) {
-    
-    if (TRUE) { # Can exclude any individual plates where untreated wells are off, e.g. i[,"plate.SN"][[1]]!="MW1008-41"
-      
-      # Loop through each ontogeny parameter
-      for (j in names(summary_table[,7:ncol(summary_table)])) {
-        cntrls <- (subset(i, dose==sprintf("%.5f",0))[,j]) # Get vector of control values for that parameter on that plate
-        i[,j] <- (i[,j] / median(na.omit(cntrls)))*100 # Divide all values on that plate by controls median
-      }
-      
-    } else { # For plates singled-out above, use culture median instead of plate median
-      
-      for (j in names(summary_table[,7:ncol(summary_table)])) {
-        cntrls <- (subset(summary_table, dose==sprintf("%.5f",0) & date==i[,"date"][[1]])[,j]) # identify same-date control wells
-        i[,j] <- (i[,j] / median(na.omit(cntrls)))*100  # Divide by same-culture control wells median     
-      }
-    }
-    
-    norm_plates[[length(norm_plates)+1]] <- i  # Add to growing list of normalized plates
-  }
-  
-  rm(i,j) 
-  norm_plates <- do.call(rbind, norm_plates) #Re-form one table of values
-  
-  #print(norm_plates) #checkpoint for normalization
-  norm_plates
-}
-
-set_postive_response <- function(norm_plates) {
-  # # how amy did this (incorrectly) previously
-  # # zero - center
-  # norm_plates[,7:ncol(norm_plates)] <- norm_plates[,7:ncol(norm_plates)]-100
-  # # Take the absolute value
-  # norm_plates[,7:ncol(norm_plates)] <- abs(norm_plates[,7:ncol(norm_plates)])
-  
-  # in previous scripts, e.g. AUC_analysis_Revised_SD.R, where set_direction = "up":
-  #norm_plates[,7:ncol(norm_plates)] <- 100-(norm_plates[,7:ncol(norm_plates)]-100)
-  # Here, I add 100, instead of 200, to make it zero-centered
-  norm_plates[,7:ncol(norm_plates)] <- 100-(norm_plates[,7:ncol(norm_plates)])
-  norm_plates
-}
-
 #*****************************************************************************
 #*                             END FUNCTIONS                                 *
 #*****************************************************************************
 
 sum_table <- calc_auc(all_data_split = all_data_split)
 
-if (normalize) {
-  sum_table <- auc_summary(sum_table)
-  # can only use set_postive_response for normalized data
-  if (zero_center_positive_response) {
-    sum_table <- set_postive_response(sum_table)
-  }
-}
-
-write.csv(sum_table, filename, row.names = FALSE)
+write.csv(sum_table, paste(basepath, filename, sep = "/"), row.names = FALSE)
 
 cat(filename,"is ready\n")

@@ -5,6 +5,9 @@ create_burst_ont_Data <-
   function(h5Files,  save.rdata=F, add.silent.wells=T , AEfile = F){
     write.header=T
     plates = unique( sapply(strsplit(basename(h5Files), split="_"), function(x) x[3]) )
+    # alternate way to find plates
+    # plates <- unique( sapply(strsplit(basename(h5Files), split="_"), function(x) grep("MW[0-9]", x, value=TRUE) ) )
+    
     num.plates = length( plates )
     
     for (cur.plate in 1:num.plates){
@@ -49,6 +52,7 @@ create_burst_ont_Data <-
           
         }
         
+        # calculating parameters related to bursting
         allb=list()
         allb <- lapply(s[[cur.file]]$spikes, mi.find.bursts)
         s[[cur.file]]$allb <- allb       
@@ -62,6 +66,7 @@ create_burst_ont_Data <-
         
         s[[cur.file]]$ns.all <- nspikes.old$ns.all
         
+        # this script get the parameter values of nsN and ns.T from each well individually, so those values could be changed individually
         nspikes <- summary.network.spikes.dh(s[[cur.file]],nspikes.old, ns.E = 2, sur)
         
         s[[cur.file]]$ns.all <- nspikes$ns.all

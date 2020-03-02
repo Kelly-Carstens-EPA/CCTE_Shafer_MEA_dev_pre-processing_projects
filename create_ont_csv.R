@@ -7,15 +7,14 @@
 library(sjemea)
 library(rhdf5)
 library(lattice)
-library(tcltk)
-# actually, I think all you need is data("chgv.parameters")
-library(meadq) # added this 11/21/2019, because got error that "mi.par" was missing - which I think is an object in diana hall's package
+# library(tcltk) # tk_choose.files() is intolerant of spaces in file names
+library(meadq)
 
 create_ont_csv<-function( h5Files = NULL, save.rdata = FALSE, param.file = NULL, AEfile = FALSE){  
   
   #get the directory containing the .h5 files
   if (is.null(h5Files)){
-    h5Files<-sort(tk_choose.files(caption="Choose .h5 Files") )    
+    h5Files<-sort(choose.files(caption="Choose .h5 Files") )
   }
   
   #create directories
@@ -25,9 +24,10 @@ create_ont_csv<-function( h5Files = NULL, save.rdata = FALSE, param.file = NULL,
   # USER INPUT
   ###################################################################################
   # Set location where the prepared_data folder should be created
-  basepath = "C:/Users/Acarpe01/Documents/Local Correlation (r) AE filter/final check test/"
-  # Or, use the following line to create the prepared_data folder next to the h5Files folder
-  # basepath = dirname(h5.dir)
+  # Can set create your own folder and input address such as, 
+  #basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/prepared_data"
+  # or, use the following line to create the prepared_data folder next to the h5Files folder
+  basepath = dirname(h5.dir)
   
   ###################################################################################
   # END USER INPUT
