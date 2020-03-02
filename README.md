@@ -4,13 +4,13 @@
 
 These scripts are designed to process the raw data for the microelectrode array network formation concentration-response assay.
 
-Briefly, cortical cells are grown on 48-well microelectrode-containing plates. On each plate, 6 compounds are tested at 7 concentrations, plus 6 control wells. Each group of compounds and concentrations is replicated on 3 plates. The test compounds are added to the wells on days 0, 5, and 9. The electrical activity of the neurons are recorded as the network develops, on days 5, 7, 9, and 12. The recording provide a lot of information concerning the general activity, organization, and connectivity of the neurons in each well. These scripts calculate several parameters from the recordings in order to describe these 3 aspects of the developing neuronal networks.
+Briefly, cortical cells are grown on 48-well microelectrode-containing plates. On each plate, 6 compounds are tested at 7 concentrations, plus 6 control wells. Each group of compounds and concentrations is replicated on 3 plates. The test compounds are added to the wells on days 0, 5, and 9. The electrical activity of the neurons are recorded as the network develops, on days 5, 7, 9, and 12. The recordings provide a lot of information concerning the general activity, organization, and connectivity of the neurons in each well. These scripts calculate several features from the recordings in order to describe these 3 aspects of the developing neuronal networks.
 
 We want to graph the dose response for each compound and each endpoint, calculate an EC50 value, and determine if the compound is positive hit. These scripts transform the raw the recording data into a long file format. Then, the data can be process with the functions in the ToxCast Pipeline to fit the dose response curves and determine the hit calls for each compound.
 
 ## Acknowledgements
 
-These script rely  heavily on functions in the packages `sjemea` and `meadq`, available on github. The scripts in these packages are availabe on GitHub and contain most of the functions used to calculate the parameter values in these scripts. 
+These script rely  heavily on functions in the packages `sjemea` and `meadq`, available on github. The scripts in these packages are availabe on GitHub and contain most of the functions used to calculate the feature values in these scripts. 
 
 ## How to use these scripts
 
@@ -28,9 +28,9 @@ where the first column records the time of each spike, the second column records
 ### h5 files
 The scripts `h5_conversion.R` and `spike_list_functions.R` convert the raw data into the Hierarchical Data Format .h5. This file type is designed to handle large amounts of data. One h5 file is created for each spike list file.
 
-### 16 parameters values
+### 16 features values
 
-The scripts `create_burst_ont_Data.R`, `local.corr.all.ont.ae.filter.R`, and `create_ont_csv.R` calculate 16 parameters from the spike list files. The table below summarizes the 16 parameters.
+The scripts `create_burst_ont_Data.R`, `local.corr.all.ont.ae.filter.R`, and `create_ont_csv.R` calculate 16 features from the spike list files. The table below summarizes the 16 features.
 
 Note that these are all well-level values. 
 
@@ -44,7 +44,7 @@ A "burst" on an electrode is a set of spikes that occur in rapid succession. Usi
 
 A "network spike" is a group of spikes that occur on across several electrodes at the same time. The definition for a network spike was inspired by [Eytan & Marom, 2006](https://www.jneurosci.org/content/26/33/8465). In this code, a network spike is calculated by:
 
-The entire recording is divided into 0.05 s time bins. A network spike occurs when at least 5 electrodes fire within a time bin. The peak of a network spike is the maximum number of electrodes involved in a spike. The duration of a network spike is the length of time between when half of the peak number of electrodes spiked before and after the time at the peak. See *parameter_calcuation_notes.md* for more details.
+The entire recording is divided into 0.05 s time bins. A network spike occurs when at least 5 electrodes fire within a time bin. The peak of a network spike is the maximum number of electrodes involved in a spike. The duration of a network spike is the length of time between when half of the peak number of electrodes spiked before and after the time at the peak. See *feature_calcuation_notes.md* for more details.
 
 | Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
@@ -65,24 +65,24 @@ The entire recording is divided into 0.05 s time bins. A network spike occurs wh
 | Mean Number of Spikes in Network Spikes |  total # of spikes from an electrode in network spikes * / # of network spikes | ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
 | Inter-Network Spike Interval | mean time between peaks of consecutive network spikes (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
 
-\* I have concerns about how the number of spikes in network spikes is calculated. See *parameter_calculation_notes.md*.
+\* I have concerns about how the number of spikes in network spikes is calculated. See *feature_calculation_notes.md*.
 
-One csv file containing these parameter values will be created for each plate. Value for each DIV recording will be in separate rows. These files will be combined into one csv file for all the plates using `comb.summary.R` (or your own implementation of `rbind`) before calculating the area under the curve.
+One csv file containing these feature values will be created for each plate. Value for each DIV recording will be in separate rows. These files will be combined into one csv file for all the plates using `comb.summary.R` (or your own implementation of `rbind`) before calculating the area under the curve.
 
 Notes:
-- The scripts currently calculate 2 additional parameters: cv.time and cv.network. However, there may be an issue with the way these are calculated. Therefore, these parameter values are removed from the data in `burst_parameter_to_AUC.R`.
+- The scripts currently calculate 2 additional features: cv.time and cv.network. However, there may be an issue with the way these are calculated. Therefore, these feature values are removed from the data in `burst_parameter_to_AUC.R`.
 
-- These scripts were created by Diana Hall in ~2014. A few alterations were made to her scripts, such as exclusively filtering for actively bursting electrodes for relevant parameters, calculating the mean correlation only on active electrodes, and generally streamlinging the process. Therefore, edited versions of the 3 scripts mentioned above are included in this repo and should be sourced in order to mask the previous functions from the meadq package, which you will download before you begin.
+- These scripts were created by Diana Hall in ~2014. A few alterations were made to the some scripts in the `meadq` package, such as exclusively filtering for actively bursting electrodes for relevant features, calculating the mean correlation only on active electrodes, and generally streamlining the process. Therefore, edited versions of the 3 scripts mentioned above are included in this repo and should be sourced in order to mask the previous functions from the meadq package, which you will download before you begin.
 
 ### Mutual Information
 
-The mutual information is a robust parameter that desribes both the global synchrony and level of activity in a network. See *A multivariate extension of mutual information for growing neural networks* [here](https://www.sciencedirect.com/science/article/abs/pii/S0893608017301612?via%3Dihub) by K. Ball et al. for more information.
+The mutual information is a robust feature that desribes both the global synchrony and level of activity in a network. See *A multivariate extension of mutual information for growing neural networks* [here](https://www.sciencedirect.com/science/article/abs/pii/S0893608017301612?via%3Dihub) by K. Ball et al. for more information.
 
 The scripts `spikeLoadRoutines.R`, `nmi_wrapper.R`, and `nmi2_final.R` contain the functions used to calculate the mutual information for this assay.
 
-The calculation of the mutual information is computationally intensive. Therefore, this parameter is calculated separatley from the rest of the parameters. The script `MI_script_all.R` is designed to calculate the mutual information for all plates, so that the task could be done overnight or remotely for the entire dataset. One csv file will be created for all 3 replicate plates in each culture date. These files will be combined into one csv file for all the plates using `comb.summary.R` (or your own implementation of `rbind`) before calculating the area under the curve.
+The calculation of the mutual information is computationally intensive. Therefore, this feature is calculated separatley from the rest of the features. The script `MI_script_all.R` is designed to calculate the mutual information for all plates, so that the task could be done overnight or remotely for the entire dataset. One csv file will be created for all 3 replicate plates in each culture date. These files will be combined into one csv file for all the plates using `comb.summary.R` (or your own implementation of `rbind`) before calculating the area under the curve.
 
-As above, here are the names used for this parameter
+As above, here are the names used for this feature
 
 | Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
@@ -92,12 +92,12 @@ As above, here are the names used for this parameter
 
 We want to quatify the alterations to development from DIV 0 - 12 that a compound might cause compared to controls. See this [example](https://ncct-bitbucket.epa.gov/projects/NSLTM/repos/nfa-spike-list-to-mc0-r-scripts/browse/images/meanfiringrate_development_example.jpeg?at=refs%2Fheads%2Fre-org) of the development of the mean firing rate in a given well over time.
 
-In order to "sum up" the overall change in a parameter value, we calculate the trapezoidal area under the curve. This value will be used to compare the overall increase or decrease of a parameter in treated wells and control wells.
+In order to "sum up" the overall change in a feature value, we calculate the trapezoidal area under the curve. This value will be used to compare the overall increase or decrease of a feature in treated wells and control wells.
 
-The script `burst_parameter_to_AUC.R` uses the `trapz` function from the pracma package to calculate the trapezoidal area under the curve (AUC) for each parameter. One csv file will contain the AUC values for all plates and parameters.
+The script `burst_parameter_to_AUC.R` uses the `trapz` function from the pracma package to calculate the trapezoidal area under the curve (AUC) for each feature. One csv file will contain the AUC values for all plates and features.
 
 Notes:
-- When there are no bursts or network spikes in a well, many parameters that measure some aspect of bursts or network spikes are NA. In order to calculate the area under the curve, these NA values are set to 0. Below is a summary of the parameters that are sometimes NA. For some of these, setting NA instances to zero might be counterintuitive, particularly for the latter four in the list. For example, if there are no network spikes, the Standard Deviation of Network Spike Duration is NA. If we set the standard deviation to 0 in this instance, it implies that the duration of the network spikes is extremely consistent (which we might expect of a very well developed, organized, network). More analysis will be done on these parameters. Perhaps these latter 4 should be calculated differently, or excluded entitrely from the AUC analysis.
+- When there are no bursts or network spikes in a well, many features that measure some aspect of bursts or network spikes are NA. In order to calculate the area under the curve, these NA values are set to 0. Below is a summary of the features that are sometimes NA. For some of these, setting NA instances to zero might be counterintuitive, particularly for the latter four in the list. For example, if there are no network spikes, the Standard Deviation of Network Spike Duration is NA. If we set the standard deviation to 0 in this instance, it implies that the duration of the network spikes is extremely consistent (which we might expect of a very well developed, organized, network). More analysis will be done on these features. Perhaps these latter 4 should be calculated differently, or excluded entitrely from the AUC analysis.
 
 | Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
@@ -110,7 +110,7 @@ Notes:
 | Interspike Interval in Network Spikes | mean interspike interval of spikes in a network spike (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
 | Standard Deviation of Network Spike Duration | standard deviation of network spike duration | ns.durn.sd | NHEERL_MEA_dev_network_spike_duration_std |
 
-- Historically, activity was recorded on DIV 2. There was usually very little activity in these recordings. At some point, it was decided that all DIV 2 parameter values should be set to 0 before calculating the AUC in `burst_parameter_to_AUC.R`. Now, even though activity is no longer recorded on DIV 2, we still calculate the area under the curve with the first point at (2, 0) (instead of just starting at DIV 5).
+- Historically, activity was recorded on DIV 2. There was usually very little activity in these recordings. At some point, it was decided that all DIV 2 feature values should be set to 0 before calculating the AUC in `burst_parameter_to_AUC.R`. Now, even though activity is no longer recorded on DIV 2, we still calculate the area under the curve with the first point at (2, 0) (instead of just starting at DIV 5).
 
 ### Cytotoxicity data
 
