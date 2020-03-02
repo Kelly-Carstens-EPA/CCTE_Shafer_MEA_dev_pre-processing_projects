@@ -47,8 +47,7 @@ load.spikedata_final <- function(pseudoSamplingRate,fileName){
   # Initialize spiking array of zeros for each well
   for (rr in 1:6) {
     for (cc in 1:8) {
-      # spikeStreamArray[[rr,cc]] <- Matrix(0,nrow = 16, ncol = (length(t)))
-      spikeStreamArray[[rr,cc]] <- matrix(0,nrow = 16, ncol = (length(t))) # trying to use a normal matrix instead. Seems to be working...
+      spikeStreamArray[[rr,cc]] <- matrix(0,nrow = 16, ncol = (length(t)))
     }
   }
   
