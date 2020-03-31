@@ -35,9 +35,9 @@ mc0data = read.csv(mc0_filename, stringsAsFactors = FALSE)
 spidmap = read.xlsx(spidmap_filename, stringsAsFactors = FALSE, sheetName = sheetName, check.names = FALSE)
 
 # If using chemical name as mapMatchCol, may need to fix slight differences in naming, such as
-mc0data[mc0data$treatment == "Diazonon", "treatment"] = "Diazinon"
-mc0data[mc0data$treatment == "Z-tetrachlorvinphos", "treatment"] = "Z-Tetrachlorvinphos"
-mc0data[mc0data$treatment == "Malaxon", "treatment"] = "Malaoxon"
+# mc0data[mc0data$treatment == "Diazonon", "treatment"] = "Diazinon"
+# mc0data[mc0data$treatment == "Z-tetrachlorvinphos", "treatment"] = "Z-Tetrachlorvinphos"
+# mc0data[mc0data$treatment == "Malaxon", "treatment"] = "Malaoxon"
 
 chemlist = unique(mc0data[,mc0MatchCol])
 
