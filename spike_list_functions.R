@@ -4,32 +4,22 @@
 # purpose: functions to run the pipeline with spike list files
 # one electrode and one timestampe per row
 
-
-
 spkList2list <-function (file) {
     
     
-    data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", NA, NA, NA))
-    ######CG Additions 1/13/2016 
-    ###To account for changes in axion update-- takes out well info 
-    data.raw<-data.raw[-which(data.raw$Electrode==""),]
-    data.raw<-data.raw[1:(nrow(data.raw)-40),]
-    data.raw[,1]<-as.numeric(as.character(data.raw[,1]))
-    data.raw[,3]<-as.numeric(as.character(data.raw[,3]))
-    #######End of CG Additions
-    
+    data.raw<-suppressWarnings( fread(input=file,header=T,select=c(3,4,5), colClasses = c("NULL", "NULL", "numeric","character","numeric"), 
+                    fill = FALSE, check.names = TRUE) )
+    # fread will stop when it encounters an empty line
+    # Will return a warning if there is text after the empty line
+    # e.g. 'Well infomration', as in later versions of Axion
+    # but we want to drop the Well informatin regardless, so the warning can be ignored
     
     #remove NA
     ind.want<-which(!is.na(data.raw[,1]) )
     if (length( ind.want )>0){
-      data.raw2<-data.frame(
-        elect<-data.raw[ ind.want ,"Electrode"],
-        timestamps<-data.raw[ ind.want ,"Time..s."]
-      )
-      
-      data.raw2<-data.raw2[order(data.raw2$elect), ]
-      
-      spikes<-split(data.raw2$timestamps, data.raw2$elect)
+      data.raw <- data.raw[ind.want, list(elect=Electrode, timestamps = Time..s.)]
+      data.raw <- data.raw[order(elect)]
+      spikes<-split(data.raw$timestamps, data.raw$elect)
     } else {
       spikes<-NULL
     }
@@ -45,8 +35,10 @@ axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T ){
   #remove _spike_list
   key<-unlist( strsplit(key, split="_spike_list") )
   
-  # correct for issues with ( ) in file names
+  # Replace any ( ) with "_" in file names
   h5file <- gsub("\\(|\\)", "_", sprintf("%s/%s.h5", h5.dir, key))
+  
+  # if h5file ends in "_.h5", remove the "_"
   if ( substring(basename(h5file), nchar(basename(h5file))-3, nchar(basename(h5file))-3)=="_" ){
     h5file<-paste( dirname(h5file) ,"/" ,
       unlist( strsplit(basename(h5file), split="_.h5") ) ,
@@ -82,6 +74,10 @@ axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T ){
   print(summary.table)
   
   map.to.h5.dh(s2, chem.info, h5file)
+  
+  # add the date and plate data to the h5 file
+  h5write(chem.info$Experiment.Date, h5file, "/Experiment.Date")
+  h5write(chem.info$Plate.SN, h5file, "/Plate.SN")
   
   if (debug) {
     d <- as.data.frame(summary.table)

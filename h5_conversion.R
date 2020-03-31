@@ -51,7 +51,7 @@ for (i in 1:L){
   #load data from all files in folder (listed above)
   title<-strsplit(basename(spkListFiles[i]), "[.]")[[1]][1]
   #get plate chemical info for each file in the list
-  plate.chem.info<-chem.info.2(spkListFiles[i], masterChemFile)
+  plate.chem.info<-chem.info.3(spkListFiles[i], masterChemFile)
   #check to see if there's data
   matching.log.file<-!(length(plate.chem.info)==0)
   while(!matching.log.file){
@@ -66,7 +66,7 @@ for (i in 1:L){
     #get master chemical list
     masterChemFile<-tk_choose.files(caption="Select Master Chemical File")
     #get plate chemical info for each file in the list
-    plate.chem.info<-chem.info.2(spkListFiles[i], masterChemFile)
+    plate.chem.info<-chem.info.3(spkListFiles[i], masterChemFile)
     matching.log.file<-!(length(plate.chem.info)==0)
   }
   
