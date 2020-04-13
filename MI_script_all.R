@@ -55,6 +55,7 @@ streamline_one_folder = function(h5Files) {
       prevdate = date
     }
   }
+  print(paste0("Finished at ", as.character.Date(Sys.time())))
   print("MI files are ready")
 }
 
