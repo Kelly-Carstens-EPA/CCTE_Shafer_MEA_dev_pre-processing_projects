@@ -45,13 +45,17 @@ axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T ){
   #remove _spike_list
   key<-unlist( strsplit(key, split="_spike_list") )
   
-  # correct for issues with ( ) in file names
-  h5file <- gsub("\\(|\\)", "_", sprintf("%s/%s.h5", h5.dir, key))
-  if ( substring(basename(h5file), nchar(basename(h5file))-3, nchar(basename(h5file))-3)=="_" ){
-    h5file<-paste( dirname(h5file) ,"/" ,
-      unlist( strsplit(basename(h5file), split="_.h5") ) ,
-                  ".h5", sep="")
-  }
+  # # correct for issues with ( ) in file names
+  # h5file <- gsub("\\(|\\)", "_", sprintf("%s/%s.h5", h5.dir, key))
+  # if ( substring(basename(h5file), nchar(basename(h5file))-3, nchar(basename(h5file))-3)=="_" ){
+  #   h5file<-paste( dirname(h5file) ,"/" ,
+  #     unlist( strsplit(basename(h5file), split="_.h5") ) ,
+  #                 ".h5", sep="")
+  # }
+  
+  # what if we just allow ()? let's give it a try
+  h5file <- sprintf("%s/%s.h5", h5.dir, key)
+  
   wildcard <- gsub("\\)", "\\\\)", gsub("\\(", "\\\\(", sprintf("^%s.*csv$", key)))
 
   #f is a list of all files
