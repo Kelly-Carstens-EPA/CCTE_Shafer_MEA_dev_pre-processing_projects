@@ -22,8 +22,8 @@ basepath = dirname(dirname(h5Files[1]))
 ###################################################################################
 
 # create All_MI directory
-suppressWarnings( dir.create(paste(basepath,'/All_MI',sep='') ) )
-mi.dir<-paste(basepath, "/All_MI",sep="")
+suppressWarnings( dir.create(paste(basepath,'/All_MI_test',sep='') ) )
+mi.dir<-paste(basepath, "/All_MI_test",sep="")
 
 streamline_one_folder <- function(h5Files) {
   
@@ -34,9 +34,9 @@ streamline_one_folder <- function(h5Files) {
   for (plate in plates) {
     
     # select the files corresponding to the current plate
-    plate_files <- grep(pattern = plate, basename(h5Files), value = T)
-    date <- strsplit(plate_files[1], split = "_")[[1]][2]
-    plate <- strsplit(plate_files[1], split = "_")[[1]][3]
+    plate_files <- h5Files[grepl(pattern = plate, basename(h5Files))]
+    date <- strsplit(basename(plate_files[1]), split = "_")[[1]][2]
+    plate <- strsplit(basename(plate_files[1]), split = "_")[[1]][3]
     file_split<-split(plate_files,1:length(plate_files)) # legacy thing, haven't had the gumption to change to vector yet
     
     cat("Starting plate", plate, "at", as.character.Date(Sys.time()), "\n")

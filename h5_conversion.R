@@ -24,15 +24,11 @@ basepath = dirname(dirname(spkListFiles[1]))
 ###################################################################################
 
 # create h5Files directory
-suppressWarnings( dir.create(paste(basepath,'/h5Files',sep='') ) )
-h5.dir<-paste(basepath, "/h5Files",sep="")
+suppressWarnings( dir.create(paste(basepath,'/h5Files_test',sep='') ) )
+h5.dir<-paste(basepath, "/h5Files_test",sep="")
 
 #get master chemical list
 masterChemFiles <- tk_choose.files(caption="Select Master Chemical lists")
-
-if (length(spkListFiles) > length(masterChemFiles)) {
-  stop("Too few Master Chemical Lists selected")
-}
 
 L=length(spkListFiles)
 
