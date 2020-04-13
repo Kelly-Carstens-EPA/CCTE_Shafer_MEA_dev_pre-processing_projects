@@ -26,22 +26,29 @@ suppressWarnings( dir.create(paste(basepath,'/All_MI',sep='') ) )
 mi.dir<-paste(basepath, "/All_MI",sep="")
 
 streamline_one_folder <- function(h5Files) {
-  N = length(h5Files)
-  prevdate = ""
   
-  for (i in 1:N) {
+  # get a list of the plates selected
+  plates <- sapply(h5Files, function(x) strsplit(basename(x), split = "_")[[1]][3], USE.NAMES = FALSE)
+  plates <- unique(plates)
+  
+  for (plate in plates) {
     
-    filename <- sub(pattern = "\\.h5", replacement="", basename(h5Files[i]))
-    cat("Starting ", filename, "at", as.character.Date(Sys.time()), "\n")
-
+    # select the files corresponding to the current plate
+    plate_files <- grep(pattern = plate, basename(h5Files), value = T)
+    date <- strsplit(plate_files[1], split = "_")[[1]][2]
+    plate <- strsplit(plate_files[1], split = "_")[[1]][3]
+    file_split<-split(plate_files,1:length(plate_files)) # legacy thing, haven't had the gumption to change to vector yet
+    
+    cat("Starting plate", plate, "at", as.character.Date(Sys.time()), "\n")
+    
     #Begin MI analysis
-    parsed_data <- load.spikedata_final(333,h5Files[i])
+    parsed_data = load.spikedata_final(333,file_split)
     MI_output<-list()
     MI_output<-nmi_wrapper(parsed_data)
-    
+
     # save the result as csv file
-    write.table(MI_output, paste(mi.dir,"/NMI_",filename,".csv",sep=""),col.names=TRUE, append =FALSE, row.names=FALSE, sep=",")
-  
+    write.table(MI_output, paste(mi.dir,"/NMI_",date,"_",plate,".csv",sep=""),col.names=TRUE, append =FALSE, row.names=FALSE, sep=",")
+
   }
   print("MI files are ready")
 }

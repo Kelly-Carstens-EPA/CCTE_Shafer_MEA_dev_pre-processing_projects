@@ -5,6 +5,7 @@ library(sjemea)
 library(rhdf5)
 library(tcltk)
 library(meadq)
+library(data.table)
 
 #get files
 analysis<-tk_choose.files(caption="Select spike list files") 
@@ -29,7 +30,7 @@ h5.dir<-paste(basepath, "/h5Files",sep="")
 #get master chemical list
 masterChemFiles <- tk_choose.files(caption="Select Master Chemical lists")
 
-if (length(spkListFiles)/4 > length(masterChemFiles)) {
+if (length(spkListFiles) > length(masterChemFiles)) {
   stop("Too few Master Chemical Lists selected")
 }
 

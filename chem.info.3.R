@@ -1,5 +1,6 @@
 chem.info.3<-function (file, masterChemFile = masterChemFile) 
 {
+  require(data.table)
   masterChem <- fread(masterChemFile)
   masterCD.temp <- as.data.frame(masterChem)
   masterCD<-c()
