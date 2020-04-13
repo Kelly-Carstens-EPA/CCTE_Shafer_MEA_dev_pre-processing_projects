@@ -42,8 +42,8 @@ create_burst_ont_Data <-
           s[[cur.file]]$sCount = g$sCount
           names(s[[cur.file]]$sCount) = g$names
           s[[cur.file]]$units = g$units
-          names(s[[cur.file]]$units) = g$well
-          s[[cur.file]]$well = g$well
+          names(s[[cur.file]]$units) = g$well # appears to list all the wells, regardless of whether or not they spiked
+          s[[cur.file]]$well = g$well 
           s[[cur.file]]$summary.table = g$summary.table
           s[[cur.file]]$array = g$array     
           s[[cur.file]]$DIV = strsplit( basename(s[[cur.file]]$file), split="_")[[1]][4]
@@ -230,7 +230,7 @@ create_burst_ont_Data <-
 
         if ( sum(abe.index)>0 ){
           
-          # we need the wells that we have at least one ABE
+          # we need the wells that have at least one ABE
           well.names.abe<-unique( subset(s[[cur.file]]$cw, abe.index) )
           num.wells.abe = length(unique( subset(s[[cur.file]]$cw, abe.index) ) )
           well.indices.abe = which(is.element(s[[cur.file]]$well, well.names.abe )) 
@@ -340,22 +340,35 @@ create_burst_ont_Data <-
                          "per.spikes.in.burst", "r")
           
           # add in well level number for wells that don't appear in calculation
-          if (add.silent.wells){           
+          if (add.silent.wells){ 
             silent.wells<-setdiff( s[[cur.file]]$well, df2$well )
-            date.sw<-rep(df2$date[1], length(silent.wells) )
-            Plate.SN.sw<-rep(df2$Plate.SN[1], length(silent.wells) )
-            DIV.sw<-rep(df2$DIV[1], length(silent.wells) )
+            
+            # get ID info from filename, not df2 
+            # Because df2 might not have been created if num.wells==0
+            date_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][2]
+            Plate.SN_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][3]
+            DIV_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4]
+            
+            date.sw<-rep(date_value, length(silent.wells) )
+            Plate.SN.sw<-rep(Plate.SN_value, length(silent.wells) )
+            DIV.sw<-rep(DIV_value, length(silent.wells) )
+            
             trt.sw<- s[[1]]$treatment[silent.wells]
             dose.sw<-s[[1]]$dose[silent.wells]
             units.sw<-s[[1]]$units[silent.wells]
-            file.name.sw<-rep(df2$file.name[1], length(silent.wells) )
+            file.name.sw<-rep(basename(s[[cur.file]]$file), length(silent.wells) )
+            
             for (i in 1:length(may.be.zero)){
               assign(paste(may.be.zero[i],"sw",sep="."), 
                      rep(0, length(silent.wells) ) ) 
             }
-            may.not.be.zero<-setdiff( names(df2), c(may.be.zero, 
-                  "DIV","date","well","Plate.SN","trt","dose","units","file.name") )
-            for (i in 1:length(may.be.zero) ){
+            
+            # don't have names(df2), if df2 has not been created
+            all_endpoints <- c(may.be.zero, "mean.isis", "mean.dur", "mean.IBIs",
+                               "ns.peak.m", "ns.durn.m", "ns.mean.insis",
+                               "ns.durn.sd", "ns.mean.spikes.in.ns")
+            may.not.be.zero<-setdiff( all_endpoints, may.be.zero )
+            for (i in 1:length(may.not.be.zero) ){
               assign(paste(may.not.be.zero[i],"sw",sep="."), 
                      rep(NA, length(silent.wells) ) ) 
             }
@@ -408,6 +421,7 @@ create_burst_ont_Data <-
           
           
         } else { 
+          # (sum(abe.index) <= 0)
           df2<-df
           df2$mean.isis<-rep(NA, length(df2$well))
           df2$mean.IBIs<-rep(NA, length(df2$well))
@@ -425,20 +439,32 @@ create_burst_ont_Data <-
           # add in well level number for wells that don't appear in calculation
           if (add.silent.wells){           
             silent.wells<-setdiff( s[[cur.file]]$well, df2$well )
-            date.sw<-rep(df2$date[1], length(silent.wells) )
-            Plate.SN.sw<-rep(df2$Plate.SN[1], length(silent.wells) )
-            DIV.sw<-rep(df2$DIV[1], length(silent.wells) )
+            
+            # get ID info from filename, not df2 
+            # Because df2 might not have been created if num.wells==0
+            date_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][2]
+            Plate.SN_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][3]
+            DIV_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4]
+            
+            date.sw<-rep(date_value, length(silent.wells) )
+            Plate.SN.sw<-rep(Plate.SN_value, length(silent.wells) )
+            DIV.sw<-rep(DIV_value, length(silent.wells) )
+            
             trt.sw<- s[[1]]$treatment[silent.wells]
             dose.sw<-s[[1]]$dose[silent.wells]
             units.sw<-s[[1]]$units[silent.wells]
-            file.name.sw<-rep(df2$file.name[1], length(silent.wells) )
+            file.name.sw<-rep(basename(s[[cur.file]]$file), length(silent.wells) )
             for (i in 1:length(may.be.zero)){
               assign(paste(may.be.zero[i],"sw",sep="."), 
                      rep(0, length(silent.wells) ) ) 
             }
-            may.not.be.zero<-setdiff( names(df2), c(may.be.zero, 
-                                                    "DIV","date","well","Plate.SN","trt","dose","units","file.name") )
-            for (i in 1:length(may.be.zero) ){
+            # don't have names(df2), if df2 has not been created
+            all_endpoints <- c(may.be.zero, "mean.isis", "mean.dur", "mean.IBIs",
+                               "ns.peak.m", "ns.durn.m", "ns.mean.insis",
+                               "ns.durn.sd", "ns.mean.spikes.in.ns")
+            may.not.be.zero<-setdiff( all_endpoints, may.be.zero )
+
+            for (i in 1:length(may.not.be.zero) ){
               assign(paste(may.not.be.zero[i],"sw",sep="."), 
                      rep(NA, length(silent.wells) ) ) 
             }
