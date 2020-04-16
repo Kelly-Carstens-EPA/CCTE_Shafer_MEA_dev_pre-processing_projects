@@ -97,7 +97,7 @@ create_burst_ont_Data <-
         ##+++++++++++++++++  make data frame        
         ae.index.l<- split((s[[cur.file]]$meanfiringrate*60>=5), f=s[[cur.file]]$cw )
         ae.index.v<- unlist( split((s[[cur.file]]$meanfiringrate*60>=5), f=s[[cur.file]]$cw ) )
-        # we need the wells that we have at least one AE
+        # we need the wells that have at least one AE
         well.names<-unique( subset(s[[cur.file]]$cw, ae.index.v) )
         num.wells = length(unique( subset(s[[cur.file]]$cw, ae.index.v) ) )
         well.indices = which(is.element(s[[cur.file]]$well, well.names ))
@@ -364,10 +364,9 @@ create_burst_ont_Data <-
             }
             
             # don't have names(df2), if df2 has not been created
-            all_endpoints <- c(may.be.zero, "mean.isis", "mean.dur", "mean.IBIs",
+            may.not.be.zero <- c("mean.isis", "mean.dur", "mean.IBIs",
                                "ns.peak.m", "ns.durn.m", "ns.mean.insis",
                                "ns.durn.sd", "ns.mean.spikes.in.ns")
-            may.not.be.zero<-setdiff( all_endpoints, may.be.zero )
             for (i in 1:length(may.not.be.zero) ){
               assign(paste(may.not.be.zero[i],"sw",sep="."), 
                      rep(NA, length(silent.wells) ) ) 
@@ -459,10 +458,9 @@ create_burst_ont_Data <-
                      rep(0, length(silent.wells) ) ) 
             }
             # don't have names(df2), if df2 has not been created
-            all_endpoints <- c(may.be.zero, "mean.isis", "mean.dur", "mean.IBIs",
+            may.not.be.zero <- c("mean.isis", "mean.dur", "mean.IBIs",
                                "ns.peak.m", "ns.durn.m", "ns.mean.insis",
                                "ns.durn.sd", "ns.mean.spikes.in.ns")
-            may.not.be.zero<-setdiff( all_endpoints, may.be.zero )
 
             for (i in 1:length(may.not.be.zero) ){
               assign(paste(may.not.be.zero[i],"sw",sep="."), 
