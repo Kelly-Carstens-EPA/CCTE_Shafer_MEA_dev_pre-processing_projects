@@ -63,7 +63,7 @@ names(AUC_smaller_melted)[names(AUC_smaller_melted) == 'value'] <- "rval"
 AUC_smaller_melted[, acsn := variable]
 AUC_smaller_melted$wllt = "t"
 AUC_smaller_melted$wllq = 1
-AUC_smaller_melted[, srcf := AUCsourcefilename]
+AUC_smaller_melted[, srcf := basename(AUCsourcefilename)]
 
 
 # remove unneeded columns
