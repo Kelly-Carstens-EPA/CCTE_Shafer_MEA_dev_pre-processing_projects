@@ -9,6 +9,7 @@ library(rhdf5)
 library(lattice)
 # library(tcltk) # tk_choose.files() is intolerant of spaces in file names
 library(meadq)
+library(data.table)
 
 create_ont_csv<-function( h5Files = NULL, save.rdata = FALSE, param.file = NULL, AEfile = FALSE){  
   

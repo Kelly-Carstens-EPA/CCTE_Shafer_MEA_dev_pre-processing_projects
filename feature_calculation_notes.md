@@ -169,6 +169,8 @@ Calculate the duration of each network spike by the length of time from  (`mean.
 
 Minor bug: In `networkspikes.R` (sjemea) in the function `mean.ns`, any network spike occuring within 100*ns.T of the beginning or end of the recording are removed (ns.T = 0.05 seconds). I doubt many network spikes occur within 5 seconds of the beginning or end though, and the beginning and end of the recording are arbitrary endpoints anyhow.
 
+Note: `summary.newtworks.spikes.dh` gets ns.N and ns.T from `s` for each well individiually. So theoretically those parameters could be tweaked via `s`.
+
 ## Number of Network Spikes
 location in `s` object: `s[[cur.file]]$ns.all$[well_name]$brief['n']`<br>
 function called in `create_ont_burst_Data.R`: `summary.network.spikes.dh`
