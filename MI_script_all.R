@@ -24,8 +24,8 @@ basepath = dirname(dirname(h5Files[1]))
 ###################################################################################
 
 # create All_MI directory
-suppressWarnings( dir.create(paste(basepath,'/MI_test_results',sep='') ) )
-mi.dir<-paste(basepath, "/MI_test_results",sep="")
+suppressWarnings( dir.create(paste(basepath,'/All_MI',sep='') ) )
+mi.dir<-paste(basepath, "/All_MI",sep="")
 
 streamline_one_folder <- function(h5Files) {
   
