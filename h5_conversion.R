@@ -6,32 +6,44 @@ library(rhdf5)
 library(tcltk)
 library(meadq)
 
-#get files
-analysis<-tk_choose.files(caption="Select spike list files") 
-spkListFiles=sort(analysis)
-
 ###################################################################################
 # USER INPUT
 ###################################################################################
 # set location where you want the "h5Files" folder to be created
-# basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA"
-# # if you want the h5Files folder to be created next the spike list files folder, use the following line
-basepath = dirname(dirname(spkListFiles[1]))
+basepath = ""
+# # or, if you want the h5Files folder to be created next the spike list files folder, use the following line
+# basepath = dirname(dirname(spkListFiles[1]))
 # If an h5Files folder already exists in  this location, the h5Files created will overwrite what is there
+
+# if some of the h5 files already exists, do you want to remake them, or use the existing files?
+remakeAll_choice = FALSE
+select_or_search_for_files <- "select" # if 'select' - manually select files from dialog box. if 'search' - uses get_spike_list_files.R to search for spike list files
+start.dir <- "" # starting directory for spike list files. Only need if using "search", otherwise leave as ""
 ###################################################################################
 # END USER INPUT
 ###################################################################################
+
+#get files
+analysis <- switch(select_or_search_for_files, 
+       select = tk_choose.files(default = basepath, caption="Select spike list files"),
+       search = getspikeListFiles(log_file = paste0(basepath,"Spike_List_Files_log.txt"), dataset_title = "", start.dir = start.dir))
+
+spkListFiles=sort(analysis)
 
 # create h5Files directory
 suppressWarnings( dir.create(paste(basepath,'/h5Files',sep='') ) )
 h5.dir<-paste(basepath, "/h5Files",sep="")
 
-#get master chemical list
-masterChemFiles <- tk_choose.files(caption="Select Master Chemical lists")
+#get master chemical lists
+masterChemFiles <- switch(select_or_search_for_files, 
+                          select = tk_choose.files(default = basepath, caption="Select Master Chemical lists"),
+                          search = getMasterChemFiles(log_file = paste0(basepath,"Master_Chemical_Lists_log.txt"), dataset_title = "", start.dir = start.dir))
 
 if (length(spkListFiles)/4 > length(masterChemFiles)) {
   stop("Too few Master Chemical Lists selected")
 }
+
+stop()
 
 L=length(spkListFiles)
 
@@ -71,6 +83,6 @@ for (i in 1:L){
   }
   
   #make h5 files that contain chemical info 
-  axion.spkList.to.h5(title, spkListFiles[i], plate.chem.info)
+  axion.spkList.to.h5(title, spkListFiles[i], plate.chem.info, remakeAll = remakeAll_choice)
   
 }
