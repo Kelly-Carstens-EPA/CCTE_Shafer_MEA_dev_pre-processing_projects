@@ -6,19 +6,19 @@
 # USER INPUTS
 ##########################################################
 # Set directory for output location
-basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/Intermediate Output"
+basepath <-  "L:/Lab/NHEERL_MEA/NFA Spike List to mc0 R Scripts/Test_script_updates/check_DIVs_before_AUC/example_output"
 # Set output file name
-filename = "DNT_AUC.csv"
-# set file with the 16 parameters for all culture dates
-parameter_data = read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/20191113 Culture DNT Group 12/prepared_data/prepared_data_DNT_2019_All_combined.csv", sep = ",")
-# set file with mi data for all culture dates
-mi_data = read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/MI_All_DNT_2019_combined.csv", sep = ",")
-
+filename <- "PFAS_test_nonstandard.csv"
+# set the DIVs that should be included
+use_divs <- c(5,7,9,12) # note that a point of DIV = 2 value = 0 will be added for every endpoint regardless
 ##########################################################
 # END USER INPUTS
 ##########################################################
 
-
+# get files with the 16 parameters for all culture dates
+parameter_data_files <- choose.files(default = basepath, caption = "Select all files containing activity parameter values to calculate AUC")
+# fet files with mi data for all culture dates
+mi_data_files <- choose.files(default = basepath, caption = "Select all files containing MI data to calculate AUC")
 
 # List of parameters for tcpl
 assay_components = c("NHEERL_MEA_dev_firing_rate_mean",
@@ -45,29 +45,52 @@ assay_components = c("NHEERL_MEA_dev_firing_rate_mean",
 
 options(digits = 6)
 
-# Removing BIC wells! yay!
-#bis_rows <- grep("12_01_", all_data$file.name, fixed=TRUE) #index all Bicuculline-treated wells
-#all_data <- all_data[- bis_rows,] #Remove all bic-treated wells
+# read in the data
+parameter_data <- c()
+for (i in 1:length(parameter_data_files)) {
+  parameter_datai <- read.csv(parameter_data_files[i])
+  parameter_data <- rbind(parameter_data, parameter_datai)
+}
+mi_data <- c()
+for (i in 1:length(mi_data_files)) {
+  mi_datai <- read.csv(mi_data_files[i])
+  mi_data <- rbind(mi_data, mi_datai)
+}
 
-parameter_data[is.na(parameter_data)] <- 0 #Replace all NAs with zeros for AUC calculations - This may be undesirable for MEA parameters that are derived from other parameters.
-parameter_data <- subset(parameter_data, DIV %in% c(5,7,9,12)) # Remove sparse DIV2 data
 parameter_data <- unique(parameter_data) # eliminate duplicate data
-
-## Read in mutual information parameter and attach to full dataset
-mi_data <- subset(mi_data, DIV %in% c(5,7,9,12)) # Remove sparse DIV2 data
 mi_data <- unique(mi_data) # eliminate duplicate data
 all_data <- merge(parameter_data, mi_data, all.x=TRUE) # merge two data frames on common columns (plateID, date, well, treatment, source file name, etc.)
+
+# check if there are any DIVs other than use_divs
+allDIV <- unique(all_data$DIV)
+diffDIV <- setdiff(allDIV, use_divs)
+if (length(diffDIV) > 0) {
+  plates_with_diff_div <- unique(all_data[all_data$DIV %in% diffDIV, "Plate.SN"])
+  warning(paste0("Recordings from DIV ",paste0(diffDIV,collapse = ","), " are found in ",paste0(plates_with_diff_div,collapse=","),"\nData from ",paste0(diffDIV,collapse = ",")," will be excluded."))
+  all_data <- subset(all_data, DIV %in% use_divs)
+}
+
+# check if ea plate has a recording for each of use_divs
+plates <- unique(all_data$Plate.SN)
+for (plate in plates) {
+  plate_divs <- sort(unique(all_data[all_data$Plate.SN == plate, "DIV"]))
+  missing_divs <- setdiff(use_divs, plate_divs)
+  if (length(missing_divs) > 0) {
+    warning(paste0(plate, " does not have any data for DIV ",paste0(missing_divs,collapse=",")))
+  }
+}
 
 # switch the order of the columns file.name and Mutual.Information
 L = length(names(all_data))
 all_data = all_data[, c(1:(L-2), L, L-1)]
 names(all_data)[names(all_data) == "Mutual.Information"] = "mi" # renaming this column
-all_data[is.na(all_data$mi),"mi"] = 0 # make all mi na's = 0
 
-#####
-# May need to manually update all compound names, e.g.
-# all_data[all_data[,"trt"]=="1-Methyl-4-phenylpyridinium iodide","trt"] <- "MPP+"
+# Removing BIC data
+#bis_rows <- grep("12_01_", all_data$file.name, fixed=TRUE) #index all Bicuculline-treated wells
+#all_data <- all_data[- bis_rows,] #Remove all bic-treated wells
 
+#Replace all NAs with zeros for AUC calculations - This may be undesirable for MEA parameters that are derived from other parameters.
+all_data[is.na(all_data)] <- 0
 
 all_data$dose <- sprintf("%.5f", all_data$dose)
 ## Split data frame by individual wells over time (interaction term speeds this up greatly for larger datasets)

@@ -26,7 +26,22 @@ spkList2list <-function (file) {
         elect<-data.raw[ ind.want ,"Electrode"],
         timestamps<-data.raw[ ind.want ,"Time..s."]
       )
+ 
+      # if the recording lasts less than 720 seconds, flag it
+      data.raw2 <- data.raw2[order(data.raw2$timestamps),]
+      last_time <- tail(data.raw2$timestamps, n=1)
+      if (last_time < (900 - 3*60)) {
+        stop(paste0("\n",file," only goes to ",last_time," seconds\n"))
+      }
+      # if the recording went over 900 seconds, remove extra time
+      else if (last_time > 900.0) {
+        # get the index of the first time stamp that is over 900 seconds
+        drop_index <- which(data.raw2$timestamps > 900.0)[1]
+        data.raw2 <- data.raw2[1:(drop_index-1),]
+        print(paste0("\ndropped rows, file went to ",last_time," seconds\n"))
+      }
       
+      # order data frame by electrode
       data.raw2<-data.raw2[order(data.raw2$elect), ]
       
       spikes<-split(data.raw2$timestamps, data.raw2$elect)
@@ -39,7 +54,7 @@ spkList2list <-function (file) {
 
 
 
-axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T ){
+axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T, remakeAll=T ){
   #function to convert spike list to h5 file
   
   #remove _spike_list
@@ -56,12 +71,16 @@ axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T ){
   # what if we just allow ()? let's give it a try
   h5file <- sprintf("%s/%s.h5", h5.dir, key)
   
+  # if the h5file has already been created, skip it
+  if(file.exists(h5file) & !remakeAll) {
+    return(h5file)
+  }
+  
   wildcard <- gsub("\\)", "\\\\)", gsub("\\(", "\\\\(", sprintf("^%s.*csv$", key)))
 
   #f is a list of all files
   f <- spkListFile
-  
-  
+
   #get spikes
   spikes.sep <- lapply(f, spkList2list)
   
