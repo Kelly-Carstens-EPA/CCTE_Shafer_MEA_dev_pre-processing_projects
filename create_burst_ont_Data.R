@@ -5,17 +5,20 @@ create_burst_ont_Data <-
   function(h5Files,  save.rdata=F, add.silent.wells=T , AEfile = F){
     write.header=T
     plates = unique( sapply(strsplit(basename(h5Files), split="_"), function(x) x[3]) )
-    # alternate way to find plates
-    # plates <- unique( sapply(strsplit(basename(h5Files), split="_"), function(x) grep("MW[0-9]", x, value=TRUE) ) )
     
-    num.plates = length( plates )
+    # get a list of the date-plate combinations selected
+    date_plates <- unique( lapply(h5Files, function(x) strsplit(basename(x), split = "_")[[1]][2:3]) )
+    num.plates = length( date_plates )
     
     for (cur.plate in 1:num.plates){
       
       write.header = T
       #####  Read in and make data
       s=list()
-      h5Files.wanted = h5Files[grep(x=h5Files,pattern= plates[cur.plate])]
+      date <- date_plates[[cur.plate]][1]
+      plate <- date_plates[[cur.plate]][2]
+      h5Files.wanted = h5Files[grep(x=h5Files,pattern= paste0(date,"_",plate,"_"))]
+      
       #order according to DIV
       temp.l<-sapply(sapply(strsplit(basename(h5Files.wanted),split="_"), 
                             function(x) x[4]) , nchar)
