@@ -14,10 +14,10 @@
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-basepath <- "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/all calculation"
+basepath <- "L:/Lab/NHEERL_MEA/Project PFAS 2018/TCPL_pre-processing_2020/Intermediate_Output"
 
 # set the name of the output file
-filename = "DNT_Test_cytotoxicity_test.csv"
+filename = "PFAS_2018_cytotoxicity_data.csv"
 
 # Do your individual input excel sheets contain data for one plates or three plates per sheet?
 sheetdata = "three" # set to "one" or "three"
@@ -143,13 +143,15 @@ createCytoTable2 = function(sourcefile, firstround) {
   # split the data wherever there is a new occurrence of the word "Chemical" in the first column
   # Only want the first 3 - because these should correspond to the first 3 plates
   # Any occurences of "chemical" after that are probably other calculations
-  plate_indicies = which(AB_data_all[,1] == "Chemical")[1:3]
+  AB_plate_indicies = which(AB_data_all[,1] == "Chemical")[1:3]
+  LDH_plate_indicies = which(LDH_data_all[,1] == "Chemical")[1:3]
   
-  for (p in plate_indicies) {
+  
+  for (i in 1:length(AB_plate_indicies)) {
     
     # get the plate slice of the data
-    AB_data = AB_data_all[p:(p+9),]
-    LDH_data = LDH_data_all[p:(p+9),]
+    AB_data = AB_data_all[AB_plate_indicies[i]:(AB_plate_indicies[i]+9),]
+    LDH_data = LDH_data_all[LDH_plate_indicies[i]:(LDH_plate_indicies[i]+9),]
     
     # get apid. Should be same for AB and LDH
     plateindex = returnindex("Plate", AB_data)
@@ -291,6 +293,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
       }
     }
   }
+  print(paste("firstround = ",firstround))
   
   # write the data to a table
   if (firstround) {
