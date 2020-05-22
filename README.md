@@ -23,7 +23,7 @@ The inital raw data is the recordings of the activity in each well, called spike
 
 | Time (s) | Electrode | Amplitude(mV) |
 | ----------- | ----------- | ----------- |
-where the first column records the time of each spike, the second column records the ID of the electrode that spiked, and the third column records the amplitude of the spike. Each recording spans ~900 seconds (15 minutes).
+where the first column records the time of each spike, the second column records the ID of the electrode that spiked, and the third column records the amplitude of the spike. Each recording spans ~900 seconds (15 minutes). (If a recording goes over 900 seconds, the script `spike_list_functions.R` will truncate the spike list file at 900 seconds).
 
 ### h5 files
 The scripts `h5_conversion.R` and `spike_list_functions.R` convert the raw data into the Hierarchical Data Format .h5. This file type is designed to handle large amounts of data. One h5 file is created for each spike list file.

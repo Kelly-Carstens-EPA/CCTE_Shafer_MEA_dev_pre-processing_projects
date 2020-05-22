@@ -6,6 +6,13 @@ library(rhdf5)
 library(tcltk)
 library(meadq)
 
+#get files
+analysis <- switch(select_or_search_for_files, 
+       select = tk_choose.files(default = "", caption="Select spike list files"),
+       search = getspikeListFiles(log_file = paste0(basepath,"Spike_List_Files_log.txt"), dataset_title = "", start.dir = start.dir))
+
+spkListFiles=sort(analysis)
+
 ###################################################################################
 # USER INPUT
 ###################################################################################
@@ -23,13 +30,6 @@ start.dir <- "" # starting directory for spike list files. Only need if using "s
 # END USER INPUT
 ###################################################################################
 
-#get files
-analysis <- switch(select_or_search_for_files, 
-       select = tk_choose.files(default = basepath, caption="Select spike list files"),
-       search = getspikeListFiles(log_file = paste0(basepath,"Spike_List_Files_log.txt"), dataset_title = "", start.dir = start.dir))
-
-spkListFiles=sort(analysis)
-
 # create h5Files directory
 suppressWarnings( dir.create(paste(basepath,'/h5Files',sep='') ) )
 h5.dir<-paste(basepath, "/h5Files",sep="")
@@ -42,8 +42,6 @@ masterChemFiles <- switch(select_or_search_for_files,
 if (length(spkListFiles)/4 > length(masterChemFiles)) {
   stop("Too few Master Chemical Lists selected")
 }
-
-stop()
 
 L=length(spkListFiles)
 
