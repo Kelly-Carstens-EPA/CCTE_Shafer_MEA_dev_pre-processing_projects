@@ -6,9 +6,9 @@
 # USER INPUTS
 ##########################################################
 # Set directory for output location
-basepath <-  "L:/Lab/NHEERL_MEA/NFA Spike List to mc0 R Scripts/Test_script_updates/check_DIVs_before_AUC/example_output"
+basepath <-  "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing/burst_param_colreorder_confirmation"
 # Set output file name
-filename <- "PFAS_test_nonstandard.csv"
+filename <- "PFAS_2018_AUC_update_test.csv"
 # set the DIVs that should be included
 use_divs <- c(5,7,9,12) # note that a point of DIV = 2 value = 0 will be added for every endpoint regardless
 ##########################################################
@@ -80,9 +80,7 @@ for (plate in plates) {
   }
 }
 
-# switch the order of the columns file.name and Mutual.Information
-L = length(names(all_data))
-all_data = all_data[, c(1:(L-2), L, L-1)]
+# rename "Mutual.Information" column to "mi"
 names(all_data)[names(all_data) == "Mutual.Information"] = "mi" # renaming this column
 
 # Removing BIC data
@@ -117,7 +115,7 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     
     # calculating AUC for each parameter after adding div=2, param=0 data point to each AUC calculation with append() to represent no activity at first timepoint
     # first parameter in all_data_split is on col 8. Last parameter is in second to last column. (Last column contains file.name)
-    for (j in names(all_data_split[[i]][,8:(ncol(all_data_split[[i]])-1)])) {
+    for (j in names(all_data_split[[i]][,9:ncol(all_data_split[[i]])])) {
       param_name <- paste(j, "_auc", sep="") # create auc variable name
       assign(param_name, round(trapz(append(all_data_split[[i]][,"DIV"], 2, after=0), append(all_data_split[[i]][,j], 0, after=0)),6), inherits=TRUE) # calculate auc, assign to variable name
     }
