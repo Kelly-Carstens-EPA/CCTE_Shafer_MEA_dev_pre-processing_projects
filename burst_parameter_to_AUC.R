@@ -114,7 +114,7 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     units <- all_data_split[[i]]$units[1]
     
     # calculating AUC for each parameter after adding div=2, param=0 data point to each AUC calculation with append() to represent no activity at first timepoint
-    # first parameter in all_data_split is on col 8. Last parameter is in second to last column. (Last column contains file.name)
+    # first parameter in all_data_split is on col 9
     for (j in names(all_data_split[[i]][,9:ncol(all_data_split[[i]])])) {
       param_name <- paste(j, "_auc", sep="") # create auc variable name
       assign(param_name, round(trapz(append(all_data_split[[i]][,"DIV"], 2, after=0), append(all_data_split[[i]][,j], 0, after=0)),6), inherits=TRUE) # calculate auc, assign to variable name

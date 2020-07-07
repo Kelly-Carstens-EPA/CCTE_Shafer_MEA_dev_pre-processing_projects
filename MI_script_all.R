@@ -4,6 +4,7 @@
 # then calls the functions to calculate the NMI
 
 library(rhdf5) # this is the library from Bio Conductor
+library(data.table)
 require('pracma')
 library('compiler')
 require('gtools')

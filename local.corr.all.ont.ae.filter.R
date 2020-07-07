@@ -10,11 +10,13 @@ local.corr.all.ont.ae.filter = function (s, t.p, ae.index.v)
     # restricting the list of channels to active electrodes
     index.ch = index.ch[ae.index.v[index.ch]]
     # if none of the electrodes in cur.well are active, then the correlation for that well is undefined
-    if(length(index.ch) == 0) {
+    if(length(index.ch) %in% c(0,1)) {
+      # if 0 active elctrodes in well - 
       # In create_burst_ont_Data, we only select [well.names] (wells with active electrodes)
-      # So it does not matter what we assign to inactive wells here
-      # NA values in r will be assigned to 0 in create_burst_ont_Data
-      r.vector[[cur.well]] = NA
+      # So wells with 0 active electrodes will be dropped regardless
+      # If there is only 1 AE, there can be no correlation.
+      # So r will be set to 0
+      r.vector[[cur.well]] = 0
       next
     }
     start.ms = round(s[[t.p]]$rec.time[1] * 10^2, digits = 0)

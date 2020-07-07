@@ -10,10 +10,10 @@ cytotox_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA ME
 default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
 # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
 different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
-# Eneter the names of the vehicle controls as they correspond to the compounds in the previous list
+# Enter the names of the vehicle controls as they correspond to the compounds in the previous list
 different_vehicleControls = c() # e.g. c("Water", "Water")
-check_unique_apid = TRUE # recommended. This will check that plate ID's have not been used previously
-# compares with data located here L:\Lab\NHEERL_MEA\tcpl_nheerl_mea_dev\source_files
+check_unique_apid = TRUE # recommended. This will check if any plate ID's have been used previously
+compare_with_files_here <- "L:/Lab/NHEERL_MEA/tcpl_nheerl_mea_dev/source_files" # compares with the level 0 csv files located here
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -101,7 +101,7 @@ if (check_unique_apid) {
   cur_plates = unique(mc0_data$apid)
   
   # get all source files
-  allfilenames <- list.files(path = "L:/Lab/NHEERL_MEA/tcpl_nheerl_mea_dev/source_files", pattern = ".csv", full.names = TRUE, recursive = FALSE)
+  allfilenames <- list.files(path = compare_with_files_here, pattern = ".csv", full.names = TRUE, recursive = FALSE)
   allplates <- lapply(allfilenames, function(x) unique(fread(x, select = "apid"))) # each file is [[1]], [[2]], etc in the list
   allplates <- unlist(allplates, use.names = FALSE)
   
