@@ -6,10 +6,22 @@ library(rhdf5)
 library(tcltk)
 library(meadq)
 
+###################################################################################
+# USER INPUT
+###################################################################################
+select_or_search_for_files <- "select" # if 'select' - manually select files from dialog box. if 'search' - uses get_spike_list_files.R to search for spike list files
+start.dir <- "" # starting directory for spike list files. Only need if using "search", otherwise leave as ""
+
+# if some of the h5 files already exists, do you want to remake them, or use the existing files?
+remakeAll_choice = TRUE
+###################################################################################
+# END USER INPUT
+###################################################################################
+
 #get files
 analysis <- switch(select_or_search_for_files, 
        select = tk_choose.files(default = "", caption="Select spike list files"),
-       search = getspikeListFiles(log_file = paste0(basepath,"Spike_List_Files_log.txt"), dataset_title = "", start.dir = start.dir))
+       search = getspikeListFiles(log_file = paste0(start.dir,"Spike_List_Files_log.txt"), dataset_title = "", start.dir = start.dir))
 
 spkListFiles=sort(analysis)
 
@@ -17,15 +29,10 @@ spkListFiles=sort(analysis)
 # USER INPUT
 ###################################################################################
 # set location where you want the "h5Files" folder to be created
-basepath = ""
+# basepath = ""
 # # or, if you want the h5Files folder to be created next the spike list files folder, use the following line
-# basepath = dirname(dirname(spkListFiles[1]))
+basepath = dirname(dirname(spkListFiles[1]))
 # If an h5Files folder already exists in  this location, the h5Files created will overwrite what is there
-
-# if some of the h5 files already exists, do you want to remake them, or use the existing files?
-remakeAll_choice = FALSE
-select_or_search_for_files <- "select" # if 'select' - manually select files from dialog box. if 'search' - uses get_spike_list_files.R to search for spike list files
-start.dir <- "" # starting directory for spike list files. Only need if using "search", otherwise leave as ""
 ###################################################################################
 # END USER INPUT
 ###################################################################################
