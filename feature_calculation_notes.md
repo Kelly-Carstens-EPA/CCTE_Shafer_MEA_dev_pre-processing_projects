@@ -291,7 +291,7 @@ The pairwise correlation between electrodes is calculated as the Pearson correla
 The correlation coefficient for a given electrode is the mean of its pairwise correlations with every other active electrode in the well.<br>
 The well-level value is found by the average of the mean correlations for each active electrode.
 
-If there are only 0 or 1 active electrodes in the well, the well-level value will be set to NA in the script `local.corr.all.ont.ae.filter.` Then, the NA values will be set to 0 in `create_ont_burst_Data.R`.
+If there are only 0 or 1 active electrodes in the well, the mean correlation will be set to 0 in the script `local.corr.all.ont.ae.filter.`
 
 ## Mutual Information
 The mutual information is calculated separately from the rest of the features.

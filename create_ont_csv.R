@@ -25,7 +25,7 @@ create_ont_csv<-function( h5Files = NULL, save.rdata = FALSE, param.file = NULL,
   ###################################################################################
   # Set location where the prepared_data folder should be created
   # Can set create your own folder and input address such as, 
-  #basepath = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/prepared_data"
+  # basepath = ""
   # or, use the following line to create the prepared_data folder next to the h5Files folder
   basepath = dirname(h5.dir)
   
@@ -37,8 +37,7 @@ create_ont_csv<-function( h5Files = NULL, save.rdata = FALSE, param.file = NULL,
   
   dir.create( prepared.dir )
 
-  # output file names 
-  # amy  name temporary changes here
+  # output file names
   assign( "csv.filename.AEfilt",paste( prepared.dir, "/ont_data_summary_AEfilt",sep=""),
           envir = .GlobalEnv )
   assign( "csv.filename.ABEfilt",paste( prepared.dir, "/ont_data_summary_ABEfilt",sep=""  ),
