@@ -6,18 +6,14 @@
 # - "ON_20160720_MW1139-19_Summary.xlsx" - these contain data for 1 plate per sheet (LDH and Alamar Blue)
 # - "20171011_ON G8_2 Calculations.xlsx" - these contain data for 3 plates per sheet (LDH and Alamar Blue)
 
-# changes:
-# this script sets any negative raw values to zero
-# this script addes a date column (for integration with check_unique_apid.R)
-
 ###################################################################################
 # USER INPUT
 ###################################################################################
 # set the location for the output file
-basepath <- "L:/Lab/NHEERL_MEA/Project PFAS 2018/TCPL_pre-processing_2020/Intermediate_Output"
+basepath <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing"
 
 # set the name of the output file
-filename = "PFAS_2018_cytotoxicity_data.csv"
+filename = "test_updates.csv"
 
 # Do your individual input excel sheets contain data for one plates or three plates per sheet?
 sheetdata = "three" # set to "one" or "three"
@@ -108,7 +104,7 @@ createCytoTable = function(sourcefile,firstround) {
   
   # look for plate name in file name (anything with -)
   namesplit = strsplit(srcname, split ="_")
-  apid = namesplit[[1]][grep(pattern="-",namesplit[[1]])]
+  plate.SN = namesplit[[1]][grep(pattern="-",namesplit[[1]])]
   
   # get the date from file name:
   date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
@@ -116,12 +112,12 @@ createCytoTable = function(sourcefile,firstround) {
   if (isempty(AB_data)) {
     print("AB data not found")
   } else {
-    createCytoData(AB_data, "AB", firstround, apid, srcname, date)
+    createCytoData(AB_data, "AB", firstround, plate.SN, srcname, date)
   }
   if(isempty(LDH_data)) {
     print("LDH data not found")
   } else {
-    createCytoData(LDH_data, "LDH", 0, apid, srcname, date)
+    createCytoData(LDH_data, "LDH", 0, plate.SN, srcname, date)
   }
   
 }
@@ -153,31 +149,31 @@ createCytoTable2 = function(sourcefile, firstround) {
     AB_data = AB_data_all[AB_plate_indicies[i]:(AB_plate_indicies[i]+9),]
     LDH_data = LDH_data_all[LDH_plate_indicies[i]:(LDH_plate_indicies[i]+9),]
     
-    # get apid. Should be same for AB and LDH
+    # get plate.SN. Should be same for AB and LDH
     plateindex = returnindex("Plate", AB_data)
-    ABapid = paste("MW",AB_data[plateindex[1],(plateindex[2]+1)], sep = "")
+    ABplate.SN = paste("MW",AB_data[plateindex[1],(plateindex[2]+1)], sep = "")
     plateindex = returnindex("Plate", LDH_data)
-    LDHapid = paste("MW",LDH_data[plateindex[1],(plateindex[2]+1)], sep = "")
+    LDHplate.SN = paste("MW",LDH_data[plateindex[1],(plateindex[2]+1)], sep = "")
     
     if (isempty(AB_data)) {
       print("AB data not found")
     } else {
-      createCytoData(AB_data, "AB", firstround, ABapid, srcname, date)
+      createCytoData(AB_data, "AB", firstround, ABplate.SN, srcname, date)
       firstround = FALSE
     }
     if(isempty(LDH_data)) {
       print("LDH data not found")
     } else {
-      createCytoData(LDH_data, "LDH", firstround, LDHapid, srcname, date)
+      createCytoData(LDH_data, "LDH", firstround, LDHplate.SN, srcname, date)
       firstround = FALSE
     }
   }
   
 }
 
-createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcname = NULL, date = NULL) {
+createCytoData = function(sourcedata,cyto_type,firstround = 0, plate.SN = NULL, srcname = NULL, date = NULL) {
   
-  cat(apid,cyto_type,"\n")
+  cat(plate.SN,cyto_type,"\n")
   
   # compound map
   compoundindex = returnindex("Chemical",sourcedata)
@@ -205,7 +201,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
     i = 1
     while(is.null(valueindex) ) {
       if (i > length(tagPhrases)) {
-        stop(paste("no corrected for blank data found for",apid,cyto_type))
+        stop(paste("no corrected for blank data found for",plate.SN,cyto_type))
       }
       valueindex = returnindex(tagPhrases[i], sourcedata)
       i = i+1
@@ -248,9 +244,9 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   # create data frame
   sourcedata = data.frame("treatment" = compounds, "rowi" = rowi, "coli" = coli, "conc" = concentrations, "rval" = values, stringsAsFactors = FALSE)
   
-  if (isempty(apid) | length(apid)>1) {
+  if (isempty(plate.SN) | length(plate.SN)>1) {
     print("Plate cannot be determined from file name")
-    apid = readline("Enter plate sn: ")
+    plate.SN = readline("Enter plate sn: ")
   }
   
   # determine correct assay component source name
@@ -263,8 +259,8 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   }
   
   sourcedata$srcf = srcname
-  sourcedata$apid = apid
-  sourcedata$date = date # optional, adding this in to differentiate between plates that were reused in separate culture dates
+  sourcedata$plate.SN = plate.SN
+  sourcedata$date = date
   sourcedata$wllt = "t" # well type "t" for treated
   # For control wells, make well type "n" for neutral control
   sourcedata[sourcedata$conc == 0, "wllt"] = "n"
@@ -272,14 +268,14 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
   sourcedata$srcf = srcname
   
   # reorder columns
-  sourcedata = sourcedata[,c("treatment","apid","rowi","coli","wllt","wllq","conc","rval","srcf","acsn", "date")]
+  sourcedata = sourcedata[,c("date","plate.SN","treatment","rowi","coli","wllt","wllq","conc","rval","srcf","acsn")]
   
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) != 0) {
     # Get the masterChemFile with the same plate number
-    masterChemFile = grep(pattern = paste0("_",apid,"_"), masterChemFiles, value = T)
+    masterChemFile = grep(pattern = paste0("_",plate.SN,"_"), masterChemFiles, value = T)
     if (length(masterChemFile) != 1) {
-      stop(paste("master chem file match not found for",apid,sep = " "))
+      stop(paste("master chem file match not found for",plate.SN,sep = " "))
     }
     masterChemData = read.csv(masterChemFile, stringsAsFactors = FALSE)
     
@@ -293,7 +289,7 @@ createCytoData = function(sourcedata,cyto_type,firstround = 0, apid = NULL, srcn
       }
     }
   }
-  print(paste("firstround = ",firstround))
+  # print(paste("firstround = ",firstround))
   
   # write the data to a table
   if (firstround) {

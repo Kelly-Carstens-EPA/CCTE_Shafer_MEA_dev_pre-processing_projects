@@ -8,7 +8,7 @@
 # Set directory for output location
 basepath <-  "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing/burst_param_colreorder_confirmation"
 # Set output file name
-filename <- "PFAS_2018_AUC_update_test.csv"
+filename <- ""
 # set the DIVs that should be included
 use_divs <- c(5,7,9,12) # note that a point of DIV = 2 value = 0 will be added for every endpoint regardless
 ##########################################################
@@ -59,7 +59,10 @@ for (i in 1:length(mi_data_files)) {
 
 parameter_data <- unique(parameter_data) # eliminate duplicate data
 mi_data <- unique(mi_data) # eliminate duplicate data
-all_data <- merge(parameter_data, mi_data, all.x=TRUE) # merge two data frames on common columns (plateID, date, well, treatment, source file name, etc.)
+all_data <- merge(parameter_data, mi_data, by = c("date","Plate.SN","DIV","well","trt","dose","units")) # merge two data frames on common columns (plateID, date, well, treatment, source file name, etc.)
+if (nrow(all_data) < nrow(parameter_data) | nrow(all_data) < nrow(mi_data)) {
+  stop(paste0("Some rows of parameter_data and mi_data don't match or are missing\n"))
+}
 
 # check if there are any DIVs other than use_divs
 allDIV <- unique(all_data$DIV)
@@ -71,14 +74,16 @@ if (length(diffDIV) > 0) {
 }
 
 # check if ea plate has a recording for each of use_divs
-plates <- unique(all_data$Plate.SN)
-for (plate in plates) {
-  plate_divs <- sort(unique(all_data[all_data$Plate.SN == plate, "DIV"]))
+all_data$date_plate <- paste0(all_data$date, "_", all_data$Plate.SN)
+date_plates <- unique(all_data$date_plate)
+for (date_plate in date_plates) {
+  plate_divs <- sort(unique(all_data[all_data$date_plate == date_plate, "DIV"]))
   missing_divs <- setdiff(use_divs, plate_divs)
   if (length(missing_divs) > 0) {
-    warning(paste0(plate, " does not have any data for DIV ",paste0(missing_divs,collapse=",")))
+    warning(paste0("There is no data for ",sub("_"," ",date_plate), " DIV ",paste0(missing_divs,collapse=",")))
   }
 }
+all_data <- all_data[, !grepl("date_plate",names(all_data))]
 
 # rename "Mutual.Information" column to "mi"
 names(all_data)[names(all_data) == "Mutual.Information"] = "mi" # renaming this column

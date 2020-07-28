@@ -2,39 +2,31 @@
 # USER INPUT
 ###################################################################################
 # set working directory for where the output file will go
-setwd("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test")
+setwd("C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing")
 # set the output file name
-filename = "DNT_NFA_Test_mc0.csv"
-AUCsourcefilename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/Intermediate Output/DNT_AUC.csv"
-cytotox_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA - Test/all calculation/DNT_Test_cytotoxicity_test.csv"
+filename = "mc0_test_apid_update.csv"
+AUCsourcefilename = "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing/burst_param_colreorder_confirmation/PFAS_2018_AUC_update_test.csv"
+cytotox_filename = "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing/test_updates.csv"
 default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
 # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
-different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
+different_vehicleControlCompounds = c("3","11") # e.g. c("Sodium Orthovanadate", "Amphetamine")
 # Enter the names of the vehicle controls as they correspond to the compounds in the previous list
-different_vehicleControls = c() # e.g. c("Water", "Water")
-check_unique_apid = TRUE # recommended. This will check if any plate ID's have been used previously
-compare_with_files_here <- "L:/Lab/NHEERL_MEA/tcpl_nheerl_mea_dev/source_files" # compares with the level 0 csv files located here
+different_vehicleControls = c("Lava","Water") # e.g. c("Water", "Water")
 ###################################################################################
 # END USER INPUT
 ###################################################################################
 
 # load libraries
 library(data.table)
-#library(tcpl)
-library(reshape)
+
 ## read in the data
 AUC <- fread(AUCsourcefilename)
-cytotox_data = fread(cytotox_filename)
-
-# make data table for simplicity
-setDT(AUC)
-## prepare/reshape the AUC raw data for tcplLite
-## extract components
-components <- names(unique(AUC[, 7:ncol(AUC)])) # replaced 23 with ncol(AUC)
+cytotox_data <- fread(cytotox_filename)
 
 ## rename columns before melting
 names(AUC)[names(AUC) == 'dose'] <- "conc"
-names(AUC)[names(AUC) == 'plate.SN'] <- "apid"
+AUC[, apid := paste(date, plate.SN, sep = "_")]
+cytotox_data[, apid := paste(date, plate.SN, sep = "_")]
 
 ## split well_id to rows and columns
 ## Defining coli
@@ -56,83 +48,35 @@ AUC_smaller <- AUC[, -c("units", "well")]
 #names(AUC_smaller)[names(AUC_smaller) == "trt"] = "treatment"
 # reshape - all of the columns not listed become rows. 
 # parameter names become a column "variable", and corresponding values are under "value"
-AUC_smaller_melted <- melt(AUC_smaller, id = c("date","treatment", "apid", "ID", "rowi", "coli", "conc"))
-# rename response column
-names(AUC_smaller_melted)[names(AUC_smaller_melted) == 'value'] <- "rval"
+AUC_smaller_melted <- melt(AUC_smaller, id = c("date","plate.SN","apid","treatment","ID", "rowi", "coli", "conc"), 
+                           variable.name = "acsn", value.name = "rval", variable.factor = FALSE)
+
 # add srcf , acsn, wllt, wllq
-AUC_smaller_melted[, acsn := variable]
 AUC_smaller_melted$wllt = "t"
 AUC_smaller_melted$wllq = 1
-AUC_smaller_melted[, srcf := basename(AUCsourcefilename)]
-
+AUC_smaller_melted$srcf <- basename(AUCsourcefilename)
 
 # remove unneeded columns
-AUC_smaller_melted = AUC_smaller_melted[, c("date","treatment","apid","rowi","coli","wllt","wllq","conc","rval", "srcf", "acsn")]
+usecols <- c("apid","treatment","rowi","coli","wllt","wllq","conc","rval", "srcf","acsn")
+AUC_smaller_melted = AUC_smaller_melted[, ..usecols]
 # remove columns and make sure columns in same order
-cytotox_data = cytotox_data[, c("date","treatment","apid","rowi","coli","wllt","wllq","conc","rval", "srcf", "acsn")]
-
-# rbind the cytotox data
+cytotox_data = cytotox_data[, ..usecols]
 mc0_data = rbind(AUC_smaller_melted, cytotox_data)
-
-if (check_unique_apid) {
-  
-  num_acsn = 19 # usually 17, plus LDH and AB endpoints
-  num_wells_per_plate = 48
-  cur_plates = unique(mc0_data$apid)
-  
-  # first, check for re-used plate ID in current data set
-  for (cur_plate in cur_plates) {
-    # check if there are multiple dates corresponding to the current plate
-    dates <- unique(mc0_data[apid == cur_plate, date])
-    if (length(dates) > 1) {
-      cat("\nThe plate ",cur_plate," was used in multiple culture dates (",dates,").\n")
-      # assign a suffix to these plates
-      firstsuffix = "a"
-      for (d in 1:length(dates)) {
-        new_apid <- paste0(cur_plate, intToUtf8( utf8ToInt(firstsuffix) + d - 1))
-        mc0_data[(apid == cur_plate)&(date == dates[d]), "apid"] <- new_apid
-        print(paste0(cur_plate, ", ", dates[d], " is now assigned to ", new_apid))
-      }
-    }
-  }
-  cat("\n")
-  
-  # get list of updated plate names
-  cur_plates = unique(mc0_data$apid)
-  
-  # get all source files
-  allfilenames <- list.files(path = compare_with_files_here, pattern = ".csv", full.names = TRUE, recursive = FALSE)
-  allplates <- lapply(allfilenames, function(x) unique(fread(x, select = "apid"))) # each file is [[1]], [[2]], etc in the list
-  allplates <- unlist(allplates, use.names = FALSE)
-  
-  # Now checking for re-used plate ID's with previous dataset
-  for (cur_plate in cur_plates) {
-    if (is.element(cur_plate, allplates)) {
-      print(paste(cur_plate, " has been used in a previous data sets.",sep = ""))
-      # just going to add the suffix "a" to the new version of the apid
-      new_apid <- paste0(cur_plate, "a")
-      mc0_data[apid == cur_plate, "apid"] <- new_apid
-      print(paste0(cur_plate, " is now assigned to ", new_apid, " in the current data set."))
-    }
-  }
-}
-
-# now that we know that each apid is unique to each date, we can remove that column
-mc0_data <- mc0_data[, -c("date")]
 
 # change untreated wells to Control Treatment
 compoundlist = unique(mc0_data$treatment)
 for (compound in compoundlist) {
   if (is.element(compound, different_vehicleControlCompounds)) {
     # then assign treatment column to corresponding value in vehicle control list
-    mc0_data[(treatment == compound)&(conc == 0), "treatment"] = different_vehicleControls[which(different_vehicleControlCompounds == compound)]
+    vehicle_controli <- different_vehicleControls[which(different_vehicleControlCompounds == compound)]
+    mc0_data[treatment == compound & conc == 0, treatment := vehicle_controli]
   } else {
-    mc0_data[(treatment == compound)&(conc == 0), "treatment"] = default_ControlTreatmentName
+    mc0_data[treatment == compound & conc == 0, treatment := default_ControlTreatmentName]
   }
 }
 
 # change wllt for untreated wells to n
-mc0_data[ conc == 0, wllt := "n"] # I changed AUC_smaller_melted to mc0_data
+mc0_data[ conc == 0, wllt := "n"]
 
 fwrite(mc0_data, file = filename, row.names = FALSE, sep = ",")
 cat(filename, "is ready\n")

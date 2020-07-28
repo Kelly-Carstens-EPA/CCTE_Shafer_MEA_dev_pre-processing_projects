@@ -57,10 +57,10 @@ for (i in 1:L){
   
   # Find the plate number of current spike list file
   spikefilename = basename(spkListFiles[i])
-  spikefilename_split = strsplit(spikefilename, split = "_")
-  platename = spikefilename_split[[1]][ grep(pattern = "-", spikefilename_split[[1]]) ]
-  # Get the masterChemFile with the same plate number
-  masterChemFile = grep(pattern = paste0("_",platename,"_"), masterChemFiles, value = T)
+  date_plate <- paste(strsplit(spikefilename, split = "_")[[1]][2:3],collapse = "_")
+  
+  # Get the masterChemFile with the date_plate
+  masterChemFile <- grep(pattern = paste0(date_plate,"_"), masterChemFiles, value = T)
   if (length(masterChemFile) != 1) {
     stop(paste("master chem file match not found for",spikefilename,sep = " "))
   } 
