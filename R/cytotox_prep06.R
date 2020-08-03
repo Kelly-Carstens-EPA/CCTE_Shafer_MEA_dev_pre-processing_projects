@@ -262,28 +262,29 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
   sourcedata$wllt = "t" # well type "t" for treated
   # For control wells, make well type "n" for neutral control
   sourcedata[sourcedata$conc == 0, "wllt"] = "n"
-  sourcedata$wllq = 1 # for good data
   sourcedata$srcf = srcname
   
   # reorder columns
-  sourcedata = sourcedata[,c("date","plate.SN","treatment","rowi","coli","wllt","wllq","conc","rval","srcf","acsn")]
+  sourcedata = sourcedata[,c("date","plate.SN","treatment","rowi","coli","wllt","conc","rval","srcf","acsn")]
   
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) != 0) {
     # Get the masterChemFile with the same plate number
     masterChemFile = grep(pattern = paste0("_",plate.SN,"_"), masterChemFiles, value = T)
     if (length(masterChemFile) != 1) {
-      stop(paste("master chem file match not found for",plate.SN,sep = " "))
+      warning(paste("master chem file match not found for",plate.SN,sep = " "))
     }
-    masterChemData = read.csv(masterChemFile, stringsAsFactors = FALSE)
-    
-    # matching up Treatment from masterChemData where Well matches with rowi and coli
-    letterList = c("A", "B", "C", "D", "E", "F")
-    for (l in 1:length(letterList)) {
-      well_row_names = masterChemData[grep(pattern = letterList[l], masterChemData$Well),]
-      for (c in unique(sourcedata$coli)) {
-        correct_name = well_row_names[grep(pattern = c, well_row_names$Well), "Treatment"]
-        sourcedata[sourcedata$rowi == l, "treatment"] = correct_name
+    else {
+      masterChemData = read.csv(masterChemFile, stringsAsFactors = FALSE)
+      
+      # matching up Treatment from masterChemData where Well matches with rowi and coli
+      letterList = c("A", "B", "C", "D", "E", "F")
+      for (l in 1:length(letterList)) {
+        well_row_names = masterChemData[grep(pattern = letterList[l], masterChemData$Well),]
+        for (c in unique(sourcedata$coli)) {
+          correct_name = well_row_names[grep(pattern = c, well_row_names$Well), "Treatment"]
+          sourcedata[sourcedata$rowi == l, "treatment"] = correct_name
+        }
       }
     }
   }
@@ -299,7 +300,15 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
 }
 
 
-run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox_longfile.csv", newFile = TRUE) {
+run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox_longfile.csv", newFile = TRUE, remake_all = TRUE) {
+  
+  # set up dir and output_file
+  if (!dir.exists(file.path(basepath, "output"))) dir.create(file.path(basepath, "output"))
+  # might be a better way to do this... I just don't want to have to pass it thru 4 versions of 3 function calls
+  assign("output_file", value = file.path(basepath, "output",filename), envir = .GlobalEnv)
+  if(!remake_all && file.exists(output_file)) {
+    return(paste0(basename(output_file), " already exits."))
+  }
   
   # get the source files, either from log file or by selecting
   if(get_files_from_log) {
@@ -316,10 +325,7 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
   if (length(masterChemFiles) == 0) {
     print("no master chem list found, using treatment names from input data")
   }
-  if (!dir.exists(file.path(basepath, "output"))) dir.create(file.path(basepath, "output"))
-  # might be a better way to do this... I just don't want to have to pass it thru 4 versions of 3 function calls
-  assign("output_file", value = file.path(basepath, "output",filename), envir = .GlobalEnv)
-  
+
   # run the functions for each file
   for (i in 1:length(cytoFiles)) {
     

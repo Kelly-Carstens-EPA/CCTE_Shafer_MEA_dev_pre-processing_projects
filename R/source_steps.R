@@ -1,23 +1,10 @@
-# script to run all things...
-# this script will run each step of the analysis
+# this script will run the first main steps of the data preparation
 # it will check if a step has already been completed before doing it
-# it will select files, create h5files, create prepared data, AUC table, collect cytotox data,
-# and merge data into a single mc0-style file.
+# it will select files, create h5files, create prepared data, AUC table, and collect cytotox data
+# Merging the data in a single mc0-style file will be done separately
 
 setwd(scripts.dir)
 main.output.dir <- file.path(root_output_dir, dataset_title)
-
-# create a way to check if a data level has already been created
-# select files - just check that spike list files, calc files already exist
-
-# Ideas:
-# I could make it wait for a response, but have some kind of loop in my run_me function that generates a default response....
-# I don't want user to have to babysit if they already know what they want.
-
-# final options for the user:
-# - run all, easily
-# specify where you want to start
-
 
 # select all files needed for analysis
 source('gather_files_functions.R')
@@ -50,10 +37,10 @@ source('burst_parameter_to_AUC.R')
 
 # cytotox prep
 source('cytotox_prep06.R')
-run_cytotox_functions(basepath = main.output.dir, get_files_from_log = TRUE, filename = paste0(dataset_title,"_cytotox_longfile.csv"))
+run_cytotox_functions(basepath = main.output.dir, get_files_from_log = TRUE, filename = paste0(dataset_title,"_cytotox_longfile.csv"), remake_all = remake_all)
 
-cat("'source_steps.R' is complete.\n")
+cat("\n'source_steps.R' is complete.\n")
 
 # tcpl mea dev burst paramter to AUC
-# I think I'll run this separately
+# I think I'll run this separately, in the run_me
 

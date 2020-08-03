@@ -78,6 +78,8 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap_file, use_sheet, t
   mc0_data = rbind(AUC_smaller_melted, cytotox_data)
   
   # FINALIZE WLLQ ------------------------------------------------------------------
+  # (I just changed cytotox_prep so that wllq will not be initialized there)
+  # so I can initialize it all here
   # perhaps include in final summary where had to estimate or interpolate values
   
   # will probably move all below to a run_me, so can do dataset-specific modifiations
