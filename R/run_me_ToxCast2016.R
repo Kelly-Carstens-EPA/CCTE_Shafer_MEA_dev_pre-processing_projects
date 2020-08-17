@@ -2,8 +2,8 @@
 # USER INPUT
 ###################################################################################
 start.dir <- "L:/Lab/NHEERL_MEA/" # set start.dir to the main project folder for your data set. Does not have to be exact.
-dataset_title <- "testpipeline2020" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-remake_all <- TRUE # re-create all intermediate output files, even if they already exist?
+dataset_title <- "ToxCast2016" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
+remake_all <- TRUE # re-create all intermediate output files, even if they already exist? can set to TRUE or FALSE
 
 # for tpl mea dev script (still under development, can ignore for now)
 # default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
@@ -17,41 +17,29 @@ remake_all <- TRUE # re-create all intermediate output files, even if they alrea
 # stock_conc_col <- "Conc"
 # spid_col <- "NCCT ID...3"
 
-scripts.dir <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/nfa-spike-list-to-mc0-r-scripts/R"
-root_output_dir <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing" # where the dataset_title folder will be created
-
-spidmap_file <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing/full_test_material/All Assays_list_toxcast_OECD 20190524.xlsx"
-spid_sheet <- "NFA Groups"
+scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
+root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts" # where the dataset_title folder will be created
 ###################################################################################
 # END USER INPUT
 ###################################################################################
 
 library(data.table)
-library(readxl)
 
 # source the ultimate function!
-# source(file.path(scripts.dir, 'source_steps.R'))
+source(file.path(scripts.dir, 'source_steps.R'))
 
-# prepare spidmap
-spidmap <- as.data.table(read_excel(spidmap_file, sheet = spid_sheet))
-head(spidmap)
-spidmap[, SPID := paste0("EPATL0",`NCCT ID...3`)]
-unique(spidmap$Unit) # all mM
-setnames(spidmap, old = c("Chemical ID...2", "Conc", "SPID"), new = c("treatment","stock_conc","spid"))
-spidmap[, treatment := as.character(treatment)]
-
-# run the final function
-tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName = "DMSO")
 
 # Future steps:
 
 # source tpcl mea dev - this fun has lots of user-defined inputs
 # source(file.path(scripts.dir, "tcpl_MEA_dev_AUC.R"))
-# tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir, dataset_title), dataset_title, spidmap, 
+# tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir, dataset_title), dataset_title, spidmap_file, use_sheet, trt_col, stock_conc_col, spid_col, 
 #                  default_ControlTreatmentName, different_vehicleControlCompounds = c(), different_vehicleControls = c())
+
 
 # data-set specific stuff, such as
 # - update wllq
 # - check conc's, update for individual spid if needed
+# - map spid's
 # - other clean up
 # - final data checks

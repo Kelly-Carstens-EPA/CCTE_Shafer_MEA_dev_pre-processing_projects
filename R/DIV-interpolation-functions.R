@@ -1,7 +1,7 @@
 # functions to handle non-standard DIV recordings
 # before calculating AUC values
 
-# - basic function to move problem DIV to normal DIV
+# basic function to move problem DIV to normal DIV
 forceStandardDIV <- function(fdat, nonstandard_divs, target_divs) {
   for (i in 1:length(nonstandard_divs)) {
     fdat[DIV == nonstandard_divs[i], DIV := target_divs[i]]
@@ -9,7 +9,7 @@ forceStandardDIV <- function(fdat, nonstandard_divs, target_divs) {
   return(fdat)
 }
 
-# - linear interpolation function
+# linear interpolation function
 # notes:
 # - this function finds the approximate value between 2 other values
 # - NA values are set to 0 in order to find the slope
@@ -18,10 +18,11 @@ linearInterpolateDIV <- function(dat2, new.DIV, remove.DIV = NULL) {
   # add DIV 2 = 0 data
   dat_div2 <- dat2[DIV == unique(dat2$DIV)[1]]
   dat_div2[, DIV := 2]
-  id.cols <- intersect(names(dat2), c("date","Plate.SN","well","trt","dose","units","DIV","file.name","date_plate"))
+  id.cols <- intersect(names(dat2), c("date","Plate.SN","well","trt","dose","units","DIV","file.name","date_plate","wllq","wllq_notes"))
   endpoints_cols <- setdiff(names(dat_div2), id.cols)
   dat_div2[, c(endpoints_cols) := list(rep(0, .N))]
   dat_div2[, file.name := "DIV2_0_values"]
+  dat_div2[, `:=`(wllq = 1, wllq_notes = "")]
   dat2 <- rbind(dat2, dat_div2)
   
   # find the DIVs from original recordings (or DIV 2) that are above and below new.DIV
@@ -41,16 +42,25 @@ linearInterpolateDIV <- function(dat2, new.DIV, remove.DIV = NULL) {
   calc.dat2.m[is.na(endpoint_value), endpoint_value := 0]
   
   # make wide data table
-  calc.dat2.w <- dcast(calc.dat2.m, ... ~ DIV, value.var="endpoint_value")
-  setnames(calc.dat2.w, old = as.character(lower.DIV), new = "lower_col")
-  setnames(calc.dat2.w, old = as.character(upper.DIV), new = "upper_col")
+  calc.dat2.w <- dcast(calc.dat2.m, ... ~ DIV, value.var=list("endpoint_value","wllq","wllq_notes"), 
+                       fun.aggregate = list(unique, min, function(x) paste(unique(wllq_notes),sep=""))) # possibly could just use "unique" for all, since there should only be 1 value
+  calc.dat2.w$wllq <- do.call(pmin, calc.dat2.w[, .SD, .SDcols = grep("wllq_min",names(calc.dat2.w), val = T)]) # each col of the DT will be read as a separate argument to pmin
+  calc.dat2.w$wllq_notes <- do.call(paste0, unique(calc.dat2.w[, .SD, .SDcols = grep("wllq_notes_function",names(calc.dat2.w), val = T)]))
+  setnames(calc.dat2.w, old = paste0("endpoint_value_unique_",lower.DIV), new = "lower_col")
+  setnames(calc.dat2.w, old = paste0("endpoint_value_unique_",upper.DIV), new = "upper_col")
+  calc.dat2.w <- calc.dat2.w[, .SD, .SDcols = names(calc.dat2.w)[!grepl(paste0("(",lower.DIV,")|(",upper.DIV,")"),names(calc.dat2.w))]] # removing unneeded columns
+  
+  # earlier method, before had wllq
+  # calc.dat2.w <- dcast(calc.dat2.m, ... ~ DIV, value.var="endpoint_value")
+  # setnames(calc.dat2.w, old = as.character(lower.DIV), new = "lower_col")
+  # setnames(calc.dat2.w, old = as.character(upper.DIV), new = "upper_col")
   
   # calculate the slope between lower.DIV to upper.DIV, add estimated value
   calc.dat2.w[, slope := (upper_col - lower_col)/(upper.DIV - lower.DIV)]
   calc.dat2.w[, new_col := lower_col + slope*(new.DIV - lower.DIV)]
   
   # make endpoints columns again, filling with new_col values
-  add_dat <- dcast(calc.dat2.w, date + Plate.SN + well + trt + dose + units ~ endpoint, value.var = "new_col")
+  add_dat <- dcast(calc.dat2.w, date + Plate.SN + well + trt + dose + units + wllq + wllq_notes ~ endpoint, value.var = "new_col")
   
   # add new DIV column and file.name
   add_dat$DIV <- new.DIV
@@ -63,19 +73,21 @@ linearInterpolateDIV <- function(dat2, new.DIV, remove.DIV = NULL) {
   # quick visual verification of the result
   plot(meanfiringrate ~ DIV, dat2[dose == 0], pch = "", ylab = "Mean Firing Rate (Hz) in control wells",
        main = paste0("Verification of Linear Interpolation of DIV",new.DIV,
-       " from DIV",lower.DIV," and DIV",upper.DIV,"\nin ",unique(dat2$Plate.SN)),
+       " from DIV",lower.DIV," and DIV",upper.DIV,"\nin control wells on ",unique(dat2$Plate.SN)),
        ylim = c(0, max(dat2[dose == 0, meanfiringrate])*1.1))
   for (welli in dat2[dose == 0, unique(well)]) {
     points(meanfiringrate ~ DIV, dat2[well == welli][order(DIV)], type = "l")
     points(meanfiringrate ~ DIV, dat2[well == welli][order(DIV)], pch = 19, col = "black")
     points(meanfiringrate ~ DIV, dat2[well == welli & grepl("linear_interpolation",file.name)][order(DIV)], pch = 19, col = "blue")
     points(meanfiringrate ~ DIV, dat2[well == welli & !DIV %in% c(2,5,7,9,12)][order(DIV)], pch = 19, col = "gray70")
+    points(meanfiringrate ~ DIV, dat2[well == welli & wllq == 0][order(DIV)], pch = 19, col = rgb(1,0,0,alpha=0.7), cex=1.5)
     
     # # now I'm getting extra... trying to make an AUC plot with only the interpolated values
     # auc_pts <- dat2[well == welli & grepl("linear_interpolation",file.name)][order(DIV), .(DIV, meanfiringrate)]
     # polygon(x = c(2,))
   }
-  legend(x = "topleft", legend = c("interpolated DIV","DIV to remove"), col = c("blue","gray70"), pch = c(19,19), bg = "transparent")
+  legend(x = "topleft", legend = c("interpolated DIV","non-standard DIV to remove","wllq==0"), col = c("blue","gray70",rgb(1,0,0,alpha=0.7)), 
+         pch = rep(19,length(col)), bg = "transparent")
   
   # remove added DIV 2 data
   dat2 <- dat2[DIV != 2]

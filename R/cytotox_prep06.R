@@ -102,7 +102,7 @@ createCytoTable = function(sourcefile,firstround, masterChemFiles = c()) {
   
   # look for plate name in file name (anything with -)
   namesplit = strsplit(srcname, split ="_")
-  plate.SN = namesplit[[1]][grep(pattern="-",namesplit[[1]])]
+  Plate.SN = namesplit[[1]][grep(pattern="-",namesplit[[1]])]
   
   # get the date from file name:
   date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
@@ -110,12 +110,12 @@ createCytoTable = function(sourcefile,firstround, masterChemFiles = c()) {
   if (isempty(AB_data)) {
     print("AB data not found")
   } else {
-    createCytoData(AB_data, "AB", sheetdata = "one", firstround, plate.SN, srcname, date, masterChemFiles)
+    createCytoData(AB_data, "AB", sheetdata = "one", firstround, Plate.SN, srcname, date, masterChemFiles)
   }
   if(isempty(LDH_data)) {
     print("LDH data not found")
   } else {
-    createCytoData(LDH_data, "LDH", sheetdata = "one", 0, plate.SN, srcname, date, masterChemFiles)
+    createCytoData(LDH_data, "LDH", sheetdata = "one", 0, Plate.SN, srcname, date, masterChemFiles)
   }
   
 }
@@ -147,7 +147,7 @@ createCytoTable2 = function(sourcefile, firstround, masterChemFiles = c()) {
     AB_data = AB_data_all[AB_plate_indicies[i]:(AB_plate_indicies[i]+9),]
     LDH_data = LDH_data_all[LDH_plate_indicies[i]:(LDH_plate_indicies[i]+9),]
     
-    # get plate.SN. Should be same for AB and LDH
+    # get Plate.SN. Should be same for AB and LDH
     plateindex = returnindex("Plate", AB_data)
     ABplate.SN = paste("MW",AB_data[plateindex[1],(plateindex[2]+1)], sep = "")
     plateindex = returnindex("Plate", LDH_data)
@@ -169,9 +169,9 @@ createCytoTable2 = function(sourcefile, firstround, masterChemFiles = c()) {
   
 }
 
-createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.SN = NULL, srcname = NULL, date = NULL, masterChemFiles = c()) {
+createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, Plate.SN = NULL, srcname = NULL, date = NULL, masterChemFiles = c()) {
   
-  cat(plate.SN,cyto_type,"\n")
+  cat(Plate.SN,cyto_type,"\n")
   
   # compound map
   compoundindex = returnindex("Chemical",sourcedata)
@@ -184,6 +184,13 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
   concrow = concindex[1] + 3
   conccol = concindex[2] + 1
   concmap = sourcedata[concrow:(concrow+5),conccol:(conccol+7)]
+  
+  # checking that there were no issues with data offset in sheet
+  if(any(is.na(compoundmap) | is.na(concmap))) {
+    print(compoundmap)
+    print(concmap)
+    stop("NA's found in well ID data")
+  }
   
   # Get desired values
   # if one-plate version, expected rval header is "Corrected for Blank"
@@ -199,7 +206,7 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
     i = 1
     while(is.null(valueindex) ) {
       if (i > length(tagPhrases)) {
-        stop(paste("no corrected for blank data found for",plate.SN,cyto_type))
+        stop(paste("no corrected for blank data found for",Plate.SN,cyto_type))
       }
       valueindex = returnindex(tagPhrases[i], sourcedata)
       i = i+1
@@ -210,12 +217,13 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
     
   }
   valuemap = sourcedata[valuerow:(valuerow+5),valuecol:(valuecol+7)]
-  if (any(is.na(valuemap))) {
-    stop("valuemap contains NAs")
-  }
+  # moving this check to a separate function
+  # if (any(is.na(valuemap))) {
+  #   stop("valuemap contains NAs")
+  # }
   
   # if any blank-corrected values are negative, then we should set these to zero
-  if (any(valuemap < 0)) {
+  if (any(valuemap < 0, na.rm = T)) {
     valuemap[valuemap < 0] = 0.0
     print("some blank-corrected values are negative. Setting these to zero")
   }
@@ -242,9 +250,9 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
   # create data frame
   sourcedata = data.frame("treatment" = compounds, "rowi" = rowi, "coli" = coli, "conc" = concentrations, "rval" = values, stringsAsFactors = FALSE)
   
-  if (isempty(plate.SN) | length(plate.SN)>1) {
+  if (isempty(Plate.SN) | length(Plate.SN)>1) {
     print("Plate cannot be determined from file name")
-    plate.SN = readline("Enter plate sn: ")
+    Plate.SN = readline("Enter plate sn: ")
   }
   
   # determine correct assay component source name
@@ -257,7 +265,7 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
   }
   
   sourcedata$srcf = srcname
-  sourcedata$plate.SN = plate.SN
+  sourcedata$Plate.SN = Plate.SN
   sourcedata$date = date
   sourcedata$wllt = "t" # well type "t" for treated
   # For control wells, make well type "n" for neutral control
@@ -265,14 +273,14 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
   sourcedata$srcf = srcname
   
   # reorder columns
-  sourcedata = sourcedata[,c("date","plate.SN","treatment","rowi","coli","wllt","conc","rval","srcf","acsn")]
+  sourcedata = sourcedata[,c("date","Plate.SN","treatment","rowi","coli","wllt","conc","rval","srcf","acsn")]
   
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) != 0) {
     # Get the masterChemFile with the same plate number
-    masterChemFile = grep(pattern = paste0("_",plate.SN,"_"), masterChemFiles, value = T)
+    masterChemFile = grep(pattern = paste0(date,"_",Plate.SN,"_"), masterChemFiles, value = T)
     if (length(masterChemFile) != 1) {
-      warning(paste("master chem file match not found for",plate.SN,sep = " "))
+      warning(paste("master chem file match not found for",Plate.SN,sep = " "))
     }
     else {
       masterChemData = read.csv(masterChemFile, stringsAsFactors = FALSE)
@@ -297,6 +305,69 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, plate.S
     write.table(sourcedata, file = output_file, sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
   }
   
+}
+
+
+wllq_updates_cytotox <- function(output_file, basepath = NULL, get_files_under_basepath = TRUE) {
+  if (get_files_under_basepath) wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), colClasses = c(rep("character",4),"numeric",rep("character",2))))
+  else wllq_info <- as.data.table(read.csv(choose.files(default = basepath, caption = "Select well quality csv table")))
+  
+  all_dat <- read.csv(output_file)
+  setDT(all_dat)
+  all_dat[, `:=`(date = as.character(date), rowi = as.numeric(rowi))]
+  
+  # add rowi adn coli to wllq_info
+  # ahh, I don't remember how to do it the mroe efficient way!!
+  wllq_info[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",well)), rowi = sub("[[:digit:]]","",well))]
+  wllq_info[rowi == "A", rowi := 1]
+  wllq_info[rowi == "B", rowi := 2]
+  wllq_info[rowi == "C", rowi := 3]
+  wllq_info[rowi == "D", rowi := 4]
+  wllq_info[rowi == "E", rowi := 5]
+  wllq_info[rowi == "F", rowi := 6]
+  wllq_info[, rowi := as.numeric(rowi)]
+  
+  # Check for any rows where the 
+  unmatched_wells <- merge(all_dat[, .(date, Plate.SN, rowi, coli, treatment, conc, srcf)], 
+                           wllq_info[grepl("(LDH)|(CTB)|(AB)",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes, affected_endpoints)], all.y = T)[is.na(srcf)]
+  if(nrow(unmatched_wells) > 0) {
+    cat("The following rows from wells_with_well_quality_zero.csv did not match any rows in all_data:\n")
+    print(unmatched_wells)
+    cat("\nSummary of all_data:\n")
+    print(all_data[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
+    stop("Update wells_with_well_quality_zero.csv")
+  }
+
+  # transfrom wllq_info into longdat
+  ldh_wllq <- wllq_info[grepl("LDH",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
+  ldh_wllq[, acsn := grep("LDH",unique(all_dat$acsn),val = T)]
+  ctb_wllq <- wllq_info[grepl("(CTB)|(AB)",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
+  ctb_wllq[, acsn := grep("AB",unique(all_dat$acsn),val = T)]
+  
+  # set the wllq in all_dat
+  all_dat <- merge(all_dat, rbind(ldh_wllq, ctb_wllq), all.x = TRUE)
+  all_dat[is.na(wllq), `:=`(wllq = 1, wllq_notes = "")]
+
+  # flag NA rval's where there is no wllq note
+  na_rvals <- all_dat[is.na(rval) & wllq == 1]
+  if (nrow(na_rvals) > 0) {
+    cat("The following rval's are missing in sourcedata, but wllq==1\n")
+    print(na_rvals)
+    resp <- readline(prompt = "Do you wish to set wllq=0 for all of these wells? (Only do this if you know that these values should be NA) (y/n): ")
+    if (resp %in% c("y","Y","yes","Yes")) {
+      all_dat[is.na(rval) & wllq == 1, `:=`(wllq = 0, wllq_notes = "rval is NA; ")]
+    }
+    else {
+      stop("Update wllq_info table")
+    }
+  }
+  
+  # summary of wllq updates
+  cat("Wllq summary:\n")
+  print(all_dat[, .N, by = c("acsn","wllq","wllq_notes")][order(acsn, wllq, wllq_notes)])
+  
+  # save updated data
+  write.table(all_dat, file = output_file, sep = ",", row.names = FALSE, col.names = T)
 }
 
 
@@ -340,8 +411,10 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
     else {
       print(paste0("can't tell if",cytoFiles[i],"is 'Summary' file or 'Calculations' file"))
     }
-    
   }
+  
+  # set the wllq
+  wllq_updates_cytotox(output_file, basepath, get_files_under_basepath = get_files_from_log)
   
   cat(basename(output_file),"is ready\n")
   
