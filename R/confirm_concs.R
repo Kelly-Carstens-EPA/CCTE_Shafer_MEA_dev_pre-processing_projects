@@ -27,14 +27,17 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
       dat[, conc_org := conc]
       dat <- merge(dat, compare_concs[, .(spid, probably_partially_conc_corrected, need_to_update_concs, stock_conc)], by = "spid", all.x = TRUE)
       dat[probably_partially_conc_corrected == TRUE, conc := signif(conc, digits = 1)]
-      print(dat[probably_partially_conc_corrected == TRUE, .(concs_in_source_dat = paste0(unique(conc_org),collapse=",")), by = c("spid","conc")][order(spid,conc)])
-      response <- readline(prompt = "Conc standardization looks correct? ")
-      if (!(response %in% c("y","Y","yes","Yes"))) stop()
-      
-      # now correct the conc's'
+      dat[, conc_standardized := conc]
+  
+      # now correct the conc's
       cat("Correcting conc's...\n")
       dat[need_to_update_concs == TRUE, conc := signif(stock_conc/20*conc, 3)]
-      dat[, c("conc_org","probably_partially_conc_corrected","stock_conc","need_to_update_concs") := list(NULL)]
+      print(dat[need_to_update_concs == TRUE, .(stock_conc, concs_in_source_dat = paste0(unique(conc_org),collapse=", "),
+                                                concs_standardized = paste0(unique(conc_standardized))), by = c("spid","conc","stock_conc")][order(spid,conc), .(spid, stock_conc, concs_in_source_dat, concs_standardized, conc_updated = conc)])
+      response <- readline(prompt = "Does conc correction look correct for each compound and dose? (y/n): ")
+      if (!(response %in% c("y","Y","yes","Yes"))) browser()
+      
+      dat[, c("conc_org","probably_partially_conc_corrected","stock_conc","need_to_update_concs","conc_standardized") := list(NULL)]
       
       # final check:
       compare_concs <- merge(spidmap[, .(stock_conc, spidmap_guess_concs = paste0(signif(stock_conc/20*expected_target_concs,3),collapse=",")), by = "spid"],

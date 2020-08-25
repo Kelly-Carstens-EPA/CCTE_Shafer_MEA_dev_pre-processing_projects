@@ -3,7 +3,6 @@
 #load required package
 library(sjemea)
 library(rhdf5)
-library(tcltk)
 library(meadq)
 
 #get files
@@ -65,7 +64,7 @@ for (i in 1:L){
       paste( "Plate #: ", info[3]),
       sep="\n" ),  icon = "error", type = "ok"  )
     #get master chemical list
-    masterChemFile<-tk_choose.files(caption="Select Master Chemical File")
+    masterChemFile<-choose.files(caption="Select Master Chemical File")
     #get plate chemical info for each file in the list
     plate.chem.info<-chem.info.2(spkListFiles[i], masterChemFile)
     matching.log.file<-!(length(plate.chem.info)==0)

@@ -9,7 +9,7 @@ main.output.dir <- file.path(root_output_dir, dataset_title)
 # select all files needed for analysis
 source('gather_files_functions.R')
 if (remake_all || length(list.files(path = main.output.dir, pattern = "_files_log_", recursive = F)) == 0) {
-  selectInputFiles(start.dir, main.output.dir, dataset_title)
+  selectInputFiles(start.dir = strsplit(getwd(), .Platform$file.sep)[[1]][1], main.output.dir, dataset_title, append = append)
 }
 
 # h5_conversion.R
@@ -37,10 +37,7 @@ source('burst_parameter_to_AUC.R')
 
 # cytotox prep
 source('cytotox_prep06.R')
-run_cytotox_functions(basepath = main.output.dir, get_files_from_log = TRUE, filename = paste0(dataset_title,"_cytotox_longfile.csv"), remake_all = remake_all)
+run_cytotox_functions(basepath = main.output.dir, get_files_from_log = TRUE, filename = paste0(dataset_title,"_cytotox_longfile.csv"), remake_all = remake_all, append = append)
 
 cat("\n'source_steps.R' is complete.\n")
-
-# tcpl mea dev burst paramter to AUC
-# I think I'll run this separately, in the run_me
 

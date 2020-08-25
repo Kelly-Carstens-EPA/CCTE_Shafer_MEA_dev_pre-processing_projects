@@ -45,10 +45,13 @@ linearInterpolateDIV <- function(dat2, new.DIV, remove.DIV = NULL) {
   calc.dat2.w <- dcast(calc.dat2.m, ... ~ DIV, value.var=list("endpoint_value","wllq","wllq_notes"), 
                        fun.aggregate = list(unique, min, function(x) paste(unique(wllq_notes),sep=""))) # possibly could just use "unique" for all, since there should only be 1 value
   calc.dat2.w$wllq <- do.call(pmin, calc.dat2.w[, .SD, .SDcols = grep("wllq_min",names(calc.dat2.w), val = T)]) # each col of the DT will be read as a separate argument to pmin
-  calc.dat2.w$wllq_notes <- do.call(paste0, unique(calc.dat2.w[, .SD, .SDcols = grep("wllq_notes_function",names(calc.dat2.w), val = T)]))
-  setnames(calc.dat2.w, old = paste0("endpoint_value_unique_",lower.DIV), new = "lower_col")
-  setnames(calc.dat2.w, old = paste0("endpoint_value_unique_",upper.DIV), new = "upper_col")
-  calc.dat2.w <- calc.dat2.w[, .SD, .SDcols = names(calc.dat2.w)[!grepl(paste0("(",lower.DIV,")|(",upper.DIV,")"),names(calc.dat2.w))]] # removing unneeded columns
+  # calc.dat2.w$wllq_notes <- do.call(paste0, args = list(unique(calc.dat2.w[, .SD, .SDcols = grep("wllq_notes_function",names(calc.dat2.w), val = T)]), collapse=""))
+  setnames(calc.dat2.w, old = paste0("wllq_notes_function_",c(lower.DIV, upper.DIV)), new = paste0("wllq_notes_",c("lower.DIV", "upper.DIV")))
+  calc.dat2.w[, wllq_notes := ifelse(wllq_notes_lower.DIV == wllq_notes_upper.DIV, 
+                                     wllq_notes_lower.DIV, 
+                                     paste0(wllq_notes_lower.DIV, wllq_notes_upper.DIV))] # trying to get teh unique wllq_notes, there is probably a better way to do this...
+  setnames(calc.dat2.w, old = paste0("endpoint_value_unique_",c(lower.DIV,upper.DIV)), new = c("lower_col","upper_col"))
+  calc.dat2.w <- calc.dat2.w[, .SD, .SDcols = names(calc.dat2.w)[!grepl(paste0("(",lower.DIV,")|(",upper.DIV,")|(lower\\.DIV)|(upper\\.DIV)"),names(calc.dat2.w))]] # removing unneeded columns
   
   # earlier method, before had wllq
   # calc.dat2.w <- dcast(calc.dat2.m, ... ~ DIV, value.var="endpoint_value")
@@ -65,6 +68,7 @@ linearInterpolateDIV <- function(dat2, new.DIV, remove.DIV = NULL) {
   # add new DIV column and file.name
   add_dat$DIV <- new.DIV
   add_dat$file.name <- paste0("linear_interpolation_from_DIV",lower.DIV,"_to_DIV",upper.DIV)
+  add_dat[, wllq_notes := paste0(wllq_notes, "Linear interpolation from DIV",lower.DIV," to DIV",upper.DIV, "; ")]
   add_dat[, date_plate := paste(date, Plate.SN, sep = "_")]
   
   # add new data

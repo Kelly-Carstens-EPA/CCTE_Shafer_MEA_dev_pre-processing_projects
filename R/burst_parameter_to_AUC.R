@@ -89,9 +89,25 @@ all_data[, date := as.character(date)]
 
 
 # update wllq -------------------------------------------------------------------------
+cat("\nUpdating wllq...\n")
 wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), colClasses = c(rep("character",4),"numeric",rep("character",2))))
 
-# first, check for any rows in wllq_info that dont' match a wells in all_data (Which may indicate a typo in wllq_info)
+# checking for typo's under "affected_endpoints"
+if(nrow(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])>0) {
+  cat("The following rows don't match any of the expected affected_endpoints (mea,CTB,LDH):\n")
+  print(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])
+  stop("Update wells_with_well_quality_zero.csv")
+}
+
+# expand the rows where well == "all" to include every well in plate
+for(table_row in which(wllq_info$well == "all")) {
+  full_plate <- wllq_info[table_row, .(date, Plate.SN, DIV, well = paste0(unlist(lapply(LETTERS[1:6],rep,times=8)),rep(1:8,6)), wllq, wllq_notes, affected_endpoints)]
+  wllq_info <- rbind(wllq_info, full_plate) # rbind the new rows to the end of wllq_info
+}
+wllq_info <- wllq_info[well != "all"]
+
+# check for any rows in wllq_info that dont' match a wells in all_data (Which may indicate a typo in wllq_info)
+wllq_info[, well := paste0(toupper(substring(well,1,1)), substring(well,2,2))] # ensure that all well ID's start with a capital letter
 unmatched_wells <- merge(all_data[, .(date, Plate.SN, well, trt, dose, file.name)], wllq_info[, .(date, Plate.SN, well, wllq, wllq_notes)], all.y = T)[is.na(file.name)]
 if(nrow(unmatched_wells) > 0) {
   cat("The following rows from wells_with_well_quality_zero.csv did not match any rows in all_data:\n")
@@ -100,7 +116,6 @@ if(nrow(unmatched_wells) > 0) {
   print(all_data[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
   stop("Update wells_with_well_quality_zero.csv")
 }
-# wllq_info <- wllq_info[!(date == "20190807" & Plate.SN %in% c("MW69-3819","MW69-3816"))]
 
 # check for any DIV that do not match all_data
 unmatched_DIV <- merge(all_data[, .(date, Plate.SN, well, trt, dose, file.name, DIV)], wllq_info[!is.na(suppressWarnings(as.numeric(DIV))), .(date, Plate.SN, well, DIV = as.numeric(DIV), wllq, wllq_notes)], 
@@ -112,7 +127,6 @@ if(nrow(unmatched_DIV) > 0) {
   print(all_data[Plate.SN %in% unmatched_DIV$Plate.SN, .(DIVs = paste0(sort(unique(DIV)),collapse=",")), by = c("date","Plate.SN")][order(date,Plate.SN)])
   stop("Update wells_with_well_quality_zero.csv")
 }
-# wllq_info <- wllq_info[!(date == "20190804" & Plate.SN %in% c("MW69-3816") & DIV == 8)]
 
 # initializing values
 all_data[, `:=`(wllq = 1, wllq_notes = "")] 
@@ -127,7 +141,7 @@ all_data <- all_data[, .SD, .SDcols = names(all_data)[!grepl("wllq_update",names
 wllq_info[, DIV := suppressWarnings(as.numeric(DIV))]
 all_data[, full_id := paste(date, Plate.SN, well, DIV, sep = "_")] # hopefully I will find a better way to do this in the future
 wllq_info[, full_id := paste(date, Plate.SN, well, DIV, sep = "_")]
-cat("The following data rows will be removed:\n")
+cat("The following data rows will be removed because wllq==0 and DIV is not 'all':\n")
 print(merge(all_data[, .(date, Plate.SN, well, DIV, full_id, trt, dose, file.name, meanfiringrate)], wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV)], by = c("date","Plate.SN","well","DIV","full_id")))
 all_data <- all_data[!(full_id %in% wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV), unique(full_id)])]
 all_data[, full_id := NULL]
@@ -140,27 +154,19 @@ all_data[, full_id := NULL]
 # print summary of wllq updates
 cat("Wllq summary:\n")
 print(all_data[, .(number_of_wells = .N, wllq = paste0(sort(unique(wllq)),collapse=",")), by = c("wllq_notes")][order(-wllq), .(wllq, wllq_notes, number_of_wells)])
+print(all_data[wllq == 0, .(date, Plate.SN, trt, dose, wllq, wllq_notes, meanfiringrate, nAE)])
 rm(wllq_info)
-
-# confirming that this worked
-# all_data[Plate.SN == "MW69-3715" & well == "A1"] # confirmed wllq updated for DIV all => 5,7,9,12
-# all_data[Plate.SN == "MW69-3715" & well == "A2"] # confirmed wllq==0 only at DIV 5 (i.e. those rows removed)
-# all_data[Plate.SN == "MW69-3715" & well == "A3"] # confirmed wllq==0 only at DIV 7, "affected_endpoints"==mea works
-# all_data[Plate.SN == "MW69-3715" & well == "A4"] # confirmed wllq==1, since affected_endpints==LDH
-# all_data[Plate.SN == "MW69-3715" & well == "A5"] # confirmed wllq==1, since affected_endpints==CTB. And DIV==12 did not through this off :)
-# all_data[Plate.SN == "MW69-3715" & well == "A6"] # confirmed wllq==1, since affected_endpints==CTB,LDH
-# all_data[Plate.SN == "MW69-3802" & well == "A1"] # confirmed wllq==0 for all DIV => 6,8,9,12 for this plate
-# all_data[Plate.SN == "MW69-3816" & well == "A1"] # confirmed wllq updated for DIV all => 5,7,9,12, DIV 9 removed
 
 
 # check for any DIV other than use_DIVS -----------------------------------------------
+cat("\nChecking for any DIV other than",use_divs,"\n")
 all_data$date_plate <- paste0(all_data$date, "_", all_data$Plate.SN)
 allDIV <- unique(all_data$DIV)
 diffDIV <- setdiff(allDIV, use_divs)
 
 if (length(diffDIV) > 0) {
   plates_with_diff_div <- unique(all_data[DIV %in% diffDIV, Plate.SN])
-  print(paste0("Recordings from DIV ",paste0(diffDIV,collapse = ","), " are found in ",paste0(plates_with_diff_div,collapse=",")))
+  cat(paste0("Recordings from DIV ",paste0(diffDIV,collapse = ","), " are found in ",paste0(plates_with_diff_div,collapse=",")),"\n")
   
   if(!interpolate_diff_divs) {
     warning(paste0("\nData from ",paste0(diffDIV,collapse = ",")," will be excluded."))
@@ -186,65 +192,68 @@ if (length(diffDIV) > 0) {
       # add updated plate data back to all_data
       dat <- dat[DIV %in% use_divs] # remove the non-standard DIVs
       all_data <- rbind(all_data, dat)
+      rm(dat)
     }
   }
 }
 
 
 # check if ea plate has a recording for each of use_divs ------------------------
-date_plates <- unique(all_data$date_plate)
-for (date_platei in date_plates) {
-  plate_divs <- all_data[date_plate == date_platei, sort(unique(DIV))]
-  missing_divs <- setdiff(use_divs, plate_divs)
-  if (length(missing_divs) > 0) {
-    cat(paste0("There is no data for ",sub("_"," ",date_platei), " DIV ",paste0(missing_divs,collapse=","),"\n"))
-    
-    if (length(missing_divs) > 1) {
-      warning(paste0("No data will be used from ",date_platei))
-      all_data <- all_data[date_plate != date_platei]
-    }
-    else {
-      cat("Values will be estimated from corresponding wells in other plates in same culture.\n")
-      # Generate values for missing DIV by the median of other plates from this DIV
-      all_data <- estimate_missing_DIV(dat = all_data, date_platei, missing_divs)
-    }
-  }
-}
-all_data <- all_data[, date_plate := NULL]
-
-# update: well-by well instead of plate by plate
+# original method, assuming every plate had same missing DIVs
+# date_plates <- unique(all_data$date_plate)
+# for (date_platei in date_plates) {
+#   plate_divs <- all_data[date_plate == date_platei, sort(unique(DIV))]
+#   missing_divs <- setdiff(use_divs, plate_divs)
+#   if (length(missing_divs) > 0) {
+#     cat(paste0("There is no data for ",sub("_"," ",date_platei), " DIV ",paste0(missing_divs,collapse=","),"\n"))
+#     
+#     if (length(missing_divs) > 1) {
+#       warning(paste0("No data will be used from ",date_platei))
+#       all_data <- all_data[date_plate != date_platei]
+#     }
+#     else {
+#       cat("Values will be estimated from corresponding wells in other plates in same culture.\n")
+#       # Generate values for missing DIV by the median of other plates from this DIV
+#       all_data <- estimate_missing_DIV(dat = all_data, date_platei, missing_divs)
+#     }
+#   }
+# }
+# all_data <- all_data[, date_plate := NULL]
+cat("\nChecking that every plate has a recording for DIV",use_divs,"\n")
 all_data[, well_id := paste(date, Plate.SN, well, sep = "_")]
-well_ids <- unique(all_data$well_id)
 wells_missing_div <- all_data[, .(DIV_flag = ifelse(length(setdiff(use_divs, unique(DIV)))>0, 1, 0),
-                                  missing_DIV = list(setdiff(use_divs, unique(DIV)))), by = c("date","Plate.SN","well","well_id")][DIV_flag == 1]
+                                  missing_DIV = list(setdiff(use_divs, unique(DIV)))), by = c("date","Plate.SN","date_plate","well","well_id")][DIV_flag == 1]
 if (nrow(wells_missing_div) == 0) {
-  cat("Every plate has DIV",use_divs,"\n")
+  cat("Every well has data from DIVs",use_divs,"\n")
 } else {
-  check_well_ids <- wells_missing_div[, unique(well_id)]
-  for (well_idi in check_well_ids) {
-    if (wells_missing_div[well_id == well_idi, length(unlist(missing_DIV)) > 1]) {
-      warning(paste0("There are multiple missing DIV on ",well_idi,". No data will be used from this well"))
-      all_data[well_id == well_idi, `:=`(wllq = 0, wllq_notes = "Multiple recordings missing; ")]
-      # all_data <- all_data[well_id != well_idi]
-    }
-    else {
-      cat("Values will be estimated from corresponding wells in other plates in same culture.\n")
+  check_plates <- wells_missing_div[, unique(date_plate)]
+  for(date_platei in check_plates) {
+    cat(date_platei,"\n")
+    missing_divs <- wells_missing_div[date_plate == date_platei, unique(unlist(missing_DIV))]
+    
+    # loop through each missing_div on this plate (will check if multiple DIV estimated afterwards)
+    for (add.DIV in missing_divs) {
       # Generate values for missing DIV by the median of other plates from this DIV
-      all_data <- estimate_missing_DIV(dat = all_data, date_platei, missing_divs)
+      all_data <- estimate_missing_DIV(dat = all_data, date_platei, add.DIV)
     }
   }
+  
+  # If more than 1 DIV value had to be estimated for a given well, set wllq==0
+  check_multiple_missing <- function(wllq_notes_vector) {
+    if (sum(grepl("estimated as median from corresponding wells",wllq_notes_vector)) > 1)
+      paste0(wllq_notes_vector, "Multiple recordings missing; ")
+    else
+      # no changes needed for wllqnotes
+      wllq_notes_vector
+  }
+  all_data[, wllq_notes := lapply(.SD, check_multiple_missing), .SDcols = "wllq_notes", by = "well_id"]
+  all_data[grepl("Multiple recordings missing",wllq_notes), wllq := 0] # could I merge this step with above?
+  cat("Multiple DIV missing for\n")
+  print(all_data[grepl("Multiple recordings missing",wllq_notes), .(date, Plate.SN, well, DIV, trt, dose, wllq, wllq_notes)])
+  cat("Wllq set to 0 for these wells.\n")
 }
-all_data <- all_data[, date_plate := NULL]
+all_data <- all_data[, c("date_plate","well_id") := NULL]
 
-# problem:
-# - if a DIV is excluded by wllq==0 for just a few wells on a plate, need to estimate those values as well
-# - the whole question of should we estimate control wells with median of all control wells, or by row?
-# - doubt that this is effective at all... should I pursue the better alternative?
-
-# ideas
-# - replace estimated div for each well individually
-# - still group by plate
-# I think that the soln depends on what we are going to do for control wells - whether we group these or not.
 
 # Removing BIC data
 #bis_rows <- grep("12_01_", all_data$file.name, fixed=TRUE) #index all Bicuculline-treated wells
@@ -254,7 +263,7 @@ all_data <- all_data[, date_plate := NULL]
 setnames(x = all_data, old = "Mutual.Information", new = "mi") # renaming this column
 
 # save a snapshot of the combined prepared data, with the added/interpolated rows where DIV where missing
-write.csv(all_data, file = file.path(basepath,"output",paste0(dataset_title,"_parameters_by_DIV_for_AUC.csv")), row.names = FALSE)
+write.csv(all_data, file = file.path(basepath,"output",paste0(dataset_title,"_parameters_by_DIV.csv")), row.names = FALSE)
 
 # going back to a data frame, for compatiblity with the functions below
 all_data <- as.data.frame(all_data)
@@ -323,4 +332,5 @@ sum_table <- calc_auc(all_data_split = all_data_split)
 
 write.csv(sum_table, file.path(basepath, "output", filename), row.names = FALSE)
 
-cat(filename,"is ready\n")
+rm(list = c("all_data","all_data_split","parameter_data","mi_data","sum_table"))
+cat("\n", filename," is ready\n",sep = "")

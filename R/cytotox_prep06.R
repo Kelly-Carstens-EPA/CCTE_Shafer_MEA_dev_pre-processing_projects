@@ -18,20 +18,18 @@
 # set the name of the output file
 # filename = paste0(dataset_title,"_cytotox_longfile.csv")
 
-# Do your individual input excel sheets contain data for one plates or three plates per sheet?
-# sheetdata = "three" # set to "one" or "three"
+# check if the filename already exists first?
+# remake_all <- TRUE
 
-# If you are creating a new file or want to overwrite an existing file of the same name, set newFile = TRUE
-# If you want to append data to an existing file with the same name, set newFile = FALSE
-# newFile = TRUE
-
-# This script extracts the values under "Corrected Optical Denisty 490 nm"
+# append to existing data?
+# append <- FALSE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
 
-library(xlsx)
-library(pracma)
+require(xlsx)
+require(pracma)
+require(data.table)
 
 ###################### FUNCTIONS
 
@@ -90,100 +88,72 @@ findTabData <- function(sourcefile, assay = c("AB", "LDH")) {
 }
 
 
-# use this function if the data from each plate comes from a separate file or sheet
-createCytoTable = function(sourcefile,firstround, masterChemFiles = c()) {
+# splits the cyto data for each plate, assay, then calls createCytoData()
+createCytoTable2 <- function(sourcefile, cyto_type, masterChemFiles = c()) {
   
-  AB_data <- findTabData(sourcefile, "AB")
-  LDH_data <- findTabData(sourcefile, "LDH")
-  
-  # get source file name
-  filenamesplit = strsplit(sourcefile, split = "/")
-  srcname = tail(filenamesplit[[1]], n = 1)
-  
-  # look for plate name in file name (anything with -)
-  namesplit = strsplit(srcname, split ="_")
-  Plate.SN = namesplit[[1]][grep(pattern="-",namesplit[[1]])]
-  
-  # get the date from file name:
-  date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
-  
-  if (isempty(AB_data)) {
-    print("AB data not found")
-  } else {
-    createCytoData(AB_data, "AB", sheetdata = "one", firstround, Plate.SN, srcname, date, masterChemFiles)
-  }
-  if(isempty(LDH_data)) {
-    print("LDH data not found")
-  } else {
-    createCytoData(LDH_data, "LDH", sheetdata = "one", 0, Plate.SN, srcname, date, masterChemFiles)
-  }
-  
-}
-
-
-# use this function when data for 3 plates are on same sheet
-createCytoTable2 = function(sourcefile, firstround, masterChemFiles = c()) {
-  
-  # get source file name
+  # get the date, file name
   srcname = basename(sourcefile)
+  namesplit = strsplit(srcname, split ="_")[[1]]
+  date <- grep(pattern="[0-9]{8}",namesplit, val = T) # looks for 8-digit string in namesplit
   
-  # get the date from filename
-  namesplit = strsplit(srcname, split ="_")
-  date = namesplit[[1]][grep(pattern="[0-9]{8}",namesplit[[1]])] # looks for 8-digit string in namesplit
+  cyto_data_all = findTabData(sourcefile, cyto_type)
   
-  AB_data_all = findTabData(sourcefile, "AB")
-  LDH_data_all = findTabData(sourcefile, "LDH")
-  
-  # split the data wherever there is a new occurrence of the word "Chemical" in the first column
-  # Only want the first 3 - because these should correspond to the first 3 plates
-  # Any occurences of "chemical" after that are probably other calculations
-  AB_plate_indicies = which(AB_data_all[,1] == "Chemical")[1:3]
-  LDH_plate_indicies = which(LDH_data_all[,1] == "Chemical")[1:3]
-  
-  
-  for (i in 1:length(AB_plate_indicies)) {
-    
-    # get the plate slice of the data
-    AB_data = AB_data_all[AB_plate_indicies[i]:(AB_plate_indicies[i]+9),]
-    LDH_data = LDH_data_all[LDH_plate_indicies[i]:(LDH_plate_indicies[i]+9),]
-    
-    # get Plate.SN. Should be same for AB and LDH
-    plateindex = returnindex("Plate", AB_data)
-    ABplate.SN = paste("MW",AB_data[plateindex[1],(plateindex[2]+1)], sep = "")
-    plateindex = returnindex("Plate", LDH_data)
-    LDHplate.SN = paste("MW",LDH_data[plateindex[1],(plateindex[2]+1)], sep = "")
-    
-    if (isempty(AB_data)) {
-      print("AB data not found")
-    } else {
-      createCytoData(AB_data, "AB", sheetdata = "three", firstround, ABplate.SN, srcname, date, masterChemFiles)
-      firstround = FALSE
-    }
-    if(isempty(LDH_data)) {
-      print("LDH data not found")
-    } else {
-      createCytoData(LDH_data, "LDH", sheetdata = "three", firstround, LDHplate.SN, srcname, date, masterChemFiles)
-      firstround = FALSE
-    }
+  # if the input file was a "Summary" file, should see the phrase "Chemical" only once
+  if (length(which(cyto_data_all == "Chemical")) == 1) {
+    cyto_data_list <- list(cyto_data_all)
+  } else{
+    # "Calculations" file with 3 plates
+    # split the data wherever there is a new occurrence of the word "Chemical" in the first column
+    # Only want the first 3 - because these should correspond to the first 3 plates
+    # Any occurences of "chemical" after that are probably other calculations
+    cyto_plate_indicies = which(cyto_data_all[,1] == "Chemical")[1:3]
+    cyto_data_list <- lapply(cyto_plate_indicies, function(i) cyto_data_all[i:(i+9),])
   }
   
+  file_dat <- data.table()
+  
+  for (cyto_data in cyto_data_list) {
+    
+    # get Plate.SN
+    plateindex <- which(cyto_data == "Plate", arr.ind = T)
+    if (nrow(plateindex) == 0) {
+      # then get plate from file name
+      Plate.SN <-  grep("-", namesplit, val = T)
+    } else {
+      Plate.SN <- paste("MW",cyto_data[plateindex[1,"row"],(plateindex[1,"col"]+1)], sep = "")
+    }
+    
+    if (all(is.na(cyto_data))) {
+      cat(cyto_type,"data not found\n")
+    } else {
+      cyto_longdat <- createCytoData(cyto_data, cyto_type, Plate.SN, srcname, date, masterChemFiles)
+    }
+    file_dat <- rbind(file_dat, cyto_longdat)
+  }
+  return(file_dat)
 }
 
-createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, Plate.SN = NULL, srcname = NULL, date = NULL, masterChemFiles = c()) {
+createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, date = NULL, masterChemFiles = c()) {
   
   cat(Plate.SN,cyto_type,"\n")
   
   # compound map
-  compoundindex = returnindex("Chemical",sourcedata)
-  chemrow = compoundindex[1] + 3
-  chemcol = compoundindex[2] + 1
-  compoundmap = sourcedata[chemrow:(chemrow+5),chemcol:(chemcol+7)]
+  compound_col <- which(sourcedata == "Chemical", arr.ind = T)[1,"col"]
+  Row_row <- which(sourcedata[, compound_col] == "Row")[1] # find first the occurence of the phrase "Row" in the same column as "Chemical"
+  compoundmap <- sourcedata[(Row_row + 1):(Row_row + 6), compound_col:(compound_col+8)] # get the treatment labels under "Row"
+  colnames(compoundmap) <- sourcedata[Row_row, compound_col:(compound_col+8)] 
+  compoundmap[, setdiff(names(compoundmap),"Row")] <- sapply(compoundmap[, setdiff(names(compoundmap),"Row")], as.character) # each col of the df is read as a list element
+  setDT(compoundmap)
+  compoundmap <- melt(compoundmap, id.vars = "Row", variable.name = "coli", value.name = "treatment", variable.factor = FALSE)
   
-  # concetrations
-  concindex = returnindex("Concentration mM",sourcedata)
-  concrow = concindex[1] + 3
-  conccol = concindex[2] + 1
-  concmap = sourcedata[concrow:(concrow+5),conccol:(conccol+7)]
+  # concentrations
+  conc_col <- which(sourcedata == "Concentration mM", arr.ind = T)[1,"col"]
+  Row_row <- which(sourcedata[, conc_col] == "Row")[1] # find first the occurence of the phrase "Row" in the same column as "Chemical"
+  concmap <- sourcedata[(Row_row + 1):(Row_row + 6), conc_col:(conc_col+8)] # get the treatment labels under "Row"
+  colnames(concmap) <- sourcedata[Row_row, conc_col:(conc_col+8)]
+  concmap[, setdiff(names(concmap),"Row")] <- sapply(concmap[, setdiff(names(concmap),"Row")], as.numeric) # each col of the df is read as a list element
+  setDT(concmap)
+  concmap <- melt(concmap, id.vars = "Row", variable.name = "coli", value.name = "conc", variable.factor = FALSE)
   
   # checking that there were no issues with data offset in sheet
   if(any(is.na(compoundmap) | is.na(concmap))) {
@@ -193,87 +163,62 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, Plate.S
   }
   
   # Get desired values
-  # if one-plate version, expected rval header is "Corrected for Blank"
-  if (sheetdata == "one") {
-    valueindex = returnindex("Corrected for Blank",sourcedata)
-    # note that data start only 2 rows below, instead of 3
-    valuerow = valueindex[1] + 2
-    valuecol = valueindex[2] + 1
-  }
-  if (sheetdata == "three") {
-    tagPhrases = c("Corrected for Blank", "Corrected Optical Denisty 490 nm", "Corrected Fluorescence")
-    valueindex = NULL
-    i = 1
-    while(is.null(valueindex) ) {
-      if (i > length(tagPhrases)) {
-        stop(paste("no corrected for blank data found for",Plate.SN,cyto_type))
-      }
-      valueindex = returnindex(tagPhrases[i], sourcedata)
-      i = i+1
+  tagPhrases = c("Corrected for Blank", "Corrected Optical Denisty 490 nm", "Corrected Fluorescence")
+  value_index <- matrix(data = NA, nrow = 0, ncol = 2) # initialize value_index as empty
+  i = 1
+  while (nrow(value_index)==0) {
+    if (i > length(tagPhrases)) {
+      stop(paste("no corrected for blank data found for",Plate.SN,cyto_type))
     }
-    # assuming that data starts 3 rows below
-    valuerow = valueindex[1] + 3
-    valuecol = valueindex[2] + 1
-    
+    value_index <- which(sourcedata == tagPhrases[i], arr.ind = TRUE)
+    i = i+1
   }
-  valuemap = sourcedata[valuerow:(valuerow+5),valuecol:(valuecol+7)]
+  value_row <- value_index[1,"row"] # in case there were multiple occurences, we want the first one
+  value_col <- value_index[1,"col"]
+  # find the first occurence of the phrase "Row" in the same column as tagPhrase
+  Row_row <- which(sourcedata[value_row:nrow(sourcedata), value_col] == "Row")[1] + value_row - 1 
+  valuemap <- sourcedata[(Row_row + 1):(Row_row + 6), value_col:(value_col+8)]
+  colnames(valuemap) <- sourcedata[Row_row, value_col:(value_col+8)]
+  valuemap[, setdiff(names(valuemap),"Row")] <- sapply(valuemap[, setdiff(names(valuemap),"Row")], as.numeric) # each col of the df is read as a list element
+  setDT(valuemap)
+  valuemap <- melt(valuemap, id.vars = "Row", variable.name = "coli", value.name = "rval", variable.factor = FALSE)
+  
   # moving this check to a separate function
   # if (any(is.na(valuemap))) {
   #   stop("valuemap contains NAs")
   # }
   
   # if any blank-corrected values are negative, then we should set these to zero
-  if (any(valuemap < 0, na.rm = T)) {
-    valuemap[valuemap < 0] = 0.0
-    print("some blank-corrected values are negative. Setting these to zero")
+  valuemap[rval < 0, rval := 0.0]
+  
+  # merge data together!
+  longdat <- Reduce(merge, x = list(compoundmap, concmap, valuemap))
+  if (nrow(longdat) != 48) {
+    print(compoundmap)
+    print(concmap)
+    print(valuemap)
+    stop("Did not merge correctly with 48 rows")
   }
   
-  # now create a data frame with all the desired values
+  # get numerical rowi from character Row
+  longdat[, rowi := match(Row, LETTERS)]
   
-  compounds = c()
-  concentrations = c()
-  values = c()
-  rowi = c()
-  coli = c()
-  for (i in 1:nrow(compoundmap)) {
-    for (j in 1:ncol(compoundmap)) {
-      # compounds = c(compounds, as.character(compoundmap[i,j]))
-      # concentrations = c(concentrations, as.character(concmap[i,j]))
-      compounds = c(compounds, compoundmap[i,j])
-      concentrations = c(concentrations, concmap[i,j])
-      values = c(values, as.numeric(valuemap[i,j]))
-      rowi = c(rowi, i)
-      coli = c(coli, j)
-    }
-  }
-  
-  # create data frame
-  sourcedata = data.frame("treatment" = compounds, "rowi" = rowi, "coli" = coli, "conc" = concentrations, "rval" = values, stringsAsFactors = FALSE)
-  
-  if (isempty(Plate.SN) | length(Plate.SN)>1) {
-    print("Plate cannot be determined from file name")
+  if (isempty(Plate.SN) | length(Plate.SN) != 1) {
+    cat("Plate cannot be determined from file name. ")
     Plate.SN = readline("Enter plate sn: ")
   }
   
   # determine correct assay component source name
-  if (cyto_type == "LDH") {
-    sourcedata$acsn = "CCTE_Shafer_MEA_dev_LDH"
-  } else if (cyto_type == "AB" | cyto_type == "CTB") {
-    sourcedata$acsn = "CCTE_Shafer_MEA_dev_AB"
-  } else {
-    stop("invalid cyto_type used")
-  }
+  longdat$acsn <- switch(cyto_type, 
+         "LDH" = "CCTE_Shafer_MEA_dev_LDH",
+         "AB" = "CCTE_Shafer_MEA_dev_AB",
+         "CTB" = "CCTE_Shafer_MEA_dev_AB",
+         stop("invalid cyto_type used"))
   
-  sourcedata$srcf = srcname
-  sourcedata$Plate.SN = Plate.SN
-  sourcedata$date = date
-  sourcedata$wllt = "t" # well type "t" for treated
-  # For control wells, make well type "n" for neutral control
-  sourcedata[sourcedata$conc == 0, "wllt"] = "n"
-  sourcedata$srcf = srcname
-  
-  # reorder columns
-  sourcedata = sourcedata[,c("date","Plate.SN","treatment","rowi","coli","wllt","conc","rval","srcf","acsn")]
+  longdat$srcf = srcname
+  longdat$Plate.SN = Plate.SN
+  longdat$date = date
+  longdat[, coli := as.numeric(coli)]
   
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) != 0) {
@@ -283,79 +228,75 @@ createCytoData = function(sourcedata,cyto_type,sheetdata,firstround = 0, Plate.S
       warning(paste("master chem file match not found for",Plate.SN,sep = " "))
     }
     else {
-      masterChemData = read.csv(masterChemFile, stringsAsFactors = FALSE)
+      masterChemData = as.data.table(read.csv(masterChemFile, stringsAsFactors = FALSE))
+      masterChemData[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",Well)), rowi = match(sub("[[:digit:]]","",Well), LETTERS),
+                            date = as.character(Experiment.Date))]
       
-      # matching up Treatment from masterChemData where Well matches with rowi and coli
-      letterList = c("A", "B", "C", "D", "E", "F")
-      for (l in 1:length(letterList)) {
-        well_row_names = masterChemData[grep(pattern = letterList[l], masterChemData$Well),]
-        for (c in unique(sourcedata$coli)) {
-          correct_name = well_row_names[grep(pattern = c, well_row_names$Well), "Treatment"]
-          sourcedata[sourcedata$rowi == l, "treatment"] = correct_name
-        }
-      }
+      # only replacing the treatment names for now, might add conc's in the future
+      longdat[, treatment := NULL] # remove current treatment column
+      longdat <- merge(longdat, masterChemData[, .(date,Plate.SN,rowi,coli,treatment = Treatment)], by = c("date","Plate.SN","rowi","coli"))
     }
   }
-  # print(paste("firstround = ",firstround))
   
-  # write the data to a table
-  if (firstround) {
-    write.table(sourcedata, file = output_file, sep = ",", row.names = FALSE, col.names = TRUE, append = FALSE)
-  } else {
-    write.table(sourcedata, file = output_file, sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
-  }
-  
+  # reorder columns
+  longdat <- longdat[,c("date","Plate.SN","treatment","rowi","coli","conc","rval","srcf","acsn")]
+  return(longdat)
 }
 
 
-wllq_updates_cytotox <- function(output_file, basepath = NULL, get_files_under_basepath = TRUE) {
+wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basepath = TRUE) {
   if (get_files_under_basepath) wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), colClasses = c(rep("character",4),"numeric",rep("character",2))))
   else wllq_info <- as.data.table(read.csv(choose.files(default = basepath, caption = "Select well quality csv table")))
   
-  all_dat <- read.csv(output_file)
-  setDT(all_dat)
-  all_dat[, `:=`(date = as.character(date), rowi = as.numeric(rowi))]
+  longdat[, `:=`(date = as.character(date), rowi = as.numeric(rowi))]
   
-  # add rowi adn coli to wllq_info
-  # ahh, I don't remember how to do it the mroe efficient way!!
-  wllq_info[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",well)), rowi = sub("[[:digit:]]","",well))]
-  wllq_info[rowi == "A", rowi := 1]
-  wllq_info[rowi == "B", rowi := 2]
-  wllq_info[rowi == "C", rowi := 3]
-  wllq_info[rowi == "D", rowi := 4]
-  wllq_info[rowi == "E", rowi := 5]
-  wllq_info[rowi == "F", rowi := 6]
-  wllq_info[, rowi := as.numeric(rowi)]
+  # checking for typo's under "affected_endpoints"
+  if(nrow(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])>0) {
+    cat("The following rows don't match any of the expected affected_endpoints (mea,CTB,LDH):\n")
+    print(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])
+    stop("Update wells_with_well_quality_zero.csv")
+  }
   
-  # Check for any rows where the 
-  unmatched_wells <- merge(all_dat[, .(date, Plate.SN, rowi, coli, treatment, conc, srcf)], 
+  # expand the rows where well == "all" to include every well in plate
+  for(table_row in which(wllq_info$well == "all")) {
+    full_plate <- wllq_info[table_row, .(date, Plate.SN, DIV, well = paste0(unlist(lapply(LETTERS[1:6],rep,times=8)),rep(1:8,6)), wllq, wllq_notes, affected_endpoints)]
+    wllq_info <- rbind(wllq_info, full_plate) # rbind the new rows to the end of wllq_info
+  }
+  wllq_info <- wllq_info[well != "all"]
+  
+  # add rowi and coli to wllq_info
+  wllq_info[, well := paste0(toupper(substring(well,1,1)), substring(well,2,2))] # ensure that all well ID's start with a capital letter
+  wllq_info[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",well)), rowi = match(sub("[[:digit:]]","",well), LETTERS))]
+  
+  # Check for any rows where there may have been a typo in wllq_info
+  unmatched_wells <- merge(longdat[, .(date, Plate.SN, rowi, coli, treatment, conc, srcf)], 
                            wllq_info[grepl("(LDH)|(CTB)|(AB)",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes, affected_endpoints)], all.y = T)[is.na(srcf)]
   if(nrow(unmatched_wells) > 0) {
-    cat("The following rows from wells_with_well_quality_zero.csv did not match any rows in all_data:\n")
+    cat("The following rows from wells_with_well_quality_zero.csv did not match any rows in longdata:\n")
     print(unmatched_wells)
-    cat("\nSummary of all_data:\n")
-    print(all_data[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
+    cat("\nSummary of longdata:\n")
+    print(longdata[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
     stop("Update wells_with_well_quality_zero.csv")
   }
 
   # transfrom wllq_info into longdat
   ldh_wllq <- wllq_info[grepl("LDH",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
-  ldh_wllq[, acsn := grep("LDH",unique(all_dat$acsn),val = T)]
+  ldh_wllq[, acsn := grep("LDH",unique(longdat$acsn),val = T)]
   ctb_wllq <- wllq_info[grepl("(CTB)|(AB)",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
-  ctb_wllq[, acsn := grep("AB",unique(all_dat$acsn),val = T)]
+  ctb_wllq[, acsn := grep("AB",unique(longdat$acsn),val = T)]
   
-  # set the wllq in all_dat
-  all_dat <- merge(all_dat, rbind(ldh_wllq, ctb_wllq), all.x = TRUE)
-  all_dat[is.na(wllq), `:=`(wllq = 1, wllq_notes = "")]
+  # set the wllq in longdat
+  longdat <- merge(longdat, rbind(ldh_wllq, ctb_wllq), all.x = TRUE)
+  longdat[is.na(wllq), `:=`(wllq = 1, wllq_notes = "")]
 
   # flag NA rval's where there is no wllq note
-  na_rvals <- all_dat[is.na(rval) & wllq == 1]
+  na_rvals <- longdat[is.na(rval) & wllq == 1]
   if (nrow(na_rvals) > 0) {
     cat("The following rval's are missing in sourcedata, but wllq==1\n")
     print(na_rvals)
     resp <- readline(prompt = "Do you wish to set wllq=0 for all of these wells? (Only do this if you know that these values should be NA) (y/n): ")
     if (resp %in% c("y","Y","yes","Yes")) {
-      all_dat[is.na(rval) & wllq == 1, `:=`(wllq = 0, wllq_notes = "rval is NA; ")]
+      longdat[is.na(rval) & wllq == 1, `:=`(wllq = 0, wllq_notes = "rval is NA; ")]
     }
     else {
       stop("Update wllq_info table")
@@ -364,14 +305,16 @@ wllq_updates_cytotox <- function(output_file, basepath = NULL, get_files_under_b
   
   # summary of wllq updates
   cat("Wllq summary:\n")
-  print(all_dat[, .N, by = c("acsn","wllq","wllq_notes")][order(acsn, wllq, wllq_notes)])
+  print(longdat[, .N, by = c("acsn","wllq","wllq_notes")][order(acsn, wllq, wllq_notes)])
   
-  # save updated data
-  write.table(all_dat, file = output_file, sep = ",", row.names = FALSE, col.names = T)
+  return(longdat)
 }
 
 
-run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox_longfile.csv", newFile = TRUE, remake_all = TRUE) {
+run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox_longfile.csv", remake_all = TRUE, append = FALSE) {
+  
+  cat("\nStarting cytotoxicity data collection...\n")
+  cat("Any negative blank-corrected values will be set to 0.\n")
   
   # set up dir and output_file
   if (!dir.exists(file.path(basepath, "output"))) dir.create(file.path(basepath, "output"))
@@ -398,23 +341,24 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
   }
 
   # run the functions for each file
+  longdat <- data.table()
   for (i in 1:length(cytoFiles)) {
     
-    if (grepl("Summary",basename(cytoFiles[i]))) {
-      # these files have data for just 1 plate per file
-      createCytoTable(cytoFiles[i], firstround = floor(1/i)&newFile, masterChemFiles)
-    }
-    else if (grepl("Calculations",basename(cytoFiles[i]))) {
-      # these files have data for 3 plates per file
-      createCytoTable2(cytoFiles[i], firstround = floor(1/i)&newFile, masterChemFiles)
+    if (grepl("(Calculations)|(Summary)",basename(cytoFiles[i]))) {
+      AB_dat <- createCytoTable2(cytoFiles[i], cyto_type = "AB", masterChemFiles)
+      LDH_dat <- createCytoTable2(cytoFiles[i], cyto_type = "LDH", masterChemFiles)
     } 
     else {
-      print(paste0("can't tell if",cytoFiles[i],"is 'Summary' file or 'Calculations' file"))
+      cat(paste0("can't tell if",cytoFiles[i],"is 'Summary' file or 'Calculations' file\n"))
     }
+    longdat <- rbind(longdat, AB_dat, LDH_dat)
+    rm(list = c("AB_dat","LDH_dat"))
+    x <- x # trying to throw an error
   }
   
   # set the wllq
-  wllq_updates_cytotox(output_file, basepath, get_files_under_basepath = get_files_from_log)
+  longdat <- wllq_updates_cytotox(longdat, basepath, get_files_under_basepath = get_files_from_log)
+  write.table(longdat, file = output_file, sep = ",", row.names = FALSE, col.names = !append, append = append)
   
   cat(basename(output_file),"is ready\n")
   

@@ -5,7 +5,7 @@
 # # set working directory for where the output file will go
 # setwd("C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing")
 # # set the output file name
-# filename = "mc0_test_dnt.csv"
+# output_file = "mc0_test_dnt.csv"
 # AUCsourcefilename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/AUC_DNT2019_All.csv"
 # cytotox_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/DNT2019_all_cytotoxicity_rawVals.csv"
 # default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
@@ -22,13 +22,18 @@
 # # END USER INPUT
 # ###################################################################################
 
-tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTreatmentName,
-                             filename = file.path(basepath, "output", paste0(dataset_title, "_longfile.csv")), AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
+tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTreatmentName, remake_all = TRUE,
+                             output_file = file.path(basepath, "output", paste0(dataset_title, "_longfile.csv")), AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
                              cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox_longfile.csv")),
                              different_vehicleControlCompounds = c(), different_vehicleControls = c())
 {
   
   require(data.table)
+  
+  # check if already exists
+  if (!remake_all && file.exists(output_file)) {
+    return(paste0(basename(output_file), " already exits."))
+  }
   
   ## read in the data
   AUC <- fread(AUCsourcefilename)
@@ -63,17 +68,20 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
   AUC_smaller_melted <- melt(AUC_smaller, id = c("date","Plate.SN","apid","treatment","ID", "rowi", "coli", "conc","wllq","wllq_notes"), 
                              variable.name = "acsn", value.name = "rval", variable.factor = FALSE)
   
-  # add srcf , acsn, wllt
-  AUC_smaller_melted$wllt = "t"
+  # add srcf
   AUC_smaller_melted$srcf <- basename(AUCsourcefilename)
   
   # remove unneeded columns
-  usecols <- c("apid","treatment","rowi","coli","wllt","wllq","wllq_notes","conc","rval", "srcf","acsn")
+  usecols <- c("apid","treatment","rowi","coli","wllq","wllq_notes","conc","rval", "srcf","acsn")
   AUC_smaller_melted = AUC_smaller_melted[, ..usecols]
   # remove columns and make sure columns in same order
   cytotox_data = cytotox_data[, ..usecols]
   mc0_data = rbind(AUC_smaller_melted, cytotox_data)
   mc0_data[, treatment := as.character(treatment)] # sometimes the treatment is read as an integer instead of a char
+  
+  # assign wllt
+  mc0_data[, wllt := "t"]
+  mc0_data[ conc == 0, wllt := "n"]
   
   # change untreated wells to Control Treatment
   compoundlist = unique(mc0_data$treatment)
@@ -87,8 +95,6 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
     }
   }
   
-  # change wllt for untreated wells to n
-  mc0_data[ conc == 0, wllt := "n"]
   
   # Assign SPIDs ------------------------------------------------------------------
   if (length(setdiff(c("treatment","stock_conc","spid"), names(spidmap))) > 0) {
@@ -106,9 +112,9 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
   # Confirm Conc's ----------------------------------------------------------------
   # confirm that the conc's collected from master chem lists and Calc files match
   # and that the correct concentration-corrections has been done for each compound
-  mc0_data <- confirm_concs(mc0_data)
+  mc0_data <- confirm_concs(mc0_data, spidmap)
   
-  mc0_data <- mc0_data[, .(apid, treatment, spid, acsn, rowi, coli, wllt, wllq, conc, rval, srcf)]
-  fwrite(mc0_data, file = filename, row.names = FALSE, sep = ",")
-  cat(filename, "is ready\n")
+  mc0_data <- mc0_data[, .(apid, treatment, spid, acsn, rowi, coli, wllt, wllq, conc, rval, srcf, wllq_notes)]
+  fwrite(mc0_data, file = output_file, row.names = FALSE, sep = ",")
+  cat(basename(output_file), "is ready\n")
 }
