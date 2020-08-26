@@ -2,9 +2,7 @@
 # USER INPUT
 ###################################################################################
 dataset_title <- "PFAS2018" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-remake_all <- FALSE # re-create all intermediate output files, even if they already exist?
-append <- FALSE # if remake_all is FALSE, if a file already exists, do you want to append to it or leave it as is?
-# append only applies to output with 1 single file, e.g. files_log, cytotox_longdat, adn that's it for now
+pause_between_steps <- TRUE # probs want to be true when you first run
 save_notes_graphs <- FALSE # can say no if you are in debugging phase, but do do a final run with saving notes adn graphs
 
 default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
@@ -21,8 +19,8 @@ different_vehicleControls = c() # e.g. c("Water", "Water")
 spidmap_file <- "L:/Lab/NHEERL_MEA/Project PFAS 2018/EPA_9238_EPA-Shafer_75_20180511_key_MW Waste Calculations.xlsx"
 spid_sheet <- "Worksheet1 (2)"
 
-scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
-root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts" # where the dataset_title folder will be created
+scripts.dir <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/nfa-spike-list-to-mc0-r-scripts/R"
+root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
 ###################################################################################
 # END USER INPUT
 ###################################################################################

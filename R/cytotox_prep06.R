@@ -311,7 +311,7 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
 }
 
 
-run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox_longfile.csv", remake_all = TRUE, append = FALSE) {
+run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox.csv", append = FALSE) {
   
   cat("\nStarting cytotoxicity data collection...\n")
   cat("Any negative blank-corrected values will be set to 0.\n")
@@ -320,9 +320,10 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
   if (!dir.exists(file.path(basepath, "output"))) dir.create(file.path(basepath, "output"))
   # might be a better way to do this... I just don't want to have to pass it thru 4 versions of 3 function calls
   assign("output_file", value = file.path(basepath, "output",filename), envir = .GlobalEnv)
-  if(!remake_all && file.exists(output_file)) {
-    return(paste0(basename(output_file), " already exits."))
-  }
+  
+  # if(!append && file.exists(output_file)) {
+  #   return(paste0(basename(output_file), " already exits."))
+  # }
   
   # get the source files, either from log file or by selecting
   if(get_files_from_log) {

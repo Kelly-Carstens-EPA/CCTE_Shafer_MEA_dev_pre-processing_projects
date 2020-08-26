@@ -1,45 +1,92 @@
 ###################################################################################
 # USER INPUT
 ###################################################################################
-start.dir <- "L:/Lab/NHEERL_MEA/" # set start.dir to the main project folder for your data set. Does not have to be exact.
 dataset_title <- "NTP91" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-remake_all <- TRUE # re-create all intermediate output files, even if they already exist? can set to TRUE or FALSE
+pause_between_steps <- TRUE # probably leave this as true when you first run
+save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
-# for tpl mea dev script (still under development, can ignore for now)
-# default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
-# # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
-# different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
-# # Enter the names of the vehicle controls as they correspond to the compounds in the previous list
-# different_vehicleControls = c() # e.g. c("Water", "Water")
-# spidmap_file <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing/full_test_material/All Assays_list_toxcast_OECD 20190524.xlsx"
-# use_sheet <- "NFA Groups"
-# trt_col <- "Chemical ID...2"
-# stock_conc_col <- "Conc"
-# spid_col <- "NCCT ID...3"
+default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
+# Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
+different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
+# Enter the names of the vehicle controls as they correspond to the compounds in the previous list
+different_vehicleControls = c() # e.g. c("Water", "Water")
+
+spidmap_file <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/NTP tcpl prep/SPID map/Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx"
+spid_sheet <- "NeuroTox 91 Cmpds"
 
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
-root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts" # where the dataset_title folder will be created
+root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
 ###################################################################################
 # END USER INPUT
 ###################################################################################
 
 library(data.table)
+library(readxl)
 
-# source the ultimate function!
+# create a summary log file and store the 
+if(save_notes_graphs) {
+  sink(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_run_log_",as.character.Date(Sys.Date()),".txt")))
+  cat("Output from the script run_me_",dataset_title,".R\n",sep="")
+  cat("Date:",as.character.Date(Sys.Date()),"\n")
+  cat("USER INPUT settings:\n")
+  print(sapply(ls(), get, envir = .GlobalEnv))
+}
+
+# run the main steps
 source(file.path(scripts.dir, 'source_steps.R'))
 
+# prepare spidmap
+spidmap <- as.data.table(read_excel(spidmap_file, sheet = spid_sheet))
+head(spidmap)
+unique(spidmap$Concentration_Unit) # all mM?
+setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
+# for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
+spidmap[, treatment := as.character(treatment)]
+head(spidmap[, .(treatment, spid, stock_conc)])
 
-# Future steps:
+# rename any compounds, if needed
+auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
+cyto <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")))
+auc[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
+auc[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
+auc[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
+cyto[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
+cyto[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
+cyto[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
+write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE, sep = ",")
+write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE, sep = ",")
+rm(list = c("auc","cyto"))
 
-# source tpcl mea dev - this fun has lots of user-defined inputs
-# source(file.path(scripts.dir, "tcpl_MEA_dev_AUC.R"))
-# tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir, dataset_title), dataset_title, spidmap_file, use_sheet, trt_col, stock_conc_col, spid_col, 
-#                  default_ControlTreatmentName, different_vehicleControlCompounds = c(), different_vehicleControls = c())
+# run tcpl_MEA_dev_AUC
+source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+source(file.path(scripts.dir, 'confirm_concs.R'))
+tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
+                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls)
 
+# FINAL DATA CHECKS
+# this section is to confirm that the data has been processed correctly
+dat <- read.csv(file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")))
+setDT(dat)
+source(file.path(scripts.dir, 'dataset_checks.R'))
+dataset_checks(dat)
 
-# data-set specific stuff, such as
-# - update wllq
-# - check conc's, update for individual spid if needed
-# - map spid's
-# - other clean up
-# - final data checks
+# Any other plots or things to check?
+
+rm(dat)
+
+if(save_notes_graphs) {
+  sink() # close the txt log file
+  
+  # save the plots currently in RStudio
+  plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE)
+  plots <- list.files(plots.dir.path, pattern = ".png", full.names = TRUE)
+  plots <- plots[!grepl("empty",plots)]
+  my_plots_path <- file.path(root_output_dir, dataset_title, "summary_plots")
+  if (!dir.exists(my_plots_path)) dir.create(my_plots_path)
+  for (i in 1:length(plots)) {
+    file.copy(from = plots[i], 
+              to = file.path(my_plots_path, paste0(dataset_title,"_plot",i,"_",as.character.Date(Sys.Date()),".png")),
+              overwrite = TRUE)
+  }
+  graphics.off() # clear the plot history
+}

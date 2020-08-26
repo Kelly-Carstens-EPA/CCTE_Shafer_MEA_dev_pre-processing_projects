@@ -154,12 +154,12 @@ all_data[, full_id := NULL]
 # print summary of wllq updates
 cat("Wllq summary:\n")
 print(all_data[, .(number_of_wells = .N, wllq = paste0(sort(unique(wllq)),collapse=",")), by = c("wllq_notes")][order(-wllq), .(wllq, wllq_notes, number_of_wells)])
-print(all_data[wllq == 0, .(date, Plate.SN, trt, dose, wllq, wllq_notes, meanfiringrate, nAE)])
+print(all_data[wllq == 0, .(date, Plate.SN, well, trt, dose, wllq, wllq_notes, meanfiringrate, nAE)])
 rm(wllq_info)
 
 
 # check for any DIV other than use_DIVS -----------------------------------------------
-cat("\nChecking for any DIV other than",use_divs,"\n")
+cat("\nChecking for any DIV other than",use_divs,"...\n")
 all_data$date_plate <- paste0(all_data$date, "_", all_data$Plate.SN)
 allDIV <- unique(all_data$DIV)
 diffDIV <- setdiff(allDIV, use_divs)
@@ -219,7 +219,7 @@ if (length(diffDIV) > 0) {
 #   }
 # }
 # all_data <- all_data[, date_plate := NULL]
-cat("\nChecking that every plate has a recording for DIV",use_divs,"\n")
+cat("\nChecking that every plate has a recording for DIV",use_divs,"...\n")
 all_data[, well_id := paste(date, Plate.SN, well, sep = "_")]
 wells_missing_div <- all_data[, .(DIV_flag = ifelse(length(setdiff(use_divs, unique(DIV)))>0, 1, 0),
                                   missing_DIV = list(setdiff(use_divs, unique(DIV)))), by = c("date","Plate.SN","date_plate","well","well_id")][DIV_flag == 1]

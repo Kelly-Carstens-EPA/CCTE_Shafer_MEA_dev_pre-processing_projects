@@ -22,18 +22,14 @@
 # # END USER INPUT
 # ###################################################################################
 
-tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTreatmentName, remake_all = TRUE,
-                             output_file = file.path(basepath, "output", paste0(dataset_title, "_longfile.csv")), AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
-                             cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox_longfile.csv")),
-                             different_vehicleControlCompounds = c(), different_vehicleControls = c())
+tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTreatmentName, output_file = file.path(basepath, "output", paste0(dataset_title, "_longfile.csv")), 
+                             AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
+                             cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")),
+                             different_vehicleControlCompounds = c(), different_vehicleControls = c(),
+                             expected_stock_conc = 20)
 {
   
   require(data.table)
-  
-  # check if already exists
-  if (!remake_all && file.exists(output_file)) {
-    return(paste0(basename(output_file), " already exits."))
-  }
   
   ## read in the data
   AUC <- fread(AUCsourcefilename)
@@ -106,13 +102,13 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
   if (mc0_data[wllt == "t", any(is.na(spid))]) {
     cat("The following treatment don't have a corresponding spid in the spidmap:\n")
     print(mc0_data[wllt == "t" & is.na(spid), unique(treatment)])
-    stop("Adjust spidmap before continuing")
+    stop("Adjust AUC and cyto data before continuing")
   }
   
   # Confirm Conc's ----------------------------------------------------------------
   # confirm that the conc's collected from master chem lists and Calc files match
   # and that the correct concentration-corrections has been done for each compound
-  mc0_data <- confirm_concs(mc0_data, spidmap)
+  mc0_data <- confirm_concs(mc0_data, spidmap, expected_stock_conc = expected_stock_conc)
   
   mc0_data <- mc0_data[, .(apid, treatment, spid, acsn, rowi, coli, wllt, wllq, conc, rval, srcf, wllq_notes)]
   fwrite(mc0_data, file = output_file, row.names = FALSE, sep = ",")

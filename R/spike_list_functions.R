@@ -38,7 +38,7 @@ spkList2list <-function (file) {
         # get the index of the first time stamp that is over 900 seconds
         drop_index <- which(data.raw2$timestamps > 900.0)[1]
         data.raw2 <- data.raw2[1:(drop_index-1),]
-        print(paste0("\ndropped rows, file went to ",last_time," seconds\n"))
+        print(paste0("file went to ",last_time," seconds, dropped all points after 900.0s"))
       }
       
       # order data frame by electrode

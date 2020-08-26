@@ -1,16 +1,16 @@
 # script to gather the mea nfa spike list files, and other files
 
-selectInputFiles <- function(start.dir, output.dir, dataset_title, files_type = "", append = F) {
+selectInputFiles <- function(start.dir, output.dir, dataset_title,append = F, files_type = "") {
   
-  # get starting folder, to initialize starting screen
-  culture.dirs <- list.dirs(path = start.dir, recursive = F)
   if (append) {
-    file_names <- readLogFile(start.dir, files_type)
+    file_names <- readLogFile(output.dir, files_type)
   }
   else {
     file_names <- c()
   }
-
+  
+  # get starting folder, to initialize starting screen
+  culture.dirs <- list.dirs(path = start.dir, recursive = F)
   previousfolder <- culture.dirs[1]
   
   repeat {
@@ -39,6 +39,7 @@ writeLogFile <- function(file_names, output.dir, dataset_title, files_type) {
   
   # create log file name
   log_file <- file.path(output.dir, paste0(dataset_title,"_files_log_",as.character.Date(Sys.Date()),".txt"))
+  cat("Writing",length(file_names),"files to",basename(log_file),"...\n")
   
   # create the log file
   sink(file = log_file, append = F)
@@ -48,7 +49,7 @@ writeLogFile <- function(file_names, output.dir, dataset_title, files_type) {
   cat(as.character.Date(Sys.time()))
   cat("\nEvery line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file")
   
-  all_dirs <- unique(dirname(file_names))
+  all_dirs <- unique(dirname(dirname(file_names)))
   common_folders <- Reduce(intersect, strsplit(all_dirs, split = "/|\\\\"))
   common_dir <- Reduce(file.path, common_folders)
   common_dir <- sub("\\(","\\\\(",common_dir)
@@ -56,11 +57,11 @@ writeLogFile <- function(file_names, output.dir, dataset_title, files_type) {
   # or, just pass start.dir to writeFileLog, then sub start.dir with "" in for loop belows
   
   cat("\n\nMain directory:",common_dir,"\n")
-  cat(paste0("Collected ",length(file_names)," files from ",length(all_dirs)," sub-directories."))
+  cat(paste0("Collected ",length(file_names)," files from ",length(all_dirs)," sub-directories.\n"))
   
   for (diri in all_dirs) {
-    cat("\n\n",sub(paste0(common_dir,"/"),"",diri),"\n",sep = "")
-    diri_files <- file_names[dirname(file_names) == diri]
+    cat("\n",sub(paste0(common_dir,"/"),"",diri),"\n",sep = "")
+    diri_files <- file_names[dirname(dirname(file_names)) == diri]
     cat(diri_files, sep = "\n")
   }
   
@@ -71,11 +72,11 @@ writeLogFile <- function(file_names, output.dir, dataset_title, files_type) {
 }
 
 
-readLogFile <- function(output.dir, files_type = "spike_list", files_log = "") {
+readLogFile <- function(output.dir, files_type = "", files_log = "") {
   
   require(data.table)
-  if (!files_type %in% c("spike_list","MaestroExperimentLog","Calculations","Summary")) {
-    stop(paste0("files_type must be one of 'spike_list','Calculations','Summary','MaestroExperimentLog'"))
+  if (!files_type %in% c("","spike_list","MaestroExperimentLog","Calculations","Summary")) {
+    stop(paste0("files_type must be one of 'spike_list','Calculations','Summary','MaestroExperimentLog' or empty"))
   }
   
   if (files_log == "") {
