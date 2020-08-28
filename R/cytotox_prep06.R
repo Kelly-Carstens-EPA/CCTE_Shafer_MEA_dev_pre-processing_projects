@@ -354,7 +354,6 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
     }
     longdat <- rbind(longdat, AB_dat, LDH_dat)
     rm(list = c("AB_dat","LDH_dat"))
-    x <- x # trying to throw an error
   }
   
   # set the wllq

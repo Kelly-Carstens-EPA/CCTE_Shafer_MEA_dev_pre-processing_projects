@@ -1,3 +1,5 @@
+rm(list=ls()) # clear environment
+graphics.off() # clear plot history
 ####################################################################################
 # USER INPUT
 ###################################################################################
@@ -42,7 +44,7 @@ unique(spidmap$Concentration_Unit) # all mM?
 # setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
 setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
 spidmap[, treatment := as.character(treatment)]
-head(spidmap1[, .(treatment, spid, stock_conc)])
+head(spidmap[, .(treatment, spid, stock_conc)])
 
 # # rename any compounds, if needed
 # auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))

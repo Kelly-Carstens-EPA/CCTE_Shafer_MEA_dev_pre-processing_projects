@@ -1,3 +1,5 @@
+rm(list=ls()) # clear environment
+graphics.off() # clear plot history
 ###################################################################################
 # USER INPUT
 ###################################################################################
@@ -31,7 +33,8 @@ library(readxl)
 if(save_notes_graphs) {
   sink(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_run_log_",as.character.Date(Sys.Date()),".txt")))
   cat("Output from the script run_me_",dataset_title,".R\n",sep="")
-  cat("Date:",as.character.Date(Sys.Date()),"\n")
+  cat("Date Ran:",as.character.Date(Sys.Date()),"\n")
+  cat(R.version.string,"\n")
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
 }

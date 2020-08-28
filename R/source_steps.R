@@ -3,16 +3,16 @@
 # it will select files, create h5files, create prepared data, AUC table, and collect cytotox data
 
 check_existing <- function(path, pattern, pause_between_steps) {
-  save_objects <- c("check_existing","main.output.dir",
-                    "dataset_title","pause_between_steps","save_notes_graphs",
-                    "default_ControlTreatmentName",
-                    "different_vehicleControlCompounds",
-                    "different_vehicleControls",
-                    "spidmap_file",
-                    "spid_sheet",
-                    "scripts.dir",
-                    "root_output_dir")
-  rm(list = setdiff(ls(parent.frame()), save_objects), envir = parent.frame()) # free up memory...
+  # save_objects <- c("check_existing","main.output.dir",
+  #                   "dataset_title","pause_between_steps","save_notes_graphs",
+  #                   "default_ControlTreatmentName",
+  #                   "different_vehicleControlCompounds",
+  #                   "different_vehicleControls",
+  #                   "spidmap_file",
+  #                   "spid_sheet",
+  #                   "scripts.dir",
+  #                   "root_output_dir")
+  # rm(list = setdiff(ls(parent.frame()), save_objects), envir = parent.frame()) # free up memory...
   if (pause_between_steps) {
     next_step <- readline(prompt = "Continue? (y/n): ")
     if (next_step == "n") {
@@ -23,8 +23,12 @@ check_existing <- function(path, pattern, pause_between_steps) {
   num_files <- length(list.files(path, pattern, recursive = F)) # check if any of these files already exist
   if (num_files > 0) {
     cat(num_files, "files already exist.")
+    if (num_files == 1) cat(" (",list.files(path, pattern, recursive = F),")")
     if (pause_between_steps) 
-      resp <- readline(prompt = "Do you want to Continue with only the current files, Remake all files, Append to existing files, or Quit? (c/r/a/q): ")
+      repeat {
+        resp <- readline(prompt = "Do you want to Continue with only the current files, Remake all files, Append to existing files, or Quit? (c/r/a/q): ")
+        if (resp %in% c("c","r","a","q")) break
+      }
     else 
       resp <- "c"
   }
