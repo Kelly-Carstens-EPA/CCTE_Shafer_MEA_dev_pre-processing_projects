@@ -9,7 +9,8 @@
 spkList2list <-function (file) {
     
     
-    data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", NA, NA, NA))
+    # data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", NA, NA, NA))
+    data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
     ######CG Additions 1/13/2016 
     ###To account for changes in axion update-- takes out well info 
     data.raw<-data.raw[-which(data.raw$Electrode==""),]
