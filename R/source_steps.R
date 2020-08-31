@@ -53,6 +53,18 @@ cat("\n- Select files for files_log:\n")
 resp <- check_existing(path = main.output.dir, pattern = "_files_log_", pause_between_steps)
 if(resp %in% c("r","a")) {
   selectInputFiles(start.dir = strsplit(getwd(), .Platform$file.sep)[[1]][1], main.output.dir, dataset_title, append = append)
+  # view summary of files
+  file_names <- readLogFile(main.output.dir)
+  cultures <- unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("[Cc]ulture",x,val = T)))
+  for (culture in cultures) {
+    cat("\n\n",culture,"\n",sep = "")
+    cat("Number of spike list files: ")
+    cat(sum(grepl(culture, file_names) & grepl("_spike_list",file_names)),"\n")
+    cat("Number of Master chem lists: ")
+    cat(sum(grepl(culture, file_names) & grepl("_MaestroExperimentLog_Ontogeny",file_names)),"\n")
+    cat("Calculations/Summary files:\n")
+    cat(basename(file_names[grepl(culture, file_names) & grepl("(Calculations)|(Summary)",file_names)]),sep = ", ")
+  }
 }
 
 # h5_conversion.R
@@ -77,6 +89,7 @@ if (resp %in% c("r","a")) {
 
 # normalized mutual information calculation
 cat("\n- Calculate the Mutual Information:\n")
+rm(list("create_burst_ont_Data.R","create_ont_csv.R","spike_list_functions.R")) # clear some larger functions
 resp <- check_existing(path = file.path(main.output.dir,"All_MI"), pattern = "\\.csv", pause_between_steps)
 if (resp %in% c("r","a")) {
   source('spikeLoadRoutines.R')
