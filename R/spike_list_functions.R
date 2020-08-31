@@ -10,7 +10,13 @@ spkList2list <-function (file) {
     
     
     # data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", NA, NA, NA))
-    data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
+    data.raw<-read.csv(file,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
+    
+    # using this instead of header=T, because sometimes the colnames are not in the first row in the spike list file
+    header_row <- which(data.raw[,1] == "Time (s)")
+    colnames(data.raw) <- data.raw[header_row,]
+    data.raw <- data.raw[-which(data.raw[,1] == "Time (s)"),]
+    
     ######CG Additions 1/13/2016 
     ###To account for changes in axion update-- takes out well info 
     data.raw<-data.raw[-which(data.raw$Electrode==""),]
@@ -19,13 +25,12 @@ spkList2list <-function (file) {
     data.raw[,3]<-as.numeric(as.character(data.raw[,3]))
     #######End of CG Additions
     
-    
     #remove NA
     ind.want<-which(!is.na(data.raw[,1]) )
     if (length( ind.want )>0){
       data.raw2<-data.frame(
         elect<-data.raw[ ind.want ,"Electrode"],
-        timestamps<-data.raw[ ind.want ,"Time..s."],
+        timestamps<-data.raw[ ind.want ,"Time (s)"],
         stringsAsFactors = FALSE
       )
  
