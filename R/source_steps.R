@@ -65,6 +65,7 @@ if(resp %in% c("r","a")) {
     cat("Calculations/Summary files:\n")
     cat(basename(file_names[grepl(culture, file_names) & grepl("(Calculations)|(Summary)",file_names)]),sep = ", ")
   }
+  rm(file_names)
 }
 
 # h5_conversion.R
@@ -90,6 +91,7 @@ if (resp %in% c("r","a")) {
 # normalized mutual information calculation
 cat("\n- Calculate the Mutual Information:\n")
 resp <- check_existing(path = file.path(main.output.dir,"All_MI"), pattern = "\\.csv", pause_between_steps)
+rm(list = Filter( exists, c("create_burst_ont_Data","create_ont_csv","spkList2list","local.corr.all.ont.ae.filter"))) # remove a few larger unneeded functions
 if (resp %in% c("r","a")) {
   source('spikeLoadRoutines.R')
   source('nmi2_final.R')

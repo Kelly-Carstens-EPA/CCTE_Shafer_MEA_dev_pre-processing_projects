@@ -32,9 +32,11 @@ create_nmi_files <- function(h5Files, mi.dir, remake_all = TRUE) {
     parsed_data = load.spikedata_final(333,file_split)
     MI_output<-list()
     MI_output<-nmi_wrapper(parsed_data)
+    rm(parsed_data)
 
     # save the result as csv file
     fwrite(MI_output, file = file_name,col.names=TRUE, append =FALSE, row.names=FALSE, sep=",")
+    rm(MI_output)
     
     cat("\tCompleted",basename(file_name),"at",as.character.Date(Sys.time()),"\n")
     
