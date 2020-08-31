@@ -26,7 +26,7 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
                              AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
                              cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")),
                              different_vehicleControlCompounds = c(), different_vehicleControls = c(),
-                             expected_stock_conc = 20)
+                             expected_stock_conc = 20,  expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
 {
   
   require(data.table)
@@ -108,7 +108,8 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
   # Confirm Conc's ----------------------------------------------------------------
   # confirm that the conc's collected from master chem lists and Calc files match
   # and that the correct concentration-corrections has been done for each compound
-  mc0_data <- confirm_concs(mc0_data, spidmap, expected_stock_conc = expected_stock_conc)
+  mc0_data <- confirm_concs(mc0_data, spidmap, expected_target_concs = expected_target_concs,
+                            expected_stock_conc = expected_stock_conc)
   
   mc0_data <- mc0_data[, .(apid, treatment, spid, acsn, rowi, coli, wllt, wllq, conc, rval, srcf, wllq_notes)]
   fwrite(mc0_data, file = output_file, row.names = FALSE, sep = ",")
