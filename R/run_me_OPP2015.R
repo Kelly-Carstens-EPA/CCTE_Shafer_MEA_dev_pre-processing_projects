@@ -14,7 +14,7 @@ different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphet
 different_vehicleControls = c() # e.g. c("Water", "Water")
 
 spidmap_file <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Organophosphates/Sample ID Data/EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx"
-spid_sheet <- "Mundy Corrected Map"
+spid_sheet <- "Mundy corrected map"
 
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder should be located
@@ -42,27 +42,33 @@ source(file.path(scripts.dir, 'source_steps.R'))
 # prepare spidmap
 spidmap <- as.data.table(read_excel(spidmap_file, sheet = spid_sheet))
 head(spidmap)
-unique(spidmap$Concentration_Unit) # all mM?
-setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
+unique(spidmap$ALIQUOT_CONC_UNIT) # all mM?
+setnames(spidmap, old = c("preferred_name", "ALIQUOT_CONC", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
 spidmap[, treatment := as.character(treatment)]
 head(spidmap[, .(treatment, spid, stock_conc)])
 
 # # rename any compounds, if needed
-# auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
-# cyto <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")))
-# auc[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
-# cyto[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
-# write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE, sep = ",")
-# write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE, sep = ",")
-# rm(list = c("auc","cyto"))
+auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
+cyto <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")))
+auc[treatment == "Diazonon", treatment := "Diazinon"] # when I google search for "Diazonon", it redirects to "Diazinon'
+cyto[treatment == "Diazonon", treatment := "Diazinon"]
+auc[treatment == "Malaxon", treatment := "Malaoxon"] # "Malaxon" does not have any resutls in Google, I think this just a typo
+cyto[treatment == "Malaxon", treatment := "Malaoxon"]
+# additionally, the 2 compounds above are listed with the updated spellings in this table:
+# L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\Organophosphates.xlsx
+auc[treatment == "Z-tetrachlorvinphos", treatment := "Z-Tetrachlorvinphos"] # capitalization
+cyto[treatment == "Z-tetrachlorvinphos", treatment := "Z-Tetrachlorvinphos"]
+write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE)
+write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
+rm(list = c("auc","cyto"))
 
 # run tcpl_MEA_dev_AUC
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 source(file.path(scripts.dir, 'confirm_concs.R'))
 tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
                  different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls,
-                 expected_stock_conc = 100)
+                 expected_stock_conc = 100,  expected_target_concs = c(0.1,0.3,1,3,10,30,100))
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly

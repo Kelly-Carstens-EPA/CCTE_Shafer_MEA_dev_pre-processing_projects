@@ -89,7 +89,6 @@ if (resp %in% c("r","a")) {
 
 # normalized mutual information calculation
 cat("\n- Calculate the Mutual Information:\n")
-rm(list("create_burst_ont_Data.R","create_ont_csv.R","spike_list_functions.R")) # clear some larger functions
 resp <- check_existing(path = file.path(main.output.dir,"All_MI"), pattern = "\\.csv", pause_between_steps)
 if (resp %in% c("r","a")) {
   source('spikeLoadRoutines.R')

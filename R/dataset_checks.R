@@ -55,19 +55,22 @@ dataset_checks <- function(dat) {
   # view all compounds together by dose
   stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter", las = 2,
              main = paste0("Mean Firing Rate AUC for all compounds in ",dataset_title), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)", xlab = "conc")
-  stripchart(rval ~ signif(conc,1), dat[wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter",
-             add = T, col = "red")
+  if (dat[grepl("firing_rate_mean",acsn), any(wllq==0)])
+    stripchart(rval ~ signif(conc,1), dat[wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter",
+               add = T, col = "red")
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c("black","red"), pch = c(1,1), bg = "transparent")
   
   # find a compound that is likely to be a positive and plot dose response
-  plot_spid <- dat[conc == max(conc) & grepl("firing_rate_mean",acsn), .(med_rval = median(rval)), by = "spid"][min(med_rval), spid]
+  plot_spid <- dat[conc == max(conc) & grepl("firing_rate_mean",acsn), .(med_rval = median(rval)), by = "spid"][med_rval == min(med_rval), spid[1]]
   plot_plates <- control_dat <- dat[spid == plot_spid, unique(apid)]
-  stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter", las = 2,
+  stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, las = 2,
+             col = rgb(0.1,0.1,0.1,0.5),
              ylim = range(dat[wllq == 1 & grepl("firing_rate_mean",acsn),rval]), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)",
              xlab = "conc", main = paste0(plot_spid," Mean Firing Rate AUC Dose Response"))
-  stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter", las = 2,
-             add = TRUE, col = "red")
-  legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c("black","red"), pch = c(1,1), bg = "transparent")
+  if (dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n"), any(wllq==0)])
+    stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, las = 2,
+               add = TRUE, col = rgb(0.9,0,0,0.5))
+  legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c(rgb(0.1,0.1,0.1,0.5),rgb(0.9,0,0,0.5)), pch = c(19,19), bg = "transparent")
   
   # Cytotox
   stripchart(rval ~ conc, dat[wllq == 1 & grepl("AB",acsn)],

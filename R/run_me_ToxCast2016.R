@@ -115,8 +115,8 @@ cyto[treatment == "1H,1H,2H,2H-Perfluorooctyl iodide - TP0001413", treatment := 
 cyto[treatment == "Perfluoroundecanoic acid - TP0001411", treatment := "Perfluoroundecanoic acid"]
 
 # save the updated data
-write.csv(auc, file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE, sep = ",")
-write.csv(cyto, file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE, sep = ",")
+write.csv(auc, file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE)
+write.csv(cyto, file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
 rm(list = c("auc","cyto"))
 
 # run tcpl_MEA_dev_AUC

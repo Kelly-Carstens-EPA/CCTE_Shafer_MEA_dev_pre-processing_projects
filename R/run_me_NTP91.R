@@ -56,8 +56,8 @@ auc[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isoprop
 cyto[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
 cyto[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
 cyto[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
-write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE, sep = ",")
-write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE, sep = ",")
+write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE)
+write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
 rm(list = c("auc","cyto"))
 
 # run tcpl_MEA_dev_AUC
