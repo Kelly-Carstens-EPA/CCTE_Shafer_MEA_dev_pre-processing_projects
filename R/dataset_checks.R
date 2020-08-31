@@ -8,7 +8,7 @@ dataset_checks <- function(dat) {
   cat("\nNumber of compounds tested:",dat[wllt == "t", length(unique(spid))])
   cat("\nAny NA rvals? ")
   print(dat[is.na(rval), .N, by = "wllq"])
-  cat("\nWllq breakdown:\n")
+  cat("\nWllq breakdown for all points:\n")
   print(dat[, .N, by = "wllq"]) # note if wllq is NA anywhere
   cat("Number of unique acsn's present:",length(unique(dat$acsn)),"\n")
   check.points <- dcast(dat[, .N, by = c("acsn","apid")], apid ~ acsn, value.var = "N", fill = 0)
@@ -54,7 +54,7 @@ dataset_checks <- function(dat) {
   
   # view all compounds together by dose
   stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter", las = 2,
-             main = paste0("Mean Firing Rate AUC for all compounds in ",dataset_title), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)", xlab = "conc")
+             main = paste0("Mean Firing Rate AUC by dose for all compounds in ",dataset_title), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)", xlab = "conc")
   if (dat[grepl("firing_rate_mean",acsn), any(wllq==0)])
     stripchart(rval ~ signif(conc,1), dat[wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter",
                add = T, col = "red")
@@ -66,8 +66,8 @@ dataset_checks <- function(dat) {
   stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, las = 2,
              col = rgb(0.1,0.1,0.1,0.5),
              ylim = range(dat[wllq == 1 & grepl("firing_rate_mean",acsn),rval]), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)",
-             xlab = "conc", main = paste0(plot_spid," Mean Firing Rate AUC Dose Response"))
-  if (dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n"), any(wllq==0)])
+             xlab = "conc", main = paste0(dat[spid == plot_spid,unique(treatment)]," Mean Firing Rate AUC Dose Response"))
+  if (dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & grepl("firing_rate_mean",acsn), any(wllq==0)])
     stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, las = 2,
                add = TRUE, col = rgb(0.9,0,0,0.5))
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c(rgb(0.1,0.1,0.1,0.5),rgb(0.9,0,0,0.5)), pch = c(19,19), bg = "transparent")

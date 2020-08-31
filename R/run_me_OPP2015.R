@@ -4,8 +4,8 @@ graphics.off() # clear plot history
 # USER INPUT
 ###################################################################################
 dataset_title <- "OPP2015" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+pause_between_steps <- FALSE # probs want to be true when you first run
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
@@ -78,6 +78,11 @@ source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
 
 # Any other plots or things to check?
+dat[, .N, by = c("treatment","apid")]
+dat[wllt == "t", .(length(unique(treatment))), by = c("apid")] # 6 compounds on each plate
+dat[wllt == "t", .(length(unique(apid))), by = c("treatment")] # all compounds tested on 3 apid
+# except for Bensulide, Methamidophos, and Z-Tetrach tested on 6 apid
+
 
 rm(dat)
 
