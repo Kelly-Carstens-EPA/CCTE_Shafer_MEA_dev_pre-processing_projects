@@ -25,7 +25,8 @@ spkList2list <-function (file) {
     if (length( ind.want )>0){
       data.raw2<-data.frame(
         elect<-data.raw[ ind.want ,"Electrode"],
-        timestamps<-data.raw[ ind.want ,"Time..s."]
+        timestamps<-data.raw[ ind.want ,"Time..s."],
+        stringsAsFactors = FALSE
       )
  
       # if the recording lasts less than 720 seconds, flag it
@@ -86,7 +87,6 @@ axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T, remake_all=T
   spikes.sep <- lapply(f, spkList2list)
   
   short.filenames <- gsub("_spike_list.csv", "", basename(f))
-  
   summary.table <- t(sapply(spikes.sep, sjemea::axion.spikesum2) )
   rownames(summary.table) <- short.filenames
   ma <- do.call("rbind", lapply(spikes.sep, sjemea::axion.spikestodf))
