@@ -36,7 +36,7 @@ if(save_notes_graphs) {
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
   graphics.off()
-  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_run_log_figures_",as.character.Date(Sys.Date()),".pdf")))
+  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")))
 }
 
 # source the ultimate function!

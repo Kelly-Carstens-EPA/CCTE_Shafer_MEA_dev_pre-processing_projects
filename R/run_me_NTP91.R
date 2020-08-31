@@ -33,6 +33,8 @@ if(save_notes_graphs) {
   cat(R.version.string,"\n")
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
+  graphics.off()
+  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")))
 }
 
 # run the main steps
@@ -79,17 +81,5 @@ rm(dat)
 
 if(save_notes_graphs) {
   sink() # close the txt log file
-  
-  # save the plots currently in RStudio
-  plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE)
-  plots <- list.files(plots.dir.path, pattern = ".png", full.names = TRUE)
-  plots <- plots[!grepl("empty",plots)]
-  my_plots_path <- file.path(root_output_dir, dataset_title, "summary_plots")
-  if (!dir.exists(my_plots_path)) dir.create(my_plots_path)
-  for (i in 1:length(plots)) {
-    file.copy(from = plots[i], 
-              to = file.path(my_plots_path, paste0(dataset_title,"_plot",i,"_",as.character.Date(Sys.Date()),".png")),
-              overwrite = TRUE)
-  }
   graphics.off() # clear the plot history
 }
