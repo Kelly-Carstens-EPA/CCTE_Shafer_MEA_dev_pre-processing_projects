@@ -19,7 +19,7 @@ spkList2list <-function (file) {
     
     ######CG Additions 1/13/2016 
     ###To account for changes in axion update-- takes out well info 
-    data.raw<-data.raw[-which(data.raw$Electrode==""),]
+    data.raw <- data.raw[data.raw$Electrode != "",] # works even if no rows in Electrode are == ""
     data.raw<-data.raw[1:(nrow(data.raw)-40),]
     data.raw[,1]<-as.numeric(as.character(data.raw[,1]))
     data.raw[,3]<-as.numeric(as.character(data.raw[,3]))
