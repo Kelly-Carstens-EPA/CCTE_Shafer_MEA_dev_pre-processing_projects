@@ -52,12 +52,14 @@ source('gather_files_functions.R')
 cat("\n- Select files for files_log:\n")
 resp <- check_existing(path = main.output.dir, pattern = "_files_log_", pause_between_steps)
 if(resp %in% c("r","a")) {
-  selectInputFiles(start.dir = strsplit(getwd(), .Platform$file.sep)[[1]][1], main.output.dir, dataset_title, append = append)
+  selectInputFiles(start.dir = dirname(dirname(main.output.dir)), main.output.dir, dataset_title, append = append)
   # view summary of files
   file_names <- readLogFile(main.output.dir)
   cultures <- unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("[Cc]ulture",x,val = T)))
   for (culture in cultures) {
     cat("\n\n",culture,"\n",sep = "")
+    culture <- sub("\\(","\\\\(",culture)
+    culture <- sub("\\)","\\\\)",culture)
     cat("Number of spike list files: ")
     cat(sum(grepl(culture, file_names) & grepl("_spike_list",file_names)),"\n")
     cat("Number of Master chem lists: ")
