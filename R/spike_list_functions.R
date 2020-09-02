@@ -38,7 +38,12 @@ spkList2list <-function (file) {
       data.raw2 <- data.raw2[order(data.raw2$timestamps),]
       last_time <- tail(data.raw2$timestamps, n=1)
       if (last_time < (900 - 3*60)) {
-        stop(paste0("\n",file," only goes to ",last_time," seconds\n"))
+        cat(paste0("\n",file," only goes to ",last_time," seconds\n"))
+        cat("Continue with this spike list file anyways? (Only do this if you know why the recording is significantly less than 900sec\n")
+        resp <- readline(prompt = "(y/n): ")
+        if (!(resp %in% c("y","Y"))) {
+          stop("Update spike list file selection")
+        }
       }
       # if the recording went over 900 seconds, remove extra time
       else if (last_time > 900.0) {
