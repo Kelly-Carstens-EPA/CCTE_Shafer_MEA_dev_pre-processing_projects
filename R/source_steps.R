@@ -19,7 +19,7 @@ check_existing <- function(path, pattern, pause_between_steps) {
       stop("User elected to stop.")
     }
   }
-  resp <- "r" # default response
+  resp <- "r" # default response if there are no existing files for this step
   num_files <- length(list.files(path, pattern, recursive = F)) # check if any of these files already exist
   if (num_files > 0) {
     cat(num_files, "files already exist.")
@@ -30,7 +30,7 @@ check_existing <- function(path, pattern, pause_between_steps) {
         if (resp %in% c("c","r","a","q")) break
       }
     else 
-      resp <- "c"
+      resp <- "a"
   }
   if (resp == "q") {
     stop("User elected to stop.")
