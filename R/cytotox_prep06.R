@@ -27,8 +27,7 @@
 # END USER INPUT
 ###################################################################################
 
-require(xlsx)
-require(pracma)
+require(openxlsx)
 require(data.table)
 
 ###################### FUNCTIONS
@@ -60,30 +59,11 @@ findTabData <- function(sourcefile, assay = c("AB", "LDH")) {
          AB = ABnames,
          LDH = LDHnames)
   
-  # get the source data, trying all common names
-  i <- 1
-  repeat {
-    if (i > length(tabNames)) {
-      # print(paste0("Could not find sheet for AB data in ", basename(sourcefile)))
-      tabName <- readline(prompt = paste0("Enter name of tab in ", basename(sourcefile)," for Alamar Blue data: "))
-    } 
-    else {
-      tabName <- tabNames[i]
-    }
-    
-    my_data <-  tryCatch({
-      # The code you want run
-      read.xlsx(sourcefile, sheetName = tabName, header = FALSE, stringsAsFactors = FALSE)
-    }, error = function(err) {
-      # Is executed if error encountered
-      NULL
-    })
-    
-    if (!is.null(my_data)) {
-      break
-    }
-    i <- i+1
+  tabName <- intersect(tabNames, getSheetNames(sourcefile))
+  if (length(tabName) != 1) {
+    tabName <- readline(prompt = paste0("Enter name of tab in ", basename(sourcefile)," for Alamar Blue data: "))
   }
+  my_data <- read.xlsx(sourcefile, sheet = tabName, colNames = FALSE)
   return(my_data)
 }
 
@@ -203,7 +183,7 @@ createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, 
   # get numerical rowi from character Row
   longdat[, rowi := match(Row, LETTERS)]
   
-  if (isempty(Plate.SN) | length(Plate.SN) != 1) {
+  if (length(Plate.SN) != 1 || is.null(Plate.SN) || is.na(Plate.SN)) {
     cat("Plate cannot be determined from file name. ")
     Plate.SN = readline("Enter plate sn: ")
   }
