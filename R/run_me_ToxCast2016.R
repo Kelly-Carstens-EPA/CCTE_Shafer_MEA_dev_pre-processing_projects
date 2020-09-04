@@ -27,7 +27,7 @@ root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl
 ###################################################################################
 
 library(data.table)
-library(readxl)
+library(openxlsx)
 
 # create a summary log file and store the 
 if(save_notes_graphs) {
@@ -45,7 +45,7 @@ if(save_notes_graphs) {
 source(file.path(scripts.dir, 'source_steps.R'))
 
 # prepare spidmap
-spidmap1 <- as.data.table(read_excel(spidmap_file1, sheet = spid_sheet1))
+spidmap1 <- as.data.table(read.xlsx(spidmap_file1, sheet = spid_sheet1))
 head(spidmap1)
 unique(spidmap1$ALIQUOT_CONC_UNIT) # all mM
 spidmap2[ALIQUOT_CONC_UNIT != "mM"] # C10-21 sulfonic acids phenyl esters. we aren't using this compound right now, so no worries 
@@ -55,7 +55,7 @@ spidmap1[, treatment := as.character(treatment)]
 head(spidmap1[, .(treatment, spid, stock_conc)])
 
 # add the second spidmap
-spidmap2 <- as.data.table(read_excel(spidmap_file2, sheet = spid_sheet2))
+spidmap2 <- as.data.table(read.xlsx(spidmap_file2, sheet = spid_sheet2))
 head(spidmap2)
 unique(spidmap2$ALIQUOT_CONC_UNIT) # all mM?
 setnames(spidmap2, old = c("dsstox_preferred_name","ALIQUOT_CONC", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
@@ -65,7 +65,7 @@ spidmap2 <- spidmap2[treatment %in% c("1,1,2,2-Tetrahydroperfluoro-1-decanol","1
 head(spidmap2[, .(treatment, spid, stock_conc)])
 
 # third spidmap -> Just for Valinomycin from NTP compounds
-spidmap3 <- as.data.table(read_excel(spidmap_file3, sheet = spid_sheet3))
+spidmap3 <- as.data.table(read.xlsx(spidmap_file3, sheet = spid_sheet3))
 head(spidmap3)
 setnames(spidmap3, old = c("Chemical Name","Conc. (mM)", "SPID"), new = c("treatment","stock_conc","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))

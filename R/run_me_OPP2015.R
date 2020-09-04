@@ -23,7 +23,7 @@ root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl
 ###################################################################################
 
 library(data.table)
-library(readxl)
+library(openxlsx)
 
 # create a summary log file and store the 
 if(save_notes_graphs) {
@@ -42,7 +42,7 @@ if(save_notes_graphs) {
 source(file.path(scripts.dir, 'source_steps.R'))
 
 # prepare spidmap
-spidmap <- as.data.table(read_excel(spidmap_file, sheet = spid_sheet))
+spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$ALIQUOT_CONC_UNIT) # all mM?
 setnames(spidmap, old = c("preferred_name", "ALIQUOT_CONC", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
