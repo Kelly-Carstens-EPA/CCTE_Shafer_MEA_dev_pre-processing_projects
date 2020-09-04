@@ -30,7 +30,7 @@ check_existing <- function(path, pattern, pause_between_steps) {
         if (resp %in% c("c","r","a","q")) break
       }
     else 
-      resp <- "a"
+      resp <- "c"
   }
   if (resp == "q") {
     stop("User elected to stop.")
