@@ -3,7 +3,7 @@ rm(list=ls())
 # USER INPUT
 ###################################################################################
 dataset_title <- "RejectedCultures" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-pause_between_steps <- FALSE # probs want to be true when you first run
+pause_between_steps <- TRUE # probs want to be true when you first run
 save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
