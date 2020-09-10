@@ -47,7 +47,13 @@ spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Unit) # all mM
 setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
+spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
+# update expected_stock_conc for individual compouunds where needed 
+# for example, 
+# spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
 spidmap[, treatment := as.character(treatment)]
+spidmap[, stock_conc := as.numeric(stock_conc)]
+head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
 # run the final function
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))

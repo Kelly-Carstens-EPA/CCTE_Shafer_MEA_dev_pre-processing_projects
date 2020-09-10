@@ -44,20 +44,70 @@ source(file.path(scripts.dir, 'source_steps.R'))
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
-setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
+setnames(spidmap, old = c("Chemical.Name", "Conc..(mM)", "SPID"), new = c("treatment","stock_conc","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
 spidmap[, treatment := as.character(treatment)]
-head(spidmap[, .(treatment, spid, stock_conc)])
+spidmap[, stock_conc := as.numeric(stock_conc)]
+spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
+# update expected_stock_conc for individual compouunds where needed 
+spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
+spidmap[treatment == "Chrysene", expected_stock_conc := 9.7]
+head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
 # rename any compounds, if needed
 auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
 cyto <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")))
-auc[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
-auc[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
-auc[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
-cyto[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
-cyto[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
-cyto[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
+auc[treatment == "1Ethyl3methylimidazolium diethylphosphate", treatment := "1-Ethyl-3-methylimidazolium diethylphosphate"]
+auc[treatment == "2244 Tetrabromodiphenyl ether", treatment := "2,2',4,4'-Tetrabromodiphenyl ether"]
+auc[treatment == "22445 Pentabromodiphenyl ether", treatment := "2,2',4,4',5-Pentabromodiphenyl ether"]
+auc[treatment == "224455 Hexabromodiphenyl ether", treatment := "2,2',4,4',5,5'-Hexabromodiphenyl ether"]
+auc[treatment == "2Ethylhexyl 2345 tetrabromobenzoate", treatment := "2-Ethylhexyl-2,3,4,5-tetrabromobenzoate"]
+auc[treatment == "2Ethylhexyl diphenyl phosphate", treatment := "2-Ethylhexyl diphenyl phosphate"]
+auc[treatment == "4HCyclopenta def phenanthrene", treatment := "4-H-Cyclopenta(d,e,f)phenanthrene"]
+auc[treatment == "6 Hydroxydopamine hydrochloride", treatment := "6-Hydroxydopamine hydrochloride"]
+auc[treatment == "Auramine", treatment := "Auramine O"]
+auc[treatment == "Benzo a pyrene", treatment := "Benzo(a)pyrene"]
+auc[treatment == "Benzo e pyrene", treatment := "Benzo(e)pyrene"]
+auc[treatment == "Benzo ghi perylene", treatment := "Benzo[g,h,i]perylene"]
+auc[treatment == "Benzo k fluoranthene", treatment := "Benzo(k)fluoranthene"]
+auc[treatment == "Bis 2 ethylhexyl tetrabromophthalate", treatment := "Bis(2-ethylhexyl) tetrabromophthalate"]
+auc[treatment == "Carbamic acid", treatment := "Dibenz[a,c]anthracene"]
+auc[treatment == "Carbamic acid butyl 3iodo2propynyl ester", treatment := "Carbamic acid, butyl-, 3-iodo-2-propynyl ester"]
+auc[treatment == "D Glucitol", treatment := "D-Glucitol"]
+auc[treatment == "Di 2ethylhexyl phthalate", treatment := "Di(2-ethylhexyl) phthalate"]
+auc[treatment == "Dibenz ac anthracene", treatment := "Dibenz[a,c]anthracene"]
+auc[treatment == "Dibenz ah anthracene", treatment := "Dibenz(a,h)anthracene"]
+auc[treatment == "Firemaster", treatment := "Firemaster 550"]
+auc[treatment == "L Ascorbic acid", treatment := "L-Ascorbic acid"]
+auc[treatment == "Manganese tricarbonyl 12345 eta 1 methyl 24 cyclopentadien 1 yl", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
+auc[treatment == "Tris 2chloroisopropyl phosphate", treatment := "Tris(2-chloroethyl) phosphate"]
+auc[treatment == "tert Butylphenyl diphenyl phosphate", treatment := "tert-Butylphenyl diphenyl phosphate"]
+
+cyto[treatment == "1Ethyl3methylimidazolium diethylphosphate", treatment := "1-Ethyl-3-methylimidazolium diethylphosphate"]
+cyto[treatment == "2244 Tetrabromodiphenyl ether", treatment := "2,2',4,4'-Tetrabromodiphenyl ether"]
+cyto[treatment == "22445 Pentabromodiphenyl ether", treatment := "2,2',4,4',5-Pentabromodiphenyl ether"]
+cyto[treatment == "224455 Hexabromodiphenyl ether", treatment := "2,2',4,4',5,5'-Hexabromodiphenyl ether"]
+cyto[treatment == "2Ethylhexyl 2345 tetrabromobenzoate", treatment := "2-Ethylhexyl-2,3,4,5-tetrabromobenzoate"]
+cyto[treatment == "2Ethylhexyl diphenyl phosphate", treatment := "2-Ethylhexyl diphenyl phosphate"]
+cyto[treatment == "4HCyclopenta def phenanthrene", treatment := "4-H-Cyclopenta(d,e,f)phenanthrene"]
+cyto[treatment == "6 Hydroxydopamine hydrochloride", treatment := "6-Hydroxydopamine hydrochloride"]
+cyto[treatment == "Auramine", treatment := "Auramine O"]
+cyto[treatment == "Benzo a pyrene", treatment := "Benzo(a)pyrene"]
+cyto[treatment == "Benzo e pyrene", treatment := "Benzo(e)pyrene"]
+cyto[treatment == "Benzo ghi perylene", treatment := "Benzo[g,h,i]perylene"]
+cyto[treatment == "Benzo k fluoranthene", treatment := "Benzo(k)fluoranthene"]
+cyto[treatment == "Bis 2 ethylhexyl tetrabromophthalate", treatment := "Bis(2-ethylhexyl) tetrabromophthalate"]
+cyto[treatment == "Carbamic acid", treatment := "Dibenz[a,c]anthracene"]
+cyto[treatment == "Carbamic acid butyl 3iodo2propynyl ester", treatment := "Carbamic acid, butyl-, 3-iodo-2-propynyl ester"]
+cyto[treatment == "D Glucitol", treatment := "D-Glucitol"]
+cyto[treatment == "Di 2ethylhexyl phthalate", treatment := "Di(2-ethylhexyl) phthalate"]
+cyto[treatment == "Dibenz ac anthracene", treatment := "Dibenz[a,c]anthracene"]
+cyto[treatment == "Dibenz ah anthracene", treatment := "Dibenz(a,h)anthracene"]
+cyto[treatment == "Firemaster", treatment := "Firemaster 550"]
+cyto[treatment == "L Ascorbic acid", treatment := "L-Ascorbic acid"]
+cyto[treatment == "Manganese tricarbonyl 12345 eta 1 methyl 24 cyclopentadien 1 yl", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
+cyto[treatment == "Tris 2chloroisopropyl phosphate", treatment := "Tris(2-chloroethyl) phosphate"]
+cyto[treatment == "tert Butylphenyl diphenyl phosphate", treatment := "tert-Butylphenyl diphenyl phosphate"]
 write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE)
 write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
 rm(list = c("auc","cyto"))
@@ -66,7 +116,8 @@ rm(list = c("auc","cyto"))
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 source(file.path(scripts.dir, 'confirm_concs.R'))
 tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
-                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls)
+                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls,
+                 expected_target_concs = c(0.03,0.1,0.3,1,3,10,20))
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly

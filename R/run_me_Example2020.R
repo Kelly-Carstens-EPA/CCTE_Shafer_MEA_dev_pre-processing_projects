@@ -45,8 +45,13 @@ head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
 # setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
 setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
+spidmap[, expected_stock_conc := 30] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
+# update expected_stock_conc for individual compouunds where needed 
+# for example, 
+# spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
 spidmap[, treatment := as.character(treatment)]
-head(spidmap[, .(treatment, spid, stock_conc)])
+spidmap[, stock_conc := as.numeric(stock_conc)]
+head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
 # # rename any compounds, if needed
 # auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
@@ -65,8 +70,7 @@ head(spidmap[, .(treatment, spid, stock_conc)])
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 source(file.path(scripts.dir, 'confirm_concs.R'))
 tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
-                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls,
-                 expected_stock_conc = 30)
+                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls)
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly

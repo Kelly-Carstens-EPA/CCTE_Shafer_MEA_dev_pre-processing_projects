@@ -45,8 +45,13 @@ head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
 setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
+spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
+# update expected_stock_conc for individual compouunds where needed 
+# for example, 
+# spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
 spidmap[, treatment := as.character(treatment)]
-head(spidmap[, .(treatment, spid, stock_conc)])
+spidmap[, stock_conc := as.numeric(stock_conc)]
+head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
 # # rename any compounds, if needed
 # auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
