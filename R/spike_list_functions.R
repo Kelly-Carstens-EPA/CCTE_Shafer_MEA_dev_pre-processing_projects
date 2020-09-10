@@ -34,10 +34,28 @@ spkList2list <-function (file) {
         stringsAsFactors = FALSE
       )
  
-      # if the recording lasts less than 720 seconds, flag it
       data.raw2 <- data.raw2[order(data.raw2$timestamps),]
+      
+      # Check if the recording was offset from original file start time (and so max_time can be 900 + offset)
+      check_info <- read.csv(file, header = FALSE, nrows = 70, colClasses = c("character","character","NULL","NULL","NULL"))
+      offset_string <- check_info[grepl("Recording Offset from File Start", check_info$V1),"V2"]
+      if (length(offset_string) > 0 && !is.na(offset_string)) {
+        if (!grepl("m",offset_string)) offset_string <- paste0("0m",offset_string)
+        offset_values <- strsplit(offset_string, split = "[ms]")[[1]] # offset_string is e.g. "27m0s" or "0m38s"
+        offset_seconds <- as.numeric(offset_values[1])*60 + as.numeric(offset_values[2]) # minutes*60 + seconds
+      } else {
+        offset_seconds <- 0.0
+      }
+      max_time <- 900.00 + offset_seconds
+      
+      # this still feels tenuous...
+      # what if the tag phrase "Recording Offset from File Start" change, even slightly, with diff versions of axion?
+      # what if diff versions change the format of _m_s?
+      # what if... what if?
+      
+      # if the recording is over 3 minutes short of max_time, flag it
       last_time <- tail(data.raw2$timestamps, n=1)
-      if (last_time < (900 - 3*60)) {
+      if (last_time < (max_time - 3*60)) {
         cat(paste0("\n",file," only goes to ",last_time," seconds\n"))
         cat("Continue with this spike list file anyways? (Only do this if you know why the recording is significantly less than 900sec\n")
         resp <- readline(prompt = "(y/n): ")
@@ -45,13 +63,8 @@ spkList2list <-function (file) {
           stop("Update spike list file selection")
         }
       }
-      # if the recording went over 900 seconds, remove extra time
-      else if (last_time > 900.0) {
-        # get the index of the first time stamp that is over 900 seconds
-        drop_index <- which(data.raw2$timestamps > 900.0)[1]
-        data.raw2 <- data.raw2[1:(drop_index-1),]
-        print(paste0("file went to ",last_time," seconds, dropped all points after 900.0s"))
-      }
+      # remove any points after max_time
+      data.raw2 <- data.raw2[data.raw2$timestamps <= max_time,]
       
       # order data frame by electrode
       data.raw2<-data.raw2[order(data.raw2$elect), ]
