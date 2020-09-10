@@ -84,9 +84,9 @@ if (resp %in% c("r","a")) {
 cat("\n- Calculate the components:\n")
 resp <- check_existing(path = file.path(main.output.dir,"prepared_data"), pattern = "\\.csv", pause_between_steps)
 if (resp %in% c("r","a")) {
+  source('create_ont_csv.R')
   source('create_burst_ont_Data.R')
   source('local.corr.all.ont.ae.filter.R')
-  source('create_ont_csv.R')
   create_ont_csv(basepath = main.output.dir, get_h5Files_under_basepath = TRUE, remake_all = !append)
 }
 
