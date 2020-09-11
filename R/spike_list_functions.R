@@ -33,12 +33,12 @@ spkList2list <-function (file) {
         timestamps<-data.raw[ ind.want ,"Time (s)"],
         stringsAsFactors = FALSE
       )
- 
+      rm(data.raw)
       data.raw2 <- data.raw2[order(data.raw2$timestamps),]
       
-      # Check if the recording was offset from original file start time (and so max_time can be 900 + offset)
+      # Check if the recording was offset from original file start time (and so max_time should be 900 + offset)
       check_info <- read.csv(file, header = FALSE, nrows = 70, colClasses = c("character","character","NULL","NULL","NULL"))
-      offset_string <- check_info[grepl("Recording Offset from File Start", check_info$V1),"V2"]
+      offset_string <- check_info[grepl("[Rr]ecording [Oo]ffset [Ff]rom [Ff]ile [Ss]tart", check_info$V1),"V2"]
       if (length(offset_string) > 0 && !is.na(offset_string)) {
         if (!grepl("m",offset_string)) offset_string <- paste0("0m",offset_string)
         offset_values <- strsplit(offset_string, split = "[ms]")[[1]] # offset_string is e.g. "27m0s" or "0m38s"
@@ -48,14 +48,17 @@ spkList2list <-function (file) {
       }
       max_time <- 900.00 + offset_seconds
       
-      # this still feels tenuous...
-      # what if the tag phrase "Recording Offset from File Start" change, even slightly, with diff versions of axion?
-      # what if diff versions change the format of _m_s?
-      # what if... what if?
-      
-      # if the recording is over 3 minutes short of max_time, flag it
+      # additional check for a potentially offset recording, 
+      # in case Axion changes the tag phrase "[Rr]ecording [Oo]ffset [Ff]rom [Ff]ile [Ss]tart"
       last_time <- tail(data.raw2$timestamps, n=1)
-      if (last_time < (max_time - 3*60)) {
+      first_time <- head(data.raw2$timestamps, n=1)
+      if (offset_seconds == 0 && first_time > 10.0) {
+        mean_inter_spike_interval <- (last_time - first_time) / nrow(data.raw2)
+        if (first_time > 2*mean_inter_spike_interval)
+          stop(paste0(basename(file)," recording appears to be offset, but did not match '[Rr]ecording [Oo]ffset [Ff]rom [Ff]ile [Ss]tart' in file header.\nCannot determine offset time."))
+      }
+      # if the recording is over 3 minutes short of max_time, flag it
+      else if (last_time < (max_time - 3*60)) {
         cat(paste0("\n",file," only goes to ",last_time," seconds\n"))
         cat("Continue with this spike list file anyways? (Only do this if you know why the recording is significantly less than 900sec\n")
         resp <- readline(prompt = "(y/n): ")
@@ -63,6 +66,7 @@ spkList2list <-function (file) {
           stop("Update spike list file selection")
         }
       }
+      
       # remove any points after max_time
       data.raw2 <- data.raw2[data.raw2$timestamps <= max_time,]
       
