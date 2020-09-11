@@ -40,7 +40,7 @@ function called in `create_ont_burst_Data.R`: `h5.read.spikes` (`sjemea`), which
 
 How it's calculated:
 
-The mean firing rate for each electrode is calculated as total # of spikes / total time (s). The well-level value is found by the average of the mean firing rates from active electrodes.
+The mean firing rate for each electrode is calculated as total # of spikes from the electrode / (time of last spike in recording from plate - time of first spike in recording from plate). total time (s). The well-level value is found by the average of the mean firing rates from active electrodes.
 
 Note:
 The function `construct.s` is in both the meadq and sjema package. The only difference appears to be a patch fix in the `meadq` version - if there were no spikes on an electrode, the meanfiringrate = nspikes = list().

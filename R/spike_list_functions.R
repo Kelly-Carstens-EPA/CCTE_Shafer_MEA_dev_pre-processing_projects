@@ -36,30 +36,11 @@ spkList2list <-function (file) {
       rm(data.raw)
       data.raw2 <- data.raw2[order(data.raw2$timestamps),]
       
-      # Check if the recording was offset from original file start time (and so max_time should be 900 + offset)
-      check_info <- read.csv(file, header = FALSE, nrows = 70, colClasses = c("character","character","NULL","NULL","NULL"))
-      offset_string <- check_info[grepl("[Rr]ecording [Oo]ffset [Ff]rom [Ff]ile [Ss]tart", check_info$V1),"V2"]
-      if (length(offset_string) > 0 && !is.na(offset_string)) {
-        if (!grepl("m",offset_string)) offset_string <- paste0("0m",offset_string)
-        offset_values <- strsplit(offset_string, split = "[ms]")[[1]] # offset_string is e.g. "27m0s" or "0m38s"
-        offset_seconds <- as.numeric(offset_values[1])*60 + as.numeric(offset_values[2]) # minutes*60 + seconds
-      } else {
-        offset_seconds <- 0.0
-      }
-      max_time <- 900.00 + offset_seconds
-      
-      # additional check for a potentially offset recording, 
-      # in case Axion changes the tag phrase "[Rr]ecording [Oo]ffset [Ff]rom [Ff]ile [Ss]tart"
+      # if the total time from first spike to last spike is more than 3 minutes short of 900.00 seconds, flag it
       last_time <- tail(data.raw2$timestamps, n=1)
       first_time <- head(data.raw2$timestamps, n=1)
-      if (offset_seconds == 0 && first_time > 10.0) {
-        mean_inter_spike_interval <- (last_time - first_time) / nrow(data.raw2)
-        if (first_time > 2*mean_inter_spike_interval)
-          stop(paste0(basename(file)," recording appears to be offset, but did not match '[Rr]ecording [Oo]ffset [Ff]rom [Ff]ile [Ss]tart' in file header.\nCannot determine offset time."))
-      }
-      # if the recording is over 3 minutes short of max_time, flag it
-      else if (last_time < (max_time - 3*60)) {
-        cat(paste0("\n",file," only goes to ",last_time," seconds\n"))
+      else if (last_time - first_time < (900.00 - 3*60)) {
+        cat(paste0("\n",file," only goes from ",first_time," to ",last_time," seconds\n"))
         cat("Continue with this spike list file anyways? (Only do this if you know why the recording is significantly less than 900sec\n")
         resp <- readline(prompt = "(y/n): ")
         if (!(resp %in% c("y","Y"))) {
@@ -67,8 +48,8 @@ spkList2list <-function (file) {
         }
       }
       
-      # remove any points after max_time
-      data.raw2 <- data.raw2[data.raw2$timestamps <= max_time,]
+      # remove any points more than 900.00 seconds after the first recorded spike
+      data.raw2 <- data.raw2[data.raw2$timestamps <= first_time + 900.00,]
       
       # order data frame by electrode
       data.raw2<-data.raw2[order(data.raw2$elect), ]
