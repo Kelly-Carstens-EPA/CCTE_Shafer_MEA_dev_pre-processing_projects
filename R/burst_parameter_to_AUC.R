@@ -29,6 +29,10 @@ if(get_files_under_basepath) {
     # get files with mi data for all culture dates
     mi_data_files <- list.files(path = file.path(basepath, "All_MI"), pattern = "\\.csv$", full.names = TRUE, recursive = FALSE)
     cat("Got",length(mi_data_files),"MI csv files from",file.path(basepath, "All_MI"),"\n")
+    
+    # get map of component endpoint abbreviations to tcpl acsn's
+    assay_component_map <- read.csv(file.path(dirname(basepath), "mea_nfa_component_name_map.csv"))
+    
 } else {
   # get files with the 16 parameters for all culture dates
   parameter_data_files <- choose.files(default = basepath, caption = "Select all files containing activity parameter values to calculate AUC")
@@ -36,30 +40,9 @@ if(get_files_under_basepath) {
   # get files with mi data for all culture dates
   mi_data_files <- choose.files(default = basepath, caption = "Select all files containing MI data to calculate AUC")
   cat("Got",length(mi_data_files),"MI data files.\n")
+  # get map of component endpoint abbreviations to tcpl acsn's
+  assay_component_map <- read.csv(choose.files(default = dirname(basepath), caption = "Select a csv map of endpoint abbreviations to desired endpoint labels"))
 }
-
-# List of parameters for tcpl
-assay_components = c("CCTE_Shafer_MEA_dev_firing_rate_mean",
-                     "CCTE_Shafer_MEA_dev_burst_rate",
-                     "CCTE_Shafer_MEA_dev_per_burst_interspike_interval",
-                     "CCTE_Shafer_MEA_dev_per_burst_spike_percent",
-                     "CCTE_Shafer_MEA_dev_burst_duration_mean",
-                     "CCTE_Shafer_MEA_dev_interburst_interval_mean",
-                     "CCTE_Shafer_MEA_dev_active_electrodes_number",
-                     "CCTE_Shafer_MEA_dev_bursting_electrodes_number",
-                     "CCTE_Shafer_MEA_dev_network_spike_number",
-                     "CCTE_Shafer_MEA_dev_network_spike_peak",
-                     "CCTE_Shafer_MEA_dev_spike_duration_mean",
-                     "CCTE_Shafer_MEA_dev_per_network_spike_spike_percent",
-                     "CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean",
-                     "CCTE_Shafer_MEA_dev_network_spike_duration_std",
-                     "CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean",
-                     "CCTE_Shafer_MEA_dev_correlation_coefficient_mean",
-                     "CCTE_Shafer_MEA_dev_mutual_information_norm")
-
-# previous_columns = c("meanfiringrate_AUC",
-# "burst.per.min_AUC","mean.isis_AUC","per.spikes.in.burst_AUC",
-# "mean.dur_AUC","mean.IBIs_AUC","nAE_AUC","nABE_AUC","ns.n_AUC","ns.peak.m_AUC","ns.durn.m_AUC","ns.percent.of.spikes.in.ns_AUC","ns.mean.insis_AUC","ns.durn.sd_AUC","ns.mean.spikes.in.ns_AUC","r_AUC","mi_AUC")
 
 options(digits = 6)
 
@@ -306,15 +289,15 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     }
     
     # put vector of AUC values together
-    c(date, as.character(Plate.SN), as.character(well), as.character(trt), dose, as.character(units), wllq, wllq_notes, sapply(paste(endpoint_cols,"auc",sep = "_"), get, USE.NAMES = F))
+    c("date" = date, "Plate.SN" = as.character(Plate.SN), "well" = as.character(well), "treatment" = as.character(trt), "dose" = dose, "units" = as.character(units), 
+      "wllq" = wllq, "wllq_notes" = wllq_notes, sapply(paste(endpoint_cols,"auc",sep = "_"), get, USE.NAMES = T))
   })
   
   ##FIX!!! - (me): not sure what needs to be fixed here
   sum_table <- as.data.frame(do.call(rbind, out), stringsAsFactors=FALSE) # Re-form data frame
-  names(sum_table) <- c("date","Plate.SN","well","treatment","dose","units","wllq","wllq_notes",assay_components)
-  sum_table[,assay_components] <- lapply(sum_table[,assay_components], as.numeric) # Change output columns class to numeric
-  # Not changing name to control yet, so can merge with cytotox wells in next script
-  #sum_table[sum_table[,"dose"]==sprintf("%.5f",0),"treatment"] <- ControlTreatmentName # Convert all zero dose rows to say "Control" for treatment
+  setnames(sum_table, old = paste0(assay_component_map$create_burst_ont_Data_endpoint,"_auc"), new = assay_component_map$tcpl_acsn)
+  sum_table[,assay_component_map$tcpl_acsn] <- lapply(sum_table[,assay_component_map$tcpl_acsn], as.numeric) # Change output columns class to numeric
+  #sum_table[sum_table[,"dose"]==sprintf("%.5f",0),"treatment"] <- ControlTreatmentName # control treatment name will be updated in tcpl_MEA_dev_AUC
   
   # I don't think this is needed anymore (Amy 8/17/2020)
   if (sqrt==TRUE){

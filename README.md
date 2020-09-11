@@ -54,22 +54,22 @@ The entire recording is divided into 0.05 s time bins. A network spike occurs wh
 
 | Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
-| Number of Active Electrodes (AE) | # of electrodes where mean firing rate >= 5 spikes/min | nAE | NHEERL_MEA_dev_active_electrodes_number |
-| Mean Firing Rate | # spikes per second, averaged over all AE in each well | meanfiringrate | NHEERL_MEA_dev_firing_rate_mean |
-| Burst Rate | # bursts per minute, averaged over all AE in each well | burst.per.min | NHEERL_MEA_dev_burst_rate |
-| Number of Actively Bursting Electrodes (ABE) | # of electrodes where burst rate >= 0.5 bursts/min | nABE | NHEERL_MEA_dev_bursting_electrodes_number |
-| Mean Burst Duration | mean duration of bursts (s), averaged over all ABE in each well | mean.dur | NHEERL_MEA_dev_burst_duration_mean |
-| Mean Interburst Interval | mean interval between bursts (s), averaged over all ABE in each well | mean.IBIs | NHEERL_MEA_dev_interburst_interval_mean |
-| Interspike Interval in a Burst | mean interspike interval (s) within a burst, averaged over all ABE in each well | mean.isis | NHEERL_MEA_dev_per_burst_interspike_interval |
-| Percent of Spikes in Burst | # of spikes within bursts divided by total spike count, averaged over all ABE in each well | per.spikes.in.burst | NHEERL_MEA_dev_per_burst_spike_percent |
-| Number of Network Spikes | # of network spikes in each well during the 15 minute recording | ns.n | NHEERL_MEA_dev_network_spike_number |
-| Network Spike Peak | max # of electrodes particpating in a network spike, averaged over all network spikes during recording | ns.peak.m | NHEERL_MEA_dev_network_spike_peak |
-| Mean Network Spike Duration | mean duration (s) of all network spikes in each well | ns.durn.m | NHEERL_MEA_dev_spike_duration_mean |
-| Standard Deviation of Network Spike Duration | standard deviation of duration of all network spikes in well | ns.durn.sd | NHEERL_MEA_dev_network_spike_duration_std |
-| Mean correlation | mean Pearson correlations between pairs of AE, averaged on AE | r | NHEERL_MEA_dev_correlation_coefficient_mean |
-| Percent of Spikes in Network Spike | total # of spikes within 0.05 s of the peak of a network spike / total # of spikes in well during recording | ns.percent.of.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_percent |
-| Mean Number of Spikes in Network Spikes |  total # of spikes within 0.05 s of the peak of a network spike / # of network spikes | ns.mean.spikes.in.ns | NHEERL_MEA_dev_per_network_spike_spike_number_mean |
-| Inter-Network Spike Interval | mean time between peaks of consecutive network spikes (s) | ns.mean.insis | NHEERL_MEA_dev_per_network_spike_interspike_interval_mean |
+| Number of Active Electrodes (AE) | # of electrodes where mean firing rate >= 5 spikes/min | nAE | CCTE_Shafer_MEA_dev_active_electrodes_number |
+| Mean Firing Rate | # spikes per second, averaged over all AE in each well | meanfiringrate | CCTE_Shafer_MEA_dev_firing_rate_mean |
+| Burst Rate | # bursts per minute, averaged over all AE in each well | burst.per.min | CCTE_Shafer_MEA_dev_burst_rate |
+| Number of Actively Bursting Electrodes (ABE) | # of electrodes where burst rate >= 0.5 bursts/min | nABE | CCTE_Shafer_MEA_dev_bursting_electrodes_number |
+| Mean Burst Duration | mean duration of bursts (s), averaged over all ABE in each well | mean.dur | CCTE_Shafer_MEA_dev_burst_duration_mean |
+| Mean Interburst Interval | mean interval between bursts (s), averaged over all ABE in each well | mean.IBIs | CCTE_Shafer_MEA_dev_interburst_interval_mean |
+| Interspike Interval in a Burst | mean interspike interval (s) within a burst, averaged over all ABE in each well | mean.isis | CCTE_Shafer_MEA_dev_per_burst_interspike_interval |
+| Percent of Spikes in Burst | # of spikes within bursts divided by total spike count, averaged over all ABE in each well | per.spikes.in.burst | CCTE_Shafer_MEA_dev_per_burst_spike_percent |
+| Number of Network Spikes | # of network spikes in each well during the 15 minute recording | ns.n | CCTE_Shafer_MEA_dev_network_spike_number |
+| Network Spike Peak | max # of electrodes particpating in a network spike, averaged over all network spikes during recording | ns.peak.m | CCTE_Shafer_MEA_dev_network_spike_peak |
+| Mean Network Spike Duration | mean duration (s) of all network spikes in each well | ns.durn.m | CCTE_Shafer_MEA_dev_spike_duration_mean |
+| Standard Deviation of Network Spike Duration | standard deviation of duration of all network spikes in well | ns.durn.sd | CCTE_Shafer_MEA_dev_network_spike_duration_std |
+| Mean correlation | mean Pearson correlations between pairs of AE, averaged on AE | r | CCTE_Shafer_MEA_dev_correlation_coefficient_mean |
+| Percent of Spikes in Network Spike | total # of spikes within 0.05 s of the peak of a network spike / total # of spikes in well during recording | ns.percent.of.spikes.in.ns | CCTE_Shafer_MEA_dev_per_network_spike_spike_percent |
+| Mean Number of Spikes in Network Spikes |  total # of spikes within 0.05 s of the peak of a network spike / # of network spikes | ns.mean.spikes.in.ns | CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean |
+| Inter-Network Spike Interval | mean time between peaks of consecutive network spikes (s) | ns.mean.insis | CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean |
 
 One csv file containing these feature values will be created for each plate. Values from each DIV recording will be in separate rows.
 
@@ -84,7 +84,7 @@ The mutual information is a robust feature that desribes both the global synchro
 
 | Name | Description | Abbreviation | TCPL acsn |
 | ----------- | ----------- | ----------- | ----------- |
-| Normalized Mutual Information | concurrently measures synchrony and activity of the neural network | mi | NHEERL_MEA_dev_mutual_information_norm |
+| Normalized Mutual Information | concurrently measures synchrony and activity of the neural network | mi | CCTE_Shafer_MEA_dev_mutual_information_norm |
 
 The calculation of the mutual information is computationally intensive. Therefore, this feature is calculated separatley from the rest of the features. The script `MI_script_all.R` is designed to calculate the mutual information for all plates, so that the task could be done overnight or remotely for the entire dataset. One csv file containing the mutual information values will be created for all plates from same culture date.
 
@@ -117,7 +117,7 @@ After the cells are grown on the plates for 12 days, two assays are used to asse
 
 The CellTiter-Blue assay (also called Alamar Blue) measures the amount of reagent metabolized by living cells in each well. First, reagent is added to each well. Then, some media from each well is transferred to an opaque 96-well plate. The fluorescense of resazurin, a metabolite of the reagent, is measured. Three blank wells that contain only reagent are used as a baseline fluorescense values. The average of the fluorescence in the three blank-corrected wells is substracted from the raw fluorescence values in the remaining 48 wells. (See [Brown *et al.* (2016)](https://academic.oup.com/toxsci/article/154/1/126/2422066) for more information). The blank-corrected values in the treated wells will be normalized to the median value in control wells in the ToxCast Pipeline. 
 
-The total lactate dehydrogenase (LDH) assay is also used to quantify the number of living cells in treated wells versus control wells. First, all of the media is removed from each well in order to remove any LDH already released from dying cells. Then, a lysis solution is added to lyse all living cells. Next, the lysis solution is transfered to another plate with a solution containing tetrazolium salt. The LDH in the solution is allowed to transfrom the tetrazolium salt in red formazan for 30 minutes until a stop solution is added. The optical density of red formazan is measured. The amount of red formazan produced reflects the amount of LDH released from the cells that were living at the start of the assay. Three blank wells containing only lysis solution are used as a baseline optical density value. This information was synthesized from [Frank *et al.* (2017)](https://academic.oup.com/toxsci/article/160/1/121/4083261), the product description for [CytoTox 96 Non-Radioactive Cytotoxicity Assay](https://www.promega.com/products/cell-health-assays/cell-viability-and-cytotoxicity-assays/cytotox-96-non_radioactive-cytotoxicity-assay/?catNum=G1780), and from the LDH Assay Summary file *NHEERL_MWP_LDHo_dn_final.docx*. The blank-corrected values in the treated wells will be normalized to the median value in control wells in the ToxCast Pipeline.
+The total lactate dehydrogenase (LDH) assay is also used to quantify the number of living cells in treated wells versus control wells. First, all of the media is removed from each well in order to remove any LDH already released from dying cells. Then, a lysis solution is added to lyse all living cells. Next, the lysis solution is transfered to another plate with a solution containing tetrazolium salt. The LDH in the solution is allowed to transfrom the tetrazolium salt in red formazan for 30 minutes until a stop solution is added. The optical density of red formazan is measured. The amount of red formazan produced reflects the amount of LDH released from the cells that were living at the start of the assay. Three blank wells containing only lysis solution are used as a baseline optical density value. This information was synthesized from [Frank *et al.* (2017)](https://academic.oup.com/toxsci/article/160/1/121/4083261), the product description for [CytoTox 96 Non-Radioactive Cytotoxicity Assay](https://www.promega.com/products/cell-health-assays/cell-viability-and-cytotoxicity-assays/cytotox-96-non_radioactive-cytotoxicity-assay/?catNum=G1780), and from the LDH Assay Summary file *CCTE_Shafer_MWP_LDHo_dn_final.docx*. The blank-corrected values in the treated wells will be normalized to the median value in control wells in the ToxCast Pipeline.
 
 For both assays, the script `cytotox_prep06.R` extracts these blank-corrected values from excel sheets created by the lab technicians. Any negative blank-corrected values are set to zero.
 
