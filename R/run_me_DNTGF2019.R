@@ -8,10 +8,6 @@ pause_between_steps <- TRUE # probs want to be true when you first run
 save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
-# Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
-different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
-# Enter the names of the vehicle controls as they correspond to the compounds in the previous list
-different_vehicleControls = c() # e.g. c("Water", "Water")
 
 spidmap_file <- ""
 spid_sheet <- ""
@@ -39,7 +35,16 @@ if(save_notes_graphs) {
 # run the main steps
 source(file.path(scripts.dir, 'source_steps.R'))
 
-# prepare spidmap
+# run tcpl_MEA_dev_AUC
+source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
+
+# change untreated wells to Control Treatment ------------------------------------
+dat[wllt == "n", treatment := default_ControlTreatmentName]
+# dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "")
+
+
+# Assign SPIDs ------------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
@@ -62,11 +67,16 @@ head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 # write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
 # rm(list = c("auc","cyto"))
 
-# run tcpl_MEA_dev_AUC
-source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+# assign spids
+dat <- check_and_assign_spids(dat, spidmap)
+
+
+# Confirm Conc's ----------------------------------------------------------------
+# confirm that the conc's collected from master chem lists and Calc files match
+# and that the correct concentration-corrections has been done for each compound
 source(file.path(scripts.dir, 'confirm_concs.R'))
-tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
-                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls)
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
+
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly

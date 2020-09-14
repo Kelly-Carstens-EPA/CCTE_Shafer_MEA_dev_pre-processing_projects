@@ -22,11 +22,9 @@
 # # END USER INPUT
 # ###################################################################################
 
-tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTreatmentName, output_file = file.path(basepath, "output", paste0(dataset_title, "_longfile.csv")), 
+tcpl_MEA_dev_AUC <- function(basepath, dataset_title, 
                              AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
-                             cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")),
-                             different_vehicleControlCompounds = c(), different_vehicleControls = c(),
-                             expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
+                             cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")))
 {
   
   require(data.table)
@@ -79,20 +77,22 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
   mc0_data[, wllt := "t"]
   mc0_data[ conc == 0, wllt := "n"]
   
-  # change untreated wells to Control Treatment
-  compoundlist = unique(mc0_data$treatment)
-  for (compound in compoundlist) {
-    if (is.element(compound, different_vehicleControlCompounds)) {
-      # then assign treatment column to corresponding value in vehicle control list
-      vehicle_controli <- different_vehicleControls[which(different_vehicleControlCompounds == compound)]
-      mc0_data[treatment == compound & conc == 0, treatment := vehicle_controli]
-    } else {
-      mc0_data[treatment == compound & conc == 0, treatment := default_ControlTreatmentName]
-    }
-  }
+  cat("long-format data is ready.\n")
+  return(mc0_data)
+}
+
+# additional functions to prepare the data for TCPL mc0 format
+
+update_control_well_treatment <- function(dat, control_compound, culture_date = "", plates = dat[date == culture_date, unique(Plate.SN)], control_rowi) {
+  if(length(culture_date) > 1) stop("culture_date must be a character vector of length 1")
+  apids <- paste(culture_date, plates, sep = "_")
   
-  
-  # Assign SPIDs ------------------------------------------------------------------
+  cat("Control treatment will be updated to ",control_compound," for the following wells:\n")
+  print(dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, unique(.SD), .SDcols = c("date","Plate.SN","treatment","rowi","coli")])
+  dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, treatment := control_compound]
+}
+
+check_and_assign_spids <- function(dat, spidmap) {
   if (length(setdiff(c("treatment","stock_conc","spid"), names(spidmap))) > 0) {
     stop("The following columns are not found in spidmap: ",paste0(setdiff(c("treatment","stock_conc","spid"), names(spidmap)),collapse =","))
   }
@@ -100,20 +100,11 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title, spidmap, default_ControlTr
     stop(paste0("The following treatment maps to multiple spids: ",
                 spidmap[!is.na(spid), .(length(unique(spid))), by = "treatment"][V1 == 1,c(treatment)]))
   }
-  mc0_data <- merge(mc0_data, spidmap[, .(spid, treatment)], by = "treatment", all.x = TRUE)
-  mc0_data[wllt == "n", spid := treatment]
-  if (mc0_data[wllt == "t", any(is.na(spid))]) {
+  dat <- merge(dat, spidmap[, .(spid, treatment)], by = "treatment", all.x = TRUE)
+  dat[wllt == "n", spid := treatment]
+  if (dat[wllt == "t", any(is.na(spid))]) {
     cat("The following treatment don't have a corresponding spid in the spidmap:\n")
-    print(mc0_data[wllt == "t" & is.na(spid), unique(treatment)])
+    print(dat[wllt == "t" & is.na(spid), unique(treatment)])
     stop("Adjust AUC and cyto data before continuing")
   }
-  
-  # Confirm Conc's ----------------------------------------------------------------
-  # confirm that the conc's collected from master chem lists and Calc files match
-  # and that the correct concentration-corrections has been done for each compound
-  mc0_data <- confirm_concs(mc0_data, spidmap, expected_target_concs = expected_target_concs)
-  
-  mc0_data <- mc0_data[, .(apid, treatment, spid, acsn, rowi, coli, wllt, wllq, conc, rval, srcf, wllq_notes)]
-  fwrite(mc0_data, file = output_file, row.names = FALSE, sep = ",")
-  cat(basename(output_file), "is ready\n")
 }

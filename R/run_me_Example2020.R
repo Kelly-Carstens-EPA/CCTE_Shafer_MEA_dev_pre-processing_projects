@@ -39,11 +39,19 @@ if(save_notes_graphs) {
 # run the main steps
 source(file.path(scripts.dir, 'source_steps.R'))
 
-# prepare spidmap
+# run tcpl_MEA_dev_AUC
+source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
+
+# change untreated wells to Control Treatment ------------------------------------
+dat[wllt == "n", treatment := default_ControlTreatmentName]
+# dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "")
+
+
+# Assign SPIDs ------------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
-# setnames(spidmap, old = c(trt_col, conc_col, spid_col), new = c("treatment","stock_conc","spid"))
 setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
 spidmap[, expected_stock_conc := 30] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
 # update expected_stock_conc for individual compouunds where needed 
@@ -57,20 +65,21 @@ head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 # auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
 # cyto <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")))
 # auc[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
-# auc[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
-# auc[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
 # cyto[treatment == "Dibenz[a,c] anthracene", treatment := "Dibenz[a,c]anthracene"]
-# cyto[treatment == "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
-# cyto[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"]
-# write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE, sep = ",")
-# write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE, sep = ",")
+# write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE)
+# write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
 # rm(list = c("auc","cyto"))
 
-# run tcpl_MEA_dev_AUC
-source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+# assign spids
+dat <- check_and_assign_spids(dat, spidmap)
+
+
+# Confirm Conc's ----------------------------------------------------------------
+# confirm that the conc's collected from master chem lists and Calc files match
+# and that the correct concentration-corrections has been done for each compound
 source(file.path(scripts.dir, 'confirm_concs.R'))
-tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
-                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls)
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
+
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly
@@ -87,3 +96,5 @@ if(save_notes_graphs) {
   sink() # close the txt log file
   graphics.off() # clear the plot history
 }
+
+cat("\nDone!\n")
