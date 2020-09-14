@@ -39,7 +39,7 @@ spkList2list <-function (file) {
       # if the total time from first spike to last spike is more than 3 minutes short of 900.00 seconds, flag it
       last_time <- tail(data.raw2$timestamps, n=1)
       first_time <- head(data.raw2$timestamps, n=1)
-      else if (last_time - first_time < (900.00 - 3*60)) {
+      if (last_time - first_time < (900.00 - 3*60)) {
         cat(paste0("\n",file," only goes from ",first_time," to ",last_time," seconds\n"))
         cat("Continue with this spike list file anyways? (Only do this if you know why the recording is significantly less than 900sec\n")
         resp <- readline(prompt = "(y/n): ")
@@ -49,7 +49,7 @@ spkList2list <-function (file) {
       }
       
       # remove any points more than 900.00 seconds after the first recorded spike
-      data.raw2 <- data.raw2[data.raw2$timestamps <= first_time + 900.00,]
+      data.raw2 <- data.raw2[data.raw2$timestamps < first_time + 900.00,]
       
       # order data frame by electrode
       data.raw2<-data.raw2[order(data.raw2$elect), ]
