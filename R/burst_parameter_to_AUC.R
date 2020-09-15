@@ -31,7 +31,7 @@ if(get_files_under_basepath) {
     cat("Got",length(mi_data_files),"MI csv files from",file.path(basepath, "All_MI"),"\n")
     
     # get map of component endpoint abbreviations to tcpl acsn's
-    assay_component_map <- read.csv(file.path(dirname(basepath), "mea_nfa_component_name_map.csv"))
+    assay_component_map <- read.csv(file.path(dirname(basepath), "mea_nfa_component_name_map.csv"), stringsAsFactors = FALSE)
     
 } else {
   # get files with the 16 parameters for all culture dates
@@ -41,7 +41,7 @@ if(get_files_under_basepath) {
   mi_data_files <- choose.files(default = basepath, caption = "Select all files containing MI data to calculate AUC")
   cat("Got",length(mi_data_files),"MI data files.\n")
   # get map of component endpoint abbreviations to tcpl acsn's
-  assay_component_map <- read.csv(choose.files(default = dirname(basepath), caption = "Select a csv map of endpoint abbreviations to desired endpoint labels"))
+  assay_component_map <- read.csv(choose.files(default = dirname(basepath), caption = "Select a csv map of endpoint abbreviations to desired endpoint labels"), stringsAsFactors = F)
 }
 
 options(digits = 6)
@@ -49,13 +49,13 @@ options(digits = 6)
 # read in the data -------------------------------------------------------------------
 parameter_data <- c()
 for (i in 1:length(parameter_data_files)) {
-  parameter_datai <- read.csv(parameter_data_files[i])
+  parameter_datai <- read.csv(parameter_data_files[i], stringsAsFactors = F)
   parameter_data <- rbind(parameter_data, parameter_datai)
   rm(parameter_datai)
 }
 mi_data <- c()
 for (i in 1:length(mi_data_files)) {
-  mi_datai <- read.csv(mi_data_files[i])
+  mi_datai <- read.csv(mi_data_files[i], stringsAsFactors = F)
   mi_data <- rbind(mi_data, mi_datai)
   rm(mi_datai)
 }
@@ -73,7 +73,7 @@ all_data[, date := as.character(date)]
 
 # update wllq -------------------------------------------------------------------------
 cat("\nUpdating wllq...\n")
-wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), colClasses = c(rep("character",4),"numeric",rep("character",2))))
+wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), colClasses = c(rep("character",4),"numeric",rep("character",2)), stringsAsFactors = F))
 
 # checking for typo's under "affected_endpoints"
 if(nrow(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])>0) {

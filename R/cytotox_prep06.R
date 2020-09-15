@@ -72,8 +72,9 @@ findTabData <- function(sourcefile, assay = c("AB", "LDH")) {
 createCytoTable2 <- function(sourcefile, cyto_type, masterChemFiles = c()) {
   
   # get the date, file name
-  srcname = basename(sourcefile)
-  namesplit = strsplit(srcname, split ="_")[[1]]
+  srcname <- basename(sourcefile)
+  srcname <- sub(" ","_",srcname) # sometimes file contains space instead of _, esp in Summary files
+  namesplit <- strsplit(srcname, split ="_")[[1]]
   date <- grep(pattern="[0-9]{8}",namesplit, val = T) # looks for 8-digit string in namesplit
   
   cyto_data_all = findTabData(sourcefile, cyto_type)
@@ -225,8 +226,9 @@ createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, 
 
 
 wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basepath = TRUE) {
-  if (get_files_under_basepath) wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), colClasses = c(rep("character",4),"numeric",rep("character",2))))
-  else wllq_info <- as.data.table(read.csv(choose.files(default = basepath, caption = "Select well quality csv table")))
+  if (get_files_under_basepath) wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality_zero.csv"), 
+                                                                    colClasses = c(rep("character",4),"numeric",rep("character",2)), stringsAsFactors = FALSE))
+  else wllq_info <- as.data.table(read.csv(choose.files(default = basepath, caption = "Select well quality csv table"), stringsAsFactors = FALSE))
   
   longdat[, `:=`(date = as.character(date), rowi = as.numeric(rowi))]
   
