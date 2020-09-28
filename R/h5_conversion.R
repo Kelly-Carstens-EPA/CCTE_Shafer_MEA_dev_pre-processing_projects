@@ -30,7 +30,12 @@ h5.dir<-paste(basepath, "/h5Files",sep="")
 masterChemFiles <- readLogFile(main.output.dir, files_type = "MaestroExperimentLog")
 
 if (length(spkListFiles)/4 > length(masterChemFiles)) {
-  stop("Too few Master Chemical Lists selected")
+  cat("Only",length(masterChemFiles), "master experiment log file selected for",length(spkListFiles),"spike list files.\n")
+  repeat {
+    resp <- readline(prompt = "Continue anyway? (y/n): ")
+    if (resp %in% c("y","n")) break
+  }
+  if (resp == "n") stop()
 }
 
 L=length(spkListFiles)
