@@ -73,9 +73,9 @@ dataset_checks <- function(dat) {
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c(rgb(0.1,0.1,0.1,0.5),rgb(0.9,0,0,0.5)), pch = c(19,19), bg = "transparent")
   
   # Cytotox
-  stripchart(rval ~ conc, dat[wllq == 1 & grepl("AB",acsn)],
+  stripchart(rval ~ signif(conc,3), dat[wllq == 1 & grepl("AB",acsn)],
              vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("AB Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
-  stripchart(rval ~ conc, dat[wllq == 1 & grepl("LDH",acsn)],
+  stripchart(rval ~ signif(conc,3), dat[wllq == 1 & grepl("LDH",acsn)],
              vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("LDH Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
   
 }

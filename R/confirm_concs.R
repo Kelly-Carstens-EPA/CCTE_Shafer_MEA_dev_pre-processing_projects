@@ -68,5 +68,6 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   else {
     cat("All compounds have the expected concetration-corrected values\n")
   }
+  dat[, expected_stock_conc := NULL]
   return(dat)
 }

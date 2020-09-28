@@ -83,12 +83,13 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
 
 # additional functions to prepare the data for TCPL mc0 format
 
-update_control_well_treatment <- function(dat, control_compound, culture_date = "", plates = dat[date == culture_date, unique(Plate.SN)], control_rowi) {
-  if(length(culture_date) > 1) stop("culture_date must be a character vector of length 1")
-  apids <- paste(culture_date, plates, sep = "_")
-  
-  cat("Control treatment will be updated to ",control_compound," for the following wells:\n")
-  print(dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, unique(.SD), .SDcols = c("date","Plate.SN","treatment","rowi","coli")])
+update_control_well_treatment <- function(dat, control_compound, culture_date = c(), plates = c(), control_rowi) {
+  apids <- Reduce(f = union, x = lapply(culture_date, function(x) grep(x, unique(dat$apid), val = T)))
+  if (length(plates) > 0) {
+    apids <- Reduce(f = union, x = lapply(plates, function(x) grep(x, apids, val = T)))
+  }
+  cat("Control treatment will be updated to",control_compound,"for the following wells:\n")
+  print(dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, unique(.SD), .SDcols = c("apid","treatment","rowi","coli")][order(apid,rowi,coli)])
   dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, treatment := control_compound]
 }
 
@@ -107,4 +108,5 @@ check_and_assign_spids <- function(dat, spidmap) {
     print(dat[wllt == "t" & is.na(spid), unique(treatment)])
     stop("Adjust AUC and cyto data before continuing")
   }
+  return(dat)
 }
