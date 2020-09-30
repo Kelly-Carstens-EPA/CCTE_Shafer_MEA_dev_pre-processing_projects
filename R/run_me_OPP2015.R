@@ -4,14 +4,10 @@ graphics.off() # clear plot history
 # USER INPUT
 ###################################################################################
 dataset_title <- "OPP2015" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-pause_between_steps <- FALSE # probs want to be true when you first run
+pause_between_steps <- TRUE # probs want to be true when you first run
 save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
-# Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
-different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
-# Enter the names of the vehicle controls as they correspond to the compounds in the previous list
-different_vehicleControls = c() # e.g. c("Water", "Water")
 
 spidmap_file <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Organophosphates/Sample ID Data/EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx"
 spid_sheet <- "Mundy corrected map"
@@ -31,7 +27,6 @@ if(save_notes_graphs) {
   cat("Output from the script run_me_",dataset_title,".R\n",sep="")
   cat("Date Ran:",as.character.Date(Sys.Date()),"\n")
   cat(R.version.string,"\n")
-  print(sapply(ls(), get, envir = .GlobalEnv))
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
   graphics.off()
@@ -41,7 +36,18 @@ if(save_notes_graphs) {
 # run the main steps
 source(file.path(scripts.dir, 'source_steps.R'))
 
-# prepare spidmap
+# run tcpl_MEA_dev_AUC
+source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
+
+
+# change untreated wells to Control Treatment ------------------------------------
+dat[wllt == "n", treatment := default_ControlTreatmentName]
+# update other control wells as needed, e.g.
+# dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20190904", plates = paste0("MW69-381",7:9), control_rowi = which(LETTERS[1:6] %in% c("E","F")))
+
+
+# Assign SPIDs ------------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$ALIQUOT_CONC_UNIT) # all mM?
@@ -55,32 +61,36 @@ spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
-# # rename any compounds, if needed
-auc <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")))
-cyto <- fread(file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")))
-auc[treatment == "Diazonon", treatment := "Diazinon"] # when I google search for "Diazonon", it redirects to "Diazinon'
-cyto[treatment == "Diazonon", treatment := "Diazinon"]
-auc[treatment == "Malaxon", treatment := "Malaoxon"] # "Malaxon" does not have any resutls in Google, I think this just a typo
-cyto[treatment == "Malaxon", treatment := "Malaoxon"]
-# additionally, the 2 compounds above are listed with the updated spellings in this table:
+# rename any compounds, if needed
+# The following 2 compounds are listed with the updated spellings in this table:
 # L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\Organophosphates.xlsx
-auc[treatment == "Z-tetrachlorvinphos", treatment := "Z-Tetrachlorvinphos"] # capitalization
-cyto[treatment == "Z-tetrachlorvinphos", treatment := "Z-Tetrachlorvinphos"]
-write.csv(auc, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_AUC.csv")), row.names = FALSE)
-write.csv(cyto, file.path(root_output_dir,dataset_title, "output", paste0(dataset_title, "_cytotox.csv")), row.names = FALSE)
-rm(list = c("auc","cyto"))
+dat[treatment == "Diazonon", treatment := "Diazinon"] # when I google search for "Diazonon", it redirects to "Diazinon'
+dat[treatment == "Malaxon", treatment := "Malaoxon"] # "Malaxon" does not have any resutls in Google, I think this just a typo
+dat[treatment == "Z-tetrachlorvinphos", treatment := "Z-Tetrachlorvinphos"] # capitalization
 
-# run tcpl_MEA_dev_AUC
-source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
+# assign spids
+dat <- check_and_assign_spids(dat, spidmap)
+
+
+# Confirm Conc's ----------------------------------------------------------------
+# confirm that the conc's collected from master chem lists and Calc files match
+# and that the correct concentration-corrections has been done for each compound
+
+# check if there are multiple conc's assigned to the same well (usually occurs if there are differences between master chem file and calc file)
+# Note: in TCPL mc1, the conc's are set to dat[ , conc := signif(conc, 3)]. So it's okay for us to round here.
+dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
+# empty
+# if any, standardize those before continuing.
+# problem_comps <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1, unique(treatment)]
+# problem_comps
+
+# finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title, spidmap, default_ControlTreatmentName,
-                 different_vehicleControlCompounds = different_vehicleControlCompounds, different_vehicleControls = different_vehicleControls,
-                 expected_target_concs = c(0.1,0.3,1,3,10,30,100))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.1,0.3,1,3,10,30,100))
+
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly
-dat <- read.csv(file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")))
-setDT(dat)
 source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
 
@@ -90,7 +100,8 @@ dat[wllt == "t", .(length(unique(treatment))), by = c("apid")] # 6 compounds on 
 dat[wllt == "t", .(length(unique(apid))), by = c("treatment")] # all compounds tested on 3 apid
 # except for Bensulide, Methamidophos, and Z-Tetrach tested on 6 apid
 
-
+# save the data and graphs
+write.csv(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")), row.names = F)
 rm(dat)
 
 if(save_notes_graphs) {
@@ -99,3 +110,18 @@ if(save_notes_graphs) {
 }
 
 cat("\nDone!\n")
+
+
+# # verifying replicates for a particular wells
+# source(file.path(root_output_dir,"supplemental_scripts","view_replicates_by_DIV.R"))
+# dat <- read.csv(file.path(root_output_dir,dataset_title,"output",paste0(dataset_title,"_parameters_by_DIV.csv")))
+# # E8 of plate 1117-23
+# setDT(dat)
+# dat[Plate.SN == "MW1117-23" & well == "E8"]
+# compoundi <- "Z-tetrachlorvinphos"
+# dat[date == "20160330", unique(trt)] # Z-tetrach spelled the same all here
+# dosei <- 10
+# graphics.off()
+# pdf(file = file.path(root_output_dir, dataset_title, "replicate_comparisons",paste0(dataset_title,"_",compoundi,"_", dosei,"uM_by_DIV.pdf")))
+# view_replicates_by_DIV(dat, compoundi, dosei, acsns = c("meanfiringrate","nAE","burst.per.min","ns.n","r","mi"), title_msg = "(possible contamination 1117-23 E8)")
+# graphics.off()

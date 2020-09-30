@@ -25,7 +25,8 @@ library(openxlsx)
 if(save_notes_graphs) {
   sink(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_run_log_",as.character.Date(Sys.Date()),".txt")))
   cat("Output from the script run_me_",dataset_title,".R\n",sep="")
-  cat("Date:",as.character.Date(Sys.Date()),"\n")
+  cat("Date Ran:",as.character.Date(Sys.Date()),"\n")
+  cat(R.version.string,"\n")
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
   graphics.off()
@@ -166,6 +167,8 @@ dataset_checks(dat)
 
 # Any other plots or things to check?
 # correlation plot with previously pipelined data
+# dat <- read.csv(file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")))
+# setDT(dat)
 odat <- read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/DNT2019_all_MEA_mc0_withspids.csv")
 odat_gf <- read.csv("L:/Lab/NHEERL_MEA/Project - Glufosinate/Network Formation Assay/Spike List to mc0/Final mc0 files/glufosinates_mc0.csv")
 odat <- rbind(odat, odat_gf)
@@ -173,10 +176,28 @@ rm(odat_gf)
 
 dat[, plate.id := sub("^[[:digit:]]{8}_","",apid)]
 dat[, acsn_bk := sub("CCTE_Shafer","NHEERL",acsn)]
+dat[acsn_bk == "NHEERL_MEA_dev_inter_network_spike_interval_mean", acsn_bk := "NHEERL_MEA_dev_per_network_spike_interspike_interval_mean"]
 dat[, rowi := as.integer(rowi)]
 dat[, coli := as.integer(coli)]
-dat2 <- merge(dat, odat, by.x = c("plate.id","acsn_bk","spid","rowi","coli"), by.y = c("apid","acsn","spid","rowi","coli"),
+dat2 <- merge(dat, odat, by.x = c("plate.id","acsn_bk","rowi","coli"), by.y = c("apid","acsn","rowi","coli"),
               suffixes = c(".new",".org"))
+nrow(dat2) == nrow(dat) # TRUE
+dat2[spid.new != spid.org, .N, by = .(spid.new, spid.org)]
+# spid.new spid.org  N
+# 1:    Water     DMSO 76
+# 2:     DMSO    Water 19
+dat2[spid.new == "DMSO" & spid.org == "Water", .N, by = .(plate.id, rowi, coli)]
+# plate.id rowi coli  N
+# 1: MW69-3818    4    2 19
+dat2[spid.org == "DMSO" & spid.new == "Water", .N, by = .(plate.id, rowi, coli)]
+# plate.id rowi coli  N
+# 1: MW69-3817    5    2 19
+# 2: MW69-3818    5    2 19
+# 3: MW69-3818    6    2 19
+# 4: MW69-3819    6    2 19
+# ya know, I think I did something funky here with the row removal/keeping some control wells
+# I know that the control well spid's I am usign now are based on what is recording in the Calc files and lab notebooks
+# so I am sticking with that
 dat2[wllt.new != wllt.org] # empty
 dat2[conc.new != conc.org] # many rows
 dat2[conc.new != conc.org, .N, by = "treatment"] # ah, this looks like the same "problem conc's" that I corrected here
@@ -193,6 +214,9 @@ for (acsni in unique(dat2$acsn_bk)) {
 }
 
 # some of the "off" points
+dat2[grepl("burst_duration_mean",acsn_bk) & abs(rval.org - rval.new) > 50]
+dat2[grepl("bursting_electrodes_number",acsn_bk) & abs(rval.org - rval.new) > 10, .(rval.new, rval.org, apid, srcf.org)]
+dat2[grepl("peak",acsn_bk) & abs(rval.org - rval.new) > 10, .(rval.new, rval.org, apid, srcf.org)]
 dat2[grepl("network_spike_peak",acsn_bk) & abs(rval.org - rval.new) > 15]
 dat2[grepl("mutual_information",acsn_bk) & rval.org == 0.0 & rval.new != rval.org, .N, by = c("treatment","conc.new")]
 # huh, seems to mostly affect a specific handful of treatments...
@@ -203,6 +227,70 @@ dat2[grepl("mutual_information",acsn_bk) & rval.org == 0.0 & rval.new != rval.or
 # 3: 20191030_MW70-2509 48
 # 4: 20191030_MW70-2510 48
 # I don't know...
+
+# created this prepared data with the old h5files, but new functions
+pfiles <-list.files(file.path(root_output_dir,dataset_title,"comparing_previous_values"),full.names = T, pattern = "\\.csv")
+dat3 <- data.table()
+for (pfile in pfiles) {
+  dati <- read.csv(pfile)
+  dat3 <- rbind(dat3, dati)
+  rm(dati)
+}
+
+# loading the original pdat, with the previous scripts
+pdat_org <- read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/prepared_data/prepared_data_DNT_2019_All_combined.csv")
+setDT(pdat_org)
+pdat_org <- pdat_org[, .SD, .SDcols = names(pdat_org)[!grepl("^cv",names(pdat_org))]]
+nrow(pdat_org)
+nrow(dat3) # equal
+all.equal(pdat_org, dat3, ignore.row.order = TRUE)
+# [1] "Datasets has different indexes. 'target' has no index. 'current': well__Plate.SN."
+attr(dat3, which = "index") <- NULL
+all.equal(pdat_org, dat3, ignore.row.order = TRUE)
+# TRUE!!
+# so, that means that all differences in values are really just due to differences in the spike list file chopping.
+# still, whyare some endpoints so 'volatile'/will change so much with a slight change in recording section used?
+rm(list = c("dat3","pdat_org"))
+
+
+# let's see if the change in rval is less than the median IQR of DMSO wells by plate for each endpoint
+acsni <- "NHEERL_MEA_dev_bursting_electrodes_number"
+for (acsni in unique(dat2$acsn_bk)) {
+  nwell_median_iqr <- dat2[acsn_bk == acsni & wllt.new == "n" & wllt.org == "n", .(IQR(rval.new)), by = .(plate.id)][, median(V1)]
+  print(acsni)
+  print(dat2[acsn_bk == acsni & abs(rval.org - rval.new) > nwell_median_iqr, .N])
+}
+
+myfun <- function(acsni) {
+  nwell_median_iqr <- dat2[acsn_bk == acsni & wllt.new == "n" & wllt.org == "n", .(IQR(rval.new)), by = .(plate.id)][, median(V1)]
+  val <- dat2[acsn_bk == acsni & abs(rval.org - rval.new) > nwell_median_iqr, .N]
+  val
+}
+concerning_pt_count <- sapply(unique(dat2$acsn_bk), myfun)
+graphics.off()
+pdf(file = file.path(root_output_dir,dataset_title, "plots","new_rval_vs_dec2019.pdf"))
+for (acsni in unique(dat2$acsn_bk)) {
+  plot(dat2[acsn_bk == acsni, .(rval.org, rval.new)], main = paste0(acsni,"\nNew vs original AUC rval correlation. N outliers=",concerning_pt_count[acsni]))
+  abline(0,1)
+  nwell_median_iqr <- dat2[acsn_bk == acsni & wllt.new == "n" & wllt.org == "n", .(IQR(rval.new)), by = .(plate.id)][, median(V1)]
+  abline(a = c(-1)*nwell_median_iqr, b = c(1), col = "red")
+  abline(a = c(1)*nwell_median_iqr, b = c(1), col = "red")
+}
+graphics.off()
+dat2[grepl("burst_duration_mean",acsn_bk), summary(rval.new)]
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.00    2.76    4.87    8.67    7.67  221.59 
+dat2[grepl("burst_duration_mean",acsn_bk), summary(rval.org)]
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.00    2.76    4.85    8.64    7.68  221.57 
+# this is good, at least
+# it is concerning that some of these values are way different
+# esp teh mean burst durataion - are we getting some insanely long bursts now?
+boxplot(dat2[acsn_bk == "NHEERL_MEA_dev_burst_duration_mean", .(rval.org, rval.new)]) # looks liek the diff's are in teh outliers
+
+# i'm just concerned that there might be something really off with these wells...
+# but something also tells me that it's fine.
+
 rm(dat2)
 rm(odat)
 dat[, c("acsn_bk","plate.id") := NULL]
