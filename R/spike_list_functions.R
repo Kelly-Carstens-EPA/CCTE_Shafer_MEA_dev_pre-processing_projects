@@ -8,22 +8,28 @@
 
 spkList2list <-function (file) {
     
+    data.raw<-read.csv(file,header=F,colClasses=c("character", "NULL", "character","character","character")) # make electrode column char, not factor
+
+    # remove the rows after the "Well Information" tag
+    # adapted from "CG Additions 1/13/201"
+    well_information_row <- which(data.raw$V1 == "Well Information")
+    if (length(well_information_row) == 0) {
+      cat("Note to Amy: 'Well Information' tag phrase not present in",file,"\n")
+      well_information_row <- nrow(data.raw) + 1
+    }
+    data.raw <- data.raw[1:(well_information_row - 1),]
     
-    # data.raw<-read.csv(file,header=T,colClasses=c("NULL", "NULL", NA, NA, NA))
-    data.raw<-read.csv(file,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
-    
-    # using this instead of header=T, because sometimes the colnames are not in the first row in the spike list file
+    # remove first column and get the header
+    # (using this instead of header=T, because sometimes the colnames are not in the first row in the spike list file)
+    data.raw <- data.raw[, c(2,3,4)]
     header_row <- which(data.raw[,1] == "Time (s)")
     colnames(data.raw) <- data.raw[header_row,]
-    data.raw <- data.raw[-which(data.raw[,1] == "Time (s)"),]
+    data.raw <- data.raw[-c(header_row),]
     
-    ######CG Additions 1/13/2016 
-    ###To account for changes in axion update-- takes out well info 
+    # remove any remaning empty rows, then convert to time and amplitude to numeric
     data.raw <- data.raw[data.raw$Electrode != "",] # works even if no rows in Electrode are == ""
-    data.raw<-data.raw[1:(nrow(data.raw)-40),]
     data.raw[,1]<-as.numeric(as.character(data.raw[,1]))
     data.raw[,3]<-as.numeric(as.character(data.raw[,3]))
-    #######End of CG Additions
     
     #remove NA
     ind.want<-which(!is.na(data.raw[,1]) )
@@ -55,16 +61,16 @@ spkList2list <-function (file) {
       data.raw2<-data.raw2[order(data.raw2$elect), ]
       
       spikes<-split(data.raw2$timestamps, data.raw2$elect)
+      rm(data.raw2)
     } else {
       spikes<-NULL
     }
-    
     spikes
   }
 
 
 
-axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T, remake_all=T ){
+axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T){
   #function to convert spike list to h5 file
   
   #remove _spike_list
@@ -80,13 +86,6 @@ axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T, remake_all=T
   
   # what if we just allow ()? let's give it a try
   h5file <- sprintf("%s/%s.h5", h5.dir, key)
-  
-  # if the h5file has already been created, skip it
-  if(file.exists(h5file) & !remake_all) {
-    return(h5file)
-  }
-  
-  wildcard <- gsub("\\)", "\\\\)", gsub("\\(", "\\\\(", sprintf("^%s.*csv$", key)))
 
   #f is a list of all files
   f <- spkListFile

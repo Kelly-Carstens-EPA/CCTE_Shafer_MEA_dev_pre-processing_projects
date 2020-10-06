@@ -26,6 +26,22 @@ basepath <- main.output.dir
 suppressWarnings( dir.create(paste(basepath,'/h5Files',sep='') ) )
 h5.dir<-paste(basepath, "/h5Files",sep="")
 
+# Determine which of the spike list files have already been run
+if (!remake_all) {
+  existing_h5Files <- list.files(h5.dir, pattern = "\\.h5")
+  existing_h5Files <- sub("\\.h5","",existing_h5Files)
+  # Find the h5 file names of these spkListFiles,
+  # using same h5file naming structure as here and in spike_list_functions.R
+  spkListFiles_h5names <- sapply(spkListFiles, function(filei) {
+    h5file_namei <- strsplit(basename(filei), "[.]")[[1]][1]
+    h5file_namei <- unlist( strsplit(h5file_namei, split="_spike_list") ) }
+    )
+  # get only the subset of spkListFiles that are not already in h5.dir
+  use_files <- spkListFiles_h5names[!(spkListFiles_h5names %in% existing_h5Files)]
+  spkListFiles <- names(use_files) # the "names" of use_files contain the unchanged file.path's
+  rm(list = c("existing_h5Files","spkListFiles_h5names","use_files"))
+}
+
 #get master chemical lists
 masterChemFiles <- readLogFile(main.output.dir, files_type = "MaestroExperimentLog")
 
@@ -44,7 +60,7 @@ L=length(spkListFiles)
 for (i in 1:L){
   
   # Find the plate number of current spike list file
-  spikefilename = basename(spkListFiles[i])
+  spikefilename <- basename(spkListFiles[i])
   date_plate <- paste(strsplit(spikefilename, split = "_")[[1]][2:3],collapse = "_")
   
   # Get the masterChemFile with the date_plate
@@ -76,6 +92,6 @@ for (i in 1:L){
   }
   
   #make h5 files that contain chemical info 
-  axion.spkList.to.h5(title, spkListFiles[i], plate.chem.info, remake_all = remake_all)
+  axion.spkList.to.h5(title, spkListFiles[i], plate.chem.info)
   
 }
