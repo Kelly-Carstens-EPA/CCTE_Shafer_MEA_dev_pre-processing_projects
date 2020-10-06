@@ -61,9 +61,13 @@ findTabData <- function(sourcefile, assay = c("AB", "LDH")) {
   
   tabName <- intersect(tabNames, getSheetNames(sourcefile))
   if (length(tabName) != 1) {
-    tabName <- readline(prompt = paste0("Enter name of tab in ", basename(sourcefile)," for Alamar Blue data: "))
+    tabName <- readline(prompt = paste0("Enter name of tab in ", basename(sourcefile)," for ",assay," data, or 'skip' to not include any ",assay," data for this plate: "))
   }
-  my_data <- read.xlsx(sourcefile, sheet = tabName, colNames = FALSE)
+  if (tabName == "skip" ) {
+    my_data <- data.frame()
+  } else {
+    my_data <- read.xlsx(sourcefile, sheet = tabName, colNames = FALSE)
+  }
   return(my_data)
 }
 
@@ -77,7 +81,11 @@ createCytoTable2 <- function(sourcefile, cyto_type, masterChemFiles = c()) {
   namesplit <- strsplit(srcname, split ="_")[[1]]
   date <- grep(pattern="[0-9]{8}",namesplit, val = T) # looks for 8-digit string in namesplit
   
-  cyto_data_all = findTabData(sourcefile, cyto_type)
+  cyto_data_all <- findTabData(sourcefile, cyto_type)
+  if (nrow(cyto_data_all) == 0) {
+    # is user elected to "skip" this plate/cyto_type
+    return(cyto_data_all)
+  }
   
   # if the input file was a "Summary" file, should see the phrase "Chemical" only once
   if (length(which(cyto_data_all == "Chemical")) == 1) {
@@ -114,7 +122,7 @@ createCytoTable2 <- function(sourcefile, cyto_type, masterChemFiles = c()) {
   return(file_dat)
 }
 
-createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, date = NULL, masterChemFiles = c()) {
+createCytoData <- function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, date = NULL, masterChemFiles = c()) {
   
   cat(Plate.SN,cyto_type,"\n")
   
@@ -129,8 +137,8 @@ createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, 
   
   # concentrations
   conc_col <- which(sourcedata == "Concentration mM", arr.ind = T)[1,"col"]
-  Row_row <- which(sourcedata[, conc_col] == "Row")[1] # find first the occurence of the phrase "Row" in the same column as "Chemical"
-  concmap <- sourcedata[(Row_row + 1):(Row_row + 6), conc_col:(conc_col+8)] # get the treatment labels under "Row"
+  Row_row <- which(sourcedata[, conc_col] == "Row")[1] # find first the occurence of the phrase "Row" in the same column as "Concentration mM"
+  concmap <- sourcedata[(Row_row + 1):(Row_row + 6), conc_col:(conc_col+8)] # get the conc labels under "Row"
   colnames(concmap) <- sourcedata[Row_row, conc_col:(conc_col+8)]
   concmap[, setdiff(names(concmap),"Row")] <- sapply(concmap[, setdiff(names(concmap),"Row")], as.numeric) # each col of the df is read as a list element
   setDT(concmap)
@@ -145,14 +153,20 @@ createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, 
   
   # Get desired values
   tagPhrases = c("Corrected for Blank", "Corrected Optical Denisty 490 nm", "Corrected Fluorescence")
-  value_index <- matrix(data = NA, nrow = 0, ncol = 2) # initialize value_index as empty
+  value_index <- matrix(data = NA_real_, nrow = 0, ncol = 2) # initialize value_index as empty
   i = 1
   while (nrow(value_index)==0) {
     if (i > length(tagPhrases)) {
-      stop(paste("no corrected for blank data found for",Plate.SN,cyto_type))
+      cat("no corrected for blank-corrected data found for",Plate.SN,cyto_type,"\n")
+      print(sourcedata)
+      value_row <- readline(prompt = "Enter the Row number in table above corresponding to well A1 of the blank-corrected values: ")
+      value_col <- readline(prompt = "Enter the Column number in table above corresponding to well A1 of the blank-corrected values : ")
+      value_index <- array(c((as.numeric(value_row)-1), (as.numeric(value_col)-1)), dim  = c(1,2), dimnames = list(NULL,c("row","col"))) # Back up to the Row and Col id info
     }
-    value_index <- which(sourcedata == tagPhrases[i], arr.ind = TRUE)
-    i = i+1
+    else {
+      value_index <- which(sourcedata == tagPhrases[i], arr.ind = TRUE)
+      i = i+1
+    }
   }
   value_row <- value_index[1,"row"] # in case there were multiple occurences, we want the first one
   value_col <- value_index[1,"col"]
@@ -190,12 +204,7 @@ createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, 
   }
   
   # determine correct assay component source name
-  longdat$acsn <- switch(cyto_type, 
-         "LDH" = "CCTE_Shafer_MEA_dev_LDH",
-         "AB" = "CCTE_Shafer_MEA_dev_AB",
-         "CTB" = "CCTE_Shafer_MEA_dev_AB",
-         stop("invalid cyto_type used"))
-  
+  longdat[, src_acsn := cyto_type]
   longdat$srcf = srcname
   longdat$Plate.SN = Plate.SN
   longdat$date = date
@@ -220,7 +229,7 @@ createCytoData = function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL, 
   }
   
   # reorder columns
-  longdat <- longdat[,c("date","Plate.SN","treatment","rowi","coli","conc","rval","srcf","acsn")]
+  longdat <- longdat[,c("date","Plate.SN","treatment","rowi","coli","conc","rval","srcf","src_acsn")]
   return(longdat)
 }
 
@@ -263,9 +272,9 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
 
   # transfrom wllq_info into longdat
   ldh_wllq <- wllq_info[grepl("LDH",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
-  ldh_wllq[, acsn := grep("LDH",unique(longdat$acsn),val = T)]
+  ldh_wllq[, src_acsn := grep("LDH",unique(longdat$src_acsn),val = T)]
   ctb_wllq <- wllq_info[grepl("(CTB)|(AB)",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
-  ctb_wllq[, acsn := grep("AB",unique(longdat$acsn),val = T)]
+  ctb_wllq[, src_acsn := grep("AB",unique(longdat$src_acsn),val = T)]
   
   # set the wllq in longdat
   longdat <- merge(longdat, rbind(ldh_wllq, ctb_wllq), all.x = TRUE)
@@ -287,7 +296,7 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
   
   # summary of wllq updates
   cat("Wllq summary:\n")
-  print(longdat[, .N, by = c("acsn","wllq","wllq_notes")][order(acsn, wllq, wllq_notes)])
+  print(longdat[, .N, by = c("src_acsn","wllq","wllq_notes")][order(src_acsn, wllq, wllq_notes)])
   
   return(longdat)
 }
