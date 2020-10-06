@@ -27,7 +27,7 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV)
   dat[dose == 0, trt2 := "Control"]
   
   # get a template of the ID data for platei from first DIV
-  plate.dat.template <- dat[date_plate == date_platei & DIV == unique(DIV)[1], .SD, .SDcols = setdiff(c(id.cols,"trt2"),c("wllq","wllq_notes"))]
+  plate.dat.template <- dat[date_plate == date_platei, unique(.SD), .SDcols = setdiff(c(id.cols,"trt2"),c("wllq","wllq_notes","DIV","file.name"))]
   
   # restrict plate.dat.template to only the well_id's on date_platei that are missing add.DIV
   wells_with_add.DIV <- dat[date_plate == date_platei & DIV == add.DIV, unique(well_id)]
@@ -81,7 +81,7 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV)
     points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & grepl("median_at",file.name)][order(DIV)], pch = 19, col = "blue")
     points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & wllq == 0][order(DIV)], pch = 19, col = rgb(1,0,0,alpha=0.7), cex=1.5)
   }
-  legend(x = "topleft", legend = c("estimated DIV","wllq==0"), col = c("blue",rgb(1,0,0,alpha=0.7)), pch = c(19,19), bg = "transparent")
+  legend(x = "topleft", legend = c("estimated DIV","wllq==0"), col = c("blue",rgb(1,0,0,alpha=0.7)), pch = c(19,19), bg = "transparent", title = "Control Wells")
 
   return(dat)
 }

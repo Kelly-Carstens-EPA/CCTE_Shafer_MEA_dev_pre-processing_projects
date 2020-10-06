@@ -18,6 +18,7 @@ interpolate_diff_divs <- TRUE
 # END USER INPUTS
 ##########################################################
 
+require(data.table)
 if(!dir.exists(file.path(basepath,"output"))) dir.create(file.path(basepath,"output"))
 
 cat("\nStarting AUC preparations...\n")
@@ -30,9 +31,6 @@ if(get_files_under_basepath) {
     mi_data_files <- list.files(path = file.path(basepath, "All_MI"), pattern = "\\.csv$", full.names = TRUE, recursive = FALSE)
     cat("Got",length(mi_data_files),"MI csv files from",file.path(basepath, "All_MI"),"\n")
     
-    # get map of component endpoint abbreviations to tcpl acsn's
-    assay_component_map <- read.csv(file.path(dirname(basepath), "mea_nfa_component_name_map.csv"), stringsAsFactors = FALSE)
-    
 } else {
   # get files with the 16 parameters for all culture dates
   parameter_data_files <- choose.files(default = basepath, caption = "Select all files containing activity parameter values to calculate AUC")
@@ -40,8 +38,6 @@ if(get_files_under_basepath) {
   # get files with mi data for all culture dates
   mi_data_files <- choose.files(default = basepath, caption = "Select all files containing MI data to calculate AUC")
   cat("Got",length(mi_data_files),"MI data files.\n")
-  # get map of component endpoint abbreviations to tcpl acsn's
-  assay_component_map <- read.csv(choose.files(default = dirname(basepath), caption = "Select a csv map of endpoint abbreviations to desired endpoint labels"), stringsAsFactors = F)
 }
 
 options(digits = 6)
@@ -136,8 +132,8 @@ all_data[, full_id := NULL]
 
 # print summary of wllq updates
 cat("Wllq summary:\n")
-print(all_data[, .(number_of_wells = .N, wllq = paste0(sort(unique(wllq)),collapse=",")), by = c("wllq_notes")][order(-wllq), .(wllq, wllq_notes, number_of_wells)])
-print(all_data[wllq == 0, .(date, Plate.SN, well, trt, dose, wllq, wllq_notes, meanfiringrate, nAE)])
+print(all_data[, .(number_of_well_recordings = .N, wllq = paste0(sort(unique(wllq)),collapse=",")), by = c("wllq_notes")][order(-wllq), .(wllq, wllq_notes, number_of_well_recordings)])
+print(all_data[wllq == 0, .(date, Plate.SN, well, trt, dose, DIV, wllq, wllq_notes, meanfiringrate, nAE)])
 rm(wllq_info)
 
 
@@ -242,22 +238,22 @@ all_data <- all_data[, c("date_plate","well_id") := NULL]
 #bis_rows <- grep("12_01_", all_data$file.name, fixed=TRUE) #index all Bicuculline-treated wells
 #all_data <- all_data[- bis_rows,] #Remove all bic-treated wells
 
-# rename "Mutual.Information" column to "mi"
-setnames(x = all_data, old = "Mutual.Information", new = "mi") # renaming this column
-
-# save a snapshot of the combined prepared data, with the added/interpolated rows where DIV where missing
-write.csv(all_data, file = file.path(basepath,"output",paste0(dataset_title,"_parameters_by_DIV.csv")), row.names = FALSE)
+# rename a few columns for readability and consistency
+setnames(x = all_data, old = c("trt","Mutual.Information"), new = c("treatment","mi"))
 
 # going back to a data frame, for compatiblity with the functions below
 all_data <- as.data.frame(all_data)
+all_data$dose <- sprintf("%.5f", all_data$dose)
+
+# save a snapshot of the combined prepared data, with the added/interpolated rows where DIV where missing
+write.csv(all_data, file = file.path(basepath,"output",paste0(dataset_title,"_parameters_by_DIV.csv")), row.names = FALSE)
 
 #Replace all NAs with zeros for AUC calculations - This may be undesirable for MEA parameters that are derived from other parameters.
 all_data[is.na(all_data)] <- 0
 
 ## Split data frame by individual wells over time (interaction term speeds this up greatly for larger datasets)
-all_data$dose <- sprintf("%.5f", all_data$dose)
 # all_data_split <- split(all_data, by = c("date","Plate.SN","well","trt","dose"), drop = TRUE, sorted = TRUE) # want to verify that this is identical in the future
-all_data_split <- split(all_data, interaction(all_data$date, all_data$Plate.SN, all_data$well, all_data$trt, all_data$dose, drop=TRUE)) # Split data into bins of single well across time (DIV
+all_data_split <- split(all_data, interaction(all_data$date, all_data$Plate.SN, all_data$well, all_data$treatment, all_data$dose, drop=TRUE)) # Split data into bins of single well across time (DIV
 
 #*****************************************************************************
 #*                              FUNCTION                                     *
@@ -277,7 +273,7 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     date <- all_data_split[[i]]$date[1]
     Plate.SN <- all_data_split[[i]]$Plate.SN[1]
     well <- all_data_split[[i]]$well[1]
-    trt <- all_data_split[[i]]$trt[1]
+    treatment <- all_data_split[[i]]$treatment[1]
     dose <- all_data_split[[i]]$dose[1]
     units <- all_data_split[[i]]$units[1]
     wllq <- min(all_data_split[[i]]$wllq) # if any DIV recording for this well still has wllq==0, don't include that well
@@ -289,14 +285,14 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     }
     
     # put vector of AUC values together
-    c("date" = date, "Plate.SN" = as.character(Plate.SN), "well" = as.character(well), "treatment" = as.character(trt), "dose" = dose, "units" = as.character(units), 
+    c("date" = date, "Plate.SN" = as.character(Plate.SN), "well" = as.character(well), "treatment" = as.character(treatment), "dose" = dose, "units" = as.character(units), 
       "wllq" = wllq, "wllq_notes" = wllq_notes, sapply(paste(endpoint_cols,"auc",sep = "_"), get, USE.NAMES = T))
   })
   
-  ##FIX!!! - (me): not sure what needs to be fixed here
+  ##FIX!!! - (amy): not sure what needs to be fixed here
   sum_table <- as.data.frame(do.call(rbind, out), stringsAsFactors=FALSE) # Re-form data frame
-  setnames(sum_table, old = paste0(assay_component_map$create_burst_ont_Data_endpoint,"_auc"), new = assay_component_map$tcpl_acsn)
-  sum_table[,assay_component_map$tcpl_acsn] <- lapply(sum_table[,assay_component_map$tcpl_acsn], as.numeric) # Change output columns class to numeric
+  # setnames(sum_table, old = paste0(assay_component_map$create_burst_ont_Data_endpoint,"_auc"), new = assay_component_map$tcpl_acsn)
+  sum_table[,paste0(endpoint_cols,"_auc")] <- lapply(sum_table[,paste0(endpoint_cols,"_auc")], as.numeric)
   #sum_table[sum_table[,"dose"]==sprintf("%.5f",0),"treatment"] <- ControlTreatmentName # control treatment name will be updated in tcpl_MEA_dev_AUC
   
   # I don't think this is needed anymore (Amy 8/17/2020)
