@@ -108,6 +108,7 @@ createCytoTable2 <- function(sourcefile, cyto_type, masterChemFiles = c()) {
     if (nrow(plateindex) == 0) {
       # then get plate from file name
       Plate.SN <-  grep("-", namesplit, val = T)
+      Plate.SN <- sub("Summary\\.xlsx","",Plate.SN) # get rid of file name ending if present
     } else {
       Plate.SN <- paste("MW",cyto_data[plateindex[1,"row"],(plateindex[1,"col"]+1)], sep = "")
     }
