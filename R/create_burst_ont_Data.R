@@ -3,8 +3,7 @@
 
 create_burst_ont_Data <-
   function(h5Files,  save.rdata=F, add.silent.wells=T , AEfile = F, remake_all = TRUE){
-    write.header=T
-    plates = unique( sapply(strsplit(basename(h5Files), split="_"), function(x) x[3]) )
+    write.header <- T
     
     # get a list of the date-plate combinations selected
     date_plates <- unique( lapply(h5Files, function(x) strsplit(basename(x), split = "_")[[1]][2:3]) )
@@ -31,7 +30,7 @@ create_burst_ont_Data <-
       # if this data has already been processed and  remake_all is not TRUE, then skip this file
       check_file <- paste( paste( csv.filename.ABEfilt, 
                     strsplit(unique(basename(h5Files.wanted)),split="_")[[1]][2] ,
-                    plates[cur.plate],sep="_"), ".csv", sep="" ) 
+                    strsplit(unique(basename(h5Files.wanted)),split="_")[[1]][3],sep="_"), ".csv", sep="" ) 
       if(!remake_all && file.exists(check_file)) {
         next
       }
@@ -196,18 +195,10 @@ create_burst_ont_Data <-
           # wait to write for burst analysis
           
           if (AEfile) {
-            if (write.header ){
-              write.table(  df, file = paste( paste( csv.filename.AEfilt,
-                                                     strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                                     plates[cur.plate],sep="_"), ".csv", sep="" ),
-                            sep=",", append = F, col.names=T, row.names=F )
-              
-            } else{
-              write.table(  df, file = paste( paste( csv.filename.AEfilt,
-                                                     strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                                     plates[cur.plate],sep="_"), ".csv", sep="" ),
-                            sep=",", append = T, col.names=F, row.names=F )
-            }
+            write.table(  df, file = paste( paste( csv.filename.AEfilt,
+                                                   strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2],
+                                                   strsplit(basename(s[[cur.file]]$file),split="_")[[1]][3],sep="_"), ".csv", sep="" ),
+                          sep=",", append = !write.header, col.names=write.header, row.names=F )
           }
           
           
@@ -405,20 +396,11 @@ create_burst_ont_Data <-
           
           
           # write data to .csv file
-          if ( write.header ){
-            write.table(  df2, 
-                          file= paste( paste( csv.filename.ABEfilt, 
-                                              strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                              plates[cur.plate],sep="_"), ".csv", sep="" ) ,
-                          sep=",", append = F, col.names=T, row.names=F )
-            
-          } else{
-            write.table(  df2, file= paste( paste( csv.filename.ABEfilt,
-                                                   strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                                   plates[cur.plate],sep="_"), ".csv", sep="" ),
-                          sep=",", append = T, col.names=F, row.names=F )
-          }
-          
+          write.table(  df2, 
+                        file= paste0( paste( csv.filename.ABEfilt, 
+                                             strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2],
+                                             strsplit(basename(s[[cur.file]]$file),split="_")[[1]][3],sep="_"), ".csv") ,
+                        sep=",", append = !write.header, col.names=write.header, row.names=F )
           
           
           
@@ -499,19 +481,11 @@ create_burst_ont_Data <-
           
           
           # write data to .csv file
-          if ( write.header ){
-            write.table(  df2, 
-                          file= paste( paste( csv.filename.ABEfilt,
-                                              strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                              plates[cur.plate], sep="_"), ".csv", sep="" ) ,
-                          sep=",", append = F, col.names=T, row.names=F )
-            
-          } else{
-            write.table(  df2, file= paste( paste( csv.filename.ABEfilt,
-                                                   strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                                   plates[cur.plate],sep="_"), ".csv", sep="" ),
-                          sep=",", append = T, col.names=F, row.names=F )
-          }
+          write.table(  df2, 
+                        file= paste0( paste( csv.filename.ABEfilt, 
+                                             strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2],
+                                             strsplit(basename(s[[cur.file]]$file),split="_")[[1]][3],sep="_"), ".csv") ,
+                        sep=",", append = !write.header, col.names=write.header, row.names=F )
           
           
         }#end of if (sum(ABEind>0))
@@ -525,7 +499,7 @@ create_burst_ont_Data <-
       if (save.rdata ){
         save(s, file = paste(h5.dir ,  paste("/s",
                                              strsplit(basename(s[[cur.file]]$file),split="_")[[1]][2] ,
-                                             plates[cur.plate] , 
+                                             strsplit(basename(s[[cur.file]]$file),split="_")[[1]][3] , 
                                              paste('thru',s[[cur.file]]$DIV, ".Rdata", sep="") ,
                                              sep="_" ), sep="")    ) 
       }
