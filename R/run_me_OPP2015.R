@@ -101,7 +101,8 @@ dat[wllt == "t", .(length(unique(apid))), by = c("treatment")] # all compounds t
 # except for Bensulide, Methamidophos, and Z-Tetrach tested on 6 apid
 
 # save the data and graphs
-write.csv(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")), row.names = F)
+setkey(dat, NULL)
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 
 if(save_notes_graphs) {

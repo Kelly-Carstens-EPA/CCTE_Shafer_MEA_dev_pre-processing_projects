@@ -84,6 +84,10 @@ readLogFile <- function(output.dir, files_type = "", files_log = "") {
     files_logs <- list.files(path = output.dir, pattern = "_files_log_.*\\.txt", recursive = F, full.names = T)
     files_log <- files_logs[order(basename(files_logs), decreasing = T)[1]] # get the most recent log file
   }
+  else if (dirname(files_log) == ".") {
+    # make sure files_log is a full.name
+    files_log <- file.path(output.dir, files_log)
+  }
   
   # send the name of files_log to the environ where read_files was called so that the chosen files_log can be documented
   assign("files_log",files_log, envir = parent.frame())

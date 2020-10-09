@@ -50,7 +50,8 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
       cat("Correcting conc's...\n")
       dat[need_to_update_concs == TRUE, conc := signif(stkc/expected_stock_conc*conc, 3)]
       update_summary <- dat[need_to_update_concs == TRUE, .(stkc, concs_in_source_dat = paste0(unique(conc_org),collapse=", ")),
-                            by = c("spid","treatment","conc","stkc","expected_stock_conc")][order(spid,conc), .(treatment, spid, stkc, expected_stock_conc, concs_in_source_dat, conc_updated = conc)]
+                            by = c("spid","treatment","conc","stkc","expected_stock_conc")][order(spid,conc), .(treatment, spid, stkc, expected_stock_conc, 
+                                                                                                                concs_in_source_dat, conc_updated = format(conc,digits=4,scientific=F))]
       # assign("update_summary",update_summary, envir = .GlobalEnv)
       cat("View the table 'update_summary' to confirm that the concentration-corrections are correct.\n")
       cat("If it looks correct, enter c to continue. Else Q to quit and fix.\n")

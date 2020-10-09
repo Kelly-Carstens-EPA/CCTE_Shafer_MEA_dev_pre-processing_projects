@@ -33,49 +33,58 @@ dataset_checks <- function(dat) {
   
   # range by acsn
   cat("\nRange of rval's by acsn:\n")
-  print(dat[wllq == 1, .(min = format(min(rval),digits=2,scientific = F), 
-                   median = format(median(rval),digits=2,scientific = F),
-                   max = format(max(rval),digits=2,scientific = F)), by = "acsn"])
+  print(dat[wllq == 1, .(min = format(min(rval,na.rm=T),digits=2,scientific = F), 
+                   median = format(median(rval,na.rm=T),digits=2,scientific = F),
+                   max = format(max(rval,na.rm=T),digits=2,scientific = F),
+                   num_NA = sum(is.na(rval))), by = "acsn"][order(acsn)])
   
   # PLOTS to visually confirm results
   
   # view all by plate
-  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
              col = "blue", main = paste0(dataset_title," NFA Mean Firing Rate AUC by Plate"))
-  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
              add = T)
   legend(x = "topright", legend = c("control","all treated"), col = c("black","blue"), pch = c(19,1), bg = "transparent")
   
-  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & grepl("dev_active_electrodes_number",acsn)], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & acsn == "CCTE_Shafer_MEA_dev_active_electrodes_number"], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
              col = "blue", main = paste0(dataset_title," NFA # Active Electrodes AUC by Plate"))
-  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & grepl("dev_active_electrodes_number",acsn)], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & acsn == "CCTE_Shafer_MEA_dev_active_electrodes_number"], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
              add = T)
   legend(x = "topright", legend = c("control","all treated"), col = c("black","blue"), pch = c(19,1), bg = "transparent")
+  
+  # define 'plotdat' - of the AUC MFR, with specialized conc group labels
+  plotdat <- dat[acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"]
+  plotdat[, conc_grp := ifelse(wllt == "n",paste0(treatment,"_",conc),signif(conc,1))]
+  conc_grps <- unique(plotdat$conc_grp)
+  plotdat$conc_grp <- factor(plotdat$conc_grp, levels = c(grep("_",conc_grps,val = T),sort(unique(as.numeric(conc_grps[!grepl("_",conc_grps)])))), ordered = T)
   
   # view all compounds together by dose
-  stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter", las = 2,
+  stripchart(rval ~ conc_grp, plotdat[wllq == 1], vertical = T, pch = 1, method = "jitter", las = 2,
              main = paste0("Mean Firing Rate AUC by dose for all compounds in ",dataset_title), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)", xlab = "conc")
-  if (dat[grepl("firing_rate_mean",acsn), any(wllq==0)])
-    stripchart(rval ~ signif(conc,1), dat[wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 1, method = "jitter",
+  if (plotdat[, any(wllq==0)])
+    stripchart(rval ~ signif(conc,1), dat[wllq == 0 & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"], vertical = T, pch = 1, method = "jitter",
                add = T, col = "red")
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c("black","red"), pch = c(1,1), bg = "transparent")
   
   # find a compound that is likely to be a positive and plot dose response
-  plot_spid <- dat[conc == max(conc) & grepl("firing_rate_mean",acsn), .(med_rval = median(rval)), by = "spid"][med_rval == min(med_rval), spid[1]]
+  plot_spid <- dat[conc == max(conc) & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean", .(med_rval = median(rval)), by = "spid"][med_rval == min(med_rval), spid[1]]
   plot_plates <- control_dat <- dat[spid == plot_spid, unique(apid)]
-  stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, las = 2,
+  stripchart(rval ~ conc_grp, plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1], vertical = T, pch = 19, las = 2,
              col = rgb(0.1,0.1,0.1,0.5),
-             ylim = range(dat[wllq == 1 & grepl("firing_rate_mean",acsn),rval]), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)",
+             ylim = range(dat[wllq == 1 & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean",rval]), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)",
              xlab = "conc", main = paste0(dat[spid == plot_spid,unique(treatment)]," Mean Firing Rate AUC Dose Response"))
-  if (dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & grepl("firing_rate_mean",acsn), any(wllq==0)])
-    stripchart(rval ~ conc, dat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 0 & grepl("firing_rate_mean",acsn)], vertical = T, pch = 19, las = 2,
+  if (plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n"), any(wllq==0)])
+    stripchart(rval ~ conc_grp, plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 0], vertical = T, pch = 19, las = 2,
                add = TRUE, col = rgb(0.9,0,0,0.5))
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c(rgb(0.1,0.1,0.1,0.5),rgb(0.9,0,0,0.5)), pch = c(19,19), bg = "transparent")
   
   # Cytotox
-  stripchart(rval ~ signif(conc,3), dat[wllq == 1 & grepl("AB",acsn)],
+  stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("AB",acsn)], las = 2,
              vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("AB Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
-  stripchart(rval ~ signif(conc,3), dat[wllq == 1 & grepl("LDH",acsn)],
-             vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("LDH Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
-  
+  if (nrow(dat[wllq == 1 & grepl("LDH",acsn)]) > 0) {
+    stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("LDH",acsn)], las = 2,
+               vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("LDH Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
+  }
+ 
 }

@@ -56,7 +56,7 @@ if(resp %in% c("r","a")) {
   # view summary of files
   file_names <- readLogFile(main.output.dir)
   cultures <- unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("[Cc]ulture",x,val = T)))
-  cultures <- lapply(cultures, function(x) if(length(x)==0) x <- "") # for datasets that don't have Culture tag phrase
+  cultures <- lapply(cultures, function(x) ifelse(length(x)==0, "", x)) # for datasets that don't have Culture tag phrase
   for (culture in cultures) {
     cat("\n\n",culture,"\n",sep = "")
     culture <- sub("\\(","\\\\(",culture)

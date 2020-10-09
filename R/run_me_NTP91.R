@@ -88,6 +88,7 @@ dat[treatment == "L Ascorbic acid", treatment := "L-Ascorbic acid"]
 dat[treatment == "Manganese tricarbonyl 12345 eta 1 methyl 24 cyclopentadien 1 yl", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
 dat[treatment == "Tris 2chloroisopropyl phosphate", treatment := "Tris(2-chloroethyl) phosphate"]
 dat[treatment == "tert Butylphenyl diphenyl phosphate", treatment := "tert-Butylphenyl diphenyl phosphate"]
+dat[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"] # this is the only phosphate in the spidmap that would make sense
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)
@@ -103,6 +104,7 @@ dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treat
 # if any, standardize those before continuing.
 problem_comps <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1, unique(treatment)]
 problem_comps
+# character(0)
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
@@ -118,7 +120,7 @@ dataset_checks(dat)
 
 
 # save dat and graphs
-write.csv(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")), row.names = F)
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")), row.names = F)
 rm(dat)
 
 if(save_notes_graphs) {

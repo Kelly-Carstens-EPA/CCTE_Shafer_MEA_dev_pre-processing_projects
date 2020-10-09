@@ -43,20 +43,33 @@ dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dat
 # change untreated wells to Control Treatment ------------------------------------
 dat[wllt == "n", treatment := default_ControlTreatmentName]
 # dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "")
-
+dat[wllt == "n", conc := 0.001]
 
 # prepare spidmap
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Unit) # all mM
 setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
-spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
+spidmap[, expected_stock_conc := 30] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
 # update expected_stock_conc for individual compouunds where needed 
 # for example, 
 # spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
 spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
+spidmap <- spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)]
+
+spidmap2 <- as.data.table(read.xlsx(file.path(root_output_dir,"Sample IDs","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx"), sheet = 1))
+head(spidmap2)
+setnames(spidmap2, old = c("PREFERRED_NAME", "ALIQUOT_CONCENTRATION", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
+unique(spidmap2$ALIQUOT_CONCENTRATION_UNIT) # mM
+spidmap2[, expected_stock_conc := 20]
+spidmap <- rbind(spidmap, spidmap2[, .(treatment, spid, stock_conc, expected_stock_conc)])
+
+# # just confirming that we have all of the spids
+# setdiff(parameter_data$trt, spidmap$treatment) # "Acetaminophen" "Bisphenol A"   "Loperamide"
+# This long name is Loperamide hydrochloride
+dat[treatment == "Loperamide", treatment := "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride"]
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)

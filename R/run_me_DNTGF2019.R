@@ -5,7 +5,7 @@ graphics.off()
 ###################################################################################
 dataset_title <- "DNTGF2019" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -98,7 +98,10 @@ dat[treatment %in% problem_comps, .(paste0(sort(unique(signif(conc,3))),collapse
 # get a summary of the treatments by srcf
 summary_dat <- dat[treatment %in% problem_comps, .(conc_shown = unique(conc)), by = .(apid, rowi, coli, treatment, srcf)]
 summary_dat[, conc_round := signif(conc_shown, 1)]
-summary_dat[, conc_source := ifelse(grepl("AUC",srcf),"AUC","Calc")]
+summary_dat[, conc_source := ""]
+summary_dat[grepl("(Calc)|(Summary)",srcf), conc_source := "Calc"]
+summary_dat[grepl("AUC",srcf), conc_source := "AUC"]
+summary_dat[grepl("DIV",srcf), conc_source := "DIV"]
 summary_wide <- dcast(summary_dat, apid + treatment + rowi + coli ~ conc_source, value.var = "conc_shown")
 
 # going to check out these treatments 1 by 1
@@ -110,18 +113,18 @@ summary_wide[treatment == "34"][order(AUC), .(AUC, round(Calc, 2))] # one differ
 summary_wide[treatment == "37"][order(AUC), .(AUC, round(Calc, 2))] # yep, these are all equal
 # let's just check all at once for this
 summary_wide[round(Calc, 2) != AUC]
-# apid treatment rowi coli   AUC       Calc
-# 1: 20190904_MW69-3817        34    3    4  0.30  0.2890500
-# 2: 20190904_MW69-3817        34    3    7  9.64  9.6350000
-# 3: 20190904_MW69-3818        34    1    4  0.30  0.2890500
-# 4: 20190904_MW69-3818        34    1    7  9.64  9.6350000
-# 5: 20190904_MW69-3819        34    2    4  0.30  0.2890500
-# 6: 20190904_MW69-3819        34    2    7  9.64  9.6350000
-# 7: 20190918_MW70-2406        46    4    4  0.30  0.2870715
-# 8: 20190918_MW70-2406        46    4    5  1.00  0.9569050
-# 9: 20190918_MW70-2406        46    4    6  3.00  2.8707150
-# 10: 20190918_MW70-2406        46    4    7 10.00  9.5690500
-# 11: 20190918_MW70-2406        46    4    8 30.00 28.7071500
+# apid treatment rowi coli   AUC      Calc   DIV
+# 1: 20190904_MW69-3817        34    3    4  0.30  0.289050  0.30
+# 2: 20190904_MW69-3817        34    3    7  9.64  9.635000  9.64
+# 3: 20190904_MW69-3818        34    1    4  0.30  0.289050  0.30
+# 4: 20190904_MW69-3818        34    1    7  9.64  9.635000  9.64
+# 5: 20190904_MW69-3819        34    2    4  0.30  0.289050  0.30
+# 6: 20190904_MW69-3819        34    2    7  9.64  9.635000  9.64
+# 7: 20190918_MW70-2406        46    4    4  0.30  0.287071  0.30
+# 8: 20190918_MW70-2406        46    4    5  1.00  0.956905  1.00
+# 9: 20190918_MW70-2406        46    4    6  3.00  2.870715  3.00
+# 10: 20190918_MW70-2406        46    4    7 10.00  9.569050 10.00
+# 11: 20190918_MW70-2406        46    4    8 30.00 28.707150 30.00
 # for these 2 compounds, what is "correct"?
 spidmap[treatment == "34", signif(stock_conc/expected_stock_conc*10,3)] # 9.63
 # so for 34, again I want to just use the values from the Calc file.
@@ -295,9 +298,9 @@ rm(dat2)
 rm(odat)
 dat[, c("acsn_bk","plate.id") := NULL]
 
-
 # save dat and graphs
-write.csv(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")), row.names = F)
+setkey(dat, NULL) # remove all the indicies I inadvertently assigned
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 
 if(save_notes_graphs) {

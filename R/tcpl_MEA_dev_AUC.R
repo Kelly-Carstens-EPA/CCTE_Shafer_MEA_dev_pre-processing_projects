@@ -24,62 +24,66 @@
 
 tcpl_MEA_dev_AUC <- function(basepath, dataset_title, 
                              AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
-                             cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")))
+                             DIVsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_parameters_by_DIV.csv")), 
+                             cytotox_filename = file.path(basepath, "output", paste0(dataset_title, "_cytotox.csv")),
+                             assay_component_map_filename = file.path(dirname(basepath), "mea_nfa_component_name_map.csv"))
 {
   
   require(data.table)
   
-  ## read in the data
+  # get DIV data and melt
+  DIV_data <- fread(DIVsourcefilename)
+  DIV_data_test <- as.data.table(read.csv(DIVsourcefilename, stringsAsFactors = FALSE))
+  idcols <- c("date","Plate.SN","well","treatment","dose","units","wllq","wllq_notes")
+  endpoint_cols <- setdiff(names(DIV_data),c(idcols,"DIV","file.name"))
+  DIV_data[, (endpoint_cols) := lapply(.SD, as.numeric), .SDcols = endpoint_cols]
+  DIV_data <- melt(DIV_data, id.vars = c(idcols,"DIV"), measure.vars = endpoint_cols, variable.name = "src_acsn",
+                value.name = "rval", variable.factor = FALSE)
+  DIV_data[, `:=`(src_acsn = paste0(src_acsn,"_DIV",DIV),
+                  srcf = basename(DIVsourcefilename))]
+  DIV_data[, DIV := NULL]
+  
+  # get AUC data and melt
   AUC <- fread(AUCsourcefilename)
+  AUC <- melt(AUC, id.vars = idcols, measure.vars = paste0(endpoint_cols,"_auc"), variable.name = "src_acsn",
+                value.name = "rval", variable.factor = FALSE)
+  AUC[, srcf := basename(AUCsourcefilename)]
+  
+  # rbind DIV and AUC data
+  longdat <- rbind(DIV_data, AUC)
+  longdat[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",well)), rowi = match(sub("[[:digit:]]","",well), LETTERS))]
+  longdat[, c("well","units") := list(NULL)]
+  setnames(longdat, old = "dose", new = "conc")
+  rm(list = c("DIV_data","AUC"))
+  
+  # add cytotox data
   cytotox_data <- fread(cytotox_filename)
+  longdat <- rbind(longdat, cytotox_data)
+  rm(list = c("cytotox_data"))
+  longdat[, treatment := as.character(treatment)] # sometimes the treatment is read as an integer instead of a char
   
-  ## rename columns before melting
-  names(AUC)[names(AUC) == 'dose'] <- "conc"
-  AUC[, apid := paste(date, Plate.SN, sep = "_")]
-  cytotox_data[, apid := paste(date, Plate.SN, sep = "_")]
+  # replace the src_acsn with the TCPL acsn
+  assay_component_map <- as.data.table(read.csv(assay_component_map_filename, stringsAsFactors = FALSE))
+  longdat <- merge(longdat, assay_component_map, by = c("src_acsn"), all.x = T)
+  if (any(is.na(unique(longdat$acsn)))) {
+    print(longdat[is.na(acsn), unique(src_acsn)])
+    stop(paste0("The above src_acsn's are not found in ",assay_component_map_filename))
+  }
   
+  # Define apid
+  longdat[, apid := paste(date, Plate.SN, sep = "_")]
   
-  ## split well_id to rows and columns
-  ## Defining coli
-  AUC$coli <- substring(AUC$well, 2, 2)
+  # Assign wllt
+  longdat[, wllt := "t"]
+  longdat[ conc == 0, wllt := "n"]
   
-  ## Defining rowi
-  AUC$rowi <- substring(AUC$well, 1, 1)
-  AUC[rowi == 'A', rowi := '1']
-  AUC[rowi == 'B', rowi := '2']
-  AUC[rowi == 'C', rowi := '3']
-  AUC[rowi == 'D', rowi := '4']
-  AUC[rowi == 'E', rowi := '5']
-  AUC[rowi == 'F', rowi := '6']
-  
-  # add index
-  AUC$ID <- seq.int(nrow(AUC))
-  # remove unneeded columns
-  AUC_smaller <- AUC[, -c("units", "well")]
-  #names(AUC_smaller)[names(AUC_smaller) == "trt"] = "treatment"
-  # reshape - all of the columns not listed become rows. 
-  # parameter names become a column "variable", and corresponding values are under "value"
-  AUC_smaller_melted <- melt(AUC_smaller, id = c("date","Plate.SN","apid","treatment","ID", "rowi", "coli", "conc","wllq","wllq_notes"), 
-                             variable.name = "acsn", value.name = "rval", variable.factor = FALSE)
-  
-  # add srcf
-  AUC_smaller_melted$srcf <- basename(AUCsourcefilename)
-  
-  # remove unneeded columns
-  usecols <- c("apid","treatment","rowi","coli","wllq","wllq_notes","conc","rval", "srcf","acsn")
-  AUC_smaller_melted = AUC_smaller_melted[, ..usecols]
-  # remove columns and make sure columns in same order
-  cytotox_data = cytotox_data[, ..usecols]
-  mc0_data = rbind(AUC_smaller_melted, cytotox_data)
-  mc0_data[, treatment := as.character(treatment)] # sometimes the treatment is read as an integer instead of a char
-  
-  # assign wllt
-  mc0_data[, wllt := "t"]
-  mc0_data[ conc == 0, wllt := "n"]
+  # get the desired columns, in the desired order
+  longdat <- longdat[, .(apid, rowi, coli, treatment, conc, wllq, wllq_notes, wllt, rval, acsn, srcf)]
   
   cat("long-format data is ready.\n")
-  return(mc0_data)
+  return(longdat)
 }
+
 
 # additional functions to prepare the data for TCPL mc0 format
 
@@ -89,7 +93,7 @@ update_control_well_treatment <- function(dat, control_compound, culture_date = 
     apids <- Reduce(f = union, x = lapply(plates, function(x) grep(x, apids, val = T)))
   }
   cat("Control treatment will be updated to",control_compound,"for the following wells:\n")
-  print(dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, unique(.SD), .SDcols = c("apid","treatment","rowi","coli")][order(apid,rowi,coli)])
+  print(dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, unique(.SD), .SDcols = c("apid","treatment","rowi","coli","conc")][order(apid,rowi,coli)])
   dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, treatment := control_compound]
 }
 
@@ -97,16 +101,16 @@ check_and_assign_spids <- function(dat, spidmap) {
   if (length(setdiff(c("treatment","stock_conc","spid"), names(spidmap))) > 0) {
     stop("The following columns are not found in spidmap: ",paste0(setdiff(c("treatment","stock_conc","spid"), names(spidmap)),collapse =","))
   }
-  if (spidmap[!is.na(spid), .(length(unique(spid))), by = "treatment"][,any(V1 !=1)]) {
-    stop(paste0("The following treatment maps to multiple spids: ",
-                spidmap[!is.na(spid), .(length(unique(spid))), by = "treatment"][V1 == 1,c(treatment)]))
+  if (spidmap[!is.na(spid) & treatment %in% unique(dat$treatment), .(length(unique(spid))), by = "treatment"][,any(V1 !=1)]) {
+    stop(paste0("The following treatments map to multiple spids: ",
+                spidmap[!is.na(spid) & treatment %in% unique(dat$treatment), .(length(unique(spid))), by = "treatment"][V1 != 1,paste0(treatment,collapse=", ")]))
   }
   dat <- merge(dat, spidmap[, .(spid, treatment)], by = "treatment", all.x = TRUE)
   dat[wllt == "n", spid := treatment]
   if (dat[wllt == "t", any(is.na(spid))]) {
-    cat("The following treatment don't have a corresponding spid in the spidmap:\n")
+    cat("The following treatments don't have a corresponding spid in the spidmap:\n")
     print(dat[wllt == "t" & is.na(spid), unique(treatment)])
-    stop("Adjust AUC and cyto data before continuing")
+    stop("Adjust input dat before continuing")
   }
   return(dat)
 }

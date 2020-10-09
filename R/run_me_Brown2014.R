@@ -5,12 +5,12 @@ graphics.off()
 ###################################################################################
 dataset_title <- "Brown2014" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
-spidmap_file <- ""
-spid_sheet <- ""
+spidmap_file <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES202_EPA-Shafer_103_20191218_key.xlsx"
+spid_sheet <- 1
 
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
@@ -39,22 +39,76 @@ source(file.path(scripts.dir, 'source_steps.R'))
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
 
+# confirming consistent treatment names
+dat[, .N, by = .(treatment)] # yep, no inconsistent naming.
+
 
 # change untreated wells to Control Treatment ------------------------------------
 dat[wllt == "n", treatment := default_ControlTreatmentName]
-# update other control wells as needed, e.g.
-dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20190904", plates = paste0("MW69-381",7:9), control_rowi = which(LETTERS[1:6] %in% c("E","F")))
-dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = c("20190710","20190724"), control_rowi = 1:6)
-dat[wllt == "n", .N, by = "treatment"]
+# Acetaminophen, Domic Acid, and Sodium Orthovandate should be "water" for all cultures
+water_trts <- c("Acetaminophen","Domoic Acid","Sodium Orthovanadate")
+
+# 20140205
+dat[grepl("^20140205",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
+# treatment rowi
+# 1:        Acetaminophen    1
+# 2:          Domoic Acid    3
+# 3: Sodium Orthovanadate    6
+water_trt_rows <- dat[grepl("^20140205",apid) & treatment %in% water_trts, unique(rowi)]
+dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140205", control_rowi = water_trt_rows)
+
+# 20140212
+dat[grepl("^20140212",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
+# treatment rowi
+# 1:        Acetaminophen    1
+# 2:          Domoic Acid    3
+# 3: Sodium Orthovanadate    6
+water_trt_rows <- dat[grepl("^20140212",apid) & treatment %in% water_trts, unique(rowi)]
+dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140212", control_rowi = water_trt_rows)
+# Control treatment will be updated to Water for the following wells:
+#   apid treatment rowi coli conc
+# 1: 20140212_MW1007-27      DMSO    1    1    0
+# 2: 20140212_MW1007-27      DMSO    1    8    0
+# 3: 20140212_MW1007-27      DMSO    3    1    0
+# 4: 20140212_MW1007-27      DMSO    3    8    0
+# 5: 20140212_MW1007-27      DMSO    6    1    0
+# 6: 20140212_MW1007-27      DMSO    6    8    0
+
+# 20140402
+dat[grepl("^20140402",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
+# treatment rowi
+# 1:        Acetaminophen    1
+# 2:          Domoic Acid    3
+# 3: Sodium Orthovanadate    6
+water_trt_rows <- dat[grepl("^20140402",apid) & treatment %in% water_trts, unique(rowi)]
+dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140402", control_rowi = water_trt_rows)
+
+# 20140423
+dat[grepl("^20140423",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
+# treatment rowi
+# 1:        Acetaminophen    1
+# 2:          Domoic Acid    3
+# 3: Sodium Orthovanadate    6
+water_trt_rows <- dat[grepl("^20140423",apid) & treatment %in% water_trts, unique(rowi)]
+dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140423", control_rowi = water_trt_rows)
+
+dat[wllt == "n", .N, by = c("treatment","rowi")]
+# treatment rowi   N
+# 1:     Water    1 688
+# 2:      DMSO    2 688
+# 3:     Water    3 688
+# 4:      DMSO    4 688
+# 5:      DMSO    5 688
+# 6:     Water    6 688
+dat[wllt == "n", conc := 0.001] # All wells have 0.1% solvent
 
 
 # Assign SPIDs ------------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
-unique(spidmap$Unit) # all mM? - yes
-setnames(spidmap, old = c(2,5,3), new = c("treatment","stock_conc","spid"))
+unique(spidmap$ALIQUOT_CONCENTRATION_UNIT) # all mM? - yes
+setnames(spidmap, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
-spidmap[, spid := paste0("EPAPLT0",spid)]
 spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
 # update expected_stock_conc for individual compouunds where needed 
 # for example, 
@@ -63,11 +117,11 @@ spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
-spidmap2 <- as.data.table(read.xlsx("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNTGF2019/glufosinates_spidmap.xlsx", sheet = 1))
-setnames(spidmap2, old = c("Compound.name.in.MEA.data","SPID"), new = c("treatment","spid"))
+spidmap2 <- as.data.table(read.xlsx("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES203_EPA-Shafer_42_20200110_key.xlsx", sheet = 1))
+head(spidmap2)
+unique(spidmap$TARGET_CONCENTRATION_UNIT) # mM
+setnames(spidmap2, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID","TARGET_CONCENTRATION"), new = c("treatment","stock_conc","spid","expected_stock_conc"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
-spidmap2[, stock_conc := NA_real_] # will get actual stock conc's from invitrodb
-spidmap2[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
 spidmap2[, treatment := as.character(treatment)]
 spidmap2[, stock_conc := as.numeric(stock_conc)]
 usecols <- c("spid","treatment","stock_conc","expected_stock_conc")
@@ -75,7 +129,21 @@ spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
 spidmap
 
 # rename any compounds, if needed
-dat[treatment == "Glufo", treatment := "L-Glufosinate Ammonium"]
+unique(dat$treatment)
+spidmap[treatment == "Bisindolylmaleimide I"]
+dat[treatment == "Bisindolymaleimide 1", treatment := "Bisindolylmaleimide I"] # Shafer_42 list CASRN is 133052-90-1, which matches the casn shown in paper
+dat[treatment == "Domoic Acid", treatment := "L-Domoic acid"] # Shafer_42 CASRN is 14277-97-5, which matches the casn shown in the paper
+dat[treatment == "Sodium Orthovanadate", treatment := "Sodium orthovanadate"] # just change in captilization
+
+spidmap[treatment %in% unique(dat$treatment)]
+# spid             treatment stock_conc expected_stock_conc
+# 1: EX000404         Acetaminophen         20                  20
+# 2: EX000487         L-Domoic acid        100                 100
+# 3: EX000492            Loperamide        100                 100
+# 4: EX000475 Bisindolylmaleimide I        100                 100
+# 5: EX000498            Mevastatin        100                 100
+# 6: EX000499  Sodium orthovanadate        100                 100
+# looks like all are in Shafer_42 list, except for Actaminophen
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)
@@ -91,67 +159,64 @@ dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treat
 # if any, standardize those before continuing.
 problem_comps <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1, unique(treatment)]
 problem_comps
-# [1] "100" "18"  "34"  "37"  "46"  "49"  "8"   "82"  "88"  "97" 
+# "Acetaminophen"        "L-Domoic acid"        "Sodium orthovanadate"
 dat[treatment %in% problem_comps, .(paste0(sort(unique(signif(conc,3))),collapse=",")), by = .(treatment)]
 
 # get a summary of the treatments by srcf
 summary_dat <- dat[treatment %in% problem_comps, .(conc_shown = unique(conc)), by = .(apid, rowi, coli, treatment, srcf)]
 summary_dat[, conc_round := signif(conc_shown, 1)]
-summary_dat[, conc_source := ifelse(grepl("AUC",srcf),"AUC","Calc")]
+summary_dat[, conc_source := ""]
+summary_dat[grepl("(Calc)|(Summary)",srcf), conc_source := "Calc"]
+summary_dat[grepl("AUC",srcf), conc_source := "AUC"]
+summary_dat[grepl("DIV",srcf), conc_source := "DIV"]
 summary_wide <- dcast(summary_dat, apid + treatment + rowi + coli ~ conc_source, value.var = "conc_shown")
 
-# going to check out these treatments 1 by 1
-summary_wide[treatment == "100"][order(AUC)] # it is clear that the issue is just due to rounding from the AUC data
-# I wouldlike to just take the Calc values. see if same for other comopunds
+summary_wide[round(AUC,2) != round(Calc,2)]
+# I already verified all of the conc's in the maestro exp log file
+# So I am going to take those conc's over the conc's in teh Calc/Summary data
 
-summary_wide[treatment == "18"][order(AUC), .(AUC, round(Calc, 2))] # yep, these are all equal
-summary_wide[treatment == "34"][order(AUC), .(AUC, round(Calc, 2))] # one difference remains: 9.64  9.63
-summary_wide[treatment == "37"][order(AUC), .(AUC, round(Calc, 2))] # yep, these are all equal
-# let's just check all at once for this
-summary_wide[round(Calc, 2) != AUC]
-# apid treatment rowi coli   AUC       Calc
-# 1: 20190904_MW69-3817        34    3    4  0.30  0.2890500
-# 2: 20190904_MW69-3817        34    3    7  9.64  9.6350000
-# 3: 20190904_MW69-3818        34    1    4  0.30  0.2890500
-# 4: 20190904_MW69-3818        34    1    7  9.64  9.6350000
-# 5: 20190904_MW69-3819        34    2    4  0.30  0.2890500
-# 6: 20190904_MW69-3819        34    2    7  9.64  9.6350000
-# 7: 20190918_MW70-2406        46    4    4  0.30  0.2870715
-# 8: 20190918_MW70-2406        46    4    5  1.00  0.9569050
-# 9: 20190918_MW70-2406        46    4    6  3.00  2.8707150
-# 10: 20190918_MW70-2406        46    4    7 10.00  9.5690500
-# 11: 20190918_MW70-2406        46    4    8 30.00 28.7071500
-# for these 2 compounds, what is "correct"?
-spidmap[treatment == "34", signif(stock_conc/expected_stock_conc*10,3)] # 9.63
-# so for 34, again I want to just use the values from the Calc file.
-spidmap[treatment == "46", signif(stock_conc/expected_stock_conc*10,3)] # 10
-# for this compound, I want to use the conc's listed from the AUC data instead
+summary_wide[AUC != DIV] # just confirming these are all the same
 
-summary_wide[, use_conc := Calc]
-summary_wide[treatment == "46", use_conc := AUC]
-summary_wide[, use_conc := as.numeric(use_conc)]
-
+summary_wide[, use_conc := AUC]
 dat <- merge(dat, summary_wide[, .(apid, treatment, rowi, coli, use_conc)], all.x = T, by = c("apid","treatment","rowi","coli"))
 dat[!is.na(use_conc), conc := use_conc]
 dat[, use_conc := NULL]
 
-# actually, for 34, I need to just update this manually
-dat[treatment == "34", unique(conc)]
-dat[treatment == "34", conc_test := signif(conc, 1)] # I can do this becuase teh stock conc is close enough to 20, so will round correctly
-dat[treatment == "34", .(unique(conc_test)), by = "conc"]
-# conc    V1
-# 1:  0.028905  0.03
-# 2:  0.096350  0.10
-# 3:  0.289050  0.30
-# 4:  0.963500  1.00
-# 5:  2.890500  3.00
-# 6:  9.635000 10.00
-# 7: 28.905000 30.00
-dat[treatment == "34", conc := signif(conc, 1)]
-dat[, conc_test := NULL]
-
 # confirming this is empty now
 dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
+
+# confirm conc ranges included with the stated conc ranges in paper
+dat[, .(concs_tested = paste0(sort(unique(conc)),collapse=",")), by = .(treatment, spid)]
+# treatment     spid                          concs_tested
+# 1:         Acetaminophen EX000404                     0.1,0.3,1,3,10,30
+# 2: Bisindolylmaleimide I EX000475                   0.03,0.1,0.3,1,3,10
+# 3:                  DMSO     DMSO                                 0.001
+# 4:         L-Domoic acid EX000487 3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1
+# 5:            Loperamide EX000492                     0.1,0.3,1,3,10,30
+# 6:            Mevastatin EX000498                     0.1,0.3,1,3,10,30
+# 7:  Sodium orthovanadate EX000499                0.03,0.1,0.3,1,3,10,30
+# 8:                 Water    Water                                 0.001
+
+# domic acid - paper says range is 0.003 to 1. But this goes does to 0.0003. 
+dat[grepl("Domoic acid",treatment) & conc == 0.0003, unique(apid)] # "20140205_MW1007-26"
+# Lab notebook confirmed 0.0003 for well C2, and 0.001 for C3
+# Published downloaded data has removed wells C2 and C3 for this plate. huh
+dat[grepl("Domoic acid",treatment) & conc < 0.003, .N, by = .(apid)] # only tested at these conc's on this plate
+# So either there was a wllq issue, or they just didn't want to include the data for conc's that low
+# I don't see any notes in the lab notebook
+# I can see why they might have watned fewer conc's for their work
+# But I think we should include now?
+
+# sodium orthovanadate should include 0.01
+# according to published data, this was tested on 20140716... ugh.
+
+# options:
+# - just exclude this concentration
+# - ask Kathleen to look for the spike list files for 20140716
+# - Try to use the data from the existing h5 files
+# - Just use the published prepared data values (but could not get MI w/o h5 data)
+
+# I am just going to more forward, for now
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
@@ -165,10 +230,89 @@ source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
 
 # Any other plots or things to check?
+dat[wllt == "n", .N, by = .(apid, acsn)][N != 12]
+# Empty data.table (0 rows and 3 cols): apid,acsn,N
 
+# correlation plot with the published data
+pub_dat <- as.data.table(read.csv(file.path(root_output_dir,dataset_title,"deprecated_data_preparation","Published Downloaded Data","Final_Data_Set_SA1_DNT_Paper1 (2)(updated)_CF.csv"),stringsAsFactors = F))
+div_dat <- as.data.table(read.csv(file.path(root_output_dir,dataset_title,"output",paste0(dataset_title,"_parameters_by_DIV.csv")),stringsAsFactors = F))
+comb_dat <- merge(pub_dat, div_dat, by = c("date","Plate.SN","well","DIV"), suffixes = c(".org",".new"), all = T)
+
+# check basic well ID stuff
+comb_dat[treatment != trt] # empty
+comb_dat[dose.new != dose.org] # just Acetaminophen from well A6 and A7 20140212. I switched these 2 doses according to the lab notebook, looks like they did not.
+comb_dat[is.na(date)]
+setdiff(div_dat$date, pub_dat$date) # empty
+setdiff(pub_dat$date, div_dat$date) # 20140716 20140730, as expected
+
+# compare rval's
+plot(comb_dat[, .(meanfiringrate.new, meanfiringrate.org)], main ="Correlation plot of the Published MFR values vs current, for all DIV")
+abline(0,1)
+# not too bad. I am really looking mroe for anomalies than for a general pattern of difference -
+# I know that there have been slight changes in the script, and that's okay.
+# more concerned if the wrong data values got mapped to some wells
+comb_dat[abs(meanfiringrate.new - meanfiringrate.org) > 1] # 2 instances
+
+plot(comb_dat[, .(nAE.new, nAE.org)], main = "Correlation plot of the Published nAE values vs current, for all DIV")
+abline(0,1)
+# not too bad. I am really looking mroe for anomalies than for a general pattern of difference -
+# I know that there have been slight changes in the script, and that's okay.
+# more concerned if the wrong data values got mapped to some wells
+comb_dat[abs(nAE.new - nAE.org) > 2, .(date, Plate.SN, well, DIV, trt, dose.org, dose.new, nAE.org, nAE.new)] # 2 instances
+
+# I think I just want to "feel" that the difference is due to just spike list file chopping
+comb_dat[abs(meanfiringrate.new - meanfiringrate.org) > 1, .(date, Plate.SN, well, DIV, trt, dose.org, dose.new, meanfiringrate.org, meanfiringrate.new)]
+# date  Plate.SN well DIV        trt dose.org dose.new meanfiringrate.org meanfiringrate.new
+# 1: 20140205 MW1007-26   E6   9 Mevastatin       10       10           6.558445           4.603398
+# 2: 20140212 MW1007-27   E5   9 Mevastatin        3        3           7.555179           3.642779
+
+# library(rhdf5)
+# new_h5 <- h5read(list.files(file.path(root_output_dir,dataset_title,"h5Files"), pattern = "20140212_MW1007-27_09", full.names= T), name = "/")
+# str(new_h5)
+# is.ordered(new_h5$spikes) # FALSE
+# beg_time <- min(new_h5$spikes)
+# end_time <- max(new_h5$spikes)
+# nspikes <- length(new_h5$spikes)
+# mfr_by_channel <- new_h5$sCount / (end_time - beg_time)
+# grep("E5",new_h5$names, val = T) # "E5_12" "E5_14" "E5_21" "E5_31"
+# (welli_channels <- mfr_by_channel[grepl("E5",new_h5$names)])
+# # 7.124624908 0.132818858 0.002213648 0.081904962
+# mean(welli_channels[welli_channels > 5/60]) # 3.642779. Yay, that's what is in the actual data!!
+# 
+# org_h5 <- h5read("L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/20140212 Ontogeny/h5Files/ON_20140212_MW1007-27_DIV09_001.h5", name = "/")
+# str(org_h5)
+# is.ordered(org_h5$spikes) # FALSE
+# beg_time <- min(org_h5$spikes)
+# end_time <- max(org_h5$spikes)
+# mfr_by_channel <- org_h5$sCount / (end_time - beg_time)
+# grep("E5",org_h5$names, val = T) # "E5_12" "E5_14" "E5_21" "E5_31" "E5_42"
+# (welli_channels <- mfr_by_channel[grepl("E5",org_h5$names)])
+# # 7.555179373 0.057554838 0.006640943 0.070836724 0.004427295
+# mean(welli_channels[welli_channels > 5/60]) # 7.555179. Yep!! this is the value they got before
+# 
+# # 5/60 = 0.08333333
+# # what really drives the differences is well E5_14
+# which(new_h5$names == "E5_14") # 446
+# spike_index_start <- sum(new_h5$sCount[1:445])
+# range(new_h5$spikes[spike_index_start:(spike_index_start + new_h5$sCount[446])]) # 8.39064 899.96120
+# 
+# which(org_h5$names == "E5_14") # 443
+# spike_index_start <- sum(org_h5$sCount[1:442])
+# range(org_h5$spikes[spike_index_start:(spike_index_start + org_h5$sCount[443])]) # 216.8342 1067.3945
+# # huh, so they actually just shifted by about 160 seconds...
+# min(org_h5$spikes) # 164.0084
+# max(org_h5$spikes) # 1067.495
+# org_h5$sCount[443] # 52
+# new_h5$sCount[446] # 120
+# 
+# # huh, so I guess the difference is in the recording slice used.
+# # But again, this is the biggest anamoly that we see
+# # for most wells, there is hardly any difference.
+# # I am content to more forward.
+# rm(list = c("new_h5","org_h5","comb_dat","pub_dat","div_dat"))
 
 # save dat and graphs
-write.csv(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")), row.names = F)
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 
 if(save_notes_graphs) {
@@ -179,57 +323,57 @@ if(save_notes_graphs) {
 cat("\nDone!\n")
 
 
-# EXTRA DATA CHECKS:
-# determining which copy of the spike list files to use, and if they are different at all
-filei <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds/20140423/ON_20140423_MW1007-38_02_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv"
-data.raw<-read.csv(filei,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
-data.info <- read.csv(filei,header=F,colClasses=c("character","character"), nrows = 100)
-head(data.raw)
-data.info
-data.raw # this is it??
-# V3        V4                   V5
-# 1      Time (s) Electrode        Amplitude(mV)
-# 2    56.2676800     A8_23 0.028872283887509825
-# 3   126.3688800     A8_23 0.030162792900087505
-# 4    730.171200     C2_24 0.021529744499527877
-# 5    730.171200     C2_44 0.023524730659420935
-# 6   730.1712800     C2_33 0.023111509512467321
-
-# well, that was just DIV 2
-filei <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds/20140423/ON_20140423_MW1007-38_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv"
-data.raw<-read.csv(filei,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
-data.info <- read.csv(filei,header=F,colClasses=c("character","character"), nrows = 100)
-data.info
-data.raw # okay, this looks good
-data.raw_0 <- data.raw
-
-# comparing with the other file
-filei <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds/20140423_1/ON_20140423_MW1007-38_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv"
-data.raw<-read.csv(filei,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
-data.info <- read.csv(filei,header=F,colClasses=c("character","character"), nrows = 100)
-data.info
-data.raw # okay, this looks good
-data.raw_1 <- data.raw
-
-# comparison
-nrow(data.raw_0)
-# [1] 9914
-nrow(data.raw_1)
-# [1] 9843
-tail(data.raw_0) # lots of empty rows
-tail(data.raw_1)
-data.raw_0 <- data.raw_0[data.raw_0$V3 != "",] # chopping off several rows at the end
-tail(data.raw_0) # okay, still have well summary info here. snippet:
-# 9841 913.8309600   D3_13 0.061697795920477749
-# 9842  914.167600   A3_43 0.028635573871101324
-# 9843  914.215600   F2_22 0.074398127943828149
-# 9845          A2      A3                   A4
-# 9846          A7      A8                   B1
-# 9847          B4      B5                   B6
-# 9848          C1      C2                   C3
-data.raw_0 <- data.raw_0[1:9843,]
-all.equal(data.raw_0, data.raw_1)
-# TRUE!
-# okay!
-# so now the question is... which do I use? Do I need to check every other file now?
-
+# # EXTRA DATA CHECKS:
+# # determining which copy of the spike list files to use, and if they are different at all
+# filei <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds/20140423/ON_20140423_MW1007-38_02_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv"
+# data.raw<-read.csv(filei,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
+# data.info <- read.csv(filei,header=F,colClasses=c("character","character"), nrows = 100)
+# head(data.raw)
+# data.info
+# data.raw # this is it??
+# # V3        V4                   V5
+# # 1      Time (s) Electrode        Amplitude(mV)
+# # 2    56.2676800     A8_23 0.028872283887509825
+# # 3   126.3688800     A8_23 0.030162792900087505
+# # 4    730.171200     C2_24 0.021529744499527877
+# # 5    730.171200     C2_44 0.023524730659420935
+# # 6   730.1712800     C2_33 0.023111509512467321
+# 
+# # well, that was just DIV 2
+# filei <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds/20140423/ON_20140423_MW1007-38_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv"
+# data.raw<-read.csv(filei,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
+# data.info <- read.csv(filei,header=F,colClasses=c("character","character"), nrows = 100)
+# data.info
+# data.raw # okay, this looks good
+# data.raw_0 <- data.raw
+# 
+# # comparing with the other file
+# filei <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds/20140423_1/ON_20140423_MW1007-38_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv"
+# data.raw<-read.csv(filei,header=F,colClasses=c("NULL", "NULL", "character","character","character")) # make electrode column char, not factor
+# data.info <- read.csv(filei,header=F,colClasses=c("character","character"), nrows = 100)
+# data.info
+# data.raw # okay, this looks good
+# data.raw_1 <- data.raw
+# 
+# # comparison
+# nrow(data.raw_0)
+# # [1] 9914
+# nrow(data.raw_1)
+# # [1] 9843
+# tail(data.raw_0) # lots of empty rows
+# tail(data.raw_1)
+# data.raw_0 <- data.raw_0[data.raw_0$V3 != "",] # chopping off several rows at the end
+# tail(data.raw_0) # okay, still have well summary info here. snippet:
+# # 9841 913.8309600   D3_13 0.061697795920477749
+# # 9842  914.167600   A3_43 0.028635573871101324
+# # 9843  914.215600   F2_22 0.074398127943828149
+# # 9845          A2      A3                   A4
+# # 9846          A7      A8                   B1
+# # 9847          B4      B5                   B6
+# # 9848          C1      C2                   C3
+# data.raw_0 <- data.raw_0[1:9843,]
+# all.equal(data.raw_0, data.raw_1)
+# # TRUE!
+# # okay!
+# # so now the question is... which do I use? Do I need to check every other file now?
+# 
