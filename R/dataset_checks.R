@@ -55,9 +55,9 @@ dataset_checks <- function(dat) {
   
   # define 'plotdat' - of the AUC MFR, with specialized conc group labels
   plotdat <- dat[acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"]
-  plotdat[, conc_grp := ifelse(wllt == "n",paste0(treatment,"_",conc),signif(conc,1))]
+  plotdat[, conc_grp := ifelse(wllt == "n",paste0(treatment,"\n",conc),signif(conc,1))]
   conc_grps <- unique(plotdat$conc_grp)
-  plotdat$conc_grp <- factor(plotdat$conc_grp, levels = c(grep("_",conc_grps,val = T),sort(unique(as.numeric(conc_grps[!grepl("_",conc_grps)])))), ordered = T)
+  plotdat$conc_grp <- factor(plotdat$conc_grp, levels = c(grep("\n",conc_grps,val = T),sort(unique(as.numeric(conc_grps[!grepl("\n",conc_grps)])))), ordered = T)
   
   # view all compounds together by dose
   stripchart(rval ~ conc_grp, plotdat[wllq == 1], vertical = T, pch = 1, method = "jitter", las = 2,

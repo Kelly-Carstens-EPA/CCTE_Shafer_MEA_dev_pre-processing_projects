@@ -44,6 +44,7 @@ if (!remake_all) {
 
 #get master chemical lists
 masterChemFiles <- readLogFile(main.output.dir, files_type = "MaestroExperimentLog")
+masterChemFiles <- unlist(lapply(masterChemFiles, function(mfile) file.path(dirname(mfile),sub(" ","_",basename(mfile))))) # replace any spaces with "_" in file names
 
 if (length(spkListFiles)/4 > length(masterChemFiles)) {
   cat("Only",length(masterChemFiles), "master experiment log file selected for",length(spkListFiles),"spike list files.\n")
@@ -65,6 +66,11 @@ for (i in 1:L){
   
   # Get the masterChemFile with the date_plate
   masterChemFile <- grep(pattern = paste0(date_plate,"_"), masterChemFiles, value = T)
+  if (length(masterChemFiles) == 0) {
+    # sometimes the master chem file does not include "MW" in the file name
+    masterChemFile <- grep(pattern = paste0("_",sub("MW","",date_plate),"_"), masterChemFiles, value = T)
+  }
+  # If still no match found, or there are multiple matches, throw an error
   if (length(masterChemFile) != 1) {
     stop(paste("master chem file match not found for",spikefilename,sep = " "))
   } 

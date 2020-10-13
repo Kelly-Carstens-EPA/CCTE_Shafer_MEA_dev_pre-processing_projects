@@ -12,12 +12,10 @@ spkList2list <-function (file) {
 
     # remove the rows after the "Well Information" tag
     # adapted from "CG Additions 1/13/201"
-    well_information_row <- which(data.raw$V1 == "Well Information")
-    if (length(well_information_row) == 0) {
-      cat("Note to Amy: 'Well Information' tag phrase not present in",file,"\n")
-      well_information_row <- nrow(data.raw) + 1
+    if (grepl("Well Information",data.raw$V1)) {
+      well_information_row <- which(data.raw$V1 == "Well Information")
+      data.raw <- data.raw[1:(well_information_row - 1),]
     }
-    data.raw <- data.raw[1:(well_information_row - 1),]
     
     # remove first column and get the header
     # (using this instead of header=T, because sometimes the colnames are not in the first row in the spike list file)

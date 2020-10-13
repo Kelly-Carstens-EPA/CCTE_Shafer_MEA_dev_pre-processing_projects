@@ -5,7 +5,7 @@ graphics.off()
 ###################################################################################
 dataset_title <- "PFAS2018" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # can say no if you are in debugging phase, but do do a final run with saving notes adn graphs
+save_notes_graphs <- TRUE # can say no if you are in debugging phase, but do do a final run with saving notes adn graphs
 
 default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
 
@@ -78,19 +78,53 @@ dat <- check_and_assign_spids(dat, spidmap)
 # Confirm Conc's ----------------------------------------------------------------
 # confirm that the conc's collected from master chem lists and Calc files match
 # and that the correct concentration-corrections has been done for each compound
+
+# check if there are multiple conc's assigned to the same well (usually occurs if there are differences between master chem file and calc file)
+# Note: in TCPL mc1, the conc's are set to dat[ , conc := signif(conc, 3)]. So it's okay for us to round here.
+dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
+# if any, standardize those before continuing.
+problem_comps <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1, unique(treatment)]
+problem_comps
+# character(0)
+
+# finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
 dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
 
 
 # FINAL DATA CHECKS
 # this section is to confirm that the data has been processed correctly
-dat <- read.csv(file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")))
-setDT(dat)
 source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
 
 # Any other plots or things to check?
+dat[acsn == "CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5", unique(rval)] # NA
+dat[acsn == "CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5", unique(rval)] # NA
+dat[acsn == "CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5", min(rval, na.rm = T)] 
+# [1] Inf 
+# Warning message:
+#   In min(rval, na.rm = T) : no non-missing arguments to min; returning Inf
+# yep, this is warnign the warning is coming from
+# okay, this is reasonable network spike endpoints on for DIV 5
 
+# checking data that got dropped previously
+dat[grepl("MW1208-6",apid), .N, by = "acsn"] # 48 pts for all 87 acsn, including each DIV
+dat[grepl("MW1208-7",apid) & grepl("mutual_information",acsn), summary(rval)]
+# Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+# 0.000000 0.000000 0.000013 0.001425 0.002784 0.008230
+dat[grepl("MW1208-8",apid) & grepl("mutual_information_norm_DIV5",acsn), summary(rval)] # all 0's, but present.
+dat[grepl("MW1208-8",apid) & grepl("DIV5",acsn), summary(rval)] # p resent
+dat[grepl("MW1208-8",apid) & grepl("DIV5",acsn), length(unique(acsn))] # 17
+dat[grepl("MW1230-53",apid) & grepl("DIV9",acsn), .N, by = "acsn"] # 48 pts for each acsn!
+
+source(file.path(root_output_dir,"supplemental_scripts","view_replicates_by_DIV.R"))
+div_dat <- as.data.table(read.csv(file.path(root_output_dir,dataset_title,"output",paste0(dataset_title,"_parameters_by_DIV.csv"))))
+view_replicates_by_DIV(div_dat, "Acetaminophen", dosei = 0.3, title_msg = "verifying 1230-53 estimated DIV9")
+view_replicates_by_DIV(div_dat, "Bisphenol A", dosei = 10, title_msg = "verifying 1230-53 estimated DIV9")
+# nAE looks great! MFR could be better, but it's okay
+
+# save dat and graphs
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")), row.names = F)
 rm(dat)
 
 if(save_notes_graphs) {
