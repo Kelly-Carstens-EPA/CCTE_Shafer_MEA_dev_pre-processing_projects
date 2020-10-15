@@ -12,7 +12,7 @@ spkList2list <-function (file) {
 
     # remove the rows after the "Well Information" tag
     # adapted from "CG Additions 1/13/201"
-    if (grepl("Well Information",data.raw$V1)) {
+    if (any(grepl("Well Information",data.raw$V1))) {
       well_information_row <- which(data.raw$V1 == "Well Information")
       data.raw <- data.raw[1:(well_information_row - 1),]
     }
@@ -71,8 +71,8 @@ spkList2list <-function (file) {
 axion.spkList.to.h5<-function(key, spkListFile, chem.info, debug=T){
   #function to convert spike list to h5 file
   
-  #remove _spike_list
-  key<-unlist( strsplit(key, split="_spike_list") )
+  #remove '_spike_list' from file name
+  key <- sub("_spike_list.*$","",key)
   
   # # correct for issues with ( ) in file names
   # h5file <- gsub("\\(|\\)", "_", sprintf("%s/%s.h5", h5.dir, key))

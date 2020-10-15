@@ -30,7 +30,7 @@ check_existing <- function(path, pattern, pause_between_steps) {
         if (resp %in% c("c","r","a","q")) break
       }
     else 
-      resp <- "c"
+      resp <- "a"
   }
   if (resp == "q") {
     stop("User elected to stop.")
@@ -55,7 +55,7 @@ if(resp %in% c("r","a")) {
   selectInputFiles(start.dir = dirname(dirname(main.output.dir)), main.output.dir, dataset_title, append = append)
   # view summary of files
   file_names <- readLogFile(main.output.dir)
-  cultures <- unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("[Cc]ulture",x,val = T)))
+  cultures <- sort(unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("([Cc]ulture)|([Oo]ntogeny)",x,val = T)[1])))
   cultures <- lapply(cultures, function(x) ifelse(length(x)==0, "", x)) # for datasets that don't have Culture tag phrase
   for (culture in cultures) {
     cat("\n\n",culture,"\n",sep = "")
@@ -64,10 +64,11 @@ if(resp %in% c("r","a")) {
     cat("Number of spike list files: ")
     cat(sum(grepl(culture, file_names) & grepl("_spike_list",file_names)),"\n")
     cat("Number of Master chem lists: ")
-    cat(sum(grepl(culture, file_names) & grepl("_MaestroExperimentLog_Ontogeny",file_names)),"\n")
+    cat(sum(grepl(culture, file_names) & grepl("MaestroExperimentLog",file_names)),"\n")
     cat("Calculations/Summary files:\n")
     cat(basename(file_names[grepl(culture, file_names) & grepl("(Calculations)|(Summary)",file_names)]),sep = ", ")
   }
+  cat("\n")
   rm(file_names)
 }
 

@@ -197,7 +197,7 @@ dat[, .(concs_tested = paste0(sort(unique(conc)),collapse=",")), by = .(treatmen
 # 7:  Sodium orthovanadate EX000499                0.03,0.1,0.3,1,3,10,30
 # 8:                 Water    Water                                 0.001
 
-# domic acid - paper says range is 0.003 to 1. But this goes does to 0.0003. 
+# domic acid - paper says range is 0.003 to 1. But this goes down to 0.0003. 
 dat[grepl("Domoic acid",treatment) & conc == 0.0003, unique(apid)] # "20140205_MW1007-26"
 # Lab notebook confirmed 0.0003 for well C2, and 0.001 for C3
 # Published downloaded data has removed wells C2 and C3 for this plate. huh

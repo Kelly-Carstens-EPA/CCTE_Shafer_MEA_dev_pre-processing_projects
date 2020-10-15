@@ -5,7 +5,7 @@ graphics.off() # clear plot history
 ###################################################################################
 dataset_title <- "NTP91" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probably leave this as true when you first run
-save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -46,6 +46,7 @@ dat[wllt == "n", treatment := default_ControlTreatmentName]
 # update other control wells as needed, e.g.
 # dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20190904", plates = paste0("MW69-381",7:9), control_rowi = which(LETTERS[1:6] %in% c("E","F")))
 # all are dissolved in DMSO
+dat[wllt == "n", conc := 0.001]
 
 
 # Assign SPIDs ------------------------------------------------------------------
@@ -120,7 +121,7 @@ dataset_checks(dat)
 
 
 # save dat and graphs
-save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")), row.names = F)
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 
 if(save_notes_graphs) {
@@ -129,3 +130,10 @@ if(save_notes_graphs) {
 }
 
 cat("\nDone!\n")
+
+# load(file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
+# testdat <- as.data.table(read.csv(file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.csv")),stringsAsFactors = F))
+# testdat[, .SD := lapply(.SD, as.character), .SDcols = c("spid","treatment","apid")]
+# all.equal(dat, testdat, check.attributes = F)
+# [1] "Column 'conc': Mean relative difference: 1"
+# cool, so that is the only thing that is different - since I just updated the control well conc

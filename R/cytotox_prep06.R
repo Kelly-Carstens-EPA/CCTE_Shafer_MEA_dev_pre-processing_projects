@@ -214,7 +214,17 @@ createCytoData <- function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL,
   # if provided, replace the treatment names with the names in the master chemical lists
   if (length(masterChemFiles) != 0) {
     # Get the masterChemFile with the same plate number
-    masterChemFile = grep(pattern = paste0(date,"_",Plate.SN,"_"), masterChemFiles, value = T)
+    masterChemFile = grep(pattern = paste0(date,"_",Plate.SN,"[_ ]"), masterChemFiles, value = T)
+    if (length(masterChemFile) == 0) {
+      # sometimes the master chem file does not include "MW" in the file name
+      masterChemFile <- grep(pattern = paste0(date,"_",sub("MW","",Plate.SN),"[_ ]"), masterChemFiles, value = T)
+    }
+    # sometimes, maestroExperimentLog does not contain the plate.SN in the file name. Match by plate folder and date in file name instead
+    if (length(masterChemFile) == 0) {
+      masterChemFile <- Filter(function(mcf) grepl(sub("MW( )*","",Plate.SN),mcf) && grepl(date,basename(mcf)), masterChemFiles)
+    }
+    
+    # If still no match found
     if (length(masterChemFile) != 1) {
       warning(paste("master chem file match not found for",Plate.SN,sep = " "))
     }
@@ -332,6 +342,19 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
   if (length(masterChemFiles) == 0) {
     print("no master chem list found, using treatment names from input data")
   }
+  
+  # if (append) {
+  #   cyto_dat <- as.data.table(read.csv(output_file, stringsAsFactors = F))
+  #   setdiff(basename(cytoFiles), unique(cyto_dat$srcf)) # but ah, I have replaced all " " with "_"
+  #   # and, what if I renamed the summary file,a dn that is why I am re-running? #then need tomanually delete...
+  #   
+  #   # other method:
+  #   completed_dates <- unique(cyto_dat$date)
+  #   cytoFiles <- Filter(function(filei) {
+  #     datei <- strsplit(basename(filei), split="_")[[1]][2]
+  #     !(datei %in% completed_dates) }, cytoFiles)
+  #   # how to make sure the entire date was completed though, for all plates?
+  # }
 
   # run the functions for each file
   longdat <- data.table()

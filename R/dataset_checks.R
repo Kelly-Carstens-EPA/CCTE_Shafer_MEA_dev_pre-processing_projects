@@ -63,7 +63,7 @@ dataset_checks <- function(dat) {
   stripchart(rval ~ conc_grp, plotdat[wllq == 1], vertical = T, pch = 1, method = "jitter", las = 2,
              main = paste0("Mean Firing Rate AUC by dose for all compounds in ",dataset_title), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)", xlab = "conc")
   if (plotdat[, any(wllq==0)])
-    stripchart(rval ~ signif(conc,1), dat[wllq == 0 & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"], vertical = T, pch = 1, method = "jitter",
+    stripchart(rval ~ conc_grp, plotdat[wllq == 0], vertical = T, pch = 1, method = "jitter",
                add = T, col = "red")
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c("black","red"), pch = c(1,1), bg = "transparent")
   
@@ -80,10 +80,14 @@ dataset_checks <- function(dat) {
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c(rgb(0.1,0.1,0.1,0.5),rgb(0.9,0,0,0.5)), pch = c(19,19), bg = "transparent")
   
   # Cytotox
-  stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("AB",acsn)], las = 2,
+  plotdat <- dat[grepl("(LDH)|(AB)",acsn)]
+  plotdat[, conc_grp := ifelse(wllt == "n",paste0(treatment,"\n",conc),signif(conc,1))]
+  conc_grps <- unique(plotdat$conc_grp)
+  plotdat$conc_grp <- factor(plotdat$conc_grp, levels = c(grep("\n",conc_grps,val = T),sort(unique(as.numeric(conc_grps[!grepl("\n",conc_grps)])))), ordered = T)
+  stripchart(rval ~ conc_grp, plotdat[wllq == 1 & grepl("AB",acsn)], las = 2,
              vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("AB Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
-  if (nrow(dat[wllq == 1 & grepl("LDH",acsn)]) > 0) {
-    stripchart(rval ~ signif(conc,1), dat[wllq == 1 & grepl("LDH",acsn)], las = 2,
+  if (nrow(plotdat[wllq == 1 & grepl("LDH",acsn)]) > 0) {
+    stripchart(rval ~ conc_grp, plotdat[wllq == 1 & grepl("LDH",acsn)], las = 2,
                vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("LDH Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
   }
  

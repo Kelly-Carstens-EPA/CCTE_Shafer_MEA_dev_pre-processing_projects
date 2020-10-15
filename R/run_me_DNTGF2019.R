@@ -40,13 +40,60 @@ source(file.path(scripts.dir, 'source_steps.R'))
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
 
+# relabelling this compound
+dat[treatment == "Glufo", treatment := "L-Glufosinate Ammonium"]
+
 
 # change untreated wells to Control Treatment ------------------------------------
 dat[wllt == "n", treatment := default_ControlTreatmentName]
-# update other control wells as needed, e.g.
-dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20190904", plates = paste0("MW69-381",7:9), control_rowi = which(LETTERS[1:6] %in% c("E","F")))
+# update other control wells as needed,
 dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = c("20190710","20190724"), control_rowi = 1:6)
-dat[wllt == "n", .N, by = "treatment"]
+# from 20190904, only control rows corresponding to "L-Glufosinate Ammonium","38" in Group 4 contain Water
+water_rows <- dat[treatment %in% c("L-Glufosinate Ammonium","38") & apid %in% paste("20190904",paste0("MW69-381",7:9),sep="_"), .(rowi = unique(rowi)), by = .(apid, treatment)]
+water_rows[, `:=`(treatment = NULL, wllt = "n")]
+setkey(dat, apid, rowi, wllt)
+dat[J(water_rows), treatment := "Water"]
+
+dat[wllt == "n" & treatment == "Water", .(num_water_wells = .N/87), by = sub("_.*$","",apid)]
+# sub num_water_wells
+# 1: 20190710              18
+# 2: 20190724              18
+# 3: 20190904               6
+
+# All control wells have 0.1% DMSO or Water, other than those singled out below
+dat[wllt == "n", conc := 0.001] # define the default, then change for individual wells below
+
+# get the control wells with higher conc of DMSO
+treatments_with_higher_conc_DMSO_in_row <- c("11","12","21","22","27","29","19","28","46","47","56","58","65","66","73","74","80","81","89","90","100","Loperamide")
+dates <- c("20190807","20190904","20190918", "20191016", "20191030", "20191113")
+
+# where any chem repeated?
+dat[wllt == "t" & grepl(paste0("(",dates,")",collapse="|"),apid), .(num_cultures = length(unique(sub("_.*$","",apid))), num_plates = length(unique(sub("^.*_","",apid)))), by = .(treatment)][num_cultures != 1 | num_plates != 3]
+# Empty data.table (0 rows and 3 cols): treatment,num_cultures,num_plates
+# good, so each treatment in list will only correspond to 1 culture
+
+# confirming I recorded exactly 2 treatments in list for each apid
+dat[treatment %in% treatments_with_higher_conc_DMSO_in_row & grepl(paste0("(",dates,")",collapse="|"),apid), .(length(unique(treatment))), by = .(apid)]
+
+# identify the rows of the compounds in which teh control well is at a higher conc, based on lab notebook
+higher_conc_DMSO_rows <- dat[treatment %in% treatments_with_higher_conc_DMSO_in_row & grepl(paste0("(",dates,")",collapse="|"),apid), .(rowi = unique(rowi)), by = .(apid, treatment)]
+higher_conc_DMSO_rows[, `:=`(treatment = NULL, wllt = "n")]
+length(unique(higher_conc_DMSO_rows$apid)) # 33. All 6 cultures have 6 plates, except for 20190904 we only selected treatments from G3: 5*6 + 3 = 33 apid 
+
+# subset by the selected rows adn wllt==n, then update conc
+setkey(dat, apid, rowi, wllt)
+dat[J(higher_conc_DMSO_rows), conc := 0.00146]
+
+# cool! checks if I did it right:
+dat[conc == 0.00146, .(paste0(sort(unique(rowi)),collapse=" ")), by = .(apid)]
+dat[wllt == "n", .(.N/87), by = .(treatment, conc)]
+# treatment    conc  V1
+# 1:     Water 0.00100  42
+# 2:      DMSO 0.00100 144
+# 3:      DMSO 0.00146  66
+# 33 apid * 2 wells == 66 DMSO wells at higher conc
+
+setkey(dat, NULL) # remove the keys
 
 
 # Assign SPIDs ------------------------------------------------------------------
@@ -76,7 +123,6 @@ spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
 spidmap
 
 # rename any compounds, if needed
-dat[treatment == "Glufo", treatment := "L-Glufosinate Ammonium"]
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)

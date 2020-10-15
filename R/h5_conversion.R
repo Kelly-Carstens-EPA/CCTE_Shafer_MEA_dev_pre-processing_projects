@@ -32,9 +32,8 @@ if (!remake_all) {
   existing_h5Files <- sub("\\.h5","",existing_h5Files)
   # Find the h5 file names of these spkListFiles,
   # using same h5file naming structure as here and in spike_list_functions.R
-  spkListFiles_h5names <- sapply(spkListFiles, function(filei) {
-    h5file_namei <- strsplit(basename(filei), "[.]")[[1]][1]
-    h5file_namei <- unlist( strsplit(h5file_namei, split="_spike_list") ) }
+  spkListFiles_h5names <- sapply(spkListFiles, function(filei) 
+    h5file_namei <- sub("_spike_list.*$","",basename(filei))
     )
   # get only the subset of spkListFiles that are not already in h5.dir
   use_files <- spkListFiles_h5names[!(spkListFiles_h5names %in% existing_h5Files)]
@@ -44,7 +43,6 @@ if (!remake_all) {
 
 #get master chemical lists
 masterChemFiles <- readLogFile(main.output.dir, files_type = "MaestroExperimentLog")
-masterChemFiles <- unlist(lapply(masterChemFiles, function(mfile) file.path(dirname(mfile),sub(" ","_",basename(mfile))))) # replace any spaces with "_" in file names
 
 if (length(spkListFiles)/4 > length(masterChemFiles)) {
   cat("Only",length(masterChemFiles), "master experiment log file selected for",length(spkListFiles),"spike list files.\n")
@@ -65,11 +63,16 @@ for (i in 1:L){
   date_plate <- paste(strsplit(spikefilename, split = "_")[[1]][2:3],collapse = "_")
   
   # Get the masterChemFile with the date_plate
-  masterChemFile <- grep(pattern = paste0(date_plate,"_"), masterChemFiles, value = T)
-  if (length(masterChemFiles) == 0) {
+  masterChemFile <- grep(pattern = paste0(date_plate,"[_ ]"), masterChemFiles, value = T)
+  if (length(masterChemFile) == 0) {
     # sometimes the master chem file does not include "MW" in the file name
-    masterChemFile <- grep(pattern = paste0("_",sub("MW","",date_plate),"_"), masterChemFiles, value = T)
+    masterChemFile <- grep(pattern = paste0("_",sub("MW","",date_plate),"[_ ]"), masterChemFiles, value = T)
   }
+  # sometimes, maestroExperimentLog does not contain the plate.SN in the file name. Match by plate folder and date in file name instead
+  if (length(masterChemFile) == 0) {
+    masterChemFile <- Filter(function(mcf) grepl(sub("^.*_MW( )*","",date_plate),mcf) && grepl(sub("_.*$","",date_plate),basename(mcf)), masterChemFiles)
+  }
+  
   # If still no match found, or there are multiple matches, throw an error
   if (length(masterChemFile) != 1) {
     stop(paste("master chem file match not found for",spikefilename,sep = " "))

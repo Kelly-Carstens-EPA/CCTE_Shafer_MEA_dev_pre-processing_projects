@@ -75,7 +75,7 @@ wllq_info <- as.data.table(read.csv(file.path(basepath, "wells_with_well_quality
 if(nrow(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])>0) {
   cat("The following rows don't match any of the expected affected_endpoints (mea,CTB,LDH):\n")
   print(wllq_info[!grepl("(mea)|(CTB)|(LDH)",affected_endpoints)])
-  stop("Update wells_with_well_quality_zero.csv")
+  warning("Update wells_with_well_quality_zero.csv")
 }
 
 # expand the rows where well == "all" to include every well in plate
@@ -93,7 +93,7 @@ if(nrow(unmatched_wells) > 0) {
   print(unmatched_wells)
   cat("\nSummary of all_data:\n")
   print(all_data[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
-  stop("Update wells_with_well_quality_zero.csv")
+  warning("Update wells_with_well_quality_zero.csv")
 }
 
 # check for any DIV that do not match all_data
@@ -104,7 +104,7 @@ if(nrow(unmatched_DIV) > 0) {
   print(unmatched_DIV)
   cat("\nSummary of all_data:\n")
   print(all_data[Plate.SN %in% unmatched_DIV$Plate.SN, .(DIVs = paste0(sort(unique(DIV)),collapse=",")), by = c("date","Plate.SN")][order(date,Plate.SN)])
-  stop("Update wells_with_well_quality_zero.csv")
+  warning("Update wells_with_well_quality_zero.csv")
 }
 
 # initializing values

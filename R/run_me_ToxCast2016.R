@@ -194,6 +194,34 @@ dat[treatment %in% problem_comps & apid == "20170201_MW1145-25" & coli == 8, con
 # 9: TP0001649E12 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                 Pravastatin sodium                              0.03,0.1,0.3,1,3,10,20         7
 # 12: TP0001649G07 14.9000                  20    0.0223,0.0745,0.223,0.745,2.23,7.45,14.9                Cariporide mesylate                              0.03,0.1,0.3,1,3,10,20         7
 
+spidmap[abs(stock_conc - expected_stock_conc) > 0.01]
+# treatment         spid stock_conc expected_stock_conc
+# 1: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04        5.0                  20
+# 2:                       Valinomycin     EX000362       19.9                  20
+
+load("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_acute_for_tcpl/ToxCast2016/output/ToxCast2016_dat4_2020-07-27.RData")
+spids <- spidmap[treatment %in% c("1,1,2,2-Tetrahydroperfluoro-1-decanol","1H,1H,2H,2H-Perfluorooctyl iodide","Perfluoroundecanoic acid"), unique(spid)]
+dat4[spid %in% spids, unique(apid)] # "20150804" "20160127" "20150818"
+rm(dat4)
+
+con <- dbConnect(drv = RMySQL::MySQL(), user = "***REMOVED***", pass = ***REMOVED***, dbname='invitrodb',host = "ccte-mysql-res.epa.gov")
+query_term <- paste0("SELECT * FROM sample WHERE spid IN('",paste(spidmap[!is.na(spid),unique(spid)],collapse="','",sep=""),"');")
+sample_info <- dbGetQuery(con, query_term)
+dbDisconnect(con)
+sample_info <- merge(sample_info, spidmap, by = c("spid"), suffixes = c(".db",".file"))
+setDT(sample_info)
+sample_info[signif(stkc,3) != signif(stock_conc,3)] # 10 compounds... huh
+# spid  chid    stkc stkc_unit tested_conc_unit               treatment stock_conc expected_stock_conc
+# 1: TP0001649B02 34695 10.0000        mM               uM                Mancozeb         20                  20
+# 2: TP0001649B03 34187 10.0000        mM               uM               Tamoxifen         20                  20
+# 3: TP0001649D07 22991  5.0000        mM               uM            Erythromycin         20                  20
+# 4: TP0001649D10 20501 14.5000        mM               uM Methadone hydrochloride         20                  20
+# 5: TP0001649E02 44175  5.2175     mg/ml             mg/l          Clove leaf oil         20                  20
+# 6: TP0001649E06 20827 19.9000        mM               uM            Methoxychlor         20                  20
+# 7: TP0001649E12 47525 10.0000        mM               uM      Pravastatin sodium         20                  20
+# 8: TP0001649F10 32572 19.9000        mM               uM             Prallethrin         20                  20
+# 9: TP0001649F11 20243 19.7000        mM               uM                  Captan         20                  20
+# 10: TP0001649G07 47344 14.9000        mM               uM     Cariporide mesylate         20                  20
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
