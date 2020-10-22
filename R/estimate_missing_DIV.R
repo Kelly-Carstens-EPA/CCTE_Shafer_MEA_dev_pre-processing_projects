@@ -7,16 +7,18 @@
 # Note that I use median(x, na.rm=T). So if a parameter is na for one of the reference plates, the values from the other reference plate will be used
 # If the values are NA in both plates, median(x, na.rm=T) will return NA. This will be set to zero regardless before AUC calculation
 
-estimate_missing_DIV <- function(dat, date_platei, add.DIV)
+estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FALSE)
 {
   require(data.table)
   if (!("date_plate" %in% names(dat))) dat[, date_plate := paste(date, Plate.SN, sep = "_")]
   trts <- dat[date_plate == date_platei & dose != 0, unique(trt)]
   cplates <- dat[date == sub("_.*$","",date_platei) & date_plate != date_platei & trt %in% trts, unique(date_plate)]
-  cat("Estimating values for DIV",add.DIV,"on",date_platei,"from the plates",cplates,"\n")
   if (length(cplates) == 0) {
-    stop(paste0("No plates found that were ran on the same date as ",date_platei, " and tested the same compounds.\n"))
+    cat(paste0("No plates found that were ran on the same date as ",date_platei, " and tested the same compounds.\n"))
+    cat("Will use all plates in data set\n.")
+    cplates <- setdiff(date_platei, unique(dat$date_plate))
   }
+  cat("Estimating values for DIV",add.DIV,"on",date_platei,"from the plates",cplates,"\n")
   
   # get the columns for the endpoints
   id.cols <- c("date_plate","date","Plate.SN","DIV","well","well_id","trt","dose","units","file.name","wllq","wllq_notes")
