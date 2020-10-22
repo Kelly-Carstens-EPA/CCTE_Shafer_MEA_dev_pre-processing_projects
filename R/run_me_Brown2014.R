@@ -4,8 +4,8 @@ graphics.off()
 # USER INPUT
 ###################################################################################
 dataset_title <- "Brown2014" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+pause_between_steps <- FALSE # probs want to be true when you first run
+save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -113,6 +113,7 @@ spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually t
 # update expected_stock_conc for individual compouunds where needed 
 # for example, 
 # spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
+spidmap[treatment == "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride", treatment := "Loperamide"]
 spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])

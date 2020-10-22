@@ -5,7 +5,7 @@ graphics.off()
 ###################################################################################
 dataset_title <- "DNTGF2019" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -67,7 +67,7 @@ dat[wllt == "n", conc := 0.001] # define the default, then change for individual
 treatments_with_higher_conc_DMSO_in_row <- c("11","12","21","22","27","29","19","28","46","47","56","58","65","66","73","74","80","81","89","90","100","Loperamide")
 dates <- c("20190807","20190904","20190918", "20191016", "20191030", "20191113")
 
-# where any chem repeated?
+# were any chem repeated?
 dat[wllt == "t" & grepl(paste0("(",dates,")",collapse="|"),apid), .(num_cultures = length(unique(sub("_.*$","",apid))), num_plates = length(unique(sub("^.*_","",apid)))), by = .(treatment)][num_cultures != 1 | num_plates != 3]
 # Empty data.table (0 rows and 3 cols): treatment,num_cultures,num_plates
 # good, so each treatment in list will only correspond to 1 culture
@@ -82,7 +82,7 @@ length(unique(higher_conc_DMSO_rows$apid)) # 33. All 6 cultures have 6 plates, e
 
 # subset by the selected rows adn wllt==n, then update conc
 setkey(dat, apid, rowi, wllt)
-dat[J(higher_conc_DMSO_rows), conc := 0.00146]
+dat[J(higher_conc_DMSO_rows), conc := 0.00146]  # 7.5uL DMSO + 95uL Media -> 0.0731707. 10uL of that + 490 uL of Media -> 0.00146341
 
 # cool! checks if I did it right:
 dat[conc == 0.00146, .(paste0(sort(unique(rowi)),collapse=" ")), by = .(apid)]
@@ -92,6 +92,34 @@ dat[wllt == "n", .(.N/87), by = .(treatment, conc)]
 # 2:      DMSO 0.00100 144
 # 3:      DMSO 0.00146  66
 # 33 apid * 2 wells == 66 DMSO wells at higher conc
+lop_row_qry <- unique(dat[treatment == "Loperamide", .(apid, rowi)])
+dat[J(lop_row_qry)][wllt == "n", .N, by = .(treatment, wllt, apid, rowi, coli, conc)]
+# treatment wllt               apid rowi coli    conc  N
+# 1:     Water    n 20190710_MW69-0210    4    2 0.00100 87
+# 2:     Water    n 20190710_MW69-0212    4    2 0.00100 87
+# 3:     Water    n 20190710_MW69-0213    4    2 0.00100 87
+# 4:     Water    n 20190724_MW69-0220    4    2 0.00100 87
+# 5:     Water    n 20190724_MW69-3713    4    2 0.00100 87
+# 6:     Water    n 20190724_MW69-3714    4    2 0.00100 87
+# 7:      DMSO    n 20191113_MW70-2520    6    2 0.00146 87
+# 8:      DMSO    n 20191113_MW70-2601    4    2 0.00146 87
+# 9:      DMSO    n 20191113_MW70-2602    5    2 0.00146 87
+higher_conc_rows <- unique(dat[wllt == "n" & treatment == "DMSO" & conc == 0.00146, .(apid, rowi)])
+dat[J(higher_conc_rows), .(paste0(sort(unique(treatment)),collapse=",")), by = .(apid)]
+# check, confirmation that the same 2 treatments correspond to the higher conc DMSO rows for every culture
+
+# confirming water wells are all correct
+dat[treatment == "Water", .(paste0(sort(unique(rowi)),collapse=",")), by = .(apid, coli)]
+# apid coli          V1
+# 1: 20190710_MW69-0210    2 1,2,3,4,5,6
+# 2: 20190710_MW69-0212    2 1,2,3,4,5,6
+# 3: 20190710_MW69-0213    2 1,2,3,4,5,6
+# 4: 20190724_MW69-0220    2 1,2,3,4,5,6
+# 5: 20190724_MW69-3713    2 1,2,3,4,5,6
+# 6: 20190724_MW69-3714    2 1,2,3,4,5,6
+# 7: 20190904_MW69-3817    2         5,6
+# 8: 20190904_MW69-3818    2         4,6
+# 9: 20190904_MW69-3819    2         4,5
 
 setkey(dat, NULL) # remove the keys
 
@@ -230,29 +258,17 @@ dat[, rowi := as.integer(rowi)]
 dat[, coli := as.integer(coli)]
 dat2 <- merge(dat, odat, by.x = c("plate.id","acsn_bk","rowi","coli"), by.y = c("apid","acsn","rowi","coli"),
               suffixes = c(".new",".org"))
-nrow(dat2) == nrow(dat) # TRUE
+nrow(dat2) == nrow(dat[!grepl("DIV",acsn)]) # TRUE
 dat2[spid.new != spid.org, .N, by = .(spid.new, spid.org)]
 # spid.new spid.org  N
-# 1:    Water     DMSO 76
-# 2:     DMSO    Water 19
-dat2[spid.new == "DMSO" & spid.org == "Water", .N, by = .(plate.id, rowi, coli)]
-# plate.id rowi coli  N
-# 1: MW69-3818    4    2 19
-dat2[spid.org == "DMSO" & spid.new == "Water", .N, by = .(plate.id, rowi, coli)]
-# plate.id rowi coli  N
-# 1: MW69-3817    5    2 19
-# 2: MW69-3818    5    2 19
-# 3: MW69-3818    6    2 19
-# 4: MW69-3819    6    2 19
-# ya know, I think I did something funky here with the row removal/keeping some control wells
-# I know that the control well spid's I am usign now are based on what is recording in the Calc files and lab notebooks
-# so I am sticking with that
+# 1:    Water     DMSO 57
+# good, no treated wells are different
 dat2[wllt.new != wllt.org] # empty
 dat2[conc.new != conc.org] # many rows
 dat2[conc.new != conc.org, .N, by = "treatment"] # ah, this looks like the same "problem conc's" that I corrected here
-dat2[signif(conc.new, 1) != signif(conc.org, 1), .N, by = "treatment"] # phew, this is empty. So nothing is drastically off
+dat2[wllt.new == "t" & signif(conc.new, 1) != signif(conc.org, 1), .N, by = "treatment"] # phew, this is empty. So nothing is drastically off
 
-# okay before I view the plots, reasons why values might look different:
+#  reasons why values might be different from previous level 0 dat:
 # - differences in spike list file chopping
 # - possible former mistakes in spike list file selection (e.g. getting the"modified" file instead)
 # - other unknown things which could be not good
@@ -262,11 +278,9 @@ for (acsni in unique(dat2$acsn_bk)) {
   abline(0,1)
 }
 
-# some of the "off" points
-dat2[grepl("burst_duration_mean",acsn_bk) & abs(rval.org - rval.new) > 50]
-dat2[grepl("bursting_electrodes_number",acsn_bk) & abs(rval.org - rval.new) > 10, .(rval.new, rval.org, apid, srcf.org)]
-dat2[grepl("peak",acsn_bk) & abs(rval.org - rval.new) > 10, .(rval.new, rval.org, apid, srcf.org)]
-dat2[grepl("network_spike_peak",acsn_bk) & abs(rval.org - rval.new) > 15]
+# I already determined why there are servearl MI rval's where rval.org is 0 but rval.new is not
+# interburst interval mean - lots of noise here... but honestly, what we already know that this endpoint is very noisy
+
 dat2[grepl("mutual_information",acsn_bk) & rval.org == 0.0 & rval.new != rval.org, .N, by = c("treatment","conc.new")]
 # huh, seems to mostly affect a specific handful of treatments...
 dat2[grepl("mutual_information",acsn_bk) & rval.org == 0.0 & rval.new != rval.org, .N, by = "apid"]
@@ -275,7 +289,11 @@ dat2[grepl("mutual_information",acsn_bk) & rval.org == 0.0 & rval.new != rval.or
 # 2: 20191030_MW70-2508 47
 # 3: 20191030_MW70-2509 48
 # 4: 20191030_MW70-2510 48
-# I don't know...
+# Looking at the DIV MI values for 20191030, there are clearly some non-zero points by DIV 12
+# Ah, but in MI_All_DNT_2019_combined, these plates are not in the file
+# So they must have been missed in comb_summary(), then when merged with AUC data, NA values set to 0!
+# So this was just an accident that is now fixed.
+
 
 # created this prepared data with the old h5files, but new functions
 pfiles <-list.files(file.path(root_output_dir,dataset_title,"comparing_previous_values"),full.names = T, pattern = "\\.csv")
@@ -316,16 +334,16 @@ myfun <- function(acsni) {
   val
 }
 concerning_pt_count <- sapply(unique(dat2$acsn_bk), myfun)
-graphics.off()
-pdf(file = file.path(root_output_dir,dataset_title, "plots","new_rval_vs_dec2019.pdf"))
-for (acsni in unique(dat2$acsn_bk)) {
-  plot(dat2[acsn_bk == acsni, .(rval.org, rval.new)], main = paste0(acsni,"\nNew vs original AUC rval correlation. N outliers=",concerning_pt_count[acsni]))
-  abline(0,1)
-  nwell_median_iqr <- dat2[acsn_bk == acsni & wllt.new == "n" & wllt.org == "n", .(IQR(rval.new)), by = .(plate.id)][, median(V1)]
-  abline(a = c(-1)*nwell_median_iqr, b = c(1), col = "red")
-  abline(a = c(1)*nwell_median_iqr, b = c(1), col = "red")
-}
-graphics.off()
+# graphics.off()
+# pdf(file = file.path(root_output_dir,dataset_title, "plots","new_rval_vs_dec2019.pdf"))
+# for (acsni in unique(dat2$acsn_bk)) {
+#   plot(dat2[acsn_bk == acsni, .(rval.org, rval.new)], main = paste0(acsni,"\nNew vs original AUC rval correlation. N outliers=",concerning_pt_count[acsni]))
+#   abline(0,1)
+#   nwell_median_iqr <- dat2[acsn_bk == acsni & wllt.new == "n" & wllt.org == "n", .(IQR(rval.new)), by = .(plate.id)][, median(V1)]
+#   abline(a = c(-1)*nwell_median_iqr, b = c(1), col = "red")
+#   abline(a = c(1)*nwell_median_iqr, b = c(1), col = "red")
+# }
+# graphics.off()
 dat2[grepl("burst_duration_mean",acsn_bk), summary(rval.new)]
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 # 0.00    2.76    4.87    8.67    7.67  221.59 
@@ -344,6 +362,13 @@ rm(dat2)
 rm(odat)
 dat[, c("acsn_bk","plate.id") := NULL]
 
+# # 20190807_MW69-3803
+# stripchart(dat[acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7" & wllt == "n" & wllq == 1 & apid != "20190807_MW69-3803", rval], vertical = T, pch = 1, method = "jitter")
+# stripchart(dat[acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7" & wllt == "n" & wllq == 1 & apid == "20190807_MW69-3803", rval], vertical = T, pch = 19, method = "jitter", col = "red", add = T)
+# title(main = "MFR DIV 7 control values")
+# legend(x = "topleft", legend = c("20190807_MW69-3803"), pch = 19, col = "red")
+
+
 # save dat and graphs
 setkey(dat, NULL) # remove all the indicies I inadvertently assigned
 save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
@@ -356,7 +381,11 @@ if(save_notes_graphs) {
 
 cat("\nDone!\n")
 
-# DATA CHECKS:
+
+
+
+
+# Additional DATA CHECKS ---------------------------------------------
 
 # # quick check of how the data looked when it was pipelined previuolsy
 # dat <- read.csv("L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/DNT2019_all_MEA_mc0_withspids.csv")

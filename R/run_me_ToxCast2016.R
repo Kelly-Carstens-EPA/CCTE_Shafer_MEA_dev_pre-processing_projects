@@ -5,7 +5,7 @@ graphics.off() # clear plot history
 ###################################################################################
 dataset_title <- "ToxCast2016" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -34,7 +34,7 @@ if(save_notes_graphs) {
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
   graphics.off()
-  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")))
+  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")), height = 8, width = 10)
 }
 
 # run the main steps
@@ -71,7 +71,7 @@ unique(spidmap2$ALIQUOT_SOLVENT) # DMSO
 setnames(spidmap2, old = c("dsstox_preferred_name","ALIQUOT_CONC", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
 spidmap2[, treatment := as.character(treatment)]
-spidmap2 <- spidmap2[treatment %in% c("1,1,2,2-Tetrahydroperfluoro-1-decanol","1H,1H,2H,2H-Perfluorooctyl iodide","Perfluoroundecanoic acid")]
+spidmap2 <- spidmap2[treatment %in% c("Clotrimazole","1H,1H,2H,2H-Perfluorooctyl iodide","Perfluoroundecanoic acid")]
 head(spidmap2[, .(treatment, spid, stock_conc)])
 
 # third spidmap -> Just for Valinomycin from NTP compounds
@@ -115,7 +115,7 @@ dat[treatment == "Rotenone - ToxCast G-8", treatment := "Rotenone"] # this compo
 dat[treatment == "Disulfiram - ToxCast G-8", treatment := "Disulfiram"] # this compound was tested in both the NTP and Toxcast groups. 
 dat[treatment == "Valinomycin - NTP", treatment := "Valinomycin"]
 # these compounds were added from another batch - making names standardized
-dat[treatment == "1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411", treatment := "1,1,2,2-Tetrahydroperfluoro-1-decanol"]
+dat[treatment == "1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411", treatment := "Clotrimazole"] # See lab noteook 20171011. TP0001411 + ToxCast Plate Location E03 corresponds to Clotrimazole
 dat[treatment == "1H,1H,2H,2H-Perfluorooctyl iodide - TP0001413", treatment := "1H,1H,2H,2H-Perfluorooctyl iodide"]
 dat[treatment == "Perfluoroundecanoic acid - TP0001411", treatment := "Perfluoroundecanoic acid"]
 
@@ -130,87 +130,16 @@ dat <- check_and_assign_spids(dat, spidmap)
 # check if there are multiple conc's assigned to the same well (usually occurs if there are differences between master chem file and calc file)
 # Note: in TCPL mc1, the conc's are set to dat[ , conc := signif(conc, 3)]. So it's okay for us to round here.
 dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
-# treatment               apid rowi coli num_unique_concs_in_well
-# 1:    Azoxystrobin 20170201_MW1145-25    4    8                        2
-# 2:          Captan 20170201_MW1145-25    3    8                        2
-# 3:      Carbofuran 20170201_MW1145-25    1    8                        2
-# 4:       Cymoxanil 20170201_MW1145-25    6    8                        2
-# 5:  Pyraclostrobin 20170201_MW1145-25    2    8                        2
-# 6: Trifloxystrobin 20170201_MW1145-25    5    8                        2
+# Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
 # if any, standardize those before continuing.
-problem_comps <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1, unique(treatment)]
-problem_comps # all from the same apid
 
-# get a summary of the treatments by srcf
-summary_dat <- dat[treatment %in% problem_comps, .(conc_shown = unique(conc)), by = .(apid, rowi, coli, treatment, srcf)]
-summary_dat[, conc_round := signif(conc_shown, 1)]
-summary_dat[, conc_source := ""]
-summary_dat[grepl("(Calc)|(Summary)",srcf), conc_source := "Calc"]
-summary_dat[grepl("AUC",srcf), conc_source := "AUC"]
-summary_dat[grepl("DIV",srcf), conc_source := "DIV"]
-summary_wide <- dcast(summary_dat, apid + treatment + rowi + coli ~ conc_source, value.var = "conc_shown")
-summary_wide
-head(summary_wide, n = 7)
-
-summary_wide[treatment == "Captan" & AUC != Calc]
-# apid treatment rowi coli AUC Calc DIV
-# 1: 20170201_MW1145-25    Captan    3    8  10  0.1  10
-dat[treatment == "Captan", unique(conc)]
-
-summary_wide[Calc != AUC]
-# apid       treatment rowi coli AUC Calc DIV
-# 1: 20170201_MW1145-25    Azoxystrobin    4    8  10 20.0  10
-# 2: 20170201_MW1145-25          Captan    3    8  10  0.1  10
-# 3: 20170201_MW1145-25      Carbofuran    1    8  10  0.3  10
-# 4: 20170201_MW1145-25       Cymoxanil    6    8  10 20.0  10
-# 5: 20170201_MW1145-25  Pyraclostrobin    2    8  10  0.1  10
-# 6: 20170201_MW1145-25 Trifloxystrobin    5    8  10 20.0  10
-# according to lab notebook, column 8 should be 10uM for all compounds
-# Looking at the Calculatiosn files, i think these conc's jsut got flipped around
-# see e.g. first compound - 20uM is listed for 2 columns
-dat[treatment == "Azoxystrobin" & grepl("Calc",srcf) & apid == "20170201_MW1145-25", unique(conc), by = (coli)]
-# coli    V1
-# 1:    1 20.00
-# 2:    3  0.03
-# 3:    4  0.10
-# 4:    5  0.30
-# 5:    6  1.00
-# 6:    7  3.00
-# 7:    8 20.00
-dat[treatment %in% problem_comps & apid == "20170201_MW1145-25" & coli == 8, unique(conc), by = "treatment"]
-# set conc to 10uM for all of these compounds in column 8
-dat[treatment %in% problem_comps & apid == "20170201_MW1145-25" & coli == 8, conc := 10.0]
-# I am correcting this in the Calculations file as well
-
-# for all of these... stkc is signficantly off from 20
-# Can I be confident that Kathleen/someone didn't already correct for this in their dilutions?
-#            spid    stkc expected_stock_conc                         spidmap_guess_concs                          treatment                                        source_concs num_concs
-# 2: TP0001413A04  5.0000                  20          0.0075,0.025,0.075,0.25,0.75,2.5,5  1H,1H,2H,2H-Perfluorooctyl iodide                              0.03,0.1,0.3,1,3,10,20         7
-# 3: TP0001649B02 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                           Mancozeb                              0.03,0.1,0.3,1,3,10,20         7
-# 4: TP0001649B03 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                          Tamoxifen                              0.03,0.1,0.3,1,3,10,20         7
-# 5: TP0001649D07  5.0000                  20          0.0075,0.025,0.075,0.25,0.75,2.5,5                       Erythromycin                              0.03,0.1,0.3,1,3,10,20         7
-# 6: TP0001649D10 14.5000                  20    0.0217,0.0725,0.218,0.725,2.17,7.25,14.5            Methadone hydrochloride                              0.03,0.1,0.3,1,3,10,20         7
-# 7: TP0001649E02  5.2175                  20 0.00783,0.0261,0.0783,0.261,0.783,2.61,5.22                     Clove leaf oil                              0.03,0.1,0.3,1,3,10,20         7
-# 9: TP0001649E12 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                 Pravastatin sodium                              0.03,0.1,0.3,1,3,10,20         7
-# 12: TP0001649G07 14.9000                  20    0.0223,0.0745,0.223,0.745,2.23,7.45,14.9                Cariporide mesylate                              0.03,0.1,0.3,1,3,10,20         7
-
-spidmap[abs(stock_conc - expected_stock_conc) > 0.01]
-# treatment         spid stock_conc expected_stock_conc
-# 1: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04        5.0                  20
-# 2:                       Valinomycin     EX000362       19.9                  20
-
-load("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_acute_for_tcpl/ToxCast2016/output/ToxCast2016_dat4_2020-07-27.RData")
-spids <- spidmap[treatment %in% c("1,1,2,2-Tetrahydroperfluoro-1-decanol","1H,1H,2H,2H-Perfluorooctyl iodide","Perfluoroundecanoic acid"), unique(spid)]
-dat4[spid %in% spids, unique(apid)] # "20150804" "20160127" "20150818"
-rm(dat4)
-
-con <- dbConnect(drv = RMySQL::MySQL(), user = "***REMOVED***", pass = ***REMOVED***, dbname='invitrodb',host = "ccte-mysql-res.epa.gov")
-query_term <- paste0("SELECT * FROM sample WHERE spid IN('",paste(spidmap[!is.na(spid),unique(spid)],collapse="','",sep=""),"');")
-sample_info <- dbGetQuery(con, query_term)
-dbDisconnect(con)
-sample_info <- merge(sample_info, spidmap, by = c("spid"), suffixes = c(".db",".file"))
-setDT(sample_info)
-sample_info[signif(stkc,3) != signif(stock_conc,3)] # 10 compounds... huh
+# con <- dbConnect(drv = RMySQL::MySQL(), user = "***REMOVED***", pass = ***REMOVED***, dbname='invitrodb',host = "ccte-mysql-res.epa.gov")
+# query_term <- paste0("SELECT * FROM sample WHERE spid IN('",paste(spidmap[!is.na(spid),unique(spid)],collapse="','",sep=""),"');")
+# sample_info <- dbGetQuery(con, query_term)
+# dbDisconnect(con)
+# sample_info <- merge(sample_info, spidmap, by = c("spid"), suffixes = c(".db",".file"))
+# setDT(sample_info)
+# sample_info[signif(stkc,3) != signif(stock_conc,3)] # 10 compounds... huh
 # spid  chid    stkc stkc_unit tested_conc_unit               treatment stock_conc expected_stock_conc
 # 1: TP0001649B02 34695 10.0000        mM               uM                Mancozeb         20                  20
 # 2: TP0001649B03 34187 10.0000        mM               uM               Tamoxifen         20                  20
@@ -222,6 +151,11 @@ sample_info[signif(stkc,3) != signif(stock_conc,3)] # 10 compounds... huh
 # 8: TP0001649F10 32572 19.9000        mM               uM             Prallethrin         20                  20
 # 9: TP0001649F11 20243 19.7000        mM               uM                  Captan         20                  20
 # 10: TP0001649G07 47344 14.9000        mM               uM     Cariporide mesylate         20                  20
+# confirmed with Ann Richard - the stock conc's in file are just the target conc's. 
+# Invitrodb stkc is correct. Since the true stkc's are not present on the L drive, I can assume
+# that whoever prepared these dilutions assumed that the stock conc was 20
+# Additionally, for 1H,1H,2H,2H-Perfluorooctyl iodide with stkc = 5mM -> okay to apply conc-correction with expected conc at 20mM 
+# see OneNote for notes
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
@@ -234,7 +168,7 @@ source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
 
 # Any other plots or things to check?
-
+dat[grepl("MW1147-4",apid), .N, by = .(ifelse(grepl("DIV",acsn),"DIV","AUC"))]
 
 # save the data and graphs
 setkey(dat, NULL)

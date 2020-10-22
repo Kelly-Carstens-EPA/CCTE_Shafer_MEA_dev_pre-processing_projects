@@ -69,7 +69,7 @@ dataset_checks <- function(dat) {
   
   # find a compound that is likely to be a positive and plot dose response
   plot_spid <- dat[conc == max(conc) & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean", .(med_rval = median(rval)), by = "spid"][med_rval == min(med_rval), spid[1]]
-  plot_plates <- control_dat <- dat[spid == plot_spid, unique(apid)]
+  plot_plates <- dat[spid == plot_spid, unique(apid)]
   stripchart(rval ~ conc_grp, plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1], vertical = T, pch = 19, las = 2,
              col = rgb(0.1,0.1,0.1,0.5),
              ylim = range(dat[wllq == 1 & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean",rval]), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)",

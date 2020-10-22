@@ -123,8 +123,46 @@ view_replicates_by_DIV(div_dat, "Acetaminophen", dosei = 0.3, title_msg = "verif
 view_replicates_by_DIV(div_dat, "Bisphenol A", dosei = 10, title_msg = "verifying 1230-53 estimated DIV9")
 # nAE looks great! MFR could be better, but it's okay
 
+# checking out these treatments with cytotoxicity "outliers"
+plotdat <- dat[grepl("LDH",acsn)]
+stripchart(rval ~ signif(log10(conc),3), plotdat[treatment == "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride"],
+           vertical = T, pch = 1, main = paste0(unique(plotdat$acsn)," PFAS2018 Loperamide Dose-response"))
+abline(h = plotdat[apid == "20181114_MW1234-49" & wllt == "n" & wllq == 1, median(rval)])
+
+stripchart(rval ~ signif(log10(conc),3), plotdat[treatment == "1475813"],
+           vertical = T, pch = 1, main = paste0(unique(plotdat$acsn)," PFAS2018 1475813 Dose-response"))
+abline(h = plotdat[apid == "20181114_MW1234-25" & wllt == "n" & wllq == 1, median(rval)])
+
+stripchart(rval ~ signif(log10(conc),3), plotdat[treatment == "1475815"],
+           vertical = T, pch = 1, main = paste0(unique(plotdat$acsn)," PFAS2018 1475815 Dose-response"))
+abline(h = plotdat[apid == "20181017_MW1207-43" & wllt == "n" & wllq == 1, median(rval)])
+
+stripchart(rval ~ signif(log10(conc),3), plotdat[treatment == "1475824"],
+           vertical = T, pch = 1, main = paste0(unique(plotdat$acsn)," PFAS2018 1475824 Dose-response"))
+abline(h = plotdat[apid == "20181017_MW1208-4" & wllt == "n" & wllq == 1, median(rval)])
+
+stripchart(rval ~ signif(log10(conc),3), dat[grepl("AB",acsn) & treatment == "1475815"],
+           vertical = T, pch = 1, main = paste0("AB"," PFAS2018 1475815 Dose-response"))
+abline(h = dat[grepl("AB",acsn) & apid == "20181017_MW1207-43" & wllt == "n" & wllq == 1, median(rval)])
+
+# confirming that the conc's have been udpated for 20181017
+dat[grepl("20181017",apid) & conc < 0.1, .N, by = .(wllt, conc, coli, apid)]
+# wllt  conc coli               apid   N
+# 1:    t 0.030    1 20181017_MW1207-43 522
+# 2:    t 0.030    1 20181017_MW1207-44 522
+# 3:    t 0.030    1  20181017_MW1208-1 522
+# 4:    t 0.030    1  20181017_MW1208-2 522
+# 5:    t 0.030    2  20181017_MW1208-3 522
+# 6:    t 0.030    1  20181017_MW1208-4 522
+# 7:    n 0.001    2 20181017_MW1207-43 522
+# 8:    n 0.001    2 20181017_MW1207-44 522
+# 9:    n 0.001    2  20181017_MW1208-1 522
+# 10:    n 0.001    2  20181017_MW1208-2 522
+# 11:    n 0.001    1  20181017_MW1208-3 522
+# 12:    n 0.001    2  20181017_MW1208-4 522
+
 # save dat and graphs
-save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")), row.names = F)
+save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 
 if(save_notes_graphs) {
@@ -134,3 +172,15 @@ if(save_notes_graphs) {
 
 cat("\nDone!\n")
 
+# # manual fix for 20181017
+# update_files <- c(list.files(file.path(root_output_dir,dataset_title,"prepared_data"),pattern = "ont_data_summary_ABEfilt_20181017_", full.names = T),
+#                   list.files(file.path(root_output_dir,dataset_title,"All_MI"),pattern = "NMI_20181017_", full.names = T))
+# update_files <- update_files[!grepl("MW1208-3",update_files)]
+# 
+# for (filei in update_files) {
+#   cat(basename(filei),"\n")
+#   pdat <- as.data.table(read.csv(filei, stringsAsFactors = F))
+#   pdat[grepl("2",well), dose := 0] # controls are in col 2
+#   pdat[grepl("1",well), dose := 0.03] # 0.03 is in col 1
+#   write.csv(pdat, filei,row.names = F)
+# }

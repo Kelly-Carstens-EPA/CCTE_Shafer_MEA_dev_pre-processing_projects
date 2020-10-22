@@ -48,7 +48,7 @@ dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dat
 table1 <- as.data.table(read.xlsx(file.path(root_output_dir,dataset_title,"Table1_CompoundList_dtxsid_updated.xlsx"),sheet = 1))
 setnames(table1, old = c("CAS.No.","Compound.name.(abbreviation)"), new = c("CASRN","treatment"))
 table1 <- table1[!is.na(treatment)]
-table1[treatment == "Acteminophen", Solvent.used := "Water"] # fixing this, based on lab notebook 20141203
+table1[treatment == "Acetaminophen", Solvent.used := "Water"] # fixing this, based on lab notebook 20141203
 
 # first, checkign that treatment names are consistent
 dat[, .(length(unique(treatment))), by = .(apid, rowi, coli)][V1 != 1] # empty, that's good
@@ -151,7 +151,7 @@ dat <- check_and_assign_spids(dat, spidmap)
 # rm(dat2)
 setnames(dat, old = c("treatment","treatment_name"), new = c("CASRN","treatment"))
 dat[is.na(spid), .N] # 0
-
+dat[, CASRN := NULL]
 
 # Confirm Conc's ----------------------------------------------------------------
 # confirm that the conc's collected from master chem lists and Calc files match
