@@ -4,8 +4,8 @@ graphics.off()
 # USER INPUT
 ###################################################################################
 dataset_title <- "Brown2014" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
-pause_between_steps <- FALSE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+pause_between_steps <- TRUE # probs want to be true when you first run
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -29,7 +29,7 @@ if(save_notes_graphs) {
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
   graphics.off()
-  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")))
+  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")), width = 10, height = 8)
 }
 
 # run the main steps
@@ -46,7 +46,7 @@ dat[, .N, by = .(treatment)] # yep, no inconsistent naming.
 # change untreated wells to Control Treatment ------------------------------------
 dat[wllt == "n", treatment := default_ControlTreatmentName]
 # Acetaminophen, Domic Acid, and Sodium Orthovandate should be "water" for all cultures
-water_trts <- c("Acetaminophen","Domoic Acid","Sodium Orthovanadate")
+water_trts <- c("Acetaminophen","Domoic Acid","Sodium Orthovanadate","Glyphosate")
 
 # 20140205
 dat[grepl("^20140205",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
@@ -92,16 +92,57 @@ dat[grepl("^20140423",apid) & treatment %in% water_trts, .(rowi = unique(rowi)),
 water_trt_rows <- dat[grepl("^20140423",apid) & treatment %in% water_trts, unique(rowi)]
 dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140423", control_rowi = water_trt_rows)
 
+# 20140716
+dat[grepl("^20140716",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
+# treatment rowi
+# 1:           Glyphosate    1
+# 2:           Glyphosate    4
+# 3: Sodium Orthovanadate    3
+# 4: Sodium Orthovanadate    6
+water_trt_rows <- dat[grepl("^20140716",apid) & treatment %in% water_trts, unique(rowi)]
+dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140716", control_rowi = water_trt_rows)
+
+# 20140730
+dat[grepl("^20140730",apid) & treatment %in% water_trts, .(rowi = unique(rowi)), by = "treatment"]
+# treatment rowi
+# 1:           Glyphosate    2
+# 2:           Glyphosate    5
+# 3: Sodium Orthovanadate    3
+# 4: Sodium Orthovanadate    6
+water_trt_rows <- dat[grepl("^20140730",apid) & treatment %in% water_trts, unique(rowi)]
+dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "20140730", control_rowi = water_trt_rows)
+
+# from lab notebook:
+# "accidentally used sterile water as solvent control for Glyphosate" (20140730)
+dat[grepl("^20140730",apid) & treatment == "Glyphosate", .N, by = "rowi"]
+# rowi   N
+# 1:    2 602
+# 2:    5 602
+dat[grepl("^20140730",apid) & wllt == "n" & rowi %in% c(2,5), treatment := "Water"]
+
+# we are not including the data for Glyphosate, as per the published data file
+dat[treatment == "Glyphosate", .N, by = .(rowi, apid)]
+# rowi                apid   N
+# 1:    1  20140716_MW1007-26 602
+# 2:    4  20140716_MW1007-26 602
+# 3:    2 20140730_MW1007-104 602
+# 4:    5 20140730_MW1007-104 602
+dat <- dat[treatment != "Glyphosate"]
+
 dat[wllt == "n", .N, by = c("treatment","rowi")]
 # treatment rowi   N
 # 1:     Water    1 688
-# 2:      DMSO    2 688
+# 2:      DMSO    2 860
 # 3:     Water    3 688
-# 4:      DMSO    4 688
-# 5:      DMSO    5 688
+# 4:      DMSO    4 946
+# 5:      DMSO    5 860
 # 6:     Water    6 688
+# 7:      DMSO    1 258
+# 8:      DMSO    3 172
+# 9:      DMSO    6 172
+# 10:     Water    2  86
+# 11:     Water    5  86
 dat[wllt == "n", conc := 0.001] # All wells have 0.1% solvent
-
 
 # Assign SPIDs ------------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
@@ -113,9 +154,9 @@ spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually t
 # update expected_stock_conc for individual compouunds where needed 
 # for example, 
 # spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
-spidmap[treatment == "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride", treatment := "Loperamide"]
 spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
+spidmap <- spidmap[treatment %in% c("Acetaminophen","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride")]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
 spidmap2 <- as.data.table(read.xlsx("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES203_EPA-Shafer_42_20200110_key.xlsx", sheet = 1))
@@ -130,21 +171,25 @@ spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
 spidmap
 
 # rename any compounds, if needed
-unique(dat$treatment)
-spidmap[treatment == "Bisindolylmaleimide I"]
-dat[treatment == "Bisindolymaleimide 1", treatment := "Bisindolylmaleimide I"] # Shafer_42 list CASRN is 133052-90-1, which matches the casn shown in paper
-dat[treatment == "Domoic Acid", treatment := "L-Domoic acid"] # Shafer_42 CASRN is 14277-97-5, which matches the casn shown in the paper
-dat[treatment == "Sodium Orthovanadate", treatment := "Sodium orthovanadate"] # just change in captilization
+trt_name_map <- as.data.table(read.csv(file.path(root_output_dir, "supplemental_mea_treatment_name_map.csv"), stringsAsFactors = F))
+trt_name_map <- trt_name_map[dataset == dataset_title, .(mea_treatment_name, updated_treatment_name)]
+unused_trt_names <- setdiff(unique(trt_name_map$mea_treatment_name), unique(dat$treatment))
+if(length(unused_trt_names)> 0 ){
+  cat("Some expected mea treatment names in 'supplemental_mea_treatment_name_map.csv' are not in the actual data:", unused_trt_names, "\n", sep = " ")
+}
+dat <- merge(dat, trt_name_map, by.x = "treatment", by.y = "mea_treatment_name", all.x = T)
+dat[is.na(updated_treatment_name), updated_treatment_name := treatment] # for compound names that do not need to be updated
+setnames(dat, old = c("treatment","updated_treatment_name"), new = c("mea_treatment_name","treatment"))
+dat[, .N, by = .(treatment, mea_treatment_name)]
 
 spidmap[treatment %in% unique(dat$treatment)]
-# spid             treatment stock_conc expected_stock_conc
-# 1: EX000404         Acetaminophen         20                  20
-# 2: EX000487         L-Domoic acid        100                 100
-# 3: EX000492            Loperamide        100                 100
-# 4: EX000475 Bisindolylmaleimide I        100                 100
-# 5: EX000498            Mevastatin        100                 100
-# 6: EX000499  Sodium orthovanadate        100                 100
-# looks like all are in Shafer_42 list, except for Actaminophen
+# spid                                                                                               treatment stock_conc expected_stock_conc
+# 1: EX000404                                                                                           Acetaminophen         20                  20
+# 2: EX000411 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride         20                  20
+# 3: EX000487                                                                                           L-Domoic acid        100                 100
+# 4: EX000475                                                                                   Bisindolylmaleimide I        100                 100
+# 5: EX000498                                                                                              Mevastatin        100                 100
+# 6: EX000499                                                                                    Sodium orthovanadate        100                 100
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)
@@ -173,6 +218,8 @@ summary_dat[grepl("DIV",srcf), conc_source := "DIV"]
 summary_wide <- dcast(summary_dat, apid + treatment + rowi + coli ~ conc_source, value.var = "conc_shown")
 
 summary_wide[round(AUC,2) != round(Calc,2)]
+summary_wide[AUC != Calc, unique(apid)]
+# [1] "20140212_MW1007-27" "20140402_MW1007-27" "20140423_MW1007-38"
 # I already verified all of the conc's in the maestro exp log file
 # So I am going to take those conc's over the conc's in teh Calc/Summary data
 
@@ -183,46 +230,34 @@ dat <- merge(dat, summary_wide[, .(apid, treatment, rowi, coli, use_conc)], all.
 dat[!is.na(use_conc), conc := use_conc]
 dat[, use_conc := NULL]
 
+# just confirming this, since it was flipped in master chem file originally
+dat[grepl("20140716",apid) & grepl("Bis",treatment), .(unique(conc)), by = .(rowi, coli)]
+# good, B8 is 10uM, B7 is not present, so must be control
+# but wait... E7 is 10 and E8 is 10... E8 should be a control well.
+# I will fix this in prepared data file, AUC, and the source h5file.
+dat[grepl("20140716",apid) & grepl("Bis",treatment) & grepl("AB",acsn), .(unique(conc)), by = .(rowi, coli)] # the summary file and cytotox data is correct though
+# this is fixed now
+
 # confirming this is empty now
 dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
 
 # confirm conc ranges included with the stated conc ranges in paper
-dat[, .(concs_tested = paste0(sort(unique(conc)),collapse=",")), by = .(treatment, spid)]
-# treatment     spid                          concs_tested
-# 1:         Acetaminophen EX000404                     0.1,0.3,1,3,10,30
-# 2: Bisindolylmaleimide I EX000475                   0.03,0.1,0.3,1,3,10
-# 3:                  DMSO     DMSO                                 0.001
-# 4:         L-Domoic acid EX000487 3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1
-# 5:            Loperamide EX000492                     0.1,0.3,1,3,10,30
-# 6:            Mevastatin EX000498                     0.1,0.3,1,3,10,30
-# 7:  Sodium orthovanadate EX000499                0.03,0.1,0.3,1,3,10,30
-# 8:                 Water    Water                                 0.001
-
-# domic acid - paper says range is 0.003 to 1. But this goes down to 0.0003. 
-dat[grepl("Domoic acid",treatment) & conc == 0.0003, unique(apid)] # "20140205_MW1007-26"
-# Lab notebook confirmed 0.0003 for well C2, and 0.001 for C3
-# Published downloaded data has removed wells C2 and C3 for this plate. huh
-dat[grepl("Domoic acid",treatment) & conc < 0.003, .N, by = .(apid)] # only tested at these conc's on this plate
-# So either there was a wllq issue, or they just didn't want to include the data for conc's that low
-# I don't see any notes in the lab notebook
-# I can see why they might have watned fewer conc's for their work
-# But I think we should include now?
-
-# sodium orthovanadate should include 0.01
-# according to published data, this was tested on 20140716... ugh.
-
-# options:
-# - just exclude this concentration
-# - ask Kathleen to look for the spike list files for 20140716
-# - Try to use the data from the existing h5 files
-# - Just use the published prepared data values (but could not get MI w/o h5 data)
-
-# I am just going to more forward, for now
+dat[wllq == 1, .(concs_tested = paste0(sort(unique(conc)),collapse=",")), by = .(treatment)]
+# treatment                concs_tested
+# 1: 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride           0.1,0.3,1,3,10,30
+# 2:                                                                                           Acetaminophen           0.1,0.3,1,3,10,30
+# 3:                                                                                   Bisindolylmaleimide I         0.03,0.1,0.3,1,3,10
+# 4:                                                                                                    DMSO                       0.001
+# 5:                                                                                           L-Domoic acid   0.003,0.01,0.03,0.1,0.3,1
+# 6:                                                                                              Mevastatin           0.1,0.3,1,3,10,30
+# 7:                                                                                    Sodium orthovanadate 0.01,0.03,0.1,0.3,1,3,10,30
+# 8:                                                                                                   Water                       0.001
+# this agrees with paper
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
-rm(list=c("spidmap","spidmap2","summary_dat","summary_wide"))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,20))
+rm(list=c("summary_dat","summary_wide"))
 
 
 # FINAL DATA CHECKS
@@ -231,11 +266,13 @@ source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
 
 # Any other plots or things to check?
-dat[wllt == "n", .N, by = .(apid, acsn)][N != 12]
+dat[wllt == "n", .N, by = .(apid, acsn)][N != 12, unique(apid)]
+# "20140716_MW1007-26"  "20140730_MW1007-104"
+dat[apid %in% c("20140716_MW1007-26", "20140730_MW1007-104") & wllt == "n", .N, by = .(apid, acsn)][N != 8]
 # Empty data.table (0 rows and 3 cols): apid,acsn,N
 
 # correlation plot with the published data
-pub_dat <- as.data.table(read.csv(file.path(root_output_dir,dataset_title,"deprecated_data_preparation","Published Downloaded Data","Final_Data_Set_SA1_DNT_Paper1 (2)(updated)_CF.csv"),stringsAsFactors = F))
+pub_dat <- as.data.table(read.csv(file.path(root_output_dir,dataset_title,"Published Downloaded Data","Final_Data_Set_SA1_DNT_Paper1 (2)(updated)_CF.csv"),stringsAsFactors = F))
 div_dat <- as.data.table(read.csv(file.path(root_output_dir,dataset_title,"output",paste0(dataset_title,"_parameters_by_DIV.csv")),stringsAsFactors = F))
 comb_dat <- merge(pub_dat, div_dat, by = c("date","Plate.SN","well","DIV"), suffixes = c(".org",".new"), all = T)
 
@@ -244,7 +281,7 @@ comb_dat[treatment != trt] # empty
 comb_dat[dose.new != dose.org] # just Acetaminophen from well A6 and A7 20140212. I switched these 2 doses according to the lab notebook, looks like they did not.
 comb_dat[is.na(date)]
 setdiff(div_dat$date, pub_dat$date) # empty
-setdiff(pub_dat$date, div_dat$date) # 20140716 20140730, as expected
+setdiff(pub_dat$date, div_dat$date) # empty
 
 # compare rval's
 plot(comb_dat[, .(meanfiringrate.new, meanfiringrate.org)], main ="Correlation plot of the Published MFR values vs current, for all DIV")
@@ -312,7 +349,29 @@ comb_dat[abs(meanfiringrate.new - meanfiringrate.org) > 1, .(date, Plate.SN, wel
 # # I am content to more forward.
 # rm(list = c("new_h5","org_h5","comb_dat","pub_dat","div_dat"))
 
+# quick check of DIV 9 estimated values
+par(mfrow = c(4, 4))
+wells <- div_dat[date == "20140730", unique(well)]
+for (welli in wells) {
+  plotdat <- div_dat[date == "20140730" & well == welli, .(DIV, meanfiringrate)][order(DIV)]
+  plot(plotdat, type = "o", ylim = div_dat[date == "20140730", range(meanfiringrate)])
+  title(main = paste0(div_dat[date == "20140730" & well == welli, unique(treatment)]," ",
+                      div_dat[date == "20140730" & well == welli, unique(dose)],"uM",
+                      "\n", welli, " 20140730 DIV 9 estimation"))
+}
+
+par(mfrow = c(4, 4))
+wells <- div_dat[date == "20140716", unique(well)]
+for (welli in wells) {
+  plotdat <- div_dat[date == "20140716" & well == welli, .(DIV, meanfiringrate)][order(DIV)]
+  plot(plotdat, type = "o", ylim = div_dat[date == "20140716", range(meanfiringrate)])
+  title(main = paste0(div_dat[date == "20140716" & well == welli, unique(treatment)]," ",
+                      div_dat[date == "20140716" & well == welli, unique(dose)],"uM",
+                      "\n", welli, " 20140716 DIV 9 comparison"))
+}
+
 # save dat and graphs
+setkey(dat, NULL)
 save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 

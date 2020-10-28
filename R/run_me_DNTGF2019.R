@@ -40,7 +40,7 @@ source(file.path(scripts.dir, 'source_steps.R'))
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
 
-# relabelling this compound
+# relabelling this compound (keep this correction even after you update run_me)
 dat[treatment == "Glufo", treatment := "L-Glufosinate Ammonium"]
 
 

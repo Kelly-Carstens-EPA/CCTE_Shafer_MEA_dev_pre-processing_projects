@@ -115,7 +115,7 @@ dat[treatment == "Rotenone - ToxCast G-8", treatment := "Rotenone"] # this compo
 dat[treatment == "Disulfiram - ToxCast G-8", treatment := "Disulfiram"] # this compound was tested in both the NTP and Toxcast groups. 
 dat[treatment == "Valinomycin - NTP", treatment := "Valinomycin"]
 # these compounds were added from another batch - making names standardized
-dat[treatment == "1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411", treatment := "Clotrimazole"] # See lab noteook 20171011. TP0001411 + ToxCast Plate Location E03 corresponds to Clotrimazole
+dat[treatment == "1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411", treatment := "Clotrimazole"] # See lab noteook 20171011. TP0001411 + ToxCast Plate Location E01 corresponds to Clotrimazole
 dat[treatment == "1H,1H,2H,2H-Perfluorooctyl iodide - TP0001413", treatment := "1H,1H,2H,2H-Perfluorooctyl iodide"]
 dat[treatment == "Perfluoroundecanoic acid - TP0001411", treatment := "Perfluoroundecanoic acid"]
 

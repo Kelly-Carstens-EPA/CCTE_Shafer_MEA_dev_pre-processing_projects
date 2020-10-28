@@ -5,7 +5,7 @@ graphics.off() # clear plot history
 ###################################################################################
 dataset_title <- "NTP91" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probably leave this as true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
@@ -30,7 +30,7 @@ if(save_notes_graphs) {
   cat("USER INPUT settings:\n")
   print(sapply(ls(), get, envir = .GlobalEnv))
   graphics.off()
-  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")))
+  pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")), width = 10, height = 8)
 }
 
 # run the main steps
@@ -64,32 +64,15 @@ spidmap[treatment == "Chrysene", expected_stock_conc := 9.7]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
 # rename any compounds, if needed
-dat[treatment == "1Ethyl3methylimidazolium diethylphosphate", treatment := "1-Ethyl-3-methylimidazolium diethylphosphate"]
-dat[treatment == "2244 Tetrabromodiphenyl ether", treatment := "2,2',4,4'-Tetrabromodiphenyl ether"]
-dat[treatment == "22445 Pentabromodiphenyl ether", treatment := "2,2',4,4',5-Pentabromodiphenyl ether"]
-dat[treatment == "224455 Hexabromodiphenyl ether", treatment := "2,2',4,4',5,5'-Hexabromodiphenyl ether"]
-dat[treatment == "2Ethylhexyl 2345 tetrabromobenzoate", treatment := "2-Ethylhexyl-2,3,4,5-tetrabromobenzoate"]
-dat[treatment == "2Ethylhexyl diphenyl phosphate", treatment := "2-Ethylhexyl diphenyl phosphate"]
-dat[treatment == "4HCyclopenta def phenanthrene", treatment := "4-H-Cyclopenta(d,e,f)phenanthrene"]
-dat[treatment == "6 Hydroxydopamine hydrochloride", treatment := "6-Hydroxydopamine hydrochloride"]
-dat[treatment == "Auramine", treatment := "Auramine O"]
-dat[treatment == "Benzo a pyrene", treatment := "Benzo(a)pyrene"]
-dat[treatment == "Benzo e pyrene", treatment := "Benzo(e)pyrene"]
-dat[treatment == "Benzo ghi perylene", treatment := "Benzo[g,h,i]perylene"]
-dat[treatment == "Benzo k fluoranthene", treatment := "Benzo(k)fluoranthene"]
-dat[treatment == "Bis 2 ethylhexyl tetrabromophthalate", treatment := "Bis(2-ethylhexyl) tetrabromophthalate"]
-dat[treatment == "Carbamic acid", treatment := "Dibenz[a,c]anthracene"]
-dat[treatment == "Carbamic acid butyl 3iodo2propynyl ester", treatment := "Carbamic acid, butyl-, 3-iodo-2-propynyl ester"]
-dat[treatment == "D Glucitol", treatment := "D-Glucitol"]
-dat[treatment == "Di 2ethylhexyl phthalate", treatment := "Di(2-ethylhexyl) phthalate"]
-dat[treatment == "Dibenz ac anthracene", treatment := "Dibenz[a,c]anthracene"]
-dat[treatment == "Dibenz ah anthracene", treatment := "Dibenz(a,h)anthracene"]
-dat[treatment == "Firemaster", treatment := "Firemaster 550"]
-dat[treatment == "L Ascorbic acid", treatment := "L-Ascorbic acid"]
-dat[treatment == "Manganese tricarbonyl 12345 eta 1 methyl 24 cyclopentadien 1 yl", treatment := "Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-"]
-dat[treatment == "Tris 2chloroisopropyl phosphate", treatment := "Tris(2-chloroethyl) phosphate"]
-dat[treatment == "tert Butylphenyl diphenyl phosphate", treatment := "tert-Butylphenyl diphenyl phosphate"]
-dat[treatment == "Phenol isopropylated phosphate", treatment := "Phenol, isopropylated, phosphate (3:1)"] # this is the only phosphate in the spidmap that would make sense
+trt_name_map <- as.data.table(read.csv(file.path(root_output_dir, "supplemental_mea_treatment_name_map.csv"), stringsAsFactors = F))
+trt_name_map <- trt_name_map[dataset == dataset_title, .(mea_treatment_name, updated_treatment_name)]
+unused_trt_names <- setdiff(unique(trt_name_map$mea_treatment_name), unique(dat$treatment))
+if(length(unused_trt_names)> 0 ){
+  cat("Some expected mea treatment names in 'supplemental_mea_treatment_name_map.csv' are not in the actual data:", unused_trt_names, "\n", sep = " ")
+}
+dat <- merge(dat, trt_name_map, by.x = "treatment", by.y = "mea_treatment_name", all.x = T)
+dat[is.na(updated_treatment_name), updated_treatment_name := treatment] # for compound names that do not need to be updated
+setnames(dat, old = c("treatment","updated_treatment_name"), new = c("mea_treatment_name","treatment"))
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)
@@ -110,6 +93,12 @@ problem_comps
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
 dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,20))
+# "1-Methyl-4-phenylpyridinium iodide" - conc's should stay in 0.01 - 10 range
+# "2,2',4,4',5,5'-Hexabromodiphenyl ether", "Chrysene" - conc's should not change
+# "Rotenone" - slight chnage, but conc range stay from 0.00003 - 20
+update_summary[treatment == "1-Methyl-4-phenylpyridinium iodide"]
+update_summary[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether", "Chrysene") & signif(as.numeric(conc_updated),3) != signif(as.numeric(concs_in_source_dat),3)]
+update_summary[treatment %in% c("Rotenone")]
 
 
 # FINAL DATA CHECKS
@@ -121,6 +110,7 @@ dataset_checks(dat)
 
 
 # save dat and graphs
+setkey(dat, NULL)
 save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 
