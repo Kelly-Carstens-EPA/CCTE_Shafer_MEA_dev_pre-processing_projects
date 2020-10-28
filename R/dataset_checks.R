@@ -1,5 +1,12 @@
 dataset_checks <- function(dat) {
   
+  # for transitioning to assigning spids later
+  remove_spid_col <- FALSE
+  if (!is.element("spid",names(dat))) {
+    remove_spid_col <- TRUE
+    dat[, spid := treatment]
+  }
+  
   # this section is to confirm that the data has been processed correctly
   cat("\nFinal Checks\n")
   cat("Number of cultures dates:",dat[, length(unique(sub("_.+$","",apid)))])
@@ -20,7 +27,8 @@ dataset_checks <- function(dat) {
     if (check.points[apid == apidi, any(.SD != 48), .SDcols = c(standard_cols)]) {
       pts_flag <- TRUE
       MEA_pts <- check.points[apid == apidi, .(sort(unique(.SD))), .SDcols = setdiff(standard_cols, c("AB","LDH"))]
-      print(check.points[apid == apidi, .(apid, AB, LDH, MEA_pts = paste0(sort(unique(unlist(MEA_pts))),collapse=","))])
+      check.points[apid == apidi, MEA_pts := paste0(sort(unique(unlist(MEA_pts))),collapse=",")]
+      print(check.points[apid == apidi, .SD, .SDcols = intersect(c("apid","AB","LDH","MEA_pts"),names(check.points))])
     }
   }
   if(!pts_flag) {
@@ -90,5 +98,8 @@ dataset_checks <- function(dat) {
     stripchart(rval ~ conc_grp, plotdat[wllq == 1 & grepl("LDH",acsn)], las = 2,
                vertical = TRUE, pch = 1, method = "jitter", xlab = "conc", main = paste0("LDH Blank-Corrected Values for ",dataset_title,"\nwhere wllq == 1"))
   }
+  
+  if(remove_spid_col) dat[, spid := NULL]
+  return(0)
  
 }

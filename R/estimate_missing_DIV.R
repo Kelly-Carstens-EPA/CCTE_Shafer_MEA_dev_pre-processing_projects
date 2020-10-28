@@ -15,8 +15,8 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FAL
   cplates <- dat[date == sub("_.*$","",date_platei) & date_plate != date_platei & trt %in% trts, unique(date_plate)]
   if (length(cplates) == 0) {
     cat(paste0("No plates found that were ran on the same date as ",date_platei, " and tested the same compounds.\n"))
-    cat("Will use all plates in data set\n.")
-    cplates <- setdiff(date_platei, unique(dat$date_plate))
+    cat("Will use all plates in data set.\n")
+    cplates <- setdiff(unique(dat$date_plate), date_platei)
   }
   cat("Estimating values for DIV",add.DIV,"on",date_platei,"from the plates",cplates,"\n")
   

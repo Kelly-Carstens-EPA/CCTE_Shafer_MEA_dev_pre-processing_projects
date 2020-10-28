@@ -56,7 +56,7 @@ if (length(spkListFiles)/4 > length(masterChemFiles)) {
 L=length(spkListFiles)
 
 #convert .mapTimestamps to .h5 files
-for (i in 1:L){
+for (i in seq_along(spkListFiles)){
   
   # Find the plate number of current spike list file
   spikefilename <- basename(spkListFiles[i])
