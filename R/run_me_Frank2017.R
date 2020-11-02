@@ -131,11 +131,14 @@ spidmap <- spidmap[!(treatment %in% c("Glufosinate-P","Omeprazole","Boric acid (
 # next, check that you can map the compounds by casrn 
 setdiff(dat[wllt == "t", unique(CASRN)], unique(spidmap$CASRN)) # empty! This might work!
 
+# update names in "treatment" col to match "PREFERRED_NAME" in spidmap, set original treatments col to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
+
 # trick check_and_assign_spids function below to map by casrn instead of treatment name
-spidmap[, treatment_name := treatment]
+spidmap[, treatment_name := treatment] # put the updated treatment names in another dummy column
 spidmap[, treatment := NULL]
 setnames(spidmap, old = c("CASRN"), new = c("treatment"))
-dat[, treatment_name := treatment]
+dat[, treatment_name := treatment] # put the updated treatment names in another dummy column
 dat[, treatment := NULL]
 setnames(dat, old = c("CASRN"), new = c("treatment"))
 dat[wllt == "n", treatment := treatment_name]

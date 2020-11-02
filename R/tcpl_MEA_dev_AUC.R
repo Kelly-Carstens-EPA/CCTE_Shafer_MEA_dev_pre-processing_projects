@@ -97,6 +97,19 @@ update_control_well_treatment <- function(dat, control_compound, culture_date = 
   dat[wllt == "n" & apid %in% apids & rowi %in% control_rowi, treatment := control_compound]
 }
 
+update_treatment_names <- function(date, root_output_dir, dataset_title) {
+  trt_name_map <- as.data.table(read.csv(file.path(root_output_dir, "supplemental_mea_treatment_name_map.csv"), stringsAsFactors = F))
+  trt_name_map <- trt_name_map[dataset == dataset_title, .(mea_treatment_name, updated_treatment_name)]
+  unused_trt_names <- setdiff(unique(trt_name_map$mea_treatment_name), unique(dat$treatment))
+  if(length(unused_trt_names)> 0 ){
+    cat("Some expected mea treatment names in 'supplemental_mea_treatment_name_map.csv' are not in the input data table:", unused_trt_names, "\n", sep = " ")
+  }
+  dat <- merge(dat, trt_name_map, by.x = "treatment", by.y = "mea_treatment_name", all.x = T)
+  dat[is.na(updated_treatment_name), updated_treatment_name := treatment] # for compound names that do not need to be updated
+  setnames(dat, old = c("treatment","updated_treatment_name"), new = c("mea_treatment_name","treatment"))
+  return(dat)
+}
+
 check_and_assign_spids <- function(dat, spidmap) {
   if (length(setdiff(c("treatment","stock_conc","spid"), names(spidmap))) > 0) {
     stop("The following columns are not found in spidmap: ",paste0(setdiff(c("treatment","stock_conc","spid"), names(spidmap)),collapse =","))

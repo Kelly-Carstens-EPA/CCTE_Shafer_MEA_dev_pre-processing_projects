@@ -63,16 +63,8 @@ spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)an
 spidmap[treatment == "Chrysene", expected_stock_conc := 9.7]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
-# rename any compounds, if needed
-trt_name_map <- as.data.table(read.csv(file.path(root_output_dir, "supplemental_mea_treatment_name_map.csv"), stringsAsFactors = F))
-trt_name_map <- trt_name_map[dataset == dataset_title, .(mea_treatment_name, updated_treatment_name)]
-unused_trt_names <- setdiff(unique(trt_name_map$mea_treatment_name), unique(dat$treatment))
-if(length(unused_trt_names)> 0 ){
-  cat("Some expected mea treatment names in 'supplemental_mea_treatment_name_map.csv' are not in the actual data:", unused_trt_names, "\n", sep = " ")
-}
-dat <- merge(dat, trt_name_map, by.x = "treatment", by.y = "mea_treatment_name", all.x = T)
-dat[is.na(updated_treatment_name), updated_treatment_name := treatment] # for compound names that do not need to be updated
-setnames(dat, old = c("treatment","updated_treatment_name"), new = c("mea_treatment_name","treatment"))
+# update names in "treatment" col to match "PREFERRED_NAME" in spidmap, set original treatments col to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)

@@ -94,30 +94,8 @@ spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually t
 spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
-# rename any compounds, if needed
-dat[treatment == "TBHQ", treatment := "tert-Butylhydroquinone"] # these names are listed in the same chemical row in the Shafer 2019 paper as teh PREFERRED_NAME and Common name
-dat[treatment %in% c("6-propyl-2-thiouracil","6 Propyl 2 thiouracil"), treatment := "6-Propyl-2-thiouracil"]
-dat[treatment == "Methadone", treatment := "Methadone hydrochloride"] # these names are listed in the same chemical row in the Shafer 2019 paper as teh PREFERRED_NAME and Common name
-dat[treatment %in% c("IPBC","3 Iodo 2 propynyl N butylcarbamate"), treatment := "3-Iodo-2-propynyl-N-butylcarbamate"] # these names are listed in the same chemical row in the Shafer 2019 paper Table 1 as the PREFERRED_NAME and Common name
-dat[treatment %in% c("Pravastatin","Pravastin sodium"), treatment := "Pravastatin sodium"] # Pravastatin was not used in this dataset, only Pravastain sodium
-dat[treatment == "HPTE", treatment := "2,2-Bis(4-hydroxyphenyl)-1,1,1-trichloroethane"] # these names are listed in the same chemical row in the Shafer 2019 paper as teh PREFERRED_NAME and Common name
-dat[treatment == "Clothiandin", treatment := "Clothianidin"]
-dat[treatment == "Diphenhydramine", treatment := "Diphenhydramine hydrochloride"]# these names are listed in the same chemical row in the Shafer 2019 paper as the PREFERRED_NAME and Common name
-dat[treatment == "17beta Estradiol", treatment := "17beta-Estradiol"]
-dat[treatment == "MGK 264", treatment := "MGK-264"]
-dat[treatment == "Tributyltin methylacrylate", treatment := "Tributyltin methacrylate"] # "Tributyltin methylacrylate" does not seem to be a chemical at all
-dat[treatment == "op-DDT", treatment := "o,p'-DDT"]
-dat[treatment == "pp-DDD", treatment := "p,p'-DDD"]
-dat[treatment == "pp-DDE", treatment := "p,p'-DDE"]
-dat[treatment == "pp-DDT", treatment := "p,p'-DDT"]
-# renaming compounds in auc ontogeny data
-dat[treatment == "Rotenone - ToxCast G-8", treatment := "Rotenone"] # this compound was tested in both the NTP and Toxcast groups.
-dat[treatment == "Disulfiram - ToxCast G-8", treatment := "Disulfiram"] # this compound was tested in both the NTP and Toxcast groups. 
-dat[treatment == "Valinomycin - NTP", treatment := "Valinomycin"]
-# these compounds were added from another batch - making names standardized
-dat[treatment == "1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411", treatment := "Clotrimazole"] # See lab noteook 20171011. TP0001411 + ToxCast Plate Location E01 corresponds to Clotrimazole
-dat[treatment == "1H,1H,2H,2H-Perfluorooctyl iodide - TP0001413", treatment := "1H,1H,2H,2H-Perfluorooctyl iodide"]
-dat[treatment == "Perfluoroundecanoic acid - TP0001411", treatment := "Perfluoroundecanoic acid"]
+# update names in "treatment" col to match "PREFERRED_NAME" in spidmap, set original treatments col to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)

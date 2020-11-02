@@ -150,7 +150,8 @@ usecols <- c("spid","treatment","stock_conc","expected_stock_conc")
 spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
 spidmap
 
-# rename any compounds, if needed
+# add "updated_treatment_name" columne to match "PREFERRED_NAME" in spidmap, reaname treatment to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)

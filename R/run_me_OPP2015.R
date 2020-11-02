@@ -61,12 +61,8 @@ spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 
-# rename any compounds, if needed
-# The following 2 compounds are listed with the updated spellings in this table:
-# L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\Organophosphates.xlsx
-dat[treatment == "Diazonon", treatment := "Diazinon"] # when I google search for "Diazonon", it redirects to "Diazinon'
-dat[treatment == "Malaxon", treatment := "Malaoxon"] # "Malaxon" does not have any resutls in Google, I think this just a typo
-dat[treatment == "Z-tetrachlorvinphos", treatment := "Z-Tetrachlorvinphos"] # capitalization
+# update names in "treatment" col to match "PREFERRED_NAME" in spidmap, set original treatments col to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)

@@ -68,8 +68,10 @@ spidmap <- rbind(spidmap, spidmap2[, .(treatment, spid, stock_conc, expected_sto
 
 # # just confirming that we have all of the spids
 # setdiff(parameter_data$trt, spidmap$treatment) # "Acetaminophen" "Bisphenol A"   "Loperamide"
-# This long name is Loperamide hydrochloride
-dat[treatment == "Loperamide", treatment := "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride"]
+# dat[treatment == "Loperamide", treatment := "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride"]
+
+# add "updated_treatment_name" columne to match "PREFERRED_NAME" in spidmap, reaname treatment to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)
