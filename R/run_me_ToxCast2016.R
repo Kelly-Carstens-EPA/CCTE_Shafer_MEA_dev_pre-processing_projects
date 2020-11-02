@@ -9,15 +9,17 @@ save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of t
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
 
-spidmap_file1 <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx"
-spid_sheet1 <- 1
-spidmap_file2 <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast tcpl prep/Pre-Processing_Second_Attempt/EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx"
-spid_sheet2 <- 1
-spidmap_file3 <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/NTP tcpl prep/SPID map/Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx"
-spid_sheet3 <- "NeuroTox 91 Cmpds"
-
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+
+spidmap_file1 <- file.path(root_output_dir,"Sample IDs","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx")
+spid_sheet1 <- 1
+spidmap_file2 <- file.path(root_output_dir,"Sample IDs","EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx")
+spid_sheet2 <- 1
+spidmap_file3 <- file.path(root_output_dir,"Sample IDs","Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx")
+spid_sheet3 <- "NeuroTox 91 Cmpds"
+
+update_concs_without_prompt <- TRUE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -137,7 +139,7 @@ dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treat
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,20))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,20), update_concs_without_prompt = update_concs_without_prompt)
 
 
 # FINAL DATA CHECKS

@@ -5,15 +5,16 @@ graphics.off() # clear plot history
 ###################################################################################
 dataset_title <- "OPP2015" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName = "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
-
-spidmap_file <- "L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Organophosphates/Sample ID Data/EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx"
-spid_sheet <- "Mundy corrected map"
-
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder should be located
+
+spidmap_file <- file.path(root_output_dir,"Sample IDs","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx")
+spid_sheet <- "Mundy corrected map"
+
+update_concs_without_prompt <- TRUE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -82,7 +83,7 @@ dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treat
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.1,0.3,1,3,10,30,100))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.1,0.3,1,3,10,30,100), update_concs_without_prompt = update_concs_without_prompt)
 
 
 # FINAL DATA CHECKS

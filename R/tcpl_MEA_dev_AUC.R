@@ -102,7 +102,7 @@ update_treatment_names <- function(date, root_output_dir, dataset_title) {
   trt_name_map <- trt_name_map[dataset == dataset_title, .(mea_treatment_name, updated_treatment_name)]
   unused_trt_names <- setdiff(unique(trt_name_map$mea_treatment_name), unique(dat$treatment))
   if(length(unused_trt_names)> 0 ){
-    cat("Some expected mea treatment names in 'supplemental_mea_treatment_name_map.csv' are not in the input data table:", unused_trt_names, "\n", sep = " ")
+    cat("Some expected mea treatment names in 'supplemental_mea_treatment_name_map.csv' are not in the input data table:", unused_trt_names, "\n", sep = "\n")
   }
   dat <- merge(dat, trt_name_map, by.x = "treatment", by.y = "mea_treatment_name", all.x = T)
   dat[is.na(updated_treatment_name), updated_treatment_name := treatment] # for compound names that do not need to be updated

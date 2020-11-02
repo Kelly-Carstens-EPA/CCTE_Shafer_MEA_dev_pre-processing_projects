@@ -1,4 +1,4 @@
-confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30)) {
+confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = FALSE) {
   
   require(RMySQL)
   
@@ -33,7 +33,9 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
     # compare_concs$probably_partially_conc_corrected <- sapply(strsplit(compare_concs$source_concs,split=","), function(x) length(x) > length(expected_target_concs))
     print(compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)][order(num_concs)])
     
-    response <- readline(prompt = "Update conc's for these compounds with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): ")
+    if (update_concs_without_prompt) response <- "y"
+    else response <- readline(prompt = "Update conc's for these compounds with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): ")
+    
     if (response %in% c("y","Y","yes","Yes")) {
       
       compare_concs[source_concs != spidmap_guess_concs, need_to_update_concs := TRUE]
@@ -52,12 +54,17 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
       update_summary <- dat[need_to_update_concs == TRUE, .(stkc, concs_in_source_dat = paste0(unique(conc_org),collapse=", ")),
                             by = c("spid","treatment","conc","stkc","expected_stock_conc")][order(spid,conc), .(treatment, spid, stkc, expected_stock_conc, 
                                                                                                                 concs_in_source_dat, conc_updated = format(conc,digits=4,scientific=F))]
-      # assign("update_summary",update_summary, envir = .GlobalEnv)
-      cat("View the table 'update_summary' to confirm that the concentration-corrections are correct.\n")
-      cat("If it looks correct, enter c to continue. Else Q to quit and fix.\n")
-      browser()
-      # response <- readline(prompt = "Does conc correction look correct for each compound and dose? (y/n): ")
-      # if (!(response %in% c("y","Y","yes","Yes"))) browser()
+      if (update_concs_without_prompt) {
+        print(update_summary[signif(as.numeric(concs_in_source_dat),3) != signif(as.numeric(conc_updated),3)]) # display conc's that were actually updated
+      }
+      else {
+        # assign("update_summary",update_summary, envir = .GlobalEnv)
+        cat("View the table 'update_summary' to confirm that the concentration-corrections are correct.\n")
+        cat("If it looks correct, enter c to continue. Else Q to quit and fix.\n")
+        browser()
+        # response <- readline(prompt = "Does conc correction look correct for each compound and dose? (y/n): ")
+        # if (!(response %in% c("y","Y","yes","Yes"))) browser()
+      }
       
       dat[, c("conc_org","stkc","need_to_update_concs","expected_stock_conc") := list(NULL)] # remove added columns
     }
