@@ -14,10 +14,12 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   query_term <- paste0("SELECT * FROM sample WHERE spid IN('",paste(spidmap[!is.na(spid),unique(spid)],collapse="','",sep=""),"');")
   sample_info <- dbGetQuery(con, query_term)
   dbDisconnect(con)
-  if (length(setdiff(spidmap[!is.na(spid), unique(spid)], sample_info$spid)) > 0) {
-    stop(paste0("The following spids were not found in invitrodb: ",paste0(setdiff(spidmap$spid, sample_info$spid),collapse=",")))
+  spidmap <- merge(spidmap, sample_info, by = "spid", all.x = T)
+  if (nrow(spidmap[is.na(stkc)]) > 0) {
+    warning(paste0("The following spids were not found in invitrodb: ",paste0(spidmap[is.na(stkc),unique(spid)],collapse=", "),
+                   "\nWill use 'stock_conc' provided in spidmap file instead."))
+    spidmap[is.na(stkc), stkc := stock_conc]
   }
-  spidmap <- merge(spidmap, sample_info, by = "spid", suffixes = c(".derived",""))
   # there can be multiple stock_concs listed for a given spid in file, so eliminating duplicates here and using invitrodb stkc
   spidmap <- spidmap[, unique(.SD), .SDcols = c("spid","treatment","stkc","stkc_unit","expected_stock_conc")] 
   # I am trusting that there is only 1 stkc for each spid lsited in invitrodb, so I won't check for that
@@ -27,14 +29,14 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   compare_concs <- merge(spidmap[, .(stkc, expected_stock_conc, spidmap_guess_concs = paste0(signif(stkc/expected_stock_conc*expected_target_concs,3),collapse=",")), by = "spid"],
                          dat[wllt == "t", .(source_concs = paste0(sort(unique(signif(conc,3))),collapse=","), num_concs = length(unique(conc))), by = c("spid","treatment")], 
                          by = "spid", all.y = TRUE)
-  if(nrow(compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)]) > 0) {
+  if(nrow(compare_concs[stkc != expected_stock_conc | source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)]) > 0) {
     cat("The concentrations for the following compounds might need to be corrected:\n")
     # removing this feature for now -> user can do manually if needed, and check that it is correct
     # compare_concs$probably_partially_conc_corrected <- sapply(strsplit(compare_concs$source_concs,split=","), function(x) length(x) > length(expected_target_concs))
-    print(compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)][order(num_concs)])
+    print(compare_concs[signif(stkc,4) != signif(expected_stock_conc,4) | source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)][order(num_concs)])
     
     if (update_concs_without_prompt) response <- "y"
-    else response <- readline(prompt = "Update conc's for these compounds with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): ")
+    else response <- readline(prompt = "Update conc's where source_concs != spidmap_guess_concs with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): ")
     
     if (response %in% c("y","Y","yes","Yes")) {
       
@@ -55,6 +57,7 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
                             by = c("spid","treatment","conc","stkc","expected_stock_conc")][order(spid,conc), .(treatment, spid, stkc, expected_stock_conc, 
                                                                                                                 concs_in_source_dat, conc_updated = format(conc,digits=4,scientific=F))]
       if (update_concs_without_prompt) {
+        print("conc's that changed:\n")
         print(update_summary[signif(as.numeric(concs_in_source_dat),3) != signif(as.numeric(conc_updated),3)]) # display conc's that were actually updated
       }
       else {

@@ -12,8 +12,10 @@ default_ControlTreatmentName = "DMSO" # all compounds other than those listed be
 spidmap_file <- "L:/Lab/NHEERL_MEA/Project PFAS 2018/EPA_9238_EPA-Shafer_75_20180511_key_MW Waste Calculations.xlsx"
 spid_sheet <- "Worksheet1 (2)"
 
-scripts.dir <- "C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/nfa-spike-list-to-mc0-r-scripts/R"
+scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+
+update_concs_without_prompt <- TRUE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -59,12 +61,12 @@ spidmap[, stock_conc := as.numeric(stock_conc)]
 head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
 spidmap <- spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)]
 
-spidmap2 <- as.data.table(read.xlsx(file.path(root_output_dir,"Sample IDs","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx"), sheet = 1))
-head(spidmap2)
-setnames(spidmap2, old = c("PREFERRED_NAME", "ALIQUOT_CONCENTRATION", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
-unique(spidmap2$ALIQUOT_CONCENTRATION_UNIT) # mM
-spidmap2[, expected_stock_conc := 20]
-spidmap <- rbind(spidmap, spidmap2[, .(treatment, spid, stock_conc, expected_stock_conc)])
+spidmap2 <- as.data.table(read.xlsx(file.path(root_output_dir,"Sample IDs","Shafer_sample_info_to_register_20201110_afc.xlsx"), sheet = 1))
+spidmap2 <- spidmap2[dataset == dataset_title]
+spidmap2[, `:=`(expected_stock_conc = stock_conc)]
+setnames(spidmap2, old = c("SPID","compound"), new = c("spid","treatment"))
+usecols <- c("spid","treatment","stock_conc","expected_stock_conc")
+spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
 
 # # just confirming that we have all of the spids
 # setdiff(parameter_data$trt, spidmap$treatment) # "Acetaminophen" "Bisphenol A"   "Loperamide"
@@ -91,7 +93,7 @@ problem_comps
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
 
 
 # FINAL DATA CHECKS
@@ -164,6 +166,7 @@ dat[grepl("20181017",apid) & conc < 0.1, .N, by = .(wllt, conc, coli, apid)]
 # 12:    n 0.001    2  20181017_MW1208-4 522
 
 # save dat and graphs
+setkey(dat, NULL)
 save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 rm(dat)
 

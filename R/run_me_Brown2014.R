@@ -8,12 +8,13 @@ pause_between_steps <- TRUE # probs want to be true when you first run
 save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # usually DMSO. all compounds other than those listed below should have this vehicle control
-
-spidmap_file <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES202_EPA-Shafer_103_20191218_key.xlsx"
-spid_sheet <- 1
-
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+
+spidmap_file <- file.path(root_output_dir,"Sample IDs","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx")
+spid_sheet <- 1
+
+update_concs_without_prompt <- TRUE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -147,41 +148,50 @@ dat[wllt == "n", conc := 0.001] # All wells have 0.1% solvent
 # Assign SPIDs ------------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
-unique(spidmap$ALIQUOT_CONCENTRATION_UNIT) # all mM? - yes
-setnames(spidmap, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
-# for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
-spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
-# update expected_stock_conc for individual compouunds where needed 
-# for example, 
-# spidmap[treatment %in% c("2,2',4,4',5,5'-Hexabromodiphenyl ether","Dibenz(a,h)anthracene"), expected_stock_conc := 10.0]
+unique(spidmap$TARGET_CONCENTRATION_UNIT) # mM
+setnames(spidmap, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID","TARGET_CONCENTRATION"), new = c("treatment","stock_conc","spid","expected_stock_conc"))
+spidmap <- spidmap[treatment == "Sodium orthovanadate"]
 spidmap[, treatment := as.character(treatment)]
 spidmap[, stock_conc := as.numeric(stock_conc)]
-spidmap <- spidmap[treatment %in% c("Acetaminophen","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride")]
-head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
+spidmap
 
-spidmap2 <- as.data.table(read.xlsx("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES203_EPA-Shafer_42_20200110_key.xlsx", sheet = 1))
-head(spidmap2)
-unique(spidmap$TARGET_CONCENTRATION_UNIT) # mM
-setnames(spidmap2, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID","TARGET_CONCENTRATION"), new = c("treatment","stock_conc","spid","expected_stock_conc"))
-# for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
-spidmap2[, treatment := as.character(treatment)]
-spidmap2[, stock_conc := as.numeric(stock_conc)]
+spidmap2 <- as.data.table(read.xlsx(file.path(root_output_dir, "Sample IDs","Shafer_sample_info_to_register_20201110_afc.xlsx"), sheet = 1))
+spidmap2 <- spidmap2[dataset == dataset_title]
+spidmap2[, `:=`(expected_stock_conc = stock_conc)]
+setnames(spidmap2, old = c("SPID","compound"), new = c("spid","treatment"))
+
+# for Bis 1, must differentiate the treatments for each spid by date tested
+spid_date_map <- spidmap2[, .(date_range_tested = unlist(strsplit(dates_tested,split=" - "))), by = .(spid, treatment)]
+spidmap2 <- merge(spidmap2, spid_date_map[treatment == "Bisindolylmaleimide 1"], all.x = T)
+spidmap2[treatment == "Bisindolylmaleimide 1", treatment := paste0(treatment,"_",date_range_tested)]
 usecols <- c("spid","treatment","stock_conc","expected_stock_conc")
 spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
-spidmap
+
+# Loperamide spid comes from Shafer_103 (HTP_LOG)
+spidmap3 <- as.data.table(read.xlsx(file.path(root_output_dir, "Sample IDs","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx"), sheet = 1))
+setnames(spidmap3, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID","TARGET_CONCENTRATION"), new = c("treatment","stock_conc","spid","expected_stock_conc"))
+spidmap3 <- spidmap3[treatment == "4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride"]
+spidmap <- rbind(spidmap[, ..usecols], spidmap3[, ..usecols])
 
 # rename any compounds, if needed
 dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 dat[, .N, by = .(treatment, mea_treatment_name)]
 
-spidmap[treatment %in% unique(dat$treatment)]
+# update the treatment name to include the culture date for Bis 1
+dat[treatment == "Bisindolylmaleimide 1", treatment := paste0(treatment,"_",sub("_.*$","",apid))]
+
+spidmap[treatment %in% unique(dat$treatment)][order(treatment)]
 # spid                                                                                               treatment stock_conc expected_stock_conc
-# 1: EX000404                                                                                           Acetaminophen         20                  20
-# 2: EX000411 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride         20                  20
-# 3: EX000487                                                                                           L-Domoic acid        100                 100
-# 4: EX000475                                                                                   Bisindolylmaleimide I        100                 100
-# 5: EX000498                                                                                              Mevastatin        100                 100
-# 6: EX000499                                                                                    Sodium orthovanadate        100                 100
+# 1:      EX000411 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride         20                  20
+# 2: MEA20201109A6                                                                                           Acetaminophen        100                 100
+# 3:      EX000475                                                                          Bisindolylmaleimide 1_20140205         10                  10
+# 4:      EX000475                                                                          Bisindolylmaleimide 1_20140212         10                  10
+# 5: MEA20201109A1                                                                          Bisindolylmaleimide 1_20140402         10                  10
+# 6: MEA20201109A1                                                                          Bisindolylmaleimide 1_20140423         10                  10
+# 7: MEA20201109A2                                                                          Bisindolylmaleimide 1_20140716         10                  10
+# 8: MEA20201109A2                                                                          Bisindolylmaleimide 1_20140730         10                  10
+# 9:      EX000498                                                                                              Mevastatin         30                  30
+# 10:      EX000499                                                                                    Sodium orthovanadate        100                 100
 
 # assign spids
 dat <- check_and_assign_spids(dat, spidmap)
@@ -234,21 +244,48 @@ dat[grepl("20140716",apid) & grepl("Bis",treatment) & grepl("AB",acsn), .(unique
 dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
 
 # confirm conc ranges included with the stated conc ranges in paper
-dat[wllq == 1, .(concs_tested = paste0(sort(unique(conc)),collapse=",")), by = .(treatment)]
+dat[wllq == 1, .(concs_tested = paste0(sort(unique(conc)),collapse=",")), by = .(treatment)][order(treatment)]
 # treatment                concs_tested
 # 1: 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride           0.1,0.3,1,3,10,30
 # 2:                                                                                           Acetaminophen           0.1,0.3,1,3,10,30
-# 3:                                                                                   Bisindolylmaleimide I         0.03,0.1,0.3,1,3,10
-# 4:                                                                                                    DMSO                       0.001
-# 5:                                                                                           L-Domoic acid   0.003,0.01,0.03,0.1,0.3,1
-# 6:                                                                                              Mevastatin           0.1,0.3,1,3,10,30
-# 7:                                                                                    Sodium orthovanadate 0.01,0.03,0.1,0.3,1,3,10,30
-# 8:                                                                                                   Water                       0.001
+# 3:                                                                          Bisindolylmaleimide 1_20140205         0.03,0.1,0.3,1,3,10
+# 4:                                                                          Bisindolylmaleimide 1_20140212         0.03,0.1,0.3,1,3,10
+# 5:                                                                          Bisindolylmaleimide 1_20140402         0.03,0.1,0.3,1,3,10
+# 6:                                                                          Bisindolylmaleimide 1_20140423         0.03,0.1,0.3,1,3,10
+# 7:                                                                          Bisindolylmaleimide 1_20140716         0.03,0.1,0.3,1,3,10
+# 8:                                                                          Bisindolylmaleimide 1_20140730         0.03,0.1,0.3,1,3,10
+# 9:                                                                                                    DMSO                       0.001
+# 10:                                                                                             Domoic Acid   0.003,0.01,0.03,0.1,0.3,1
+# 11:                                                                                              Mevastatin           0.1,0.3,1,3,10,30
+# 12:                                                                                    Sodium orthovanadate 0.01,0.03,0.1,0.3,1,3,10,30
+# 13:                                                                                                   Water                       0.001
 # this agrees with paper
 
 # finally, run this:
-source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,20))
+# source(file.path(scripts.dir, 'confirm_concs.R'))
+# dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
+# I am skipping this step because the stock_conc's in the db are...
+# - for Bis 1, Mevastatin, and Domoic Acid, the stkc's in the db are all listed as 100, but I think that what I have in spidmap file is more correct
+# - for Loperamide, and Sodium orthovanadate, the stkc's in db are 20, 100, and 100, resp - so no conc-correction would be needed
+# - Acetamionphen - stock conc is purely provided by me in spidmap file
+# con <- dbConnect(drv = RMySQL::MySQL(), user = "***REMOVED***", pass = ***REMOVED***, dbname='invitrodb',host = "ccte-mysql-res.epa.gov")
+# query_term <- paste0("SELECT * FROM sample WHERE spid IN('",paste(spidmap[!is.na(spid),unique(spid)],collapse="','",sep=""),"');")
+# sample_info <- dbGetQuery(con, query_term)
+# dbDisconnect(con)
+# spidmap <- merge(spidmap, sample_info, by = "spid", all.x = T)
+# spidmap[, .(treatment, spid, expected_stock_conc, stkc)]
+# treatment                                                                                                           spid expected_stock_conc stkc
+# 1: 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride      EX000411                  20   20
+# 2:                                                                          Bisindolylmaleimide 1_20140205      EX000475                  10  100
+# 3:                                                                          Bisindolylmaleimide 1_20140212      EX000475                  10  100
+# 4:                                                                                             Domoic Acid      EX000487                  10  100
+# 5:                                                                                              Mevastatin      EX000498                  30  100
+# 6:                                                                                    Sodium orthovanadate      EX000499                 100  100
+# 7:                                                                          Bisindolylmaleimide 1_20140402 MEA20201109A1                  10   NA
+# 8:                                                                          Bisindolylmaleimide 1_20140423 MEA20201109A1                  10   NA
+# 9:                                                                          Bisindolylmaleimide 1_20140716 MEA20201109A2                  10   NA
+# 10:                                                                          Bisindolylmaleimide 1_20140730 MEA20201109A2                  10   NA
+# 11:                                                                                           Acetaminophen MEA20201109A6                 100   NA
 rm(list=c("summary_dat","summary_wide"))
 
 

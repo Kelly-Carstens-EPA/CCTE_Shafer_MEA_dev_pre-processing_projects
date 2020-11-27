@@ -14,6 +14,8 @@ spid_sheet <- ""
 
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+
+update_concs_without_prompt <- TRUE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -52,34 +54,23 @@ table1[treatment == "Acetaminophen", Solvent.used := "Water"] # fixing this, bas
 
 # first, checkign that treatment names are consistent
 dat[, .(length(unique(treatment))), by = .(apid, rowi, coli)][V1 != 1] # empty, that's good
-change_treatments <- setdiff(dat[wllt == "t", unique(treatment)], unique(table1$treatment))
+setdiff(dat[wllt == "t", unique(treatment)], unique(table1$treatment)) # these will be addressed in updated_treatment_names
 
-# need to updated treatment names before can merge with table1
-dat[treatment == "1-2-PropyleneGlycol", treatment := "1,2-Propylene glycol"]
-dat[treatment == "Amoxacillin", treatment := "Amoxicillin"]
-dat[treatment %in% c("DEHP","Bis (2-ethylhexyl) phthalate-DEHP"), treatment := "Bis (2-ethylhexyl) phthalate (DEHP)"] # DEHP in 20140827, longer name in 20141112
-dat[treatment == "Bis1", treatment := "Bisindolylmaleimide I (Bis 1)"]
-dat[treatment == "Cyclophosphamid", treatment := "Cyclophosphamide"]
-dat[treatment == "Cytosine arabinoside", treatment := "Cytosine Arabinoside"]
-dat[treatment == "Lead acetate", treatment := "Lead Acetate"]
-dat[treatment == "PBDE-47", treatment := "2,2'4,4'-Tetrabromodiphenyl ether (BDE-47)"] # pubchem lists PBDE 47 as a synonym
-dat[treatment == "Sodium Arsenate", treatment := "Sodium Arsenite"] # see notes
-dat[treatment %in% c("Tetrabromobisphenol A","TBBPA"), treatment := "Tetrabromobisphenol A (TBBPA)"]
-dat[treatment %in% c("Tris(2-chloroethyl) phosphate (TCEP)","TCEP"), treatment := "Tris (2-chloroethyl) phosphate (TCEP)"]
-dat[treatment %in% c("Tris(1,3-dichloro-2-propyl) phosphate (TDCPP)","TDCPP"), treatment := "Tris (1,3-dichloro-2-propyl) phosphate (TDCIPP)"]
-dat[treatment %in% c("Triphenyl phosphate (TPP)","TPP"), treatment := "Triphenyl phosphate (TPHP)"]
-dat[treatment == "Valproate", treatment := "Valproic acid"] # after chat with Tim - the compounds named "Valproate" and "Valproic acid" are both refering to "Sodium valproate" with cas number 1069-66-5
+# update names in "treatment" col to match names in table1, set original treatments col to "mea_treatment_name"
+dat <- update_treatment_names(dat, root_output_dir, dataset_title)
 
 # merge in the solvent info table
 dat <- merge(dat, table1[, .(treatment, Solvent.used, CASRN)], by = "treatment", all.x = T)
 dat[, any(is.na(Solvent.used))] # FALSE
-dat[wllt == "n", treatment := Solvent.used]
+dat[wllt == "n", `:=`(treatment = Solvent.used,
+                      CASRN = "")]
 dat[wllt == "n", .N, by = .(treatment)]
 # treatment     N
-# 1:         DMSO 24153
-# 2:        Water  3951
-# 3: DMSO/Ethanol   267
-# 4:      Ethanol   267
+# 1:         DMSO 22431
+# 2:        Water  5217
+# 3: DMSO/Ethanol   261
+# 4:      Ethanol   261
+dat[acsn == "CCTE_Shafer_MEA_dev_correlation_coefficient_mean", .(sum(wllt == "n")), by = .(apid)][V1 != 6] # empty, every plate has 6 control wells
 dat[is.na(treatment), .N] # 0
 dat[, Solvent.used := NULL]
 
@@ -88,8 +79,8 @@ dat[wllt == "n", conc := 0.001]
 
 
 # Assign SPIDs ------------------------------------------------------------------
-all_spid_files <- list.files("L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs", pattern = "key\\.xlsx", full.names = T)
-spidmap <- rbindlist(lapply(all_spid_files, function(filei) {
+use_spid_files <- file.path(root_output_dir,"Sample IDs",c("EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx"))
+spidmap <- rbindlist(lapply(use_spid_files, function(filei) {
   tb <- as.data.table(read.xlsx(filei,sheet=1))
   tb$filename <- basename(filei)
   return(tb) }
@@ -97,25 +88,42 @@ spidmap <- rbindlist(lapply(all_spid_files, function(filei) {
 head(spidmap)
 unique(spidmap$ALIQUOT_CONCENTRATION_UNIT) # all mM? - yes
 setnames(spidmap, old = c("PREFERRED_NAME", "ALIQUOT_CONCENTRATION", "EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
-# for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
-spidmap[, treatment := as.character(treatment)]
-spidmap[, stock_conc := as.numeric(stock_conc)]
-spidmap[, expected_stock_conc := TARGET_CONCENTRATION] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
-# update expected_stock_conc for individual compouunds where needed 
-head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
-
-# confirm unique casn for each treatment name
-spidmap[, .(length(unique(treatment))), by = .(CASRN)][V1 != 1] # empty
-
 # get rid of the data rows we don't need, to eliminate multiple spids for some treatments
-# only TPP, TCEP, are from the NTP91 dataset. Remove all others from NTP91
-spidmap <- spidmap[ALIQUOT_PLATE_BARCODE != "NTP91" | treatment %in% c("Triphenyl phosphate","Tris(2-chloroethyl) phosphate")]
 spidmap[treatment == "Chlorpyrifos oxon"] # 5 spids, all from EPA_ES202_EPA-Shafer_103_20191218_key.xlsx
 spidmap <- spidmap[!(treatment == "Chlorpyrifos oxon" & ALIQUOT_WELL_ID %in% c(5,6,7,9))] # removing all but the 4th spid (aliquote well ID 8)
 spidmap[treatment == "Dexamethasone"] # 2 spids, all from EPA_ES202_EPA-Shafer_103_20191218_key.xlsx
 spidmap <- spidmap[!(treatment == "Dexamethasone" & ALIQUOT_WELL_ID == 24)] # we are using the second spid, removign the first
 spidmap[treatment == "Methotrexate"] # 2 spids, all from EPA_ES202_EPA-Shafer_103_20191218_key.xlsx
 spidmap <- spidmap[!(treatment == "Methotrexate" & ALIQUOT_WELL_ID == 74)] # we are using the second spid, removign the first
+spidmap <- spidmap[!(treatment %in% c("Acetaminophen","Glyphosate"))] # these spids we be taken from Shafer_sample_info_to_register_20201110
+
+# get spids from NTP 91 list for TPP and TCEP
+spidmap2 <- as.data.table(read.xlsx(file.path(root_output_dir,"Sample IDs","Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx"), sheet = "NeuroTox 91 Cmpds"))
+setnames(spidmap2, old = c("Chemical.Name","CAS","Conc..(mM)","SPID"), new = c("treatment","CASRN","stock_conc","spid"))
+spidmap2 <- spidmap2[treatment %in% c("Triphenyl phosphate","Tris(2-chloroethyl) phosphate")]
+
+# Shafer_42 list for Sodium orthovanadate
+spidmap3 <- as.data.table(read.xlsx(file.path(root_output_dir,"Sample IDs","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx"), sheet = 1))
+setnames(spidmap3, old = c("PREFERRED_NAME","ALIQUOT_CONCENTRATION","EPA_SAMPLE_ID"), new = c("treatment","stock_conc","spid"))
+spidmap3 <- spidmap3[treatment == "Sodium orthovanadate"]
+
+# merge the files
+spidmap <- rbindlist(list(spidmap, spidmap2, spidmap3), fill = T)
+spidmap[, treatment := as.character(treatment)]
+spidmap[, stock_conc := as.numeric(stock_conc)]
+spidmap[, expected_stock_conc := ifelse(is.na(TARGET_CONCENTRATION),20,TARGET_CONCENTRATION)] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.
+head(spidmap[, .(treatment, spid, stock_conc, expected_stock_conc)])
+
+# the rest of teh control compounds
+spidmap4 <- as.data.table(read.xlsx(file.path(root_output_dir, "Sample IDs","Shafer_sample_info_to_register_20201110_afc.xlsx"), sheet = 1))
+spidmap4 <- spidmap4[dataset == dataset_title]
+spidmap4[, `:=`(expected_stock_conc = stock_conc)]
+setnames(spidmap4, old = c("SPID","compound","CAS"), new = c("spid","treatment","CASRN"))
+spidmap <- rbind(spidmap[,.(treatment, spid, stock_conc, expected_stock_conc, CASRN)], 
+                 spidmap4[, .(treatment, spid, stock_conc, expected_stock_conc, CASRN)])
+
+# confirm unique casn for each treatment name
+spidmap[, .(length(unique(treatment))), by = .(CASRN)][V1 != 1] # empty
 
 # see which compounds still have multiple spids. Remove the ones we do not want to use
 spidmap[, .(length(unique(spid))), by = .(treatment)][V1 != 1]
@@ -129,10 +137,7 @@ dat[grepl("[Bb]or",treatment)] # empty
 spidmap <- spidmap[!(treatment %in% c("Glufosinate-P","Omeprazole","Boric acid (H3BO3)"))] # none of these included in current data set
 
 # next, check that you can map the compounds by casrn 
-setdiff(dat[wllt == "t", unique(CASRN)], unique(spidmap$CASRN)) # empty! This might work!
-
-# update names in "treatment" col to match "PREFERRED_NAME" in spidmap, set original treatments col to "mea_treatment_name"
-dat <- update_treatment_names(dat, root_output_dir, dataset_title)
+setdiff(dat[wllt == "t", unique(CASRN)], unique(spidmap$CASRN)) # empty 
 
 # trick check_and_assign_spids function below to map by casrn instead of treatment name
 spidmap[, treatment_name := treatment] # put the updated treatment names in another dummy column
@@ -144,7 +149,7 @@ setnames(dat, old = c("CASRN"), new = c("treatment"))
 dat[wllt == "n", treatment := treatment_name]
 
 # get rid of duplicate rows (for some compounds, Aliquot well ID might be different, but spid and stock_conc are the same)
-spidmap <- unique(spidmap[, .(ALIQUOT_PLATE_BARCODE, stock_conc, expected_stock_conc, treatment, DTXSID, treatment_name, spid)])
+spidmap <- unique(spidmap)
 spidmap[, .N, by = .(treatment)][N != 1, unique(treatment)] # empty
 
 # assign spids
@@ -155,6 +160,7 @@ dat <- check_and_assign_spids(dat, spidmap)
 setnames(dat, old = c("treatment","treatment_name"), new = c("CASRN","treatment"))
 dat[is.na(spid), .N] # 0
 dat[, CASRN := NULL]
+
 
 # Confirm Conc's ----------------------------------------------------------------
 # confirm that the conc's collected from master chem lists and Calc files match
@@ -172,7 +178,7 @@ spidmap[, org_stock_conc := stock_conc]
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
 
 # I'm a little wary about TPP and TCEP.. will ask Tim again
 dat[grepl("TPHP",treatment), unique(apid)]

@@ -14,6 +14,8 @@ spid_sheet <- "NFA Groups"
 
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+
+update_concs_without_prompt <- TRUE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -148,6 +150,12 @@ spidmap2[, treatment := as.character(treatment)]
 spidmap2[, stock_conc := as.numeric(stock_conc)]
 usecols <- c("spid","treatment","stock_conc","expected_stock_conc")
 spidmap <- rbind(spidmap[, ..usecols], spidmap2[, ..usecols])
+
+spidmap3 <- as.data.table(read.xlsx(file.path(root_output_dir, "Sample IDs","Shafer_sample_info_to_register_20201110_afc.xlsx"), sheet = 1))
+spidmap3 <- spidmap3[dataset == dataset_title]
+spidmap3[, `:=`(expected_stock_conc = stock_conc)]
+setnames(spidmap3, old = c("SPID","compound"), new = c("spid","treatment"))
+spidmap <- rbind(spidmap[, ..usecols], spidmap3[, ..usecols])
 spidmap
 
 # add "updated_treatment_name" columne to match "PREFERRED_NAME" in spidmap, reaname treatment to "mea_treatment_name"
@@ -234,7 +242,7 @@ dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treat
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30))
+dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
 rm(list=c("spidmap","spidmap2","summary_dat","summary_wide"))
 
 
