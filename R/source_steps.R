@@ -30,7 +30,7 @@ check_existing <- function(path, pattern, pause_between_steps) {
         if (resp %in% c("c","r","a","q")) break
       }
     else 
-      resp <- "a"
+      resp <- "c"
   }
   if (resp == "q") {
     stop("User elected to stop.")
@@ -49,6 +49,7 @@ if (!dir.exists(main.output.dir)) dir.create(main.output.dir)
 
 # select all files needed for analysis
 source('gather_files_functions.R')
+keep_items <- c(ls(), 'keep_items') # will clear all items except for these after each step
 cat("\n- Select files for files_log:\n")
 resp <- check_existing(path = main.output.dir, pattern = "_files_log_", pause_between_steps)
 if(resp %in% c("r","a")) {
@@ -69,7 +70,7 @@ if(resp %in% c("r","a")) {
     cat(basename(file_names[grepl(culture, file_names) & grepl("(Calculations)|(Summary)",file_names)]),sep = ", ")
   }
   cat("\n")
-  rm(file_names)
+  rm(list = setdiff(ls(), keep_items))
 }
 
 # h5_conversion.R
@@ -80,6 +81,7 @@ if (resp %in% c("r","a")) {
   remake_all <- !append
   source('h5_conversion.R')
   cat("h5files are ready in folder",file.path(main.output.dir,"h5files"),"\n")
+  rm(list = setdiff(ls(), keep_items))
 }
 
 # create_ont_csv
@@ -90,18 +92,19 @@ if (resp %in% c("r","a")) {
   source('create_burst_ont_Data.R')
   source('local.corr.all.ont.ae.filter.R')
   create_ont_csv(basepath = main.output.dir, get_h5Files_under_basepath = TRUE, remake_all = !append)
+  rm(list = setdiff(ls(), keep_items))
 }
 
 # normalized mutual information calculation
 cat("\n- Calculate the Mutual Information:\n")
 resp <- check_existing(path = file.path(main.output.dir,"All_MI"), pattern = "\\.csv", pause_between_steps)
-rm(list = Filter(function(x) exists(x, inherits = F), c("create_burst_ont_Data","create_ont_csv","spkList2list","local.corr.all.ont.ae.filter"))) # remove a few larger unneeded functions
 if (resp %in% c("r","a")) {
   source('spikeLoadRoutines.R')
   source('nmi2_final.R')
   source('nmi_wrapper.R')
   source('MI_script_all.R')
   run_mi_functions(basepath = main.output.dir, get_h5Files_under_basepath = TRUE, remake_all = !append)
+  rm(list = setdiff(ls(), keep_items))
 }
 
 # burst parameter to AUC
@@ -112,6 +115,7 @@ if (resp %in% c("r","a")) {
   source('DIV-interpolation-functions.R')
   source('estimate_missing_DIV.R')
   source('burst_parameter_to_AUC.R')
+  rm(list = setdiff(ls(), keep_items))
 }
 
 # cytotox prep
@@ -119,7 +123,9 @@ cat("\n- Extract the cytotoxicity data from Calculations files:\n")
 resp <- check_existing(path = file.path(main.output.dir, "output"), pattern = "_cytotox", pause_between_steps)
 if (resp %in% c("r","a")) {
   source('cytotox_prep06.R')
-  run_cytotox_functions(basepath = main.output.dir, get_files_from_log = TRUE, filename = paste0(dataset_title,"_cytotox.csv"), append = append)
+  run_cytotox_functions(basepath = main.output.dir, get_files_from_log = TRUE, filename = paste0(dataset_title,"_cytotox.csv"), 
+                        append = append)
+  rm(list = setdiff(ls(), keep_items))
 }
 
 cat("\n'source_steps.R' is complete.\n")
