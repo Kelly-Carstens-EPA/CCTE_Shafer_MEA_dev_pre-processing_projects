@@ -33,7 +33,6 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   
   # get DIV data and melt
   DIV_data <- fread(DIVsourcefilename)
-  DIV_data_test <- as.data.table(read.csv(DIVsourcefilename, stringsAsFactors = FALSE))
   idcols <- c("date","Plate.SN","well","treatment","dose","units","wllq","wllq_notes")
   endpoint_cols <- setdiff(names(DIV_data),c(idcols,"DIV","file.name"))
   DIV_data[, (endpoint_cols) := lapply(.SD, as.numeric), .SDcols = endpoint_cols]
@@ -111,15 +110,15 @@ update_treatment_names <- function(date, root_output_dir, dataset_title) {
 }
 
 check_and_assign_spids <- function(dat, spidmap) {
-  if (length(setdiff(c("treatment","stock_conc","spid"), names(spidmap))) > 0) {
-    stop("The following columns are not found in spidmap: ",paste0(setdiff(c("treatment","stock_conc","spid"), names(spidmap)),collapse =","))
+  if (length(setdiff(c("treatment","spid"), names(spidmap))) > 0) {
+    stop("The following columns are not found in spidmap: ",paste0(setdiff(c("treatment","spid"), names(spidmap)),collapse =","))
   }
   if (spidmap[!is.na(spid) & treatment %in% unique(dat$treatment), .(length(unique(spid))), by = "treatment"][,any(V1 !=1)]) {
     stop(paste0("The following treatments map to multiple spids: ",
                 spidmap[!is.na(spid) & treatment %in% unique(dat$treatment), .(length(unique(spid))), by = "treatment"][V1 != 1,paste0(treatment,collapse=", ")]))
   }
   dat <- merge(dat, spidmap[, .(spid, treatment)], by = "treatment", all.x = TRUE)
-  dat[wllt == "n", spid := treatment]
+  dat[wllt != 't' & is.na(spid), spid := treatment]
   if (dat[wllt == "t", any(is.na(spid))]) {
     cat("The following treatments don't have a corresponding spid in the spidmap:\n")
     print(dat[wllt == "t" & is.na(spid), unique(treatment)])
