@@ -95,7 +95,8 @@ createCytoTable2 <- function(sourcefile, cyto_type, masterChemFiles = c()) {
     # split the data wherever there is a new occurrence of the word "Chemical" in the first column
     # Only want the first 3 - because these should correspond to the first 3 plates
     # Any occurences of "chemical" after that are probably other calculations
-    cyto_plate_indicies = which(cyto_data_all[,1] == "Chemical")[1:3]
+    cyto_plate_indicies <- which(cyto_data_all[,1] == "Chemical")
+    cyto_plate_indicies <- cyto_plate_indicies[1:min(3,length(cyto_plate_indicies))]
     cyto_data_list <- lapply(cyto_plate_indicies, function(i) cyto_data_all[i:(i+9),])
   }
   
@@ -202,6 +203,10 @@ createCytoData <- function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL,
   if (length(Plate.SN) != 1 || is.null(Plate.SN) || is.na(Plate.SN)) {
     cat("Plate cannot be determined from file name. ")
     Plate.SN = readline("Enter plate sn: ")
+  }
+  if (length(date) != 1 || is.null(date) || is.na(date)) {
+    cat("Culture date cannot be determined from file name. ")
+    date = readline("Enter culture date (as yyyymmdd): ")
   }
   
   # determine correct assay component source name
@@ -313,7 +318,7 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
 }
 
 
-run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox.csv", append = FALSE) {
+run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename = "cytotox.csv", copy_maestro_exp_log_treatments = TRUE, append = FALSE) {
   
   cat("\nStarting cytotoxicity data collection...\n")
   cat("Any negative blank-corrected values will be set to 0.\n")
@@ -331,16 +336,17 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
   if(get_files_from_log) {
     cytoFiles <- readLogFile(basepath, files_type = "Calculations")
     cytoFiles <- c(cytoFiles, readLogFile(basepath, files_type = "Summary"))
-    masterChemFiles <- readLogFile(basepath, files_type = "MaestroExperimentLog")
+    if(copy_maestro_exp_log_treatments) masterChemFiles <- readLogFile(basepath, files_type = "MaestroExperimentLog") 
+    else masterChemFiles <- c()
   }
   else {
-    cytoFiles = choose.files(caption = paste("Select all Summary files containing cytotoxicity data with data for 1 plate per sheet",sep=" "))
-    cytoFiles = c(cytoFiles, choose.files(caption = paste("Select all Calcuations files containing cytotoxicity data with data for 3 plates per sheet",sep=" ")))
-    masterChemFiles = choose.files(caption = "(optional) Select all Master Chemical Lists Files fot these plates")
+    cytoFiles <- choose.files(caption = paste("Select all Summary and/or Calculations files containing cytotoxicity data for 1-3 plates per sheet",sep=" "))
+    if(copy_maestro_exp_log_treatments) masterChemFiles <- choose.files(caption = "(optional) Select all Master Chemical Lists Files fot these plates")
+    else masterChemFiles <- c()
   }
   
   if (length(masterChemFiles) == 0) {
-    print("no master chem list found, using treatment names from input data")
+    print("no master chem lists available, using treatment names from input files")
   }
   
   # if (append) {
@@ -355,6 +361,11 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
   #     !(datei %in% completed_dates) }, cytoFiles)
   #   # how to make sure the entire date was completed though, for all plates?
   # }
+  
+  if (length(cytoFiles) == 0) {
+    cat('No Summary or Calculations files found\n')
+    return(0)
+  }
 
   # run the functions for each file
   longdat <- data.table()
@@ -365,7 +376,7 @@ run_cytotox_functions <- function(basepath, get_files_from_log = TRUE, filename 
       LDH_dat <- createCytoTable2(cytoFiles[i], cyto_type = "LDH", masterChemFiles)
     } 
     else {
-      cat(paste0("can't tell if",cytoFiles[i],"is 'Summary' file or 'Calculations' file\n"))
+      cat(paste("can't tell if",cytoFiles[i],"is 'Summary' file or 'Calculations' file\n"))
     }
     longdat <- rbind(longdat, AB_dat, LDH_dat)
     rm(list = c("AB_dat","LDH_dat"))
