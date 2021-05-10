@@ -44,6 +44,9 @@ source(file.path(scripts.dir, 'source_steps.R'))
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
 
+# Save all conc's as-is under 'conc_original'
+dat[, conc_srcf := conc]
+
 
 # change untreated wells to Control Treatment ------------------------------------
 dat[wllt == "n", treatment := default_ControlTreatmentName]

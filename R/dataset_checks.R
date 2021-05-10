@@ -49,17 +49,29 @@ dataset_checks <- function(dat) {
   # PLOTS to visually confirm results
   
   # view all by plate
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12"], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
+             col = "cornflowerblue", main = paste0(dataset_title," NFA Mean Firing Rate DIV12 by Plate"))
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12"], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
+             add = T)
+  legend(x = "topright", legend = c("control","all treated"), col = c("black","cornflowerblue"), pch = c(19,1), bg = "transparent")
+  
   stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
-             col = "blue", main = paste0(dataset_title," NFA Mean Firing Rate AUC by Plate"))
+             col = "cornflowerblue", main = paste0(dataset_title," NFA Mean Firing Rate AUC by Plate"))
   stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
              add = T)
-  legend(x = "topright", legend = c("control","all treated"), col = c("black","blue"), pch = c(19,1), bg = "transparent")
+  legend(x = "topright", legend = c("control","all treated"), col = c("black","cornflowerblue"), pch = c(19,1), bg = "transparent")
+  
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & acsn == "CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12"], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
+             col = "cornflowerblue", main = paste0(dataset_title," NFA # Active Electrodes DIV12 by Plate"))
+  stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & acsn == "CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12"], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
+             add = T)
+  legend(x = "topright", legend = c("control","all treated"), col = c("black","cornflowerblue"), pch = c(19,1), bg = "transparent")
   
   stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "t" & acsn == "CCTE_Shafer_MEA_dev_active_electrodes_number"], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
-             col = "blue", main = paste0(dataset_title," NFA # Active Electrodes AUC by Plate"))
+             col = "cornflowerblue", main = paste0(dataset_title," NFA # Active Electrodes AUC by Plate"))
   stripchart(rval ~ sub("_","\n",apid), dat[wllq == 1 & wllt == "n" & acsn == "CCTE_Shafer_MEA_dev_active_electrodes_number"], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
              add = T)
-  legend(x = "topright", legend = c("control","all treated"), col = c("black","blue"), pch = c(19,1), bg = "transparent")
+  legend(x = "topright", legend = c("control","all treated"), col = c("black","cornflowerblue"), pch = c(19,1), bg = "transparent")
   
   # define 'plotdat' - of the AUC MFR, with specialized conc group labels
   plotdat <- dat[acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean"]
@@ -76,12 +88,13 @@ dataset_checks <- function(dat) {
   legend(x = "topright", legend = c("wllq==1","wllq==0"), col = c("black","red"), pch = c(1,1), bg = "transparent")
   
   # find a compound that is likely to be a positive and plot dose response
-  plot_spid <- dat[conc == max(conc) & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean", .(med_rval = median(rval)), by = "spid"][med_rval == min(med_rval), spid[1]]
+  dat[, max_conc_by_spid := as.character(max(conc)), by = .(spid)]
+  plot_spid <- dat[as.character(conc) == max_conc_by_spid & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean", .(med_rval = median(rval)), by = "spid"][med_rval == min(med_rval), spid[1]]
   plot_plates <- dat[spid == plot_spid, unique(apid)]
   stripchart(rval ~ conc_grp, plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 1], vertical = T, pch = 19, las = 2,
              col = rgb(0.1,0.1,0.1,0.5),
              ylim = range(dat[wllq == 1 & acsn == "CCTE_Shafer_MEA_dev_firing_rate_mean",rval]), ylab = "CCTE_Shafer_MEA_dev_firing_rate_mean (AUC)",
-             xlab = "conc", main = paste0(dat[spid == plot_spid,unique(treatment)]," Mean Firing Rate AUC Dose Response"))
+             xlab = "conc", main = paste0("Example Down Response:\n",dat[spid == plot_spid,unique(treatment)]," Mean Firing Rate AUC Dose Response"))
   if (plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n"), any(wllq==0)])
     stripchart(rval ~ conc_grp, plotdat[apid %in% plot_plates & (spid == plot_spid | wllt == "n") & wllq == 0], vertical = T, pch = 19, las = 2,
                add = TRUE, col = rgb(0.9,0,0,0.5))
@@ -100,6 +113,7 @@ dataset_checks <- function(dat) {
   }
   
   if(remove_spid_col) dat[, spid := NULL]
+  dat[, max_conc_by_spid := NULL]
   return(0)
  
 }
@@ -137,16 +151,16 @@ dataset_checks_wide <- function(dat, normalized = FALSE, direction = '') {
   # view all by plate
   dat[, apid := paste0(date,"_",Plate.SN)]
   stripchart(meanfiringrate_auc ~ sub("_","\n",apid), dat[wllq == 1 & dose != 0], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
-             col = "blue", main = paste0(dataset_title,if(normalized) paste0(" Normalized ",direction)," Mean Firing Rate AUC by Plate"))
+             col = "cornflowerblue", main = paste0(dataset_title,if(normalized) paste0(" Normalized ",direction)," Mean Firing Rate AUC by Plate"))
   stripchart(meanfiringrate_auc ~ sub("_","\n",apid), dat[wllq == 1 & dose == 0], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
              add = T)
-  legend(x = "topright", legend = c("control","all treated"), col = c("black","blue"), pch = c(19,1), bg = "transparent")
+  legend(x = "topright", legend = c("control","all treated"), col = c("black","cornflowerblue"), pch = c(19,1), bg = "transparent")
   
   stripchart(nAE_auc ~ sub("_","\n",apid), dat[wllq == 1 & dose != 0], vertical = T, pch = 1, method = "jitter", las = 2, cex.axis = 0.75,
-             col = "blue", main = paste0(dataset_title,if(normalized) paste0(" Normalized ",direction)," # Active Electrodes AUC by Plate"))
+             col = "cornflowerblue", main = paste0(dataset_title,if(normalized) paste0(" Normalized ",direction)," # Active Electrodes AUC by Plate"))
   stripchart(nAE_auc ~ sub("_","\n",apid), dat[wllq == 1 & dose == 0], vertical = T, pch = 19, method = "jitter", las = 2, cex.axis = 0.75,
              add = T)
-  legend(x = "topright", legend = c("control","all treated"), col = c("black","blue"), pch = c(19,1), bg = "transparent")
+  legend(x = "topright", legend = c("control","all treated"), col = c("black","cornflowerblue"), pch = c(19,1), bg = "transparent")
   
   # define 'dat' - of the AUC MFR, with specialized conc group labels
   dat[, conc_grp := signif(dose,1)]

@@ -234,13 +234,15 @@ createCytoData <- function(sourcedata,cyto_type,Plate.SN = NULL, srcname = NULL,
       warning(paste("master chem file match not found for",Plate.SN,sep = " "))
     }
     else {
-      masterChemData = as.data.table(read.csv(masterChemFile, stringsAsFactors = FALSE))
-      masterChemData[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",Well)), rowi = match(sub("[[:digit:]]","",Well), LETTERS),
-                            date = as.character(Experiment.Date))]
-      
-      # only replacing the treatment names for now, might add conc's in the future
-      longdat[, treatment := NULL] # remove current treatment column
-      longdat <- merge(longdat, masterChemData[, .(date,Plate.SN,rowi,coli,treatment = Treatment)], by = c("date","Plate.SN","rowi","coli"))
+      # removing this 4/20/21 -> want to keep trt names from Calc file as a secondary check
+      # but, still want to check from matching plate name, so keeping steps above
+      # masterChemData = as.data.table(read.csv(masterChemFile, stringsAsFactors = FALSE))
+      # masterChemData[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",Well)), rowi = match(sub("[[:digit:]]","",Well), LETTERS),
+      #                       date = as.character(Experiment.Date))]
+      # 
+      # # only replacing the treatment names for now, might add conc's in the future
+      # longdat[, treatment := NULL] # remove current treatment column
+      # longdat <- merge(longdat, masterChemData[, .(date,Plate.SN,rowi,coli,treatment = Treatment)], by = c("date","Plate.SN","rowi","coli"))
     }
   }
   

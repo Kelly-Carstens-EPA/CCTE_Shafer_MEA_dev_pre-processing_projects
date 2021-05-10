@@ -5,7 +5,7 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   cat("Checking conc's:\n")
   
   # check if any conc's are NA
-  if (dat[, any(is.na(conc))]) {
+  if (dat[wllt == 't', any(is.na(conc))]) {
     stop(paste("\nThe following treatments have conc NA:",paste0(dat[is.na(conc), unique(treatment)],collapse=",")))
   }
   
@@ -16,7 +16,7 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   dbDisconnect(con)
   spidmap <- merge(spidmap, sample_info, by = "spid", all.x = T)
   if (nrow(spidmap[is.na(stkc)]) > 0) {
-    warning(paste0("The following spids were not found in invitrodb: ",paste0(spidmap[is.na(stkc),unique(spid)],collapse=", "),
+    cat(paste0("The following spids were not found in invitrodb: ",paste0(spidmap[is.na(stkc),unique(spid)],collapse=", "),
                    "\nWill use 'stock_conc' provided in spidmap file instead."))
     spidmap[is.na(stkc), stkc := stock_conc]
   }
@@ -29,18 +29,21 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   compare_concs <- merge(spidmap[, .(stkc, expected_stock_conc, spidmap_guess_concs = paste0(signif(stkc/expected_stock_conc*expected_target_concs,3),collapse=",")), by = "spid"],
                          dat[wllt == "t", .(source_concs = paste0(sort(unique(signif(conc,3))),collapse=","), num_concs = length(unique(conc))), by = c("spid","treatment")], 
                          by = "spid", all.y = TRUE)
-  if(nrow(compare_concs[stkc != expected_stock_conc | source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)]) > 0) {
+  cat('\nFYI, the following stock conc\'s pulled from invitrodb do not match the expected stock conc:\n')
+  print(compare_concs[signif(stkc,4) != signif(expected_stock_conc,4), .(spid, treatment, stkc, expected_stock_conc, spidmap_guess_concs, source_concs, num_concs)])
+  
+  if(nrow(compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)]) > 0) {
     cat("The concentrations for the following compounds might need to be corrected:\n")
     # removing this feature for now -> user can do manually if needed, and check that it is correct
     # compare_concs$probably_partially_conc_corrected <- sapply(strsplit(compare_concs$source_concs,split=","), function(x) length(x) > length(expected_target_concs))
-    print(compare_concs[signif(stkc,4) != signif(expected_stock_conc,4) | source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)][order(num_concs)])
+    print(compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)][order(num_concs)])
     
     if (update_concs_without_prompt) response <- "y"
     else response <- readline(prompt = "Update conc's where source_concs != spidmap_guess_concs with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): ")
     
     if (response %in% c("y","Y","yes","Yes")) {
       
-      compare_concs[source_concs != spidmap_guess_concs, need_to_update_concs := TRUE]
+      compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs), need_to_update_concs := TRUE]
       
       dat[, conc_org := conc]
       dat <- merge(dat, compare_concs[, .(spid, need_to_update_concs, stkc, expected_stock_conc)], by = "spid", all.x = TRUE)
@@ -76,7 +79,7 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
     }
   }
   else {
-    cat("All compounds have the expected concetration-corrected values\n")
+    cat("\nAll compounds have the expected concentration-corrected values\n")
   }
   return(dat)
 }
