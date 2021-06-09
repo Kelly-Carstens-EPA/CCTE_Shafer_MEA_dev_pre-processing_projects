@@ -39,7 +39,7 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
     print(compare_concs[source_concs != spidmap_guess_concs | is.na(spidmap_guess_concs)][order(num_concs)])
     
     if (update_concs_without_prompt) response <- "y"
-    else response <- readline(prompt = "Update conc's where source_concs != spidmap_guess_concs with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): ")
+    else response <- readline(prompt = "Update conc's where source_concs != spidmap_guess_concs with conc := signif(stkc/expected_stock_conc*source_concs, 3)? (y/n): ")
     
     if (response %in% c("y","Y","yes","Yes")) {
       
@@ -60,7 +60,7 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
                             by = c("spid","treatment","conc","stkc","expected_stock_conc")][order(spid,conc), .(treatment, spid, stkc, expected_stock_conc, 
                                                                                                                 concs_in_source_dat, conc_updated = format(conc,digits=4,scientific=F))]
       if (update_concs_without_prompt) {
-        print("conc's that changed:\n")
+        cat("conc's that changed:\n")
         print(update_summary[signif(as.numeric(concs_in_source_dat),3) != signif(as.numeric(conc_updated),3)]) # display conc's that were actually updated
       }
       else {
