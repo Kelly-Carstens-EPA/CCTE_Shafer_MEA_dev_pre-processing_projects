@@ -287,6 +287,9 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
     print(longdata[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
     stop("Update wells_with_well_quality_zero.csv")
   }
+  
+  # make sure there is just 1 entry for every date-plate-well-affected_endpoints
+  wllq_info <- wllq_info[, .(wllq = min(wllq), wllq_notes = paste0(unique(wllq_notes), collapse= '; ')), by = .(date, Plate.SN, well, rowi, coli, affected_endpoints)]
 
   # transfrom wllq_info into longdat
   ldh_wllq <- wllq_info[grepl("LDH",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]

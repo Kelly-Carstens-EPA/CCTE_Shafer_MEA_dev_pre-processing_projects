@@ -107,13 +107,16 @@ if(nrow(unmatched_DIV) > 0) {
   warning("Update wells_with_well_quality_zero.csv")
 }
 
+# make sure there is just 1 entry for every date-plate-well-affected_endpoints
+wllq_info <- wllq_info[, .(wllq = min(wllq), wllq_notes = paste0(unique(wllq_notes), collapse= '; ')), by = .(date, Plate.SN, DIV, well, affected_endpoints)]
+
 # initializing values
 all_data[, `:=`(wllq = 1, wllq_notes = "")] 
 
 # Update wllq for the wells where wllq==0 for all DIV
 all_data <- merge(all_data, wllq_info[grepl("mea",affected_endpoints) & DIV == "all", .(date, Plate.SN, well, wllq, wllq_notes)], by = c("date","Plate.SN","well"),
                   suffixes = c("",".wllq_update"), all.x = TRUE)
-all_data[wllq.wllq_update == 0, `:=`(wllq = wllq.wllq_update, wllq_notes = paste0(wllq_notes.wllq_update, "; "))]
+all_data[!is.na(wllq.wllq_update), `:=`(wllq = wllq.wllq_update, wllq_notes = paste0(wllq_notes.wllq_update, "; "))]
 all_data <- all_data[, .SD, .SDcols = names(all_data)[!grepl("wllq_update",names(all_data))]]
 
 # next, remove any data where wllq==0 for specific DIV
