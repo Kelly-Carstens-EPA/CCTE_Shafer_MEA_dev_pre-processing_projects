@@ -15,7 +15,7 @@ spid_sheet <- ""
 scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" # updated to the folder where the scripts are located
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
 
-update_concs_without_prompt <- TRUE
+update_concs_without_prompt <- FALSE
 ###################################################################################
 # END USER INPUT
 ###################################################################################
@@ -88,6 +88,7 @@ dat <- check_and_assign_spids(dat, spidmap)
 # Confirm Conc's ----------------------------------------------------------------
 # confirm that the conc's collected from master chem lists and Calc files match
 # and that the correct concentration-corrections has been done for each compound
+dat[, conc_srcf := conc] # save the original conc's in a column
 
 # check if there are multiple conc's assigned to the same well (usually occurs if there are differences between master chem file and calc file)
 # Note: in TCPL mc1, the conc's are set to dat[ , conc := signif(conc, 3)]. So it's okay for us to round here.
