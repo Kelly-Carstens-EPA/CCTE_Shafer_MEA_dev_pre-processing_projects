@@ -61,6 +61,7 @@ dat[wllt == "n", conc := 0.001]
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
+unique(dat$units) # confirm these are all uM (this taken from maestroexperiment log file)
 setnames(spidmap, old = c(trt_col, spid_col), new = c("treatment","spid"))
 # for example, setnames(spidmap, old = c("Aliquot_Vial_Barcode", "Concentration", "EPA_Sample_ID"), new = c("treatment","stock_conc","spid"))
 spidmap[, expected_stock_conc := 20] # initialize expected_stock_conc. Usually this is 20mM. Change as needed.

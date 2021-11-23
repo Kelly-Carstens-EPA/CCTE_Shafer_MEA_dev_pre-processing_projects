@@ -51,7 +51,7 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   # rbind DIV and AUC data
   longdat <- rbind(DIV_data, AUC)
   longdat[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",well)), rowi = match(sub("[[:digit:]]","",well), LETTERS))]
-  longdat[, c("well","units") := list(NULL)]
+  longdat[, c("well") := list(NULL)]
   setnames(longdat, old = "dose", new = "conc")
   rm(list = c("DIV_data","AUC"))
   
