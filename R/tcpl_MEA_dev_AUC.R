@@ -1,27 +1,3 @@
-# USER INPUT will now be passed to the function below
-# ###################################################################################
-# # USER INPUT
-# ###################################################################################
-# # set working directory for where the output file will go
-# setwd("C:/Users/ACARPE01/OneDrive - Environmental Protection Agency (EPA)/Profile/Documents/MEA_NFA_testing")
-# # set the output file name
-# output_file = "mc0_test_dnt.csv"
-# AUCsourcefilename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/AUC_DNT2019_All.csv"
-# cytotox_filename = "L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA/DNT2019_all_cytotoxicity_rawVals.csv"
-# default_ControlTreatmentName = "DMSO" # all compounds other than those listed below should have this vehicle control
-# # Enter the names of the compounds as they appear in the MEA data that have a vehicle control other than the default
-# different_vehicleControlCompounds = c() # e.g. c("Sodium Orthovanadate", "Amphetamine")
-# # Enter the names of the vehicle controls as they correspond to the compounds in the previous list
-# different_vehicleControls = c() # e.g. c("Water", "Water")
-# spidmap_file <- "L:/Lab/NHEERL_MEA/Project - DNT 2019/All Assays_list_toxcast_OECD 20190524.xlsx"
-# use_sheet <- "NFA Groups"
-# trt_col <- "Chemical ID...2"
-# stock_conc_col <- "Conc"
-# spid_col <- "NCCT ID...3" # need to iron out some stuff with spids here... not sure where to do dataset specific stuff
-# ###################################################################################
-# # END USER INPUT
-# ###################################################################################
-
 tcpl_MEA_dev_AUC <- function(basepath, dataset_title, 
                              AUCsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_AUC.csv")), 
                              DIVsourcefilename = file.path(basepath, "output", paste0(dataset_title, "_parameters_by_DIV.csv")), 

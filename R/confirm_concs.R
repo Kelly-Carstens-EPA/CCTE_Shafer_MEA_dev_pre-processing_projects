@@ -1,4 +1,4 @@
-confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = FALSE) {
+confirm_concs <- function(dat, spidmap, con, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = FALSE) {
   
   require(RMySQL)
   
@@ -10,7 +10,6 @@ confirm_concs <- function(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1
   }
   
   # get the stck from invitrodb - sometimes spidmap has duplicate stock_conc entries
-  con <- dbConnect(drv = RMySQL::MySQL(), user = "***REMOVED***", pass = ***REMOVED***, dbname='invitrodb',host = "ccte-mysql-res.epa.gov")
   query_term <- paste0("SELECT * FROM sample WHERE spid IN('",paste(spidmap[!is.na(spid),unique(spid)],collapse="','",sep=""),"');")
   sample_info <- dbGetQuery(con, query_term)
   dbDisconnect(con)

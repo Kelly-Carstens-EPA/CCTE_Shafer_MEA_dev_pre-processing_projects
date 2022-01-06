@@ -12,8 +12,8 @@ default_ControlTreatmentName <- "DMSO" # all compounds other than those listed b
 spidmap_file <- ""
 spid_sheet <- ""
 
-scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" # updated to the folder where the scripts are located
-root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+scripts.dir <- "" # update to the folder where the scripts are located
+root_output_dir <- "" # where the dataset_title folder will be created
 
 update_concs_without_prompt <- FALSE
 ###################################################################################
@@ -101,7 +101,8 @@ problem_comps
 
 # finally, run this:
 source(file.path(scripts.dir, 'confirm_concs.R'))
-dat <- confirm_concs(dat, spidmap, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
+con <- dbConnect(drv = RMySQL::MySQL(), user = "", pass = "", dbname='',host = "")
+dat <- confirm_concs(dat, spidmap, con, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
 
 
 # FINAL DATA CHECKS -------------------------------------------------------------

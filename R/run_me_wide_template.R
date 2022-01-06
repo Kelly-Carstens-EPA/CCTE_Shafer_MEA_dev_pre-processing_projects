@@ -9,8 +9,8 @@ save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of 
 
 # default_ControlTreatmentName <- "DMSO" # all compounds other than those listed below should have this vehicle control
 
-scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" # update to the folder where the scripts are located
-root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
+scripts.dir <- "" # update to the folder where the scripts are located
+root_output_dir <- "" # where the dataset_title folder will be created
 ###################################################################################
 # END USER INPUT
 ###################################################################################
