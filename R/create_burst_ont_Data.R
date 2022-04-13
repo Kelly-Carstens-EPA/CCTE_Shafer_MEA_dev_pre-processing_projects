@@ -22,7 +22,7 @@ create_burst_ont_Data <-
       temp.l<-sapply(sapply(strsplit(basename(h5Files.wanted),split="_"), 
                             function(x) x[4]) , nchar)
       temp.div= substring( 
-        sapply( strsplit(basename(h5Files.wanted),split="_"), function(x) x[4]),
+        sapply( strsplit(basename(h5Files.wanted),split="[_\\(\\)]"), function(x) x[4]),
         rep(4,length(h5Files.wanted)),temp.l)
       
       h5Files.wanted = h5Files.wanted[order(as.numeric(temp.div)) ]
@@ -56,7 +56,7 @@ create_burst_ont_Data <-
           s[[cur.file]]$well = g$well 
           s[[cur.file]]$summary.table = g$summary.table
           s[[cur.file]]$array = g$array     
-          s[[cur.file]]$DIV = strsplit( basename(s[[cur.file]]$file), split="_")[[1]][4]
+          s[[cur.file]]$DIV = strsplit( basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4]
         } else{
           print ('Error: meta-data not available in .h5 file');
           
@@ -114,11 +114,11 @@ create_burst_ont_Data <-
         
         if( grepl( strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4],
                    pattern="DIV" ) ){
-          DIV <- rep( substring(strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4],
+          DIV <- rep( substring(strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4],
                                 4, nchar(strsplit(basename(s[[cur.file]]$file), 
-                                                  split="_")[[1]][4])  ), num.wells)           
+                                                  split="[_\\(\\)]")[[1]][4])  ), num.wells)           
         } else {
-          DIV<-rep(strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4],
+          DIV<-rep(strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4],
                    num.wells)
         } 
         
@@ -237,11 +237,11 @@ create_burst_ont_Data <-
           #make data frame
           if( grepl( strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4],
                      pattern="[DIV]" ) ){
-            DIV <- rep( substring(strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4],
-                                  4, nchar(strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4])  ), 
+            DIV <- rep( substring(strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4],
+                                  4, nchar(strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4])  ), 
                         num.wells)           
           } else {
-            DIV<-rep(unlist( strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4] ),
+            DIV<-rep(unlist( strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4] ),
                      num.wells)
           } 
           
@@ -343,7 +343,7 @@ create_burst_ont_Data <-
             # Because df2 might not have been created if num.wells==0
             date_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][2]
             Plate.SN_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][3]
-            DIV_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4]
+            DIV_value <- as.numeric(strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4])
             
             date.sw<-rep(date_value, length(silent.wells) )
             Plate.SN.sw<-rep(Plate.SN_value, length(silent.wells) )
@@ -428,7 +428,7 @@ create_burst_ont_Data <-
             # Because df2 might not have been created if num.wells==0
             date_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][2]
             Plate.SN_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][3]
-            DIV_value <- strsplit(basename(s[[cur.file]]$file), split="_")[[1]][4]
+            DIV_value <- strsplit(basename(s[[cur.file]]$file), split="[_\\(\\)]")[[1]][4]
             
             date.sw<-rep(date_value, length(silent.wells) )
             Plate.SN.sw<-rep(Plate.SN_value, length(silent.wells) )

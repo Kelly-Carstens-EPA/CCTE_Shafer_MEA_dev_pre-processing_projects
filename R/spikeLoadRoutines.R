@@ -3,7 +3,7 @@
 
 # This script assembles the spike data from the h5 files for the Mutual Information
 # This script is configured to extract the DIV values from the 4th tag in the h5 filename
-# div<-strsplit(file.name,split = "_")[[1]][4] (see below)
+# div<-strsplit(file.name,split = "[_\\(\\)]")[[1]][4] (see below)
 # Change that line if needed
 
 require('rhdf5')
@@ -120,7 +120,7 @@ load.spikedata_final <- function(pseudoSamplingRate,fileName){
       # add 04/17/2020 to collect date and plate from h5file name instead of from h5 body
       date<-strsplit(file.name,split = "_")[[1]][2]
       plate<-strsplit(file.name,split = "_")[[1]][3]
-      div<-strsplit(file.name,split = "_")[[1]][4]
+      div<-strsplit(file.name,split = "[_\\(\\)]")[[1]][4]
       
       div_vector<-rep(div,length(wells_vector))
       plate_vector<-rep(plate,length(wells_vector))
