@@ -123,9 +123,12 @@ all_data <- all_data[, .SD, .SDcols = names(all_data)[!grepl("wllq_update",names
 wllq_info[, DIV := suppressWarnings(as.numeric(DIV))]
 all_data[, full_id := paste(date, Plate.SN, well, DIV, sep = "_")] # hopefully I will find a better way to do this in the future
 wllq_info[, full_id := paste(date, Plate.SN, well, DIV, sep = "_")]
-cat("The following data rows will be removed because wllq==0 and DIV is not 'all':\n")
-print(merge(all_data[, .(date, Plate.SN, well, DIV, full_id, trt, dose, file.name, meanfiringrate)], wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV)], by = c("date","Plate.SN","well","DIV","full_id")))
-all_data <- all_data[!(full_id %in% wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV), unique(full_id)])]
+cat("The following data rows will be REMOVED from the AUC analysis because wllq==0 and DIV is not 'all':\n")
+# (Only removing rows where the wllq is not already 0 because of soem affect on all DIV)
+print(merge(all_data[wllq == 1, .(date, Plate.SN, well, DIV, full_id, trt, dose, file.name, meanfiringrate)], 
+            wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV) & wllq == 0], 
+            by = c("date","Plate.SN","well","DIV","full_id")))
+all_data <- all_data[!(wllq == 1 & full_id %in% wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV) & wllq == 0, unique(full_id)])]
 all_data[, full_id := NULL]
 # setting wllq to 0 instead
 # all_data <- merge(all_data, wllq_info[grepl("mea",affected_endpoints) & !is.na(DIV), .(date, Plate.SN, DIV, well, wllq, wllq_notes)], by = c("date","Plate.SN","DIV","well"),
@@ -134,7 +137,7 @@ all_data[, full_id := NULL]
 # all_data <- all_data[, .SD, .SDcols = names(all_data)[!grepl("wllq_update",names(all_data))]]
 
 # print summary of wllq updates
-cat("Wllq summary:\n")
+cat("Wllq update summary:\n")
 print(all_data[, .(number_of_well_recordings = .N, wllq = paste0(sort(unique(wllq)),collapse=",")), by = c("wllq_notes")][order(-wllq), .(wllq, wllq_notes, number_of_well_recordings)])
 print(all_data[wllq == 0, .(date, Plate.SN, well, trt, dose, DIV, wllq, wllq_notes, meanfiringrate, nAE)])
 rm(wllq_info)
@@ -201,7 +204,7 @@ if (length(diffDIV) > 0) {
 #   }
 # }
 # all_data <- all_data[, date_plate := NULL]
-cat("\nChecking that every plate has a recording for DIV",use_divs,"...\n")
+cat("\nChecking that every plate has a recording on DIV",use_divs,"...\n")
 all_data[, well_id := paste(date, Plate.SN, well, sep = "_")]
 wells_missing_div <- all_data[, .(DIV_flag = ifelse(length(setdiff(use_divs, unique(DIV)))>0, 1, 0),
                                   missing_DIV = list(setdiff(use_divs, unique(DIV)))), by = c("date","Plate.SN","date_plate","well","well_id")][DIV_flag == 1]
@@ -210,10 +213,11 @@ if (nrow(wells_missing_div) == 0) {
 } else {
   check_plates <- wells_missing_div[, unique(date_plate)]
   for(date_platei in check_plates) {
-    cat(date_platei,"\n")
     missing_divs <- wells_missing_div[date_plate == date_platei, unique(unlist(missing_DIV))]
+    cat(date_platei,'is missing some recordings.\n')
     
     # loop through each missing_div on this plate (will check if multiple DIV estimated afterwards)
+    # That way I still have estimated values, even if wllq set to 0
     for (add.DIV in missing_divs) {
       # Generate values for missing DIV by the median of other plates from this DIV
       all_data <- estimate_missing_DIV(dat = all_data, date_platei, add.DIV)
@@ -221,6 +225,7 @@ if (nrow(wells_missing_div) == 0) {
   }
   
   # If more than 1 DIV value had to be estimated for a given well, set wllq==0
+  cat("\nSetting wllq to 0 for plates with estimated values for more than 1 DIV...\n")
   check_multiple_missing <- function(wllq_notes_vector) {
     if (sum(grepl("estimated as median from corresponding wells",wllq_notes_vector)) > 1)
       paste0(wllq_notes_vector, "Multiple recordings missing; ")
@@ -230,9 +235,7 @@ if (nrow(wells_missing_div) == 0) {
   }
   all_data[, wllq_notes := lapply(.SD, check_multiple_missing), .SDcols = "wllq_notes", by = "well_id"]
   all_data[grepl("Multiple recordings missing",wllq_notes), wllq := 0] # could I merge this step with above?
-  cat("Multiple DIV missing for\n")
-  print(all_data[grepl("Multiple recordings missing",wllq_notes), .(date, Plate.SN, well, DIV, trt, dose, wllq, wllq_notes)])
-  cat("Wllq set to 0 for these wells.\n")
+  cat(all_data[grepl("Multiple recordings missing",wllq_notes), length(unique(Plate.SN))],'plates affected.\n')
 }
 all_data <- all_data[, c("date_plate","well_id") := NULL]
 

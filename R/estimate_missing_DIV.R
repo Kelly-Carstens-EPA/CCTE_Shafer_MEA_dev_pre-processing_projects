@@ -18,7 +18,7 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FAL
     cat("Will use all plates in data set.\n")
     cplates <- setdiff(unique(dat$date_plate), date_platei)
   }
-  cat("Estimating values for DIV",add.DIV,"on",date_platei,"from the plates",cplates,"\n")
+  cat("Estimating values for",date_platei,"on DIV",add.DIV,"from the plates",cplates,"\n")
   
   # get the columns for the endpoints
   id.cols <- c("date_plate","date","Plate.SN","DIV","well","well_id","trt","dose","units","file.name","wllq","wllq_notes")
