@@ -33,7 +33,7 @@ check_existing <- function(path, pattern, pause_between_steps) {
       resp <- "c"
   }
   if (resp == "q") {
-    stop("User elected to stop.")
+    stop("No error - user elected to stop.")
   }
   assign("append",switch(resp,
                          "a" = TRUE,
@@ -56,8 +56,9 @@ if(resp %in% c("r","a")) {
   selectInputFiles(start.dir = dirname(dirname(main.output.dir)), main.output.dir, dataset_title, append = append)
   # view summary of files
   file_names <- readLogFile(main.output.dir)
-  cultures <- sort(unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("([Cc]ulture)|([Oo]ntogeny)",x,val = T)[1])))
-  cultures <- lapply(cultures, function(x) ifelse(length(x)==0, "", x)) # for datasets that don't have Culture tag phrase
+  # cultures <- sort(unique(sapply(strsplit(file_names, "\\\\"), function(x) grep("([Cc]ulture)|([Oo]ntogeny)",x,val = T)[1])))
+  # cultures <- lapply(cultures, function(x) ifelse(length(x)==0, "", x)) # for datasets that don't have Culture tag phrase
+  cultures <- unique(stri_extract(file_names, regex = '[0-9]{8}'))
   for (culture in cultures) {
     cat("\n\n",culture,"\n",sep = "")
     culture <- sub("\\(","\\\\(",culture)

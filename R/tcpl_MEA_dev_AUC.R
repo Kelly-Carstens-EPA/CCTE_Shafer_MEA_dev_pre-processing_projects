@@ -33,7 +33,9 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   
   # add cytotox data
   cytotox_data <- fread(cytotox_filename)
-  longdat <- rbind(longdat, cytotox_data)
+  if(length(setdiff(names(longdat),names(cytotox_data))) > 0) cat('cytotox data does not have ',setdiff(names(longdat),names(cytotox_data)),'. Will fill with NA\n', sep ='')
+  if(length(setdiff(names(cytotox_data),names(longdat))) > 0) cat('MEA data does not have ',setdiff(names(cytotox_data),names(long)),'. Will fill with NA\n', sep = '')
+  longdat <- rbind(longdat, cytotox_data, fill = T)
   rm(list = c("cytotox_data"))
   longdat[, treatment := as.character(treatment)] # sometimes the treatment is read as an integer instead of a char
   
@@ -53,7 +55,8 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   longdat[ conc == 0, wllt := "n"]
   
   # get the desired columns, in the desired order
-  longdat <- longdat[, .(apid, rowi, coli, treatment, conc, wllq, wllq_notes, wllt, rval, acsn, srcf)]
+  longdat <- longdat[, .SD, .SDcols = intersect(c('apid', 'rowi', 'coli', 'treatment', 'conc', 'wllq', 'wllq_notes', 'wllt', 'rval', 'acsn', 'srcf', 'units'), names(longdat))]
+  # longdat may or may not include "units"
   
   cat("long-format data is ready.\n")
   return(longdat)

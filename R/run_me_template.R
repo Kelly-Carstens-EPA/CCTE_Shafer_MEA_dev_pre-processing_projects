@@ -1,8 +1,8 @@
 rm(list=ls()) # clear environment
 graphics.off() # clear plot history
-###################################################################################
+# ------------------------------------------------------------------------ #
 # USER INPUT
-###################################################################################
+# ------------------------------------------------------------------------ #
 dataset_title <- "testpipeline2020" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
 save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
@@ -16,12 +16,16 @@ scripts.dir <- "" # update to the folder where the scripts are located
 root_output_dir <- "" # where the dataset_title folder will be created
 
 update_concs_without_prompt <- FALSE
-###################################################################################
+# ------------------------------------------------------------------------ #
 # END USER INPUT
-###################################################################################
+# ------------------------------------------------------------------------ #
 
 library(data.table)
 library(openxlsx)
+library(RMySQL)
+
+
+# Run main steps ----------------------------------------------------------
 
 # create a summary log file and store the 
 if(save_notes_graphs) {
@@ -44,20 +48,20 @@ source(file.path(scripts.dir, 'source_steps.R'))
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
 
-# Save all conc's as-is under 'conc_original'
-dat[, conc_srcf := conc]
 
-
-# change untreated wells to Control Treatment ------------------------------------
-dat[wllt == "n", treatment := default_ControlTreatmentName]
-# Manually update other wells where control treatment is not the default, or use teh function below
+# Updated treatment label for solvent control wells ------------------------------------
+dat[wllt == 'n', .N, by = .(treatment)] # wllt == 'n' determined where conc_original == 0
+# Should all of these treatments be default_ControlTreatmentName?
+# If so, use below:
+# dat[wllt == "n", treatment := default_ControlTreatmentName]
+# Can manually update other wells where control treatment is not the default, or use teh function below
 # dat <- update_control_well_treatment(dat, control_compound = "Water",culture_date = "")
 
 # Set the control well concentration. Adjust as needed
 dat[wllt == "n", conc := 0.001]
 
 
-# assign sample ID's -------------------------------------------------------------
+# Assign sample ID's -------------------------------------------------------------
 spidmap <- as.data.table(read.xlsx(spidmap_file, sheet = spid_sheet))
 head(spidmap)
 unique(spidmap$Concentration_Unit) # all mM?
@@ -103,12 +107,18 @@ problem_comps
 source(file.path(scripts.dir, 'confirm_concs.R'))
 con <- dbConnect(drv = RMySQL::MySQL(), user = "", pass = "", dbname='',host = "")
 dat <- confirm_concs(dat, spidmap, con, expected_target_concs = c(0.03,0.1,0.3,1,3,10,30), update_concs_without_prompt = update_concs_without_prompt)
+dbDisconnect(con)
 
 
 # FINAL DATA CHECKS -------------------------------------------------------------
 # this section is to confirm that the data has been processed correctly
 source(file.path(scripts.dir, 'dataset_checks.R'))
 dataset_checks(dat)
+
+# Check for the expected number of technical replicates
+dat[wllt == 't', .(length(unique(paste0(apid,rowi,coli)))), by = .(spid, conc)][V1 != 3]
+# do you except these cases to have more than or less than 3 replicates?
+# Were some samples repeated, and only certain repeats meant to be included?
 
 # Any other plots or things to check?
 
