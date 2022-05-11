@@ -192,7 +192,7 @@ dat[, units := unique(units[!is.na(units)]), by = .(treatment, spid)]
 # Convert to uM
 dat[treatment == '6-PPD Quinone', mol_weight_g_per_mol := 298.38] # see notebook "RE: MW for 6-ppd quinone"
 dat[units == 'uM', conc_in_uM := conc]
-dat[units == 'ug/mL', conc_in_uM := conc*1000/mol_weight_g_per_mol]
+dat[units == 'µg/ml', conc_in_uM := conc*1000/mol_weight_g_per_mol] # updated from ug/mL on Apr 25, since that is different than what is recorded under "units"
 
 
 # FINAL DATA CHECKS -------------------------------------------------------------
@@ -217,39 +217,87 @@ dat[!grepl('DIV',acsn) & !grepl('(LDH)|(AB)',acsn) & grepl('estimated',wllq_note
 #                  apid rowi coli  N
 # 1: 20210818_MW75-9207    5    1 17
 # 2: 20210818_MW75-9207    6    1 17
-# cool, just these 2 wells
+# 3: 20210818_MW75-9207    6    7 17
+# 4: 20210818_MW75-9207    6    8 17
+# cool, just these 4 wells
 
 # And the DIV12?
 dat[grepl('DIV12',acsn) & grepl('estimated',wllq_notes), .N, by = .(apid, rowi, coli)][order(rowi, coli)]
 # apid rowi coli  N
 # 1: 20210818_MW75-9207    5    1 17
 # 2: 20210818_MW75-9207    6    1 17
+# 3: 20210818_MW75-9207    6    7 17
+# 4: 20210818_MW75-9207    6    8 17
 
-# Note that wells F7 and F8 also contaminated on DIV12, 
-# but wllq set to 0 for all DIV because of precipitate (so we did not estimate any values.)
-# dat[apid == '20210818_MW75-9207' & rowi == 6 & coli %in% c(7,8), .N, by = .(apid, rowi, coli, wllq, wllq_notes)]
-#                  apid rowi coli wllq                                                                        wllq_notes  N
-# 1: 20210818_MW75-9207    6    7    0 compound precipitated out of dosing solution at this concentration; contamination  2
-# 2: 20210818_MW75-9207    6    8    0 compound precipitated out of dosing solution at this concentration; contamination  2
-# 3: 20210818_MW75-9207    6    7    0              compound precipitated out of dosing solution at this concentration;  85
-# 4: 20210818_MW75-9207    6    8    0              compound precipitated out of dosing solution at this concentration;  85
 
+
+# > Add'l wllq notes ------------------------------------------------------
+
+# I'm guessing 5% CO2 note got dropped, bc only afffected DIV12?
+dat[apid %in% c('20210818_MW75-9206','20210818_MW75-9207'), .N, by = .(wllq_notes)]
+# ya, not present
+# Just add this note for MEA AUC adn DIV12 endpoints
+# bu tdon't change wllq
+dat[apid %in% c('20210818_MW75-9206','20210818_MW75-9207') & !(grepl('(LDH)|(AB)',acsn) | grepl('DIV[579]',acsn)), `:=`(wllq_notes = paste0(wllq_notes, '; 5% CO2 ran out during reading'))]
+
+# Add note for precipitate
+dat[grepl('precipitate',wllq_notes)]
+
+# Load HCI data with wllq notes info
+load(file.path(root_output_dir, '../pre-process_hci_for_tcpl/projects/output_data/DNTFalseNegatives_data.RData'))
+hci.dat[grepl('precipitate',wllq_notes), unique(wllq_notes)]
+# [1] "neuron count low, group was repeated; Compound observered to precipitate out of solution at this conc in cortical synap 20220112"        
+# [2] "neuron count low, group was repeated; Compound observered to precipitate out of solution at this conc"                                   
+# [3] "NA; Compound observered to precipitate out of solution at this conc in cortical synap 20220112"                                          
+# [4] "well quality set to 0 in xlsx plate map file; Compound observered to precipitate out of solution at this conc in cortical synap 20220112"
+# There was 1 assay that was atypical. I'm going to go with just the precipitate notes from cortical synap 20220112
+precipitate.observations.tb <- hci.dat[grepl('Compound observered to precipitate out of solution at this conc in cortical synap 20220112',wllq_notes),
+                                       .(min_conc_precipitate_observed = min(conc_in_uM, na.rm = T)), by = .(spid)]
+precipitate.observations.tb
+#                     spid min_conc_precipitate_observed
+# 1:                 6-PPD                      9.000000
+# 2:         6-PPD Quinone                      2.664388
+# 3: 5,5-Diphenylhydantoin                    1000.000000
+
+# Confirm the pseudo-spid names from hci match the acute
+setdiff(precipitate.observations.tb$spid, dat$spid) # "empty
+
+# In just the MEA NFA, precipitate also observed at 100, 300, and 1000 uM for 5,5-Diphenylhydantoin
+precipitate.observations.tb[spid == '5,5-Diphenylhydantoin', min_conc_precipitate_observed := 100]
+
+# Apply to dat
+dat <- merge(dat, precipitate.observations.tb, by = c('spid'), all.x = T)
+dat[conc_in_uM >= min_conc_precipitate_observed, .N, by = .(spid, conc_in_uM)]
+#                     spid conc_in_uM   N
+# 1: 5,5-Diphenylhydantoin  100.00000 261
+# 2: 5,5-Diphenylhydantoin  300.00000 261
+# 3: 5,5-Diphenylhydantoin 1000.00000 261
+# 4:                 6-PPD   10.00000 261
+# 5:                 6-PPD   30.00000 261
+# 6:         6-PPD Quinone    2.98277 261
+# 7:         6-PPD Quinone    8.94832 261
+dat[conc_in_uM >= min_conc_precipitate_observed, wllq_notes := paste0(wllq_notes, '; Compound observered to precipitate out of solution at this conc in cortical synap 20220112 or MEA NFA 20210818')]
+dat[grepl('precipitate',wllq_notes), .N, by = .(spid, conc_in_uM)]
+# looks good!!
+dat[, min_conc_precipitate_observed := NULL]
+rm(hci.dat)
 
 
 # > Confirm all wllq assignments ------------------------------------------
 
 # Confirm I identified the correct wells for the precipitate based on compound/conc
-dat[grepl('precipitate',wllq_notes), .N, by = .(treatment, conc, wllq_notes)]
-#                 treatment conc                                                                        wllq_notes   N
-# 1: 5,5-Diphenylhydantoin  100                compound precipitated out of dosing solution at this concentration   6
-# 2: 5,5-Diphenylhydantoin  100              compound precipitated out of dosing solution at this concentration;  255
-# 3: 5,5-Diphenylhydantoin  300                compound precipitated out of dosing solution at this concentration   4
-# 4: 5,5-Diphenylhydantoin  300 compound precipitated out of dosing solution at this concentration; contamination   2
-# 5: 5,5-Diphenylhydantoin  300              compound precipitated out of dosing solution at this concentration;  255
-# 6: 5,5-Diphenylhydantoin 1000                compound precipitated out of dosing solution at this concentration   4
-# 7: 5,5-Diphenylhydantoin 1000 compound precipitated out of dosing solution at this concentration; contamination   2
-# 8: 5,5-Diphenylhydantoin 1000              compound precipitated out of dosing solution at this concentration;  255
-# yep, looks good.
+dat[grepl('precipitate',wllq_notes), .N, by = .(treatment, wllq, conc_in_uM)]
+# treatment wllq conc_in_uM   N
+# 1: 5,5-Diphenylhydantoin    1  100.00000 261
+# 2: 5,5-Diphenylhydantoin    1  300.00000 259
+# 3: 5,5-Diphenylhydantoin    1 1000.00000 259
+# 4: 5,5-Diphenylhydantoin    0  300.00000   2
+# 5: 5,5-Diphenylhydantoin    0 1000.00000   2
+# 6:                 6-PPD    1   10.00000 261
+# 7:                 6-PPD    1   30.00000 261
+# 8:         6-PPD Quinone    1    2.98277 261
+# 9:         6-PPD Quinone    1    8.94832 261
+
 
 # Confirm all looks okay
 library(stringi)
@@ -260,71 +308,15 @@ dat[wllq == 0, .(length(unique(acsn))), by = .(apid, rowi, coli, wllq_notes)]
 View(dat[wllq == 0, .(num_AUC_endpoints = length(unique(acsn[endpoint_type == 'AUC'])),
                       num_DIV_endpoints = length(unique(acsn[endpoint_type == 'DIV'])),
                       num_cyto_endpoints = length(unique(acsn[endpoint_type == 'cytotox']))), by = .(apid, rowi, coli, wllq_notes)][order(apid, rowi, coli)])
-# My note re 5% CO2 didn't get saved for DIV 12... ugh I see where need to fix this
-# But would take a minute
-
-# Also "contamination"... that note didn't get saved either where there was an additional wllq note for the LTB and CTB
-# For the sake of time, I'm just going to merge that in now
-# Since this is an issue of a wllq note, not the wllq itself.
-
-# Note that for MW75-9207 E1 and F1, only the CTB adn LDH are affected,
-# because I estimated MEA values for the DIV 12 to replace the real values where there was a contamination.
-
-# Adding in the 5% CO2 note
-dat[apid == '20210818_MW75-9206' & grepl('DIV12',acsn), wllq_notes := paste0(wllq_notes,'5% CO2 ran out during recording DIV12; ')]
-dat[apid == '20210818_MW75-9206' & endpoint_type == 'AUC', wllq_notes := paste0(wllq_notes,'5% CO2 ran out during recording DIV12; ')]
-dat[apid == '20210818_MW75-9207' & grepl('DIV12',acsn), wllq_notes := paste0(wllq_notes,'5% CO2 ran out during recording DIV12; ')]
-dat[apid == '20210818_MW75-9207' & endpoint_type == 'AUC', wllq_notes := paste0(wllq_notes,'5% CO2 ran out during recording DIV12; ')]
-
-# Adding contamination info
-wllq_info <- as.data.table(read.csv('L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNTFalseNegatives/wells_with_well_quality_zero.csv'))
-wllq_info <- wllq_info[grepl('contamination',wllq_notes)]
-wllq_info[, `:=`(coli = as.numeric(sub("[[:alpha:]]","",well)), rowi = match(sub("[[:digit:]]","",well), LETTERS), apid = paste0(date,'_',Plate.SN))]
-wllq_info
-# date  Plate.SN DIV well wllq    wllq_notes affected_endpoints coli rowi
-# 1: 20210818 MW75-9207  12   E1    0 contamination        mea,CTB,LDH    1    5
-# 2: 20210818 MW75-9207  12   F1    0 contamination        mea,CTB,LDH    1    6
-# 3: 20210818 MW75-9207  12   F7    0 contamination        mea,CTB,LDH    7    6
-# 4: 20210818 MW75-9207  12   F8    0 contamination        mea,CTB,LDH    8    6
-check.wells <- wllq_info[, .(apid, rowi, coli)]
-setkey(dat, apid, rowi, coli)
-# Remember, this only affects the LDH and CTD, because I can estimate MEA values to fill in missing DIV
-dat[.(check.wells)][grepl('(LDH)|(AB)',acsn), .N, by = .(rowi, coli, wllq, wllq_notes)]
-# Update wllq_ntoe where needed
-dat[apid == '20210818_MW75-9207' & grepl('(LDH)|(AB)',acsn) & rowi == 6 & coli == 7, wllq_notes := paste0(wllq_notes,'contamination DIV12; ')]
-dat[apid == '20210818_MW75-9207' & grepl('(LDH)|(AB)',acsn) & rowi == 6 & coli == 8, wllq_notes := paste0(wllq_notes,'contamination DIV12; ')]
-
+# The "Contamination" note is only applying to the LDH and CTB endpoints
+# because I estimated the missing DIV12 endpoint for the DIV12 and AUC endpionts,
+# as is usually done when there is a signal missing DIV
 
 
 # > View where CO2 turned off, confirm these okay -------------------------
 
-# Let's just compare the controls
-
-library(ggplot2)
-dat[, CO2_off_DIV12 := as.numeric(grepl('5% CO2 ran out',wllq_notes))]
-dat[, .N, by = .(CO2_off_DIV12, apid)]
-
-plotdat <- dat[grepl('firing_rate_mean_DIV12$',acsn)]
-
-ggplot(plotdat[wllt == 'n'], aes(x = apid, y = rval)) +
-  geom_jitter(aes(shape = factor(wllq), color = CO2_off_DIV12), width = 0.2, height = 0)+
-  geom_boxplot(fill = 'transparent', outlier.shape = NA)+
-  ggtitle('Comparison of Control wells by Plate, Mean Firing Rate DIV12')
-
-plotdat <- dat[grepl('active_electrodes_number_DIV12$',acsn)]
-ggplot(plotdat[wllt == 'n'], aes(x = apid, y = rval)) +
-  geom_jitter(aes(shape = factor(wllq), color = CO2_off_DIV12), width = 0.2, height = 0)+
-  geom_boxplot(fill = 'transparent', outlier.shape = NA)+
-  ggtitle('Comparison of Control wells by Plate, # Active Electrodes DIV12')
-
-plotdat <- dat[grepl('mutual_information_norm_DIV12$',acsn)]
-ggplot(plotdat[wllt == 'n'], aes(x = apid, y = rval)) +
-  geom_jitter(aes(shape = factor(wllq), color = CO2_off_DIV12), width = 0.2, height = 0)+
-  geom_boxplot(fill = 'transparent', outlier.shape = NA)+
-  ggtitle('Comparison of Control wells by Plate, Normalized Mutual Information DIV12')
-
-# So I am seeing a real shift here between the first plate and teh other 2 plates.
-# BUT, I think I need ot see this in a broader context to see if this magnitude of shift is significant
+# decided these okay to use
+# See investigations/CO2_off_DIV12
 
 
 # save dat and graphs

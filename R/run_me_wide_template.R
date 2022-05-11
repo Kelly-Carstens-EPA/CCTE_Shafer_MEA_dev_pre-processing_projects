@@ -9,6 +9,7 @@ save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of 
 
 # default_ControlTreatmentName <- "DMSO" # all compounds other than those listed below should have this vehicle control
 
+project.dir <- "" # project main folder (where will look for README files)
 scripts.dir <- "" # update to the folder where the scripts are located
 root_output_dir <- "" # where the dataset_title folder will be created
 ###################################################################################
@@ -29,6 +30,14 @@ if(save_notes_graphs) {
   pdf(file = file.path(root_output_dir, dataset_title, paste0(dataset_title,"_summary_plots_",as.character.Date(Sys.Date()),".pdf")), width = 10, height = 8)
 }
 
+# Scan for readme's that might affect dosing, wllq
+txt.files <- list.files(project.dir, pattern = '\\.txt', recursive = T, full.names = T)
+readmes <- txt.files[grepl('read( )*me',tolower(txt.files))]
+for (readme in readmes) {
+  cat(dirname(readme),'\n')
+  cat(scan(readme, what = character(), sep = '\n', quiet = T), sep = '\n')
+  cat('\n')
+}
 
 # run the main steps
 source(file.path(scripts.dir, 'source_steps.R'))

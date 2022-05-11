@@ -84,20 +84,12 @@ for (i in seq_along(spkListFiles)){
   plate.chem.info<-chem.info.2(spkListFiles[i], masterChemFile)
   #check to see if there's data
   matching.log.file<-!(length(plate.chem.info)==0)
-  while(!matching.log.file){
-    info<-unlist(strsplit(basename(spkListFiles[i]),split="_") )[1:3]
-    tkmessageBox(message=paste(
-      paste( basename(masterChemFile),"contents do not match", basename(spkListFiles[i]), "       " ),
-      paste("Please select a Expermental log file that contains data on: " ),
-      paste( "Project:",info[1]), 
-      paste("Date:",info[2]), 
-      paste( "Plate #: ", info[3]),
-      sep="\n" ),  icon = "error", type = "ok"  )
-    #get master chemical list
-    masterChemFile<-choose.files(caption="Select Master Chemical File")
-    #get plate chemical info for each file in the list
-    plate.chem.info<-chem.info.2(spkListFiles[i], masterChemFile)
-    matching.log.file<-!(length(plate.chem.info)==0)
+  
+  if(length(plate.chem.info)==0) {
+    cat('Meta data in',masterChemFile,'does not match',basename(spkListFiles[i]),'.\n')
+    cat('Spike list file will not be converted to h5. Look at Maestro Experiment Log and spike list files and resolved any namining mismatch.\n')
+    warning(paste0('Meta data in',masterChemFile,'does not match',basename(spkListFiles[i]),'. No h5 file created for this spike list file.'))
+    next
   }
   
   #make h5 files that contain chemical info 

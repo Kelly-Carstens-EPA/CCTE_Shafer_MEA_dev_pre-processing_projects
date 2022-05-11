@@ -111,6 +111,9 @@ readmes.list.unique[which(lapply(readmes.list.unique, length) != 0)]
 # $`20220330_NFA_DNT 2021_Group 19`
 # [1] "X MW7118 A8 (cell debris)"
 
+# $`20220413_NFA_DNT 2021_Group 18`
+# [1] "X 78-7205 Well D7 (cell debris)"
+
 
 # > Automated way to get files --------------------------------------------
 source(file.path(scripts.dir, 'gather_files_functions.R'))
@@ -138,36 +141,12 @@ length(all.files)
 20*(1+3*(4+1))
 # [1] 320
 length(all.files)
-# [1] 296
-# So we seem to be missing 24 files... enough for 1 culture
-# Oh I see - we don't have data for 20220413 cultures yet.
-# So it's really just 18 cultures:
-18*(1+3*(4+1))
-# 288
-# So now we have 8 too many files?
-# from previous runs, I see I have extra files in this culture:
-all.files[grepl('Maestro',all.files) & grepl('20220119',all.files)]
-# [1] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 11/78-6312/csv Files/20220119_MW78-6312_MaestroExperimentLog_Ontogeny.csv"
-# [2] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 11/78-6313/csv Files/20220119_MW78-6313_MaestroExperimentLog_Ontogeny.csv"
-# [3] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 11/78-6314/csv Files/20220119_MW78-6314_MaestroExperimentLog_Ontogeny.csv"
-# [4] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 12/78-6315/csv Files/20220119_MW78-6315_MaestroExperimentLog_Ontogeny.csv"
-# [5] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 12/78-6316/csv Files/20220119_MW78-6316_MaestroExperimentLog_Ontogeny.csv"
-# [6] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 12/78-6317/csv Files/20220119_MW78-6317_MaestroExperimentLog_Ontogeny.csv"
-# [7] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 17/78-7118/csv Files/20220119_MW78-6313_MaestroExperimentLog_Ontogeny.csv"
-# [8] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 17/78-7119/csv Files/20220119_MW78-6314_MaestroExperimentLog_Ontogeny.csv"
-# [9] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 17/78-7120/csv Files/20220119_MW78-6312_MaestroExperimentLog_Ontogeny.csv"
-# [10] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 18/78-7201/csv Files/20220119_MW78-6313_MaestroExperimentLog_Ontogeny.csv"
-# [11] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 18/78-7202/csv Files/20220119_MW78-6314_MaestroExperimentLog_Ontogeny.csv"
-# [12] "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 18/78-7203/csv Files/20220119_MW78-6312_MaestroExperimentLog_Ontogeny.csv"
-# oh I see!!
-# maestro files from previous culture copied as template fro 20220413 culture\
-# these just haven't been updated yet
-# will remove now
-all.files <- all.files[!grepl('20220413',all.files)]
-length(all.files) # 288, good stuff
+# 320, cool!
+
+# Save the files log
 writeLogFile(all.files, output.dir = file.path(root_output_dir, dataset_title), dataset_title, files_type = '')
-# Writing 288 files to DNT_NTP2021_files_log_2022-04-19.txt ...
-# [1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/DNT_NTP2021_files_log_2022-04-19.txt is ready."
+# Writing 320 files to DNT_NTP2021_files_log_2022-05-10.txt ...
+# [1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/DNT_NTP2021_files_log_2022-05-10.txt is ready."
 rm(all.files, culture.folders, readmes, readmes.list, readmes.list.unique)
 
 # run the main steps
@@ -184,12 +163,14 @@ dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dat
 # Updated treatment label for solvent control wells ------------------------------------
 dat[, treatment_srcf := treatment]
 dat[wllt == 'n', .N, by = .(treatment)] # wllt == 'n' determined where conc_original == 0
-# ** May convert to "Water", have to check how it usually appears in the database
+# Note: "Water" is currently used for other MEA NFA data
+# So will change H2O to "Water" for consistency
+dat[treatment == 'H2O', treatment := 'Water']
 
 dat[wllt == 'n', .N, by = .(treatment, conc)][N > 6][order(-N)]
 #        treatment conc     N
 # 1:          DMSO    0 26265
-# 2:           H2O    0  1275
+# 2:           Water    0  1275
 # 3:       7126 A3    0    12
 # 4:   Bisphenol A    0    12
 # 5: Acetamenophin    0    12
@@ -205,13 +186,13 @@ dat[wllt == 'n' & treatment %in% c('7126 A3','Bisphenol A','Acetamenophin'), .N,
 dat[wllt == 'n' & !grepl('(LDH)|(AB)',acsn), .N, by = .(treatment)]
 # treatment     N
 # 1:      DMSO 26265
-# 2:       H2O  1275
+# 2:       Water  1275
 # ah okay! So in the maestro log files, Seline entered the control treatment name
 # whereas in the past and now still for the cyto assays, the control wells are just indicated by a conc of 0
 # but the treatment name for the given row is used
 
-# For which chemicals is implied that H2O was used, based on H2O is same-row control column?
-water.plate.rows <- dat[treatment == 'H2O', unique(.SD), .SDcols = c('apid','rowi','srcf')]
+# For which chemicals is implied that Water was used, based on Water is same-row control column?
+water.plate.rows <- dat[treatment == 'Water', unique(.SD), .SDcols = c('apid','rowi','srcf')]
 setkey(dat, apid, rowi, srcf)
 dat[.(water.plate.rows)][wllt != 'n', .N, by = .(treatment)]
 dat[.(water.plate.rows)][wllt != 'n', .N, by = .(treatment)]
@@ -223,10 +204,10 @@ dat[.(water.plate.rows)][wllt != 'n', .N, by = .(treatment)]
 # 5:  7126 G10 1785
 treatments.same.row.water <- dat[.(water.plate.rows)][wllt != 'n', unique(treatment)]
 check.treatment.rows <- dat[treatment %in% treatments.same.row.water, unique(.SD), .SDcols = c('apid','rowi','srcf')]
-dat[J(check.treatment.rows)][wllt == 'n', .N, by = .(treatment)] # confirm all of these are H2O, or same chem name as for LDH/AB
+dat[J(check.treatment.rows)][wllt == 'n', .N, by = .(treatment)] # confirm all of these are Water, or same chem name as for LDH/AB
 # treatment    N
 # 1:   7126 H8    6
-# 2:       H2O 1275
+# 2:       Water 1275
 # 3:   7126 H9    6
 # 4:  7126 H10    6
 # 5:  7126 H11    6
@@ -234,7 +215,7 @@ dat[J(check.treatment.rows)][wllt == 'n', .N, by = .(treatment)] # confirm all o
 # yep, looks okay!
 
 # Standarize control treatment names for LDH/AB
-dat[wllt == 'n' & treatment %in% treatments.same.row.water, treatment := 'H2O']
+dat[wllt == 'n' & treatment %in% treatments.same.row.water, treatment := 'Water']
 dat[wllt == 'n' & !(treatment %in% treatments.same.row.water), treatment := 'DMSO']
 
 # Should all of these treatments be default_ControlTreatmentName?
@@ -325,8 +306,7 @@ What is left to do:
 - Confirm that all concentrations have been corrected to the exact conc consistently
 - convert all concentration units to uM
 - General data set checks (for NA, expected # of wells, etc)
-- Add in any additional data generated after date of files_log (April 19, 2022).
-Date Ran: May 2 2022'
+Date Ran: May 10 2022'
 save(dat, description, file = file.path(root_output_dir,dataset_title,'output','DNT_NTP2021_preliminary_longfile.RData'))
 
 

@@ -287,14 +287,15 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
     print(longdata[, .(plates = paste0(sort(unique(Plate.SN)),collapse=",")), by = "date"][order(date)])
     stop("Update wells_with_well_quality_zero.csv")
   }
-  
-  # make sure there is just 1 entry for every date-plate-well-affected_endpoints
-  wllq_info <- wllq_info[, .(wllq = min(wllq), wllq_notes = paste0(unique(wllq_notes), collapse= '; ')), by = .(date, Plate.SN, well, rowi, coli, affected_endpoints)]
 
   # transfrom wllq_info into longdat
-  ldh_wllq <- wllq_info[grepl("LDH",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
+  ldh_wllq <- wllq_info[grepl("LDH",affected_endpoints), .(wllq = min(wllq),
+                                                           wllq_notes = paste0(unique(wllq_notes), collapse = "; ")),
+                        by = .(date, Plate.SN, rowi, coli)] # collapsing in case of multiple wllq notes for a given well for LDH
   ldh_wllq[, src_acsn := grep("LDH",unique(longdat$src_acsn),val = T)]
-  ctb_wllq <- wllq_info[grepl("(CTB)|(AB)",affected_endpoints), .(date, Plate.SN, rowi, coli, wllq, wllq_notes)]
+  ctb_wllq <- wllq_info[grepl("(CTB)|(AB)",affected_endpoints), .(wllq = min(wllq),
+                                                                  wllq_notes = paste0(unique(wllq_notes), collapse = "; ")),
+                        by = .(date, Plate.SN, rowi, coli)] # collapsing in case of multiple wllq notes for a given well for
   ctb_wllq[, src_acsn := grep("AB",unique(longdat$src_acsn),val = T)]
   
   # set the wllq in longdat

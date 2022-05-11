@@ -12,6 +12,7 @@ default_ControlTreatmentName <- "DMSO" # all compounds other than those listed b
 spidmap_file <- ""
 spid_sheet <- ""
 
+project.dir <- "" # project main folder (where will look for README files)
 scripts.dir <- "" # update to the folder where the scripts are located
 root_output_dir <- "" # where the dataset_title folder will be created
 
@@ -40,17 +41,68 @@ if(save_notes_graphs) {
 }
 
 
-# run the main steps
+# > Scan for readme's that might affect dosing, wllq ----------------------
+
+txt.files <- list.files(project.dir, pattern = '\\.txt', recursive = T, full.names = T)
+readmes <- txt.files[grepl('read( )*me',tolower(txt.files))]
+for (readme in readmes) {
+  cat(dirname(readme),'\n')
+  cat(scan(readme, what = character(), sep = '\n', quiet = T), sep = '\n')
+  cat('\n')
+}
+
+
+# > Automated way to get files (optional) --------------------------------------------
+source(file.path(scripts.dir, 'gather_files_functions.R'))
+
+get_NFA_standard_structue <- function(culture.folderi) {
+  cyto.files <- list.files(path = culture.folderi, pattern = '(Calculations)|(Summary)', full.names = T)
+  plate.dirs <- list.files(path = culture.folderi, pattern = '^(MW)*[0-9\\-]{7}$', full.names = T)
+  mfiles <- list.files(path = culture.folderi, pattern = 'MaestroExperimentLog', full.names = T, recursive = T)
+  slists <- list.files(path = culture.folderi, pattern = '_spike_list\\.csv', full.names = T, recursive = T)
+  filesi <- c(cyto.files, mfiles, slists)
+  return(filesi)  
+}
+
+culture.folders <- list.files(path = project.dir, pattern = "[0-9]{8}", full.names = T, recursive = F)
+all.files <- c()
+for (culture.folderi in culture.folders) {
+  all.files <- c(all.files, get_NFA_standard_structue(culture.folderi))
+}
+
+#Basic cleaning
+all.files <- Filter(function(filei) !grepl('\\Q~$\\E',filei), all.files)
+all.files <- Filter(function(filei) !grepl('deprecated',tolower(filei)), all.files)
+length(all.files)
+# should be # groups * (1 Calc file + 3 plates * (4 DIV + 1 maestro exp log file))
+
+# Write to log file
+writeLogFile(all.files, output.dir = file.path(root_output_dir, dataset_title), dataset_title, files_type = '')
+# Writing 288 files to DNT_NTP2021_files_log_2022-04-19.txt ...
+# [1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/DNT_NTP2021_files_log_2022-04-19.txt is ready."
+rm(all.files, culture.folders, readmes)
+
+
+# > run the main steps ----------------------------------------------------
+
+# Can enter "a" to select files, then hit cancel, to see summary of files selected
 source(file.path(scripts.dir, 'source_steps.R'))
 
 
-# run tcpl_MEA_dev_AUC
+
+# > run tcpl_MEA_dev_AUC --------------------------------------------------
+
 source(file.path(scripts.dir, 'tcpl_MEA_dev_AUC.R'))
 dat <- tcpl_MEA_dev_AUC(basepath = file.path(root_output_dir,dataset_title), dataset_title)
 
 
 # Updated treatment label for solvent control wells ------------------------------------
-dat[wllt == 'n', .N, by = .(treatment)] # wllt == 'n' determined where conc_original == 0
+dat[, treatment_srcf := treatment]
+
+# Note: Often the treatment name in the control wells is the same as the chemical treatment used in the same row
+# But we know that these wells are controls because the concentration is 0
+# Need to updated treatment name to the solvent control used.
+dat[wllt == 'n', .N, by = .(treatment)] # wllt == 'n' determined where conc == 0
 # Should all of these treatments be default_ControlTreatmentName?
 # If so, use below:
 # dat[wllt == "n", treatment := default_ControlTreatmentName]

@@ -13,8 +13,8 @@ dataset_checks <- function(dat) {
   cat("\nRange of culture dates:", dat[, range(sub("_.+$","",apid))] )
   cat("\nNumber of plates tested:",dat[, length(unique(apid))])
   cat("\nNumber of compounds tested:",dat[wllt == "t", length(unique(spid))])
-  cat("\nAny NA rvals?\n")
-  print(dat[is.na(rval), .N, by = "wllq"])
+  cat("\nAny NA or infinite rvals?\n")
+  print(dat[is.na(rval) | is.infinite(rval), .N, by = "wllq"])
   cat("\nWllq breakdown for all points:\n")
   print(dat[, .N, by = "wllq"]) # note if wllq is NA anywhere
   cat("Number of unique acsn's present:",length(unique(dat$acsn)),"\n")

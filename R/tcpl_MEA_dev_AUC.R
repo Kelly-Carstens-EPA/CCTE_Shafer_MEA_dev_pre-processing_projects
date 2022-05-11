@@ -33,8 +33,8 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   
   # add cytotox data
   cytotox_data <- fread(cytotox_filename)
-  if(length(setdiff(names(longdat),names(cytotox_data))) > 0) cat('cytotox data does not have ',setdiff(names(longdat),names(cytotox_data)),'. Will fill with NA\n', sep ='')
-  if(length(setdiff(names(cytotox_data),names(longdat))) > 0) cat('MEA data does not have ',setdiff(names(cytotox_data),names(long)),'. Will fill with NA\n', sep = '')
+  if(length(setdiff(names(longdat),names(cytotox_data))) > 0) cat('cytotox data does not have ',paste0(setdiff(names(longdat),names(cytotox_data)),collapse=","),'. Will fill with NA\n', sep ='')
+  if(length(setdiff(names(cytotox_data),names(longdat))) > 0) cat('MEA data does not have ',paste0(setdiff(names(cytotox_data),names(longdat)),collapse=","),'. Will fill with NA\n', sep = '')
   longdat <- rbind(longdat, cytotox_data, fill = T)
   rm(list = c("cytotox_data"))
   longdat[, treatment := as.character(treatment)] # sometimes the treatment is read as an integer instead of a char
