@@ -5,7 +5,7 @@ graphics.off() # clear plot history
 # ------------------------------------------------------------------------ #
 dataset_title <- "DNT_NTP2021" # the name for the current dataset, e.g. "name2020" (this should match the name of the folder under 'pre-process_mea_nfa_for_tcpl', e.g. 'Frank2017' or 'ToxCast2016')
 pause_between_steps <- TRUE # probs want to be true when you first run
-save_notes_graphs <- FALSE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
+save_notes_graphs <- TRUE # Do this after have run thru once, to save a log of the steps. Set pause_between_steps to FALSE if saving notes and graphs for speed
 
 default_ControlTreatmentName <- "DMSO" # all compounds other than those listed below should have this vehicle control
 
@@ -20,6 +20,8 @@ scripts.dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa
 root_output_dir <- "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" # where the dataset_title folder will be created
 
 update_concs_without_prompt <- FALSE
+
+get_new_files_log <- FALSE
 # ------------------------------------------------------------------------ #
 # END USER INPUT
 # ------------------------------------------------------------------------ #
@@ -116,38 +118,40 @@ readmes.list.unique[which(lapply(readmes.list.unique, length) != 0)]
 
 
 # > Automated way to get files --------------------------------------------
-source(file.path(scripts.dir, 'gather_files_functions.R'))
-
-get_NFA_standard_structue <- function(culture.folderi) {
-  cyto.files <- list.files(path = culture.folderi, pattern = '(Calculations)|(Summary)', full.names = T)
-  plate.dirs <- list.files(path = culture.folderi, pattern = '^(MW)*[0-9\\-]{7}$', full.names = T)
-  mfiles <- list.files(path = culture.folderi, pattern = 'MaestroExperimentLog', full.names = T, recursive = T)
-  slists <- list.files(path = culture.folderi, pattern = '_spike_list\\.csv', full.names = T, recursive = T)
-  filesi <- c(cyto.files, mfiles, slists)
-  return(filesi)  
+if (get_new_files_log) {
+  source(file.path(scripts.dir, 'gather_files_functions.R'))
+  
+  get_NFA_standard_structue <- function(culture.folderi) {
+    cyto.files <- list.files(path = culture.folderi, pattern = '(Calculations)|(Summary)', full.names = T)
+    plate.dirs <- list.files(path = culture.folderi, pattern = '^(MW)*[0-9\\-]{7}$', full.names = T)
+    mfiles <- list.files(path = culture.folderi, pattern = 'MaestroExperimentLog', full.names = T, recursive = T)
+    slists <- list.files(path = culture.folderi, pattern = '_spike_list\\.csv', full.names = T, recursive = T)
+    filesi <- c(cyto.files, mfiles, slists)
+    return(filesi)  
+  }
+  
+  culture.folders <- list.files(path = project.dir, pattern = "[0-9]{8}", full.names = T, recursive = F)
+  all.files <- c()
+  for (culture.folderi in culture.folders) {
+    all.files <- c(all.files, get_NFA_standard_structue(culture.folderi))
+  }
+  
+  #Basic cleaning
+  all.files <- Filter(function(filei) !grepl('\\Q~$\\E',filei), all.files)
+  all.files <- Filter(function(filei) !grepl('deprecated',tolower(filei)), all.files)
+  length(all.files)
+  # should be 20 groups * (1 Calc file + 3 plates * (4 DIV + 1 maestro exp log file))
+  20*(1+3*(4+1))
+  # [1] 320
+  length(all.files)
+  # 320, cool!
+  
+  # Save the files log
+  writeLogFile(all.files, output.dir = file.path(root_output_dir, dataset_title), dataset_title, files_type = '')
+  # Writing 320 files to DNT_NTP2021_files_log_2022-05-10.txt ...
+  # [1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/DNT_NTP2021_files_log_2022-05-10.txt is ready."
+  rm(all.files, culture.folders, readmes, readmes.list, readmes.list.unique)
 }
-
-culture.folders <- list.files(path = project.dir, pattern = "[0-9]{8}", full.names = T, recursive = F)
-all.files <- c()
-for (culture.folderi in culture.folders) {
-  all.files <- c(all.files, get_NFA_standard_structue(culture.folderi))
-}
-
-#Basic cleaning
-all.files <- Filter(function(filei) !grepl('\\Q~$\\E',filei), all.files)
-all.files <- Filter(function(filei) !grepl('deprecated',tolower(filei)), all.files)
-length(all.files)
-# should be 20 groups * (1 Calc file + 3 plates * (4 DIV + 1 maestro exp log file))
-20*(1+3*(4+1))
-# [1] 320
-length(all.files)
-# 320, cool!
-
-# Save the files log
-writeLogFile(all.files, output.dir = file.path(root_output_dir, dataset_title), dataset_title, files_type = '')
-# Writing 320 files to DNT_NTP2021_files_log_2022-05-10.txt ...
-# [1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/DNT_NTP2021_files_log_2022-05-10.txt is ready."
-rm(all.files, culture.folders, readmes, readmes.list, readmes.list.unique)
 
 # run the main steps
 source(file.path(scripts.dir, 'source_steps.R'))
@@ -297,18 +301,6 @@ View(dat[wllq_notes != '', .N, by = .(treatment, wllq, wllq_notes)][order(wllq_n
 # Do some checks to confirm I entered all readme ntoes (soem counts?)
 # confirmed that all notes in readme's have been implemented.
 
-# Save a copy for now, so can evaluate what needs to berepeated
-
-setkey(dat, NULL)
-description <- 'Saving a preliminary version of DNT NTP 2021
-So that we can evalute which chemicals need to be repeated.
-What is left to do:
-- Confirm that all concentrations have been corrected to the exact conc consistently
-- convert all concentration units to uM
-- General data set checks (for NA, expected # of wells, etc)
-Date Ran: May 10 2022'
-save(dat, description, file = file.path(root_output_dir,dataset_title,'output','DNT_NTP2021_preliminary_longfile.RData'))
-
 
 # SKIPPING THIS FOR NOW
 # 
@@ -348,7 +340,7 @@ save(dat, description, file = file.path(root_output_dir,dataset_title,'output','
 # # assign spids
 # dat <- check_and_assign_spids(dat, spidmap)
 
-
+# 
 # # Confirm Conc's ----------------------------------------------------------------
 # # confirm that the conc's collected from master chem lists and Calc files match
 # # and that the correct concentration-corrections has been done for each compound
@@ -364,7 +356,7 @@ save(dat, description, file = file.path(root_output_dir,dataset_title,'output','
 # # if any, standardize those before continuing.
 # problem_comps <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1, unique(treatment)]
 # problem_comps
-# # [1] "7126 D3"  "7126 D1"  "7126 D2"  "7126 E11" "7126 G7" 
+# # [1] "7126 D3"  "7126 D1"  "7126 D2"  "7126 E11" "7126 G7"
 # check.rows <- dat[, .(num_unique_concs_in_well = length(unique(signif(conc,3)))), by = .(treatment, apid, rowi, coli)][num_unique_concs_in_well > 1]
 # setkey(check.rows, treatment, apid, rowi, coli)
 # setkey(dat, treatment, apid, rowi, coli)
@@ -382,7 +374,7 @@ save(dat, description, file = file.path(root_output_dir,dataset_title,'output','
 # # as a third-party source of what's true
 # # Do I need any add'l spidmaps?
 # setdiff(dat$treatment, spidmap$treatment)
-# # [1] "DMSO"          "Bisphenol A"   "Acetamenophin" "9163 A1"       "9163 A2"       "9163 A3"       "9163 A4"       "9163 A5"       "9163 B6"       "9163 B7"       "9163 B8"  
+# # [1] "DMSO"          "Bisphenol A"   "Acetamenophin" "9163 A1"       "9163 A2"       "9163 A3"       "9163 A4"       "9163 A5"       "9163 B6"       "9163 B7"       "9163 B8"
 # 
 # # Update conc's
 # # Then consider how to prevent this in future, make things easier for everyone?
@@ -400,29 +392,42 @@ save(dat, description, file = file.path(root_output_dir,dataset_title,'output','
 # 
 # dat[, .N, by = .(units)]
 # # any not in uM? If so, convert to uM
-# 
-# 
-# 
-# # FINAL DATA CHECKS -------------------------------------------------------------
-# # this section is to confirm that the data has been processed correctly
-# source(file.path(scripts.dir, 'dataset_checks.R'))
-# dataset_checks(dat)
-# 
-# # Check for the expected number of technical replicates
-# dat[wllt == 't', .(length(unique(paste0(apid,rowi,coli)))), by = .(spid, conc)][V1 != 3]
-# # do you except these cases to have more than or less than 3 replicates?
-# # Were some samples repeated, and only certain repeats meant to be included?
-# 
-# # Any other plots or things to check?
-# 
+
+
+
+# FINAL DATA CHECKS -------------------------------------------------------------
+# this section is to confirm that the data has been processed correctly
+source(file.path(scripts.dir, 'dataset_checks.R'), echo = FALSE)
+dataset_checks(dat)
+
+# Check for the expected number of technical replicates
+dat[wllt == 't', .(length(unique(paste0(apid,rowi,coli)))), by = .(spid, conc)][V1 != 3]
+# do you except these cases to have more than or less than 3 replicates?
+# Were some samples repeated, and only certain repeats meant to be included?
+
+# Any other plots or things to check?
+
+# Save a copy for now, so can evaluate what needs to berepeated
+
+setkey(dat, NULL)
+description <- 'Saving a preliminary version of DNT NTP 2021
+So that we can evalute which chemicals need to be repeated.
+What is left to do:
+- Confirm that all concentrations have been corrected to the exact conc consistently
+- convert all concentration units to uM
+- Assign sample ids/blind codes
+Date Ran: May 17 2022'
+save(dat, description, file = file.path(root_output_dir,dataset_title,'output','DNT_NTP2021_preliminary_longfile.RData'))
+
+
 # # save dat and graphs
 # setkey(dat, NULL)
 # save(dat, file = file.path(root_output_dir, dataset_title, "output", paste0(dataset_title,"_longfile.RData")))
 # rm(dat)
 # 
-# if(save_notes_graphs) {
-#   sink() # close the txt log file
-#   graphics.off() # clear the plot history
-# }
-# 
-# cat("\nDone!\n")
+if(save_notes_graphs) {
+  sink() # close the txt log file
+  graphics.off() # clear the plot history
+}
+
+cat("\nDone!\n")
