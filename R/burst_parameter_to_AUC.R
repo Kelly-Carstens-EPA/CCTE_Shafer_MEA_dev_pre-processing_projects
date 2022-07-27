@@ -136,10 +136,15 @@ all_data[, full_id := NULL]
 # all_data[wllq.wllq_update == 0, `:=`(wllq = wllq.wllq_update, wllq_notes = paste0(wllq_notes, wllq_notes.wllq_update, "; "))]
 # all_data <- all_data[, .SD, .SDcols = names(all_data)[!grepl("wllq_update",names(all_data))]]
 
+# Label the wllq as "wllq_by_well", because further wllq adjustments may be made once merge in "well_quality_notes_per_culture_treatment_cndx.xlsx"
+# (based on treatment and cdx) after have verified meta data 
+setnames(all_data, old = 'wllq', new = 'wllq_by_well')
+setnames(all_data, old = 'wllq_notes', new = 'wllq_notes_by_well')
+
 # print summary of wllq updates
 cat("Wllq update summary:\n")
-print(all_data[, .(number_of_well_recordings = .N, wllq = paste0(sort(unique(wllq)),collapse=",")), by = c("wllq_notes")][order(-wllq), .(wllq, wllq_notes, number_of_well_recordings)])
-print(all_data[wllq == 0, .(date, Plate.SN, well, trt, dose, DIV, wllq, wllq_notes, meanfiringrate, nAE)])
+print(all_data[, .(number_of_well_recordings = .N, wllq_by_well = paste0(sort(unique(wllq_by_well)),collapse=",")), by = c("wllq_notes_by_well")][order(-wllq_by_well), .(wllq_by_well, wllq_notes_by_well, number_of_well_recordings)])
+print(all_data[wllq_by_well == 0, .(date, Plate.SN, well, trt, dose, DIV, wllq_by_well, wllq_notes_by_well, meanfiringrate, nAE)])
 rm(wllq_info)
 
 
@@ -233,9 +238,9 @@ if (nrow(wells_missing_div) == 0) {
       # no changes needed for wllqnotes
       wllq_notes_vector
   }
-  all_data[, wllq_notes := lapply(.SD, check_multiple_missing), .SDcols = "wllq_notes", by = "well_id"]
-  all_data[grepl("Multiple recordings missing",wllq_notes), wllq := 0] # could I merge this step with above?
-  cat(all_data[grepl("Multiple recordings missing",wllq_notes), length(unique(Plate.SN))],'plates affected.\n')
+  all_data[, wllq_notes_by_well := lapply(.SD, check_multiple_missing), .SDcols = "wllq_notes_by_well", by = "well_id"]
+  all_data[grepl("Multiple recordings missing",wllq_notes_by_well), wllq_by_well := 0] # could I merge this step with above?
+  cat(all_data[grepl("Multiple recordings missing",wllq_notes_by_well), length(unique(Plate.SN))],'plates affected.\n')
 }
 all_data <- all_data[, c("date_plate","well_id") := NULL]
 
@@ -249,7 +254,10 @@ setnames(x = all_data, old = c("trt","Mutual.Information"), new = c("treatment",
 
 # going back to a data frame, for compatiblity with the functions below
 all_data <- as.data.frame(all_data)
-all_data$dose <- sprintf("%.5f", all_data$dose)
+# Convert doses to character to ensure that no minor discrepancies in the decimal values of the doses from different files
+# interferes with the groupings in the "split" function below
+# all_data$dose <- sprintf("%.5f", all_data$dose) # old method - prints 5 decimal places, so may lose some significant figures
+all_data$dose <- as.character(signif(all_data$dose, 4)) # 1 more sig fig than is used in TCPL, to ensure more than enough precision
 
 # save a snapshot of the combined prepared data, with the added/interpolated rows where DIV where missing
 write.csv(all_data, file = file.path(basepath,"output",paste0(dataset_title,"_parameters_by_DIV.csv")), row.names = FALSE)
@@ -260,6 +268,9 @@ all_data[is.na(all_data)] <- 0
 ## Split data frame by individual wells over time (interaction term speeds this up greatly for larger datasets)
 # all_data_split <- split(all_data, by = c("date","Plate.SN","well","trt","dose"), drop = TRUE, sorted = TRUE) # want to verify that this is identical in the future
 all_data_split <- split(all_data, interaction(all_data$date, all_data$Plate.SN, all_data$well, all_data$treatment, all_data$dose, drop=TRUE)) # Split data into bins of single well across time (DIV
+if(sum(unlist(lapply(all_data_split, nrow)) != 4) > 0) {
+  stop("Some chunks in all_data_split do not have exactly 4 data rows (1 from each DIV)\n(Remove or modify this error if not testing exactly 4 DIV)")
+}
 
 #*****************************************************************************
 #*                              FUNCTION                                     *
@@ -282,8 +293,8 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     treatment <- all_data_split[[i]]$treatment[1]
     dose <- all_data_split[[i]]$dose[1]
     units <- all_data_split[[i]]$units[1]
-    wllq <- min(all_data_split[[i]]$wllq) # if any DIV recording for this well still has wllq==0, don't include that well
-    wllq_notes <- paste0(unique(all_data_split[[i]]$wllq_notes),collapse="")
+    wllq_by_well <- min(all_data_split[[i]]$wllq_by_well) # if any DIV recording for this well still has wllq_by_well==0, don't include that well
+    wllq_notes_by_well <- paste0(unique(all_data_split[[i]]$wllq_notes_by_well),collapse="")
     
     for (j in endpoint_cols) {
       param_name <- paste(j, "_auc", sep="") # create auc variable name
@@ -292,7 +303,7 @@ calc_auc <- function(all_data_split, sqrt=FALSE) {
     
     # put vector of AUC values together
     c("date" = date, "Plate.SN" = as.character(Plate.SN), "well" = as.character(well), "treatment" = as.character(treatment), "dose" = dose, "units" = as.character(units), 
-      "wllq" = wllq, "wllq_notes" = wllq_notes, sapply(paste(endpoint_cols,"auc",sep = "_"), get, USE.NAMES = T))
+      "wllq_by_well" = wllq_by_well, "wllq_notes_by_well" = wllq_notes_by_well, sapply(paste(endpoint_cols,"auc",sep = "_"), get, USE.NAMES = T))
   })
   
   ##FIX!!! - (amy): not sure what needs to be fixed here
