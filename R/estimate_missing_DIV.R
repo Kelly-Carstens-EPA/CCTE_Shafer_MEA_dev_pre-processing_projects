@@ -21,7 +21,7 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FAL
   cat("Estimating values for",date_platei,"on DIV",add.DIV,"from the plates",cplates,"\n")
   
   # get the columns for the endpoints
-  id.cols <- c("date_plate","date","Plate.SN","DIV","well","well_id","trt","dose","units","file.name","wllq","wllq_notes")
+  id.cols <- c("date_plate","date","Plate.SN","DIV","well","well_id","trt","dose","units","file.name","wllq_by_well","wllq_notes_by_well")
   usecols <- setdiff(names(dat), id.cols)
   
   # set trt name of control wells to all the same name, so that the median of these wells will be found together
@@ -29,30 +29,30 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FAL
   dat[dose == 0, trt2 := "Control"]
   
   # get a template of the ID data for platei from first DIV
-  plate.dat.template <- dat[date_plate == date_platei, unique(.SD), .SDcols = setdiff(c(id.cols,"trt2"),c("wllq","wllq_notes","DIV","file.name"))]
+  plate.dat.template <- dat[date_plate == date_platei, unique(.SD), .SDcols = setdiff(c(id.cols,"trt2"),c("wllq_by_well","wllq_notes_by_well","DIV","file.name"))]
   
   # restrict plate.dat.template to only the well_id's on date_platei that are missing add.DIV
   wells_with_add.DIV <- dat[date_plate == date_platei & DIV == add.DIV, unique(well_id)]
   plate.dat.template <- plate.dat.template[!(well_id %in% wells_with_add.DIV)]
   
-  # initialize the wllq based on the min wllq from other DIV in the same wells on date_platei
-  wllq_plate_table <- dat[well_id %in% plate.dat.template$well_id, lapply(.SD, min), .SDcols = c("wllq"), by = c("date","Plate.SN","well_id")]
+  # initialize the wllq_by_well based on the min wllq_by_well from other DIV in the same wells on date_platei
+  wllq_plate_table <- dat[well_id %in% plate.dat.template$well_id, lapply(.SD, min), .SDcols = c("wllq_by_well"), by = c("date","Plate.SN","well_id")]
   plate.dat.template <- merge(plate.dat.template, wllq_plate_table, by = c("date","Plate.SN","well_id"))
   plate.dat.template[, `:=`(DIV = add.DIV, 
                             file.name = paste0("median_at_DIV",add.DIV,"_in_corresponding_wells_of_",paste0(cplates,collapse=",")),
-                            wllq_notes = paste0("DIV",add.DIV," estimated as median from corresponding wells of ",paste0(cplates,collapse=","),"; "))]
+                            wllq_notes_by_well = paste0("DIV",add.DIV," estimated as median from corresponding wells of ",paste0(cplates,collapse=","),"; "))]
   
   # make all columns numeric (get an error with integers sometimes if not)
   dat[, c(usecols) := lapply(usecols, function(x) as.numeric(get(x)))]
   
   # calculate the median parameter value for each trt and dose (by trt2, with all control wells grouped)
-  add.dat <- dat[date_plate %in% cplates & DIV == add.DIV & wllq == 1, lapply(.SD, function(x) median(x, na.rm = T)), by = c("trt2","dose","units"), .SDcols = usecols]
+  add.dat <- dat[date_plate %in% cplates & DIV == add.DIV & wllq_by_well == 1, lapply(.SD, function(x) median(x, na.rm = T)), by = c("trt2","dose","units"), .SDcols = usecols]
   add.dat[, merge_check := 1]
   add.dat <- merge(plate.dat.template, add.dat, by = c("trt2","dose","units"), all.x = TRUE)
   
-  # if wllq==0 in both wells of corresponding plates so that no median value could be calculated, set wllq==0 in add.dat for that well
+  # if wllq_by_well==0 in both wells of corresponding plates so that no median value could be calculated, set wllq_by_well==0 in add.dat for that well
   # merge_check will be NA, since all.x = TRUe and will fill with NA
-  add.dat[is.na(merge_check), `:=`(wllq = 0, wllq_notes = paste0(wllq_notes, "Wllq==0 in all corresponding wells; "))]
+  add.dat[is.na(merge_check), `:=`(wllq_by_well = 0, wllq_notes_by_well = paste0(wllq_notes_by_well, "wllq_by_well==0 in all corresponding wells; "))]
   add.dat[, merge_check := NULL]
   
   # add the estimated values at add.DIV to dat
@@ -68,9 +68,9 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FAL
   #   points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli][order(DIV)], type = "l")
   #   points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli][order(DIV)], pch = 19, col = "black")
   #   points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & grepl("median_at",file.name)][order(DIV)], pch = 19, col = "blue")
-  #   points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & wllq == 0][order(DIV)], pch = 19, col = rgb(1,0,0,alpha=0.7), cex=1.5)
+  #   points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & wllq_by_well == 0][order(DIV)], pch = 19, col = rgb(1,0,0,alpha=0.7), cex=1.5)
   # }
-  # legend(x = "topleft", legend = c("estimated DIV","wllq==0"), col = c("blue",rgb(1,0,0,alpha=0.7)), pch = c(19,19), bg = "transparent")
+  # legend(x = "topleft", legend = c("estimated DIV","wllq_by_well==0"), col = c("blue",rgb(1,0,0,alpha=0.7)), pch = c(19,19), bg = "transparent")
   
   # visual verification control wells only
   plot(meanfiringrate ~ DIV, dat[date_plate == date_platei & dose == 0], pch = "", ylab = "Mean Firing Rate (Hz) in control wells",
@@ -81,9 +81,9 @@ estimate_missing_DIV <- function(dat, date_platei, add.DIV, use_all_plates = FAL
     points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli][order(DIV)], type = "l")
     points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli][order(DIV)], pch = 19, col = "black")
     points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & grepl("median_at",file.name)][order(DIV)], pch = 19, col = "blue")
-    points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & wllq == 0][order(DIV)], pch = 19, col = rgb(1,0,0,alpha=0.7), cex=1.5)
+    points(meanfiringrate ~ DIV, dat[date_plate == date_platei & well == welli & wllq_by_well == 0][order(DIV)], pch = 19, col = rgb(1,0,0,alpha=0.7), cex=1.5)
   }
-  legend(x = "topleft", legend = c("estimated DIV","wllq==0"), col = c("blue",rgb(1,0,0,alpha=0.7)), pch = c(19,19), bg = "transparent", title = "Control Wells")
+  legend(x = "topleft", legend = c("estimated DIV","wllq_by_well==0"), col = c("blue",rgb(1,0,0,alpha=0.7)), pch = c(19,19), bg = "transparent", title = "Control Wells")
 
   return(dat)
 }

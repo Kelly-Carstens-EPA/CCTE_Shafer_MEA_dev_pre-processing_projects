@@ -9,7 +9,7 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   
   # get DIV data and melt
   DIV_data <- fread(DIVsourcefilename)
-  idcols <- c("date","Plate.SN","well","treatment","dose","units","wllq","wllq_notes")
+  idcols <- c("date","Plate.SN","well","treatment","dose","units","wllq_by_well","wllq_notes_by_well")
   endpoint_cols <- setdiff(names(DIV_data),c(idcols,"DIV","file.name"))
   DIV_data[, (endpoint_cols) := lapply(.SD, as.numeric), .SDcols = endpoint_cols]
   DIV_data <- melt(DIV_data, id.vars = c(idcols,"DIV"), measure.vars = endpoint_cols, variable.name = "src_acsn",
@@ -55,7 +55,7 @@ tcpl_MEA_dev_AUC <- function(basepath, dataset_title,
   longdat[ conc == 0, wllt := "n"]
   
   # get the desired columns, in the desired order
-  longdat <- longdat[, .SD, .SDcols = intersect(c('apid', 'rowi', 'coli', 'treatment', 'conc', 'wllq', 'wllq_notes', 'wllt', 'rval', 'acsn', 'srcf', 'units'), names(longdat))]
+  longdat <- longdat[, .SD, .SDcols = intersect(c('apid', 'rowi', 'coli', 'treatment', 'conc', 'wllq_by_well', 'wllq_notes_by_well', 'wllt', 'rval', 'acsn', 'srcf', 'units'), names(longdat))]
   # longdat may or may not include "units"
   
   cat("long-format data is ready.\n")

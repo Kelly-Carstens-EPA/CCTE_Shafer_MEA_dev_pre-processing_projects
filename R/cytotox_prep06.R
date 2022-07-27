@@ -316,9 +316,14 @@ wllq_updates_cytotox <- function(longdat, basepath = NULL, get_files_under_basep
     }
   }
   
+  # Label the wllq as "wllq_by_well", because further wllq adjustments may be made once merge in "well_quality_notes_per_culture_treatment_cndx.xlsx"
+  # (based on treatment and cdx) after have verified meta data 
+  setnames(longdat, old = 'wllq', new = 'wllq_by_well')
+  setnames(longdat, old = 'wllq_notes', new = 'wllq_notes_by_well')
+  
   # summary of wllq updates
   cat("Wllq summary:\n")
-  print(longdat[, .N, by = c("src_acsn","wllq","wllq_notes")][order(src_acsn, wllq, wllq_notes)])
+  print(longdat[, .N, by = c("src_acsn","wllq_by_well","wllq_notes_by_well")][order(src_acsn, wllq_by_well, wllq_notes_by_well)])
   
   return(longdat)
 }
