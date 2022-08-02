@@ -828,7 +828,7 @@ dat[wllt == 't', .(length(unique(paste0(apid,rowi,coli)))), by = .(DNTP_blind_co
 # do you except these cases to have more than or less than 3 replicates?
 # Were some samples repeated, and only certain repeats meant to be included?
 # Most cases that were meant to be repeated should have been repeated due to noisy should have wllq 0 for previous run
-dat[wllt == 't' & wllq == 1, .(length(unique(paste0(apid,rowi,coli)))), by = .(DNTP_blind_code, conc, rescreened_lower_conc = treatment %in% retested.diff.conc.substances)][V1 != 3]
+dat[wllt == 't' & wllq == '1', .(length(unique(paste0(apid,rowi,coli)))), by = .(DNTP_blind_code, conc, rescreened_lower_conc = treatment %in% retested.diff.conc.substances)][V1 != 3]
 #             spid      conc rescreened_lower_conc V1
 # 1:   Bisphenol A  0.030000                 FALSE  6
 # 2:   Bisphenol A  0.300000                 FALSE  6
@@ -936,15 +936,62 @@ dat[treatment == '7126 H7', .N, by = .(culture_date, wllq, wllq_notes)]
 
 
 
-## Review substances with precipitate, determine which repeat to keep -------------------------
+## Clean wllq notes --------------------------------------------------------
 
-# Note that for 20220330_NFA_DNT 2021_Group 19: In lab notebook, was noted that no precipitate was observed
-# Just confirmed that all observations off precipitate noted in lab notebook or README notes have been entered in the well_quality_nots_per_culture_treatment_cndx.xlsx
+# After discussion with Tim 7/29/2022, confirmed that where the wllq note indicates that "Precipitates in dosing solution but soluble in 37C incubator", no wllq note is need
+# and wllq can be 1
+dat[grepl('precipitates in media, but not when in 37 C incubator', wllq_notes), .N, by = .(wllq, wllq_notes)]
+# where wllq is currently 0 -> there are other reasons for the wllq to be 0
+# where wllq is "evaluate", we have determined that this note regarding precipitate when not in incubator is irrelevant (and the hot water shut off in building had no clear effects)
+dat[grepl('precipitates in media, but not when in 37 C incubator', wllq_notes) & wllq == 'evaluate', wllq := '1']
+dat[, wllq_notes := sub('precipitates in media, but not when in 37 C incubator[ ,]*','',wllq_notes)] # remove this wllq_note
+
+# Remove notes of "different dilution approach used" -> this doesn't really provide any substance information
+# Will have to refere to lab notebooks if want to know diluiton approach for each treatment and culture
+dat[grepl('Different dilution approached used',wllq_notes), .N, by = .(wllq_notes)]
+dat[, wllq_notes := sub('[ ]*Different dilution approached used[ ]*','',wllq_notes)]
+
+# Remove notes suggesting to repeat compound at a lower concentration 
+# (these were initial suggestions for some compounds before we discussed and decided which treatments to repeat)
+dat[grepl('lower conc',wllq_notes), .N, by = .(wllq_notes)]
+# wllq_notes    N
+# 1:                                                               dropped out of solution, precipitates in media, need to be repeated on lower concentration 1827
+# 2:                                                                                Hot water shut off in building; will be repeated on a lower concentration 7308
+# 3:                                 CTB incubation time is less than one hour; Hot water shut off in building; needs to be repeated on a lower concentration    7
+# 4:                                                                            Hot water shut off in building; needs to be repeated on a lower concentration 1820
+# 5:                                                                         Hot water shut off in building; may need to be repeated on a lower concentration 1305
+# 6: Hot water shut off in building; may need to be repeated on a lower concentration, precipitates in dosing plate but dissolved in well (10 in 490uL media)  522
+# 7:                                                                                                         may need to be repeated on a lower concentration 9135
+dat[, wllq_notes := sub('[^,;]*repeated on (a )*lower concentration[,]*','',wllq_notes)]
+
+# Where treatment is noted to be a different color (i.e., the chemical itself, not when mixed with media), remove note
+dat[grepl('(yellow)|(brown)|(amber)|(color)',wllq_notes), .N, by = .(treatment, wllq, wllq_notes)]
+# treatment wllq                                                                                                                                                               wllq_notes    N
+# 1:   7126 A9    1                                                                                         ; Compound may have altered pH (when mixed with media, change into yellow color) 1827
+# 2:  7126 B12    1                                                                                                                          Hot water shut off in building; yellow in color   42
+# 3:  7126 B12    1                                                                                                                        Hot water shut off in building; ; yellow in color 1785
+# 4:   9163 B6    1              Coded Plate Map stock conc <= 10. Exact concentration could not be determined.; (Chemical 1) Noted to be brown in color in dilution plate preparation sheet 1826
+# 5:   9163 B6    0 cell debris; Coded Plate Map stock conc <= 10. Exact concentration could not be determined.; (Chemical 1) Noted to be brown in color in dilution plate preparation sheet    1
+# 6:   9163 B7    1                                                                                            ; (Chemical 2) Noted to be amber in color in dilution plate preparation sheet 1827
+# 7:   9163 B8    1           Coded Plate Map stock conc <= 10. Exact concentration could not be determined.; (Chemical 3) Noted to be lt amber in color in dilution plate preparation sheet 1827
+dat[!grepl('pH',wllq_notes), wllq_notes := sub('[; ]*[^;]*color[^;]*','',wllq_notes)] # remov eteh note, unless it pertains to the pH
+dat[grepl('(yellow)|(brown)|(amber)|(color)',wllq_notes), .N, by = .(treatment, wllq, wllq_notes, wllq_notes)]
+# treatment wllq                                                                     wllq_notes                                                                   wllq_notes.1    N
+# 1:   7126 A9    1 Compound may have altered pH (when mixed with media, change into yellow color) Compound may have altered pH (when mixed with media, change into yellow color) 1827
 
 # Clean wllq_notes
 dat[, wllq_notes := sub('; ;',';',wllq_notes)]
 dat[, wllq_notes := sub('^;[ ]*','',wllq_notes)]
 dat[, wllq_notes := sub(';[ ]*$','',wllq_notes)]
+dat[, wllq_notes := sub('; NA','',wllq_notes)]
+dat[, wllq_notes := sub('^NA$','',wllq_notes)]
+dat[, wllq_notes := sub(',[ ]*$','',wllq_notes)]
+
+
+## Review substances with precipitate, determine which repeat to keep -------------------------
+
+# Note that for 20220330_NFA_DNT 2021_Group 19: In lab notebook, was noted that no precipitate was observed
+# Just confirmed that all observations off precipitate noted in lab notebook or README notes have been entered in the well_quality_nots_per_culture_treatment_cndx.xlsx
 
 # Let's just do this case by case
 dat[, precipitate_observed := as.numeric(grepl('precipitate',tolower(wllq_notes)) | grepl('drop',tolower(wllq_notes)))]
@@ -961,174 +1008,91 @@ cat(paste0('# ',treatments.sometimes.precipitate,'\ndat[treatment == "',treatmen
 dat[treatment == "7126 A11", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
 #    DNTP_blind_code treatment  culture        wllq              wllq_notes cndxs_affected
 # 1:            2223  7126 A11 20210915    evaluate dropped out of solution  1,2,3,4,5,6,7
-# So this treatment dropped out of solution, but was not repeated
-# will set wllq == 1, but add note to Laura
-dat[treatment == "7126 A11", wllq := '1']
-dat[treatment == "7126 A11" & grepl('dropped out of solution',wllq_notes), manual_review_note := 'dropped out of solution, but was not repeated']
+# This treatment dropped out of solution, but was not repeated
+# See email conversation with Tim 7/29/22 - can keep this data, but add a clarifying note
+dat[treatment == "7126 A11" & wllq == 'evaluate', `:=`(wllq = '1',
+                                                       wllq_notes = 'Precipitate observed at some concentrations, actual concentrations are dubious')]
 
 # 7126 A12
-dat[treatment == "7126 A12", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-#    DNTP_blind_code treatment  culture     wllq                                                                                   wllq_notes    N
-# 1:            1852  7126 A12 20210915 evaluate ; dropped out of solution, precipitates in media, need to be repeated on lower concentration 1827
-# 2:            1852  7126 A12 20220601        1                                                                                         ; NA 1827
+dat[treatment == "7126 A12", .(max_conc = max(conc), .N), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
+#   DNTP_blind_code treatment  culture     wllq                                     wllq_notes max_conc    N
+# 1:            1852  7126 A12 20210915 evaluate dropped out of solution, precipitates in media    100.0 1827
+# 2:            1852  7126 A12 20220601        1                                             NA      0.1 1827
 # This sample was repeated, presumably with a different dosing scheme. Will only keep repeats
-dat[treatment == "7126 A12" & culture == '20210915', wllq := '0']
+dat[treatment == "7126 A12" & culture == '20210915', `:=`(wllq = '0',
+                                                          wllq_notes = 'Precipitate observed at some concentrations, actual concentrations are dubious. Compound was retested.')]
 
 # 7126 A3
-dat[treatment == "7126 A3", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# DNTP_blind_code treatment  culture     wllq                                                             wllq_notes    N
-# 1:            4285   7126 A3 20210915 evaluate ; dropped out of solution, precipitates in media (need to be repeated) 1827
-# 2:            4285   7126 A3 20220330        1                                                                   ; NA 1827
+dat[treatment == "7126 A3", .(max_conc = max(conc), .N), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
+#   DNTP_blind_code treatment  culture        wllq                                                           wllq_notes max_conc    N
+# 1:            4285   7126 A3 20210915    evaluate dropped out of solution, precipitates in media (need to be repeated)       50 1827
+# 2:            4285   7126 A3 20220330           1                                                                   NA       50 1827
 # same as above
-dat[treatment == "7126 A3" & culture == '20210915', wllq := '0']
+dat[treatment == "7126 A3" & culture == '20210915', `:=`(wllq = '0',
+                                                         wllq_notes = 'Precipitate observed at some concentrations, actual concentrations are dubious. Compound was retested.')]
 
 # 7126 B11
-dat[treatment == "7126 B11", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# DNTP_blind_code treatment  culture     wllq                                                                                wllq_notes    N
-# 1:            3107  7126 B11 20210929 evaluate Hot water shut off in building; precipitates in media. Different dilution approached used 1827
-# 2:            3107  7126 B11 20220601        1                                                                                        NA 1820
-# 3:            3107  7126 B11 20220601        0                                                 LDH data not collected for this plate; NA    7
+dat[treatment == "7126 B11", .(max_conc = max(conc), .N), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
+#    DNTP_blind_code treatment  culture     wllq                                             wllq_notes max_conc    N
+# 1:            3107  7126 B11 20210929 evaluate Hot water shut off in building; precipitates in media.  101.000 1827
+# 2:            3107  7126 B11 20220601        1                                                     NA    0.101 1820
+# 3:            3107  7126 B11 20220601        0                  LDH data not collected for this plate    0.101    7
 # same as above
-dat[treatment == "7126 B11" & culture == '20210929', wllq := '0']
+dat[treatment == "7126 B11" & culture == '20210929', `:=`(wllq = '0',
+                                                          wllq_notes = 'Precipitate observed at some concentrations, actual concentrations are dubious. Compound was retested.')]
 
 # 7126 B2
 dat[treatment == "7126 B2", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-#   DNTP_blind_code treatment  culture         wllq                                                                                wllq_notes cndxs_affected
-# 1:            4446   7126 B2 20210929    evaluate Hot water shut off in building; precipitates in media. Different dilution approached used  1,2,3,4,5,6,7
+#   DNTP_blind_code treatment  culture     wllq                                             wllq_notes cndxs_affected
+# 1:            4446   7126 B2 20210929 evaluate Hot water shut off in building; precipitates in media.  1,2,3,4,5,6,7
 # only 1 culture tested, so we have to use this data
-dat[treatment == "7126 B2" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 B2" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
-
-# 7126 C1
-dat[treatment == "7126 C1", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# Looks like the first culture had both precipitate and was noisy, so wllq is already 0
-# precipitate not observedin re-run
-# no updated to wllq is needed
-
-# 7126 C2
-dat[treatment == "7126 C2", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-dat[treatment == "7126 C2", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# Looks like the first culture had both precipitate (for a few  conc's) but was also noisy, so wllq is already 0
-# precipitate not observedin re-run
-# no updated to wllq is needed
-
-# 7126 C5
-dat[treatment == "7126 C5", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-dat[treatment == "7126 C5", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# Looks like the first culture had both precipitate (for a few  conc's) but was also noisy, so wllq is already 0
-# precipitate not observedin re-run
-# no updated to wllq is needed
-
-# 7126 C6
-dat[treatment == "7126 C6", .N, by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-dat[treatment == "7126 C6", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# Looks like the first culture had both precipitate (for a few  conc's) but was also noisy, so wllq is already 0
-# precipitate not observedin re-run
-# no updated to wllq is needed
-
-# 7126 D2
-dat[treatment == "7126 D2", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# DNTP_blind_code treatment  culture     wllq                                                                            wllq_notes cndxs_affected
-# 1:            2506   7126 D2 20211124        1                                                    Hot water shut off in building; NA      1,2,3,4,5
-# 2:            2506   7126 D2 20211124 evaluate Hot water shut off in building; precipitates in media, but not when in 37 C incubator            6,7
-# only 1 culture tested, so we have to use this data
-dat[treatment == "7126 D2" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 D2" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
-
-# 7126 D4
-dat[treatment == "7126 D4", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-#    DNTP_blind_code treatment  culture     wllq                                                                                                                       wllq_notes cndxs_affected
-# 1:            3990   7126 D4 20211124        1                                                        Hot water shut off in building; will be repeated on a lower concentration      1,2,3,4,5
-# 2:            3990   7126 D4 20211124 evaluate Hot water shut off in building; precipitates in media, but not when in 37 C incubator, will be repeated on a lower concentration            6,7
-# 3:            3990   7126 D4 20220601        1                                                                                                                               NA  1,2,3,4,5,6,7
-# 4:            3990   7126 D4 20220601        0                                                                                        LDH data not collected for this plate; NA  1,2,3,4,5,6,7
-# Since i'm not setting the wllq to 0 for any other cases where "precipitates in media, but not when in 37 C incubator" for just some concentrations,
-# I'm not going to set wllq to 0 here either.
-# Regardless, this treatment was repeated at a lower concentration in the second culture, so we should still be able to get a good dose-response curve in that region.
-dat[treatment == "7126 D4", .N, by = .(conc, culture_date)][order(conc)]
-dat[treatment == "7126 D4" & wllq == 'evaluate', wllq := '1']
-
-# 7126 D5
-dat[treatment == "7126 D5", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-#    DNTP_blind_code treatment  culture     wllq                                                                                                                       wllq_notes cndxs_affected
-# 1:            1605   7126 D5 20211124        1                                                        Hot water shut off in building; will be repeated on a lower concentration      1,2,3,4,5
-# 2:            1605   7126 D5 20211124 evaluate Hot water shut off in building; precipitates in media, but not when in 37 C incubator, will be repeated on a lower concentration            6,7
-# 3:            1605   7126 D5 20220601        1                                                                                                                               NA  1,2,3,4,5,6,7
-# 4:            1605   7126 D5 20220601        0                                                                                        LDH data not collected for this plate; NA  1,2,3,4,5,6,7
-# same as above
-dat[treatment == "7126 D5", .N, by = .(conc, culture_date)][order(conc)]
-dat[treatment == "7126 D5" & wllq == 'evaluate', wllq := '1']
-
-# 7126 D6
-dat[treatment == "7126 D6", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-#    DNTP_blind_code treatment  culture     wllq                                                                            wllq_notes cndxs_affected
-# 1:            1776   7126 D6 20211124        1                                                    Hot water shut off in building; NA      1,2,3,4,5
-# 2:            1776   7126 D6 20211124 evaluate Hot water shut off in building; precipitates in media, but not when in 37 C incubator            6,7
-# only 1 culture tested, so we have to use this data
-dat[treatment == "7126 D6" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 D6" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
-
-# 7126 D9
-dat[treatment == "7126 D9", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-#    DNTP_blind_code treatment  culture     wllq                                                                                                                       wllq_notes cndxs_affected
-# 1:            3829   7126 D9 20211124        0                                                    CTB incubation time is less than one hour; Hot water shut off in building; NA      1,2,3,4,5
-# 2:            3829   7126 D9 20211124        1                                                                                               Hot water shut off in building; NA      1,2,3,4,5
-# 3:            3829   7126 D9 20211124        0 CTB incubation time is less than one hour; Hot water shut off in building; precipitates in media, but not when in 37 C incubator            6,7
-# 4:            3829   7126 D9 20211124 evaluate                                            Hot water shut off in building; precipitates in media, but not when in 37 C incubator            6,7
-# only 1 culture tested, have to keep
-dat[treatment == "7126 D9" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 D9" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
-
+# See email conversation with Tim 7/29/22 - can keep this data, but add a clarifying note
+dat[treatment == "7126 B2" & wllq == 'evaluate', `:=`(wllq = '1',
+                                                      wllq_notes = 'Hot water shut off in building; precipitate observed at some concentrations, actual concentrations are dubious')]
 
 # 7126 E1
 dat[treatment == "7126 E1", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
 # DNTP_blind_code treatment  culture     wllq                                                                                             wllq_notes cndxs_affected
-# 1:            4863   7126 E1 20211208        1                                                                     Hot water shut off in building; NA      1,2,3,4,5
+# 1:            4863   7126 E1 20211208        1                                                                         Hot water shut off in building      1,2,3,4,5
 # 2:            4863   7126 E1 20211208 evaluate Hot water shut off in building; precipitates in dosing plate but dissolved in well (10 in 490uL media)            6,7
-# only 1 culture tested, have to keep
+# From conversation with Tim 7/29/22 - wllq == 1, but keep wllq note
 dat[treatment == "7126 E1" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 E1" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
 
 # 7126 E2
 dat[treatment == "7126 E2", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
 #    DNTP_blind_code treatment  culture     wllq                                                                                             wllq_notes cndxs_affected
 # 1:            4825   7126 E2 20211208        1                                                                     Hot water shut off in building; NA      1,2,3,4,5
 # 2:            4825   7126 E2 20211208 evaluate Hot water shut off in building; precipitates in dosing plate but dissolved in well (10 in 490uL media)            6,7
-# only 1 culture tested, have to keep
+# From conversation with Tim 7/29/22 - wlq == 1, but keep wllq note
 dat[treatment == "7126 E2" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 E2" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
 
 # 7126 E3
 dat[treatment == "7126 E3", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
-# DNTP_blind_code treatment  culture     wllq                                                                                                                                               wllq_notes cndxs_affected
-# 1:            4894   7126 E3 20211208        1                                                                         Hot water shut off in building; may need to be repeated on a lower concentration      1,2,3,4,5
-# 2:            4894   7126 E3 20211208 evaluate Hot water shut off in building; may need to be repeated on a lower concentration, precipitates in dosing plate but dissolved in well (10 in 490uL media)            6,7
-# only 1 culture tested, have to keep
+# DNTP_blind_code treatment  culture     wllq                                                                                             wllq_notes cndxs_affected
+# 1:            4894   7126 E3 20211208        1                                                                         Hot water shut off in building      1,2,3,4,5
+# 2:            4894   7126 E3 20211208 evaluate Hot water shut off in building, precipitates in dosing plate but dissolved in well (10 in 490uL media)            6,7
+# From conversation with Tim 7/29/22 - wlq == 1, but keep wllq note
 dat[treatment == "7126 E3" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 E3" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
 
 # 7126 E7
 dat[treatment == "7126 E7", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
 # DNTP_blind_code treatment  culture     wllq                                                                                             wllq_notes cndxs_affected
 # 1:            4269   7126 E7 20211208        1                                                                     Hot water shut off in building; NA    1,2,3,4,5,6
 # 2:            4269   7126 E7 20211208 evaluate Hot water shut off in building; precipitates in dosing plate but dissolved in well (10 in 490uL media)              7
-# only 1 culture tested, have to keep
+# From conversation with Tim 7/29/22 - wlq == 1, but keep wllq note
 dat[treatment == "7126 E7" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 E7" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
 
 # 7126 E8
 dat[treatment == "7126 E8", .(cndxs_affected = paste0(sort(unique(cndx)),collapse=",")), by = .(DNTP_blind_code, treatment, culture, wllq, wllq_notes)]
 # DNTP_blind_code treatment  culture     wllq                                                                                             wllq_notes cndxs_affected
 # 1:            4105   7126 E8 20211208        1                                                                     Hot water shut off in building; NA    1,2,3,4,5,6
 # 2:            4105   7126 E8 20211208 evaluate Hot water shut off in building; precipitates in dosing plate but dissolved in well (10 in 490uL media)              7
-# only 1 culture tested, have to keep
+# From conversation with Tim 7/29/22 - wlq == 1, but keep wllq note
 dat[treatment == "7126 E8" & wllq == 'evaluate', wllq := '1']
-dat[treatment == "7126 E8" & grepl('precipitate',wllq_notes), manual_review_note := 'precipitates in media, but was not repeated']
-
 
 # Confirm every chemical has a usable sample
 all.treatments <- dat[wllt == 't', unique(treatment)]
-dat[wllq == 1, setdiff(all.treatments, treatment)]
+dat[wllq == '1', setdiff(all.treatments, treatment)]
 # empty, cool
 
 
@@ -1206,7 +1170,7 @@ dat[grepl('noisy',tolower(wllq_notes)), .(num_trts = length(unique(treatment))),
 
 # Confirmation of what's going on with the 6th treatment from the second set of plates
 # for which there is no note of noise in the wllq_notes
-dat[apid %in% c('20211110_MW78-6211','20211110_MW78-6212','20211110_MW78-6213') & wllq == 1, .N, by = .(treatment, wllt, wllq_notes)]
+dat[apid %in% c('20211110_MW78-6211','20211110_MW78-6212','20211110_MW78-6213') & wllq == '1', .N, by = .(treatment, wllt, wllq_notes)]
 #    treatment wllt                                                                wllq_notes    N
 # 1:  7126 C11    t Hot water shut off in building; will be repeated on a lower concentration 1827
 # 2:      DMSO    n                                        Hot water shut off in building; NA 1566
@@ -1236,7 +1200,7 @@ dat[culture_date == '20211110', `:=`(wllq = 0,
 
 # any superfluous columns to remove?
 names(dat)
-dat[, c('culture','conc_calc_file','conc_calc_file_log10','dilution_cndx_multiplier','in_dat','group','plot_apid','manual_review_note') := NULL]
+dat[, c('culture','conc_calc_file','conc_calc_file_log10','dilution_cndx_multiplier','in_dat','group','plot_apid') := NULL]
 
 # save dat and graphs
 setkey(dat, NULL)
