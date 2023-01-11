@@ -1,0 +1,161 @@
+RejectedCultures files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2020-09-01 01:53:03
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA 
+Collected 104 files from 25 sub-directories.
+
+PIP3 - Project/Data/DNT Reference Compounds/20150422_DNT ref set 2(2) Culture/1060-35
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\csvFiles\20150422_MW1060-35_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/DNT Reference Compounds/20150422_DNT ref set 2(2) Culture
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\ON_20150422_MW1060-35 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\ON_20150422_MW1060-36 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\ON_20150422_MW1060-37 Summary.xlsx
+
+PIP3 - Project/Data/DNT Reference Compounds/20150422_DNT ref set 2(2) Culture/1060-36
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\csvFiles\20150422_MW1060-36_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/DNT Reference Compounds/20150422_DNT ref set 2(2) Culture/1060-37
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\csvFiles\20150422_MW1060-37_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/DNT Reference Compounds/20150506_DNT ref set 2(3) Culture/1064-4
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-4\csv Files\20150506_MW1064-4_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-4\spike_list_files\ON_20150506_MW1064-4_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-4\spike_list_files\ON_20150506_MW1064-4_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-4\spike_list_files\ON_20150506_MW1064-4_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-4\spike_list_files\ON_20150506_MW1064-4_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/DNT Reference Compounds/20150506_DNT ref set 2(3) Culture
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-4\ON_20150506_MW1064-4 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-5\ON_20150506_MW1064-5 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-6\ON_20150506_MW1064-6 Summary.xlsx
+
+PIP3 - Project/Data/DNT Reference Compounds/20150506_DNT ref set 2(3) Culture/1064-5
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-5\csv Files\20150506_MW1064-5_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-5\spike_list_files\ON_20150506_MW1064-5_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-5\spike_list_files\ON_20150506_MW1064-5_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-5\spike_list_files\ON_20150506_MW1064-5_09_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-5\spike_list_files\ON_20150506_MW1064-5_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/DNT Reference Compounds/20150506_DNT ref set 2(3) Culture/1064-6
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-6\csv Files\20150506_MW1064-6_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-6\spike_list_files\ON_20150506_MW1064-6_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-6\spike_list_files\ON_20150506_MW1064-6_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-6\spike_list_files\ON_20150506_MW1064-6_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150506_DNT ref set 2(3) Culture\1064-6\spike_list_files\ON_20150506_MW1064-6_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20151230 Culture/1090-14
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-14\csv Files\20151230_MW1090-14_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-14\Spike List Files\ON_20151230_MW1090-14_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-14\Spike List Files\ON_20151230_MW1090-14_07_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-14\Spike List Files\ON_20151230_MW1090-14_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-14\Spike List Files\ON_20151230_MW1090-14_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20151230 Culture
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-14\ON_20151230_MW1090-14_Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-22\ON_20151230_MW1090-22_Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-23\ON_20151230_MW1090-23_Summary.xlsx
+
+PIP3 - Project/Data/Organophosphates/20151230 Culture/1090-22
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-22\csv Files\20151230_MW1090-22_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-22\Spike List Files\ON_20151230_MW1090-22_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-22\Spike List Files\ON_20151230_MW1090-22_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-22\Spike List Files\ON_20151230_MW1090-22_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-22\Spike List Files\ON_20151230_MW1090-22_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20151230 Culture/1090-23
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-23\csv Files\20151230_MW1090-23_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-23\Spike List Files\ON_20151230_MW1090-23_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-23\Spike List Files\ON_20151230_MW1090-23_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-23\Spike List Files\ON_20151230_MW1090-23_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151230 Culture\1090-23\Spike List Files\ON_20151230_MW1090-23_12_00(001)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20160316 Culture/1105-24
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1105-24\csv Files\20160316_MW1105-24_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1105-24\Spike list Files\ON_20160316_MW1105-24_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1105-24\Spike list Files\ON_20160316_MW1105-24_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1105-24\Spike list Files\ON_20160316_MW1105-24_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1105-24\Spike list Files\ON_20160316_MW1105-24_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20160316 Culture
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1105-24\ON_20160316_MW1105-24_Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-11\ON_20160316_MW1112-11_Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-13\ON_20160316_MW1112-13_Summary.xlsx
+
+PIP3 - Project/Data/Organophosphates/20160316 Culture/1112-11
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-11\csv Files\20160316_MW1112-11_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-11\Spike list Files\ON_20160316_MW1112-11_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-11\Spike list Files\ON_20160316_MW1112-11_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-11\Spike list Files\ON_20160316_MW1112-11_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-11\Spike list Files\ON_20160316_MW1112-11_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20160316 Culture/1112-13
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-13\csv Files\20160316_MW1112-13_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-13\Spike list Files\ON_20160316_MW1112-13_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-13\Spike list Files\ON_20160316_MW1112-13_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-13\Spike list Files\ON_20160316_MW1112-13_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20160316 Culture\1112-13\Spike list Files\ON_20160316_MW1112-13_12_00(000)_spike_list.csv
+
+Project PFAS 2018
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\20181128_ON PFAS G3-1_REPEAT Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\20181205_Positives Repeat_Calculations.xlsx
+
+Project PFAS 2018/20181128 Culture PFAS Group 3-1 Repeat/MW1235-1
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\MW1235-1\csv Files\20181128_MW1235-1_MaestroExperimentLog_Ontogeny.csv
+
+Project PFAS 2018/20181128 Culture PFAS Group 3-1 Repeat/MW1235-3
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\MW1235-3\csv Files\20181128_MW1235-3_MaestroExperimentLog_Ontogeny.csv
+
+Project PFAS 2018/20181128 Culture PFAS Group 3-1 Repeat/MW1235-6
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\MW1235-6\csv Files\20181128_MW1235-6_MaestroExperimentLog_Ontogeny.csv
+
+Project PFAS 2018/20181128 Culture PFAS Group 3-1 Repeat/Original Files
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-1\ON_20181128_MW1235-1_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-1\ON_20181128_MW1235-1_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-1\ON_20181128_MW1235-1_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-1\ON_20181128_MW1235-1_13_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-3\ON_20181128_MW1235-3_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-3\ON_20181128_MW1235-3_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-3\ON_20181128_MW1235-3_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-3\ON_20181128_MW1235-3_13_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-6\ON_20181128_MW1235-6_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-6\ON_20181128_MW1235-6_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-6\ON_20181128_MW1235-6_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181128 Culture PFAS Group 3-1 Repeat\Original Files\MW1235-6\ON_20181128_MW1235-6_13_00(000)_spike_list.csv
+
+Project PFAS 2018/20181205 Culture PFAS Positives/MW1235-11
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\MW1235-11\csv Files\20181205_MW1235-11_MaestroExperimentLog_Ontogeny.csv
+
+Project PFAS 2018/20181205 Culture PFAS Positives/MW1235-12
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\MW1235-12\csv Files\20181205_MW1235-12_MaestroExperimentLog_Ontogeny.csv
+
+Project PFAS 2018/20181205 Culture PFAS Positives/MW1235-8
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\MW1235-8\csv Files\ON_20181205_MW1235-08_MaestroExperimentLog_Ontogeny.csv
+
+Project PFAS 2018/20181205 Culture PFAS Positives/Original Files
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-08\ON_20181205_MW1235-08_06_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-08\ON_20181205_MW1235-08_08_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-08\ON_20181205_MW1235-08_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-08\ON_20181205_MW1235-08_12_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-11\ON_20181205_MW1235-11_06_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-11\ON_20181205_MW1235-11_08_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-11\ON_20181205_MW1235-11_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-11\ON_20181205_MW1235-11_12_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-12\ON_20181205_MW1235-12_06_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-12\ON_20181205_MW1235-12_08_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-12\ON_20181205_MW1235-12_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20181205 Culture PFAS Positives\Original Files\MW1235-12\ON_20181205_MW1235-12_12_00(000)_spike_list.csv

@@ -1,0 +1,247 @@
+Output from the script run_me_OPP2015.R
+Date Ran: 2020-09-30 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                                          dataset_title 
+                                                                                                              "OPP2015" 
+                                                                                           default_ControlTreatmentName 
+                                                                                                                 "DMSO" 
+                                                                                                    pause_between_steps 
+                                                                                                                 "TRUE" 
+                                                                                                        root_output_dir 
+                                                         "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                      save_notes_graphs 
+                                                                                                                 "TRUE" 
+                                                                                                            scripts.dir 
+                       "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                             spid_sheet 
+                                                                                                  "Mundy corrected map" 
+                                                                                                           spidmap_file 
+"L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Organophosphates/Sample ID Data/EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx" 
+
+- Select files for files_log:
+1 files already exist. ( OPP2015_files_log_2020-08-28.txt )
+- Create h5 files:
+60 files already exist.
+- Calculate the components:
+15 files already exist.
+- Calculate the Mutual Information:
+15 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( OPP2015_AUC.csv )
+Starting AUC preparations...
+Got 15 parameter csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/OPP2015/prepared_data 
+Got 15 MI csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/OPP2015/All_MI 
+
+Updating wllq...
+The following data rows will be removed because wllq==0 and DIV is not 'all':
+Empty data.table (0 rows and 12 cols): date,Plate.SN,well,DIV,full_id,trt...
+Wllq summary:
+   wllq                                                                                   wllq_notes number_of_wells
+1:    1                                                                                                         2864
+2:    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;               16
+        date  Plate.SN well                 trt dose wllq                                                                                   wllq_notes meanfiringrate nAE
+ 1: 20151209 MW1056-28   E1 Z-Tetrachlorvinphos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.000000   0
+ 2: 20151209 MW1056-28   E1 Z-Tetrachlorvinphos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.000000   0
+ 3: 20151209 MW1056-28   E1 Z-Tetrachlorvinphos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.000000   0
+ 4: 20151209 MW1056-28   E1 Z-Tetrachlorvinphos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.000000   0
+ 5: 20151209 MW1056-29   F2       Methamidophos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        1.237620   7
+ 6: 20151209 MW1056-29   F2       Methamidophos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.000000   0
+ 7: 20151209 MW1056-29   F2       Methamidophos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.375556   2
+ 8: 20151209 MW1056-29   F2       Methamidophos  100    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.560278   4
+ 9: 20160330 MW1117-22   C5         Dicrotophos    1    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.273334   5
+10: 20160330 MW1117-22   C5         Dicrotophos    1    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.749820   6
+11: 20160330 MW1117-22   C5         Dicrotophos    1    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        1.141878  16
+12: 20160330 MW1117-22   C5         Dicrotophos    1    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.237037   3
+13: 20160330 MW1117-22   E2 Z-tetrachlorvinphos    0    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        3.255286   8
+14: 20160330 MW1117-22   E2 Z-tetrachlorvinphos    0    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.118890   1
+15: 20160330 MW1117-22   E2 Z-tetrachlorvinphos    0    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        0.665875   7
+16: 20160330 MW1117-22   E2 Z-tetrachlorvinphos    0    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB;        1.230418   8
+
+Checking for any DIV other than 5 7 9 12 ...
+
+Checking that every plate has a recording for DIV 5 7 9 12 ...
+Every well has data from DIVs 5 7 9 12 
+
+OPP2015_AUC.csv is ready
+
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( OPP2015_cytotox.csv )
+Starting cytotoxicity data collection...
+Any negative blank-corrected values will be set to 0.
+
+Reading from OPP2015_files_log_2020-08-28.txt...
+Got 0 Calculations files.
+
+Reading from OPP2015_files_log_2020-08-28.txt...
+Got 15 Summary files.
+
+Reading from OPP2015_files_log_2020-08-28.txt...
+Got 15 MaestroExperimentLog files.
+MW1056-28 AB 
+MW1056-28 LDH 
+MW1056-29 AB 
+MW1056-29 LDH 
+MW1056-36 AB 
+MW1056-36 LDH 
+MW1092-29 AB 
+MW1092-29 LDH 
+MW1092-5 AB 
+MW1092-5 LDH 
+MW1092-6 AB 
+MW1092-6 LDH 
+MW1105-20 AB 
+MW1105-20 LDH 
+MW1105-23 AB 
+MW1105-23 LDH 
+MW1105-26 AB 
+MW1105-26 LDH 
+MW1117-22 AB 
+MW1117-22 LDH 
+MW1117-23 AB 
+MW1117-23 LDH 
+MW1117-24 AB 
+MW1117-24 LDH 
+MW1125-3 AB 
+MW1125-3 LDH 
+MW1125-4 AB 
+MW1125-4 LDH 
+MW1125-5 AB 
+MW1125-5 LDH 
+Wllq summary:
+                      acsn wllq                                                                                 wllq_notes   N
+1:  CCTE_Shafer_MEA_dev_AB    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB   4
+2:  CCTE_Shafer_MEA_dev_AB    0                                                        Plate leak, lost data for this well   1
+3:  CCTE_Shafer_MEA_dev_AB    1                                                                                            715
+4: CCTE_Shafer_MEA_dev_LDH    0 It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB   4
+5: CCTE_Shafer_MEA_dev_LDH    0                                                        Plate leak, lost data for this well   2
+6: CCTE_Shafer_MEA_dev_LDH    1                                                                                            714
+OPP2015_cytotox.csv is ready
+
+'source_steps.R' is complete.
+long-format data is ready.
+   ALIQUOT_PLATE_BARCODE ALIQUOT_WELL_ID EPA_SAMPLE_ID ALIQUOT_SOLVENT ALIQUOT_CONC ALIQUOT_CONC_UNIT ALIQUOT_VOLUME ALIQUOT_VOLUME_UNIT ALIQUOT_DATE ALIQUOT_VIAL_BARCODE  gsid
+1:             TT0000177             A01  TT0000177A01            DMSO           10                mM            500                  uL        42179            112921026 32464
+2:             TT0000177             A02  TT0000177A02            DMSO          100                mM            500                  uL        42179            112921025 20347
+3:             TT0000177             A03  TT0000177A03            DMSO          100                mM            500                  uL        42179            112921024 32329
+4:             TT0000177             A04  TT0000177A04            DMSO          100                mM            500                  uL        42192            112920992 23846
+5:             TT0000177             B01  TT0000177B01            DMSO          100                mM            500                  uL        42179            112921013 32648
+6:             TT0000177             B02  TT0000177B02            DMSO          100                mM            500                  uL        42179            112921014 24177
+          casrn      preferred_name
+1: '41198-08-7'          Profenofos
+2:    '56-72-4'           Coumaphos
+3:   '741-58-2'           Bensulide
+4: '30560-19-1'            Acephate
+5: '22248-79-9' Z-Tetrachlorvinphos
+6: '10265-92-6'       Methamidophos
+[1] "mM"
+             treatment         spid stock_conc expected_stock_conc
+1:          Profenofos TT0000177A01         10                 100
+2:           Coumaphos TT0000177A02        100                 100
+3:           Bensulide TT0000177A03        100                 100
+4:            Acephate TT0000177A04        100                 100
+5: Z-Tetrachlorvinphos TT0000177B01        100                 100
+6:       Methamidophos TT0000177B02        100                 100
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+Checking conc's:
+
+All compounds are assumed to have conc's 0.1 0.3 1 3 10 30 100 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+All compounds have the expected concetration-corrected values
+
+Final Checks
+Number of cultures dates: 5
+Range of culture dates: 20151209 20160413
+Number of plates tested: 15
+Number of compounds tested: 27
+Any NA rvals? Empty data.table (0 rows and 2 cols): wllq,N
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 13601
+2:    0    79
+Number of unique acsn's present: 19 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                       acsn     min median   max
+ 1:                    CCTE_Shafer_MEA_dev_firing_rate_mean       0     10    28
+ 2:                          CCTE_Shafer_MEA_dev_burst_rate       0     22    66
+ 3:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0   0.28  0.87
+ 4:             CCTE_Shafer_MEA_dev_per_burst_spike_percent       0    467   718
+ 5:                 CCTE_Shafer_MEA_dev_burst_duration_mean       0    3.6   122
+ 6:            CCTE_Shafer_MEA_dev_interburst_interval_mean       0    211   665
+ 7:            CCTE_Shafer_MEA_dev_active_electrodes_number       0     94   131
+ 8:          CCTE_Shafer_MEA_dev_bursting_electrodes_number       0     84   126
+ 9:                CCTE_Shafer_MEA_dev_network_spike_number       0    424  1578
+10:                  CCTE_Shafer_MEA_dev_network_spike_peak       0     77   130
+11:                 CCTE_Shafer_MEA_dev_spike_duration_mean       0    1.2   2.6
+12:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0     99   244
+13:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0    161  1723
+14:          CCTE_Shafer_MEA_dev_network_spike_duration_std       0   0.44     1
+15: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0    294   786
+16:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0074    1.8   3.2
+17:             CCTE_Shafer_MEA_dev_mutual_information_norm       0   0.06  0.17
+18:                                  CCTE_Shafer_MEA_dev_AB       0  29276 51496
+19:                                 CCTE_Shafer_MEA_dev_LDH       0      1   3.2
+               treatment               apid   N
+  1:            Acephate 20151209_MW1056-28 133
+  2:            Acephate 20151209_MW1056-29 133
+  3:            Acephate 20151209_MW1056-36 133
+  4:           Bensulide 20151209_MW1056-28 133
+  5:           Bensulide 20151209_MW1056-29 133
+ ---                                           
+101: Z-Tetrachlorvinphos 20160330_MW1117-23 133
+102: Z-Tetrachlorvinphos 20160330_MW1117-24 133
+103: Z-Tetrachlorvinphos 20151209_MW1056-28 133
+104: Z-Tetrachlorvinphos 20151209_MW1056-29 133
+105: Z-Tetrachlorvinphos 20151209_MW1056-36 133
+                  apid V1
+ 1: 20151209_MW1056-28  6
+ 2: 20151209_MW1056-29  6
+ 3: 20151209_MW1056-36  6
+ 4: 20160330_MW1117-22  6
+ 5: 20160330_MW1117-23  6
+ 6: 20160330_MW1117-24  6
+ 7:  20160413_MW1125-3  6
+ 8:  20160413_MW1125-4  6
+ 9:  20160413_MW1125-5  6
+10: 20160217_MW1105-20  6
+11: 20160217_MW1105-23  6
+12: 20160217_MW1105-26  6
+13:  20160120_MW1092-5  6
+14:  20160120_MW1092-6  6
+15: 20160120_MW1092-29  6
+              treatment V1
+ 1:            Acephate  3
+ 2:           Bensulide  6
+ 3:      Chlorethoxyfos  3
+ 4:        Chlorpyrifos  3
+ 5:   Chlorpyrifos oxon  3
+ 6:           Coumaphos  3
+ 7:            Diazinon  3
+ 8:            Diazoxon  3
+ 9:          Dichlorvos  3
+10:         Dicrotophos  3
+11:          Dimethoate  3
+12:            Ethoprop  3
+13:         Fosthiazate  3
+14:            Malaoxon  3
+15:           Malathion  3
+16:       Methamidophos  6
+17:               Naled  3
+18:           Omethoate  3
+19:             Phorate  3
+20:             Phosmet  3
+21:   Pirimiphos-methyl  3
+22:          Profenofos  3
+23:        Tebupirimfos  3
+24:            Terbufos  3
+25:            Tribufos  3
+26:         Trichlorfon  3
+27: Z-Tetrachlorvinphos  6
+              treatment V1

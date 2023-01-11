@@ -1,0 +1,270 @@
+Output from the script run_me_Brown2014.R
+Date: 2020-10-09 
+USER INPUT settings:
+                                                                                                       dataset_title 
+                                                                                                         "Brown2014" 
+                                                                                        default_ControlTreatmentName 
+                                                                                                              "DMSO" 
+                                                                                                 pause_between_steps 
+                                                                                                              "TRUE" 
+                                                                                                     root_output_dir 
+                                                      "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                   save_notes_graphs 
+                                                                                                              "TRUE" 
+                                                                                                         scripts.dir 
+                    "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                          spid_sheet 
+                                                                                                                 "1" 
+                                                                                                        spidmap_file 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES202_EPA-Shafer_103_20191218_key.xlsx" 
+
+- Select files for files_log:
+1 files already exist. ( Brown2014_files_log_2020-09-28.txt )
+- Create h5 files:
+16 files already exist.
+- Calculate the components:
+4 files already exist.
+- Calculate the Mutual Information:
+4 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( Brown2014_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( Brown2014_cytotox.csv )
+'source_steps.R' is complete.
+long-format data is ready.
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140205_MW1007-26      DMSO    1    1    0
+2: 20140205_MW1007-26      DMSO    1    8    0
+3: 20140205_MW1007-26      DMSO    3    1    0
+4: 20140205_MW1007-26      DMSO    3    8    0
+5: 20140205_MW1007-26      DMSO    6    1    0
+6: 20140205_MW1007-26      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140212_MW1007-27      DMSO    1    1    0
+2: 20140212_MW1007-27      DMSO    1    8    0
+3: 20140212_MW1007-27      DMSO    3    1    0
+4: 20140212_MW1007-27      DMSO    3    8    0
+5: 20140212_MW1007-27      DMSO    6    1    0
+6: 20140212_MW1007-27      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140402_MW1007-27      DMSO    1    1    0
+2: 20140402_MW1007-27      DMSO    1    8    0
+3: 20140402_MW1007-27      DMSO    3    1    0
+4: 20140402_MW1007-27      DMSO    3    8    0
+5: 20140402_MW1007-27      DMSO    6    1    0
+6: 20140402_MW1007-27      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140423_MW1007-38      DMSO    1    1    0
+2: 20140423_MW1007-38      DMSO    1    8    0
+3: 20140423_MW1007-38      DMSO    3    1    0
+4: 20140423_MW1007-38      DMSO    3    8    0
+5: 20140423_MW1007-38      DMSO    6    1    0
+6: 20140423_MW1007-38      DMSO    6    8    0
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+The concentrations for the following compounds might need to be corrected:
+       spid stkc expected_stock_conc    spidmap_guess_concs             treatment                          source_concs num_concs
+1: EX000404   20                  20 0.03,0.1,0.3,1,3,10,30         Acetaminophen                     0.1,0.3,1,3,10,30         6
+2: EX000475  100                 100 0.03,0.1,0.3,1,3,10,30 Bisindolylmaleimide I                   0.03,0.1,0.3,1,3,10         6
+3: EX000492  100                 100 0.03,0.1,0.3,1,3,10,30            Loperamide                     0.1,0.3,1,3,10,30         6
+4: EX000498  100                 100 0.03,0.1,0.3,1,3,10,30            Mevastatin                     0.1,0.3,1,3,10,30         6
+5: EX000487  100                 100 0.03,0.1,0.3,1,3,10,30         L-Domoic acid 3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1         8
+Correcting conc's...
+View the table 'update_summary' to confirm that the concentration-corrections are correct.
+If it looks correct, enter c to continue. Else Q to quit and fix.
+Called from: confirm_concs(dat, spidmap, expected_target_concs = c(0.03, 0.1, 
+    0.3, 1, 3, 10, 30))
+                treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+ 1:         Acetaminophen EX000404   20                  20                 0.1        1e-01
+ 2:         Acetaminophen EX000404   20                  20                 0.3        3e-01
+ 3:         Acetaminophen EX000404   20                  20                   1        1e+00
+ 4:         Acetaminophen EX000404   20                  20                   3        3e+00
+ 5:         Acetaminophen EX000404   20                  20                  10        1e+01
+ 6:         Acetaminophen EX000404   20                  20                  30        3e+01
+ 7: Bisindolylmaleimide I EX000475  100                 100                0.03        3e-02
+ 8: Bisindolylmaleimide I EX000475  100                 100                 0.1        1e-01
+ 9: Bisindolylmaleimide I EX000475  100                 100                 0.3        3e-01
+10: Bisindolylmaleimide I EX000475  100                 100                   1        1e+00
+11: Bisindolylmaleimide I EX000475  100                 100                   3        3e+00
+12: Bisindolylmaleimide I EX000475  100                 100                  10        1e+01
+13:         L-Domoic acid EX000487  100                 100               3e-04        3e-04
+14:         L-Domoic acid EX000487  100                 100               0.001        1e-03
+15:         L-Domoic acid EX000487  100                 100               0.003        3e-03
+16:         L-Domoic acid EX000487  100                 100                0.01        1e-02
+17:         L-Domoic acid EX000487  100                 100                0.03        3e-02
+18:         L-Domoic acid EX000487  100                 100                 0.1        1e-01
+19:         L-Domoic acid EX000487  100                 100                 0.3        3e-01
+20:         L-Domoic acid EX000487  100                 100                   1        1e+00
+21:            Loperamide EX000492  100                 100                 0.1        1e-01
+22:            Loperamide EX000492  100                 100                 0.3        3e-01
+23:            Loperamide EX000492  100                 100                   1        1e+00
+24:            Loperamide EX000492  100                 100                   3        3e+00
+25:            Loperamide EX000492  100                 100                  10        1e+01
+26:            Loperamide EX000492  100                 100                  30        3e+01
+27:            Mevastatin EX000498  100                 100                 0.1        1e-01
+28:            Mevastatin EX000498  100                 100                 0.3        3e-01
+29:            Mevastatin EX000498  100                 100                   1        1e+00
+30:            Mevastatin EX000498  100                 100                   3        3e+00
+31:            Mevastatin EX000498  100                 100                  10        1e+01
+32:            Mevastatin EX000498  100                 100                  30        3e+01
+                treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+                treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+ 1:         Acetaminophen EX000404   20                  20               1e-01        1e-01
+ 2:         Acetaminophen EX000404   20                  20               3e-01        3e-01
+ 3:         Acetaminophen EX000404   20                  20               1e+00        1e+00
+ 4:         Acetaminophen EX000404   20                  20               3e+00        3e+00
+ 5:         Acetaminophen EX000404   20                  20               1e+01        1e+01
+ 6:         Acetaminophen EX000404   20                  20               3e+01        3e+01
+ 7: Bisindolylmaleimide I EX000475  100                 100               3e-02        3e-02
+ 8: Bisindolylmaleimide I EX000475  100                 100               1e-01        1e-01
+ 9: Bisindolylmaleimide I EX000475  100                 100               3e-01        3e-01
+10: Bisindolylmaleimide I EX000475  100                 100               1e+00        1e+00
+11: Bisindolylmaleimide I EX000475  100                 100               3e+00        3e+00
+12: Bisindolylmaleimide I EX000475  100                 100               1e+01        1e+01
+13:         L-Domoic acid EX000487  100                 100               3e-04        3e-04
+14:         L-Domoic acid EX000487  100                 100               1e-03        1e-03
+15:         L-Domoic acid EX000487  100                 100               3e-03        3e-03
+16:         L-Domoic acid EX000487  100                 100               1e-02        1e-02
+17:         L-Domoic acid EX000487  100                 100               3e-02        3e-02
+18:         L-Domoic acid EX000487  100                 100               1e-01        1e-01
+19:         L-Domoic acid EX000487  100                 100               3e-01        3e-01
+20:         L-Domoic acid EX000487  100                 100               1e+00        1e+00
+21:            Loperamide EX000492  100                 100               1e-01        1e-01
+22:            Loperamide EX000492  100                 100               3e-01        3e-01
+23:            Loperamide EX000492  100                 100               1e+00        1e+00
+24:            Loperamide EX000492  100                 100               3e+00        3e+00
+25:            Loperamide EX000492  100                 100               1e+01        1e+01
+26:            Loperamide EX000492  100                 100               3e+01        3e+01
+27:            Mevastatin EX000498  100                 100               1e-01        1e-01
+28:            Mevastatin EX000498  100                 100               3e-01        3e-01
+29:            Mevastatin EX000498  100                 100               1e+00        1e+00
+30:            Mevastatin EX000498  100                 100               3e+00        3e+00
+31:            Mevastatin EX000498  100                 100               1e+01        1e+01
+32:            Mevastatin EX000498  100                 100               3e+01        3e+01
+                treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+Empty data.table (0 rows and 6 cols): treatment,spid,stkc,expected_stock_conc,concs_in_source_dat,conc_updated
+
+Final Checks
+Number of cultures dates: 4
+Range of culture dates: 20140205 20140423
+Number of plates tested: 4
+Number of compounds tested: 6
+Any NA rvals?    wllq    N
+1:    1 2300
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 16512
+Number of unique acsn's present: 86 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+                                                       acsn               apid  N
+  1:                                 CCTE_Shafer_MEA_dev_AB 20140205_MW1007-26 12
+  2:                   CCTE_Shafer_MEA_dev_burst_rate_DIV12 20140205_MW1007-26 12
+  3:                    CCTE_Shafer_MEA_dev_burst_rate_DIV5 20140205_MW1007-26 12
+  4:                    CCTE_Shafer_MEA_dev_burst_rate_DIV7 20140205_MW1007-26 12
+  5:                    CCTE_Shafer_MEA_dev_burst_rate_DIV9 20140205_MW1007-26 12
+ ---                                                                             
+340: CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 20140423_MW1007-38 12
+341:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 20140423_MW1007-38 12
+342:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 20140423_MW1007-38 12
+343:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 20140423_MW1007-38 12
+344:       CCTE_Shafer_MEA_dev_correlation_coefficient_mean 20140423_MW1007-38 12
+
+Range of rval's by acsn:
+                                                             acsn     min   median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB       0    49914  60339      0
+ 2:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       71    136      0
+ 3:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       15     16      0
+ 4:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        1     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        7     16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0       13     16      0
+ 7:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      3.7     60      0
+ 8:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.13     0.36    1.2     26
+ 9:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.15     0.65    8.7    127
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.11     0.67     28     54
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.16      0.6    6.1     32
+12:                                CCTE_Shafer_MEA_dev_burst_rate       0       13     37      0
+13:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      3.3     16      0
+14:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0    4.6      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0      1.3    8.2      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0      1.9    5.4      0
+17:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       59    134      0
+18:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       15     16      0
+19:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0     15      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        4     16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0       12     16      0
+22:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0055      1.2    3.3      0
+23:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12       0     0.39   0.69      0
+24:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0037        0   0.24      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0019    0.035   0.34      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0048     0.22   0.54      0
+27:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      7.8     22      0
+28:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      1.3    4.4      0
+29:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0     0.27    3.1      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.77    6.2      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0        1    4.6      0
+32:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      155   1423      0
+33:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     1.7      8.5    126     31
+34:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      64      105    214    174
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7      21       53    659     80
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     3.3       25    158     37
+37:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      212    487      0
+38:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     3.9       20 "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R/run_me_Brown2014.R"     26
+39:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.4       32    108    127
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.94       41    108     54
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     2.8       35     97     32
+42:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.031   0.11      0
+43:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0    0.013  0.034      0
+44:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.0013      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000027 0.0091      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0   0.0037  0.022      0
+47:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.28    1.1      0
+48:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12   0.011    0.052   0.25     31
+49:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5   0.014     0.03  0.074    174
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.044   0.13     80
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9  0.0092    0.076   0.35     37
+52:                      CCTE_Shafer_MEA_dev_network_spike_number       0      284    938      0
+53:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       86    514      0
+54:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0     13      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0 "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R/run_me_Brown2014.R"     38      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0       26    271      0
+57:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       59    124      0
+58:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12     7.1       12     16     31
+59:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     6.5      8.5     16    171
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       12     16     75
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       12     16     36
+62:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0      0.3   0.77      0
+63:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0092    0.022   0.12     26
+64:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.031    0.094   0.16    127
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.017    0.055    0.2     54
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9   0.014    0.032   0.16     32
+67:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      373    673      0
+68:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       76     98      0
+69:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0     84      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       45     99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       67     96      0
+72:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      183    887      0
+73: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12      16       49    157     31
+74:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       9       12     99    171
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       9       31    129     75
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9      10       46    133     36
+77:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       81    195      0
+78:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       29     58      0
+79:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0     10      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0      1.6     42      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0       12     50      0
+82:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0      0.8    2.6      0
+83:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.073     0.13   0.36     31
+84:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5   0.073     0.13   0.24    171
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.079      0.2   0.49     75
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.075     0.17   0.46     36
+                                                             acsn     min   median    max num_NA

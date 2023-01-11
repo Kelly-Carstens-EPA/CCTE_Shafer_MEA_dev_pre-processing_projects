@@ -1,0 +1,57 @@
+11/03/2020
+Documentation of judgement used How we decided to have 4 separate samples for Bis 1
+
+Info I sent to Tim:
+
+I am just following up regarding the question of how to separate the dilutions for Bis 1. I met with Kathleen and I think we have gathered all of the information available. She reviewed the log books and found that at least 3 dilutions of Bis 1 were made (but, unfortunately, the dates of the dilutions were not recorded). She also confirmed that she had to make up a new dilution for the second round of dosing for the 20140402 culture. (This means that technically 2 different dilutions were used in that culture.)
+
+Here are all of the culture dates where Bis 1 was tested. All are from the same supplier/lot.
+20140205
+20140212
+20140402
+20140423
+20140716
+20140730
+20141203
+
+Kathleen believes that the last culture date, 20141203, should be a new sample.
+
+Here are the spid-assignment options that I see at this point:
+
+A) Since multiple dilutions were used in 20140402, we can’t consistently separate samples by dilution. So we could just leave all replicates under the same SPID (as we are doing for Sodium orthovanadate)
+B) Divide the samples like this:
+	o Sample 1: 20140205, 20140212
+	o Sample 2: 20140402, 20140423, 20140716, 20140730 (even though 20140402 had Sample 1 for 1st round of dosing)
+	o Sample 3: 20141203
+	o However… I did the math, and it looks Sample 2 would have ran out before the completion of 20140730
+C) Divide the samples like this:
+	o Sample 1: 20140205, 20140212
+	o Sample 2: 20140402, 20140423, 20140716 (even though 20140402 had Sample 1 for 1st round of dosing)
+	o Sample 3: 20140730, 20141203 (purely guessing)
+
+
+Other info:
+	- The dilution sheet from 20140407 is the only dilution sheet that we have been able to find currently
+	- A solution of Bis 1 is only good for 4 - 6 months
+	- The first 4 cultures only had 1 plate and 1 replicate of Bis 1 for each culture. 20140716-30 had 1 plate per culture with 2 rows of Bis 1. 20141203 tested 3 plates with Bis 1.
+	- Here is how I calculated how long the sample created in 20140407 would have lasted:
+Based on dilution sheet from 20140402, that dilution produce 206uL of 10mM, 80uL of 3.0mM, …120uL of 0.01mM Bis 1
+5uL of each concentration are used at every dosing
+So for e.g. 3mM, 
+End of 20140402 culture: 80 – (2 doses)*(5uL) = 70uL
+End of 20140423 culture: 70 – 3*5 = 55uL
+End of 20140716 culture: 55 – (2 rows)*3*5 = 25uL (because tested on 2 rows)
+End of 20140730 culture: 25 – (2 rows)*3*5 = -5 !!
+However, this line of reasoning could be mistaken if the don't get a fresh 5uL of 1000X stock for every dose in each culture.
+
+
+Tim proposed this 4th option, based on the information above and best judgement: 
+D) Divide the samples like this:
+	o Sample 1: 20140205, 20140212
+	o Sample 2: 20140402, 20140423 (even though 20140402 had 1 dose of Sample 1, for most of the assay time it had Sample 2)
+	o Sample 3: 20140716, 20140730
+	o Sample 4: 20141203
+
+We are going with option D. This is reflected in the file "Shafer_sample_info_to_register_20201103.xlsx"
+
+

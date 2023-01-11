@@ -1,0 +1,7 @@
+date,Plate.SN,DIV,well,wllq,wllq_notes,affected_endpoints
+20160120,MW1092-29,,F5,0,"Plate leak, lost data for this well","CTB,LDH"
+20160120,MW1092-29,,F4,0,"Plate leak, lost data for this well",LDH
+20151209,MW1056-29,all,F2,0,It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB,"mea,CTB,LDH"
+20151209,MW1056-28,all,E1,0,It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB,"mea,CTB,LDH"
+20160330,MW1117-22,all,C5,0,It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB,"mea,CTB,LDH"
+20160330,MW1117-22,all,E2,0,It is clear that discrepancies in MFR and AE exist due to an absence of cells present - JB,"mea,CTB,LDH"

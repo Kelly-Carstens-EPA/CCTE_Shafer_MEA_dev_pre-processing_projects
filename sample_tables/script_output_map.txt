@@ -1,0 +1,19 @@
+Map of scripts and output in this folder
+
+Script						Output
+----------------------------------------------------------------------------------------------------------------
+create_mea_nfa_treatment_spid_map_2021-05-07.R	mea_nfa_treatment_spid_map_2021-05-07.csv (for lvl0 released 2021-05-05)
+
+create_mea_nfa_treatment_spid_map_2020-11-25.R	mea_nfa_treatment_spid_map_2020-11-25.csv
+
+create_master_spidmap_mea_nfa_draft2.csv	master_spidmap_mea_nfa.csv
+
+spids_assignment_3.R				mea_nfa_treatment_spid_map_oct23_2020.csv
+						mea_nfa_treatment_spid_map_verbose_oct23_2020.csv
+						all_compounds_with_multiple_spid_options_2020-10-28.csv
+						summary_of_spids_by_dataset_2020-10-28.csv
+
+spids_assignment_2.R				potential_alternative_salt_forms.csv
+
+overall_checks_2.R				true_spid_replicates.csv
+						summary_of_spids_by_dataset.csv (deprecated)

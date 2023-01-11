@@ -1,0 +1,26 @@
+The files EPA_ES202, EPA_ES203 were created in preparation to pipeline the compounds published in Frank et al, 2017 (from Specific Aim 2, 3, DNT Reference Compounds 1, 2, plus a sample of Glufosinate).
+
+EPA_ES201 corresponds to the 91 NTP compounds published in Shafer et al, 2019.
+
+EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx was taken from L:\Lab\NHEERL_Mundy\Project - OPP organophosphates 2015 on 10/19/2020. The sheet "Mundy Incorrect Map" was removed from this copy of the file.
+
+EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx was taken from L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast Compounds on 10/19/2020
+
+All Assays_list_toxcast_OECD 20190524.xlsx was taken from L:/Lab/NHEERL_MEA/Project - DNT 2019 on 10/19/2020
+
+EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx was taken from L:\Lab\NHEERL_MEA\MAESTRO SYSTEM\ToxCast Compounds\Phase I and II Con Response on 10/20/2019. Only 3 spids from this file are needed (the 3 PFAS comopunds testedin ToxCast2016).
+
+EPA_9238_EPA-Shafer_75_20180511.xlsx was taken from L:\Lab\NHEERL_Mundy\Project - PFAS 2018\Supporting Documents\EPA_9238_EPA-Shafer_75_20180511.xlsx on 10/21/2020
+
+Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx was copied from L:\Lab\NHEERL_MEA\PIP3 - Project\Data\NTP tcpl prep\SPID map on 10/21/2020. (I don't remember where I found this file originally)
+
+Shafer_sample_info_to_register_20201110_afc.xlsx was adapated from Shafer_sample_info_to_register_20201103_cg.xlsx, received via email from Chris Grulke 11/10/2020. I added the column "SPID" by merging the columns "New SPID" and "existing spid" (for samples that already had a spid).
+
+EPA_ES209_EPA-Shafer_4_20210504_key.xlsx are the spids assigned by Chris Grulk to the samples detailed in spid_registration/Shafer_sample_info_to_register_20210503.xlsx as well as to Chloryprifos and Chlorpyrifos oxon (see COAs saved 4/27/2021). This file was received via email from Chris Grulke on 5/3/2021.
+
+EPA_27864_EPA-Shafer_134_20191001_key.xlsx was taken from L:/Lab/NHEERL_Mundy/Project - PFAS 2019/Supporting Doc on 5/7/2021
+
+EPA_29885_EPA-Shafer_36_20191112_key.xlsx was taken from L:/Lab/NHEERL_Mundy/Project - PFAS 2019/Supporting Doc on 5/7/2021
+
+EPA_Shafer1_20210609.xlsx was taken from the url 'http://chemtrack-prod.epa.gov/api/sample_details/EX000597' on 6/9/2021. This sample was registered for the sample of BPA created for SPS_PFAS2019, (Sigma Aldrich, Lot MKAA2480, Dilution Date 11/18/2020)
+

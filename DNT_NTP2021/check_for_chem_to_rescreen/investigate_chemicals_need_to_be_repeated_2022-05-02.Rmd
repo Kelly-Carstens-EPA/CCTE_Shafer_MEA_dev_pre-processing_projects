@@ -1,0 +1,244 @@
+---
+title: "Explore DNT NTP 2021 Chemicals to Retest"
+author: "Amy Carpenter"
+date: "5/2/2022"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list = ls())
+library(data.table)
+library(ggplot2)
+```
+
+# Purpose
+Implement tcpl-like normalization
+To predict which chemicals seem to be having a response at the lowest conc tested
+And so should be repeated at lower conc's
+
+# Functions
+
+```{r}
+# Level 6 plot function 
+
+plot_dose_response <- function(plotdat) {
+  p <- ggplot(plotdat, aes(x = conc, y = resp)) +
+    geom_point(pch = 1, size = 2, stroke = 2) +
+    scale_x_log10()+
+    geom_hline(aes(yintercept = coff_invitrodb), lty = 'dashed')+
+    geom_hline(yintercept = 0)+
+    ggtitle(paste0(unique(plotdat$aenm),'\n',unique(plotdat$treatment,'\ndashed line = invitrodb cutoff')))
+  print(p)
+}
+```
+
+# Load data
+
+```{r}
+load(file.path('DNT_NTP2021','check_for_chem_to_rescreen','DNT_NTP2021_preliminary_in_house_normalized_values_2022-05-02.RData'))
+cat(description)
+```
+
+# Compare bmads in invitrodb vs this data which will be added
+```{r}
+comp.bmads <- dat2[, unique(.SD), .SDcols = c('bmad_subset','bmad_invitrodb')]
+ggplot(comp.bmads, aes(x = bmad_subset, y = bmad_invitrodb)) +
+  geom_point()+
+  geom_abline(slope = 1, intercept = 0)
+```
+
+Bmads are fairly similar.
+only significant deviation is where bmad.subset is a bit larger.
+So some coffs will possibly be a bit larger after the addition of this data. 
+Just something to keep in mind.
+
+
+# Explore results
+
+```{r}
+
+dat2[cndx %in% c(1,2), summary(med_resp_by_cndx)]
+
+dat2[cndx %in% c(1,2), summary(med_resp_vs_coff)]
+
+ggplot(dat2[!grepl('DIV12',aenm) & cndx %in% c(1,2)], aes(x = med_resp_vs_coff))+
+  geom_histogram(aes(fill = as.factor(cndx)))+
+  geom_vline(xintercept = 1)
+
+# Let's visualize some of these cases to confirm
+trt.aenms <- dat2[!grepl('DIV12',aenm) & cndx %in% c(1,2) & med_resp_vs_coff > 1.1, unique(.SD), .SDcols = c('treatment','aenm')]
+setkey(trt.aenms, treatment, aenm)
+setkey(dat2, treatment, aenm)
+
+
+plot_dose_response(dat2[.(trt.aenms[1])])
+# this looks like jsut a dn response...
+plot_dose_response(dat2[treatment == '7126 A1' & aenm == 'CCTE_Shafer_MEA_dev_burst_duration_mean_dn'])
+# oofta... was the bval just really low here?
+dat2[aenm == 'CCTE_Shafer_MEA_dev_burst_duration_mean_dn', summary(bval)]
+# 1.160   4.406   6.252   7.134   8.819  21.012 
+dat2[aenm == 'CCTE_Shafer_MEA_dev_burst_duration_mean_dn' & treatment == '7126 A1', unique(bval)]
+# 6.934964 10.568015  5.339662
+# Nope, most are quite normal!!
+
+plot_dose_response(dat2[.(trt.aenms[2])])
+# similar
+
+for (i in 1:10) {
+  plot_dose_response(dat2[.(trt.aenms[i])])
+  
+}
+```
+
+Thoughts:
+
+- I want to weed out cases that are just noisy, or have a weird blip at low conc's, then bounce back up
+- Also, I almost don't care about the up, these seem to introduce more issues. I think I"m okay to ignore those cases
+
+# Use minimum consecutive cndx above coff as a threshold
+
+## See distribution of min consecutive cndx above coff
+```{r}
+
+# Find the lowest conc at which it and all following conc's are above the coff
+dat2[, max_cndx_below_coff := max(cndx[med_resp_vs_coff < 1], na.rm  = T), by = .(treatment, aenm)]
+dat2[any_wllq1 == 1 & (is.na(max_cndx_below_coff) | is.infinite(max_cndx_below_coff)), max_cndx_below_coff := 0] # if no med resp's are below the coff
+dat2[, max_cndx := max(cndx, na.rm = T), by = .(treatment, aenm)]
+dat2[, min_consecutive_cndx_above_coff := pmin(max_cndx_below_coff+1, max_cndx), by = .(treatment, aenm)]
+dat2[, summary(min_consecutive_cndx_above_coff)]
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+# 1.000   5.000   7.000   5.527   7.000   7.000    1302 
+dat2[is.na(min_consecutive_cndx_above_coff), .N, by = .(any_wllq1)]
+# any_wllq1    N
+# 1:         0 1302
+# cool, all the treatment-aenm's with NA values just don't have any useable points
+
+# View distribution
+plotdat <- dat2[!grepl('DIV12',aenm) & !grepl('_up',aenm), unique(.SD), .SDcols = c('treatment','aenm','min_consecutive_cndx_above_coff')]
+ggplot(plotdat, aes(x = min_consecutive_cndx_above_coff)) +
+  geom_bar()+
+  ylab('# of treatment-endpoint pairs')+
+  ggtitle('Minimum consecutive cndx from the max conc tested\nwith median resp above cutoff\n(or max conc tested if none)')
+```
+  
+## Okay, so what's going to be the min requirement for number of cndx below coff?
+
+### Is 3 cndx below coff sufficient?
+
+```{r}
+check.rows <- dat2[!grepl('DIV12',aenm) & !grepl('_up',aenm) & min_consecutive_cndx_above_coff == 4, unique(.SD), .SDcols = c('treatment','aenm')]
+setkey(dat2, treatment, aenm)
+nrow(check.rows) # 98
+for (i in sample(nrow(check.rows), size = 10)) {
+  plot_dose_response(dat2[.(check.rows[i])])
+}
+```
+
+Yes, for sure
+
+### Is 2 cndx below coff sufficient?
+```{r}
+check.rows <- dat2[!grepl('DIV12',aenm) & !grepl('_up',aenm) & min_consecutive_cndx_above_coff == 3, unique(.SD), .SDcols = c('treatment','aenm')]
+setkey(dat2, treatment, aenm)
+nrow(check.rows) # 91
+for (i in sample(nrow(check.rows), size = 10)) {
+  plot_dose_response(dat2[.(check.rows[i])])
+}
+# generally looks okay
+# Maybe check if also lowest conc is above coff?
+dat2[!grepl('DIV12',aenm) & !grepl('_up',aenm) & min_consecutive_cndx_above_coff == 3, .(min_cndx_above_coff = med_resp_vs_coff[cndx == 1] >= coff_invitrodb), by = .(treatment, aenm)][, .N, by = .(min_cndx_above_coff)]
+# min_cndx_above_coff    N
+# 1:               FALSE 1911
+# oh sweet! that simplifies
+# I'm guessing this only happens in the up direction
+```
+
+generally looks okay to me
+
+
+### If only cndx 1 is below coff, is that ever sufficient?
+```{r}
+check.rows <- dat2[!grepl('DIV12',aenm) & !grepl('_up',aenm) & min_consecutive_cndx_above_coff == 2, unique(.SD), .SDcols = c('treatment','aenm')]
+setkey(dat2, treatment, aenm)
+nrow(check.rows) # 27
+for (i in sample(nrow(check.rows), size = 10)) {
+  plot_dose_response(dat2[.(check.rows[i])])
+}
+```
+
+These are a bit iffier...
+But generally this would be enough to convince me that there is a real dose-response happening (not just aritificially elevated curve).
+But will share this and let Tim and others decide
+
+
+### Check out cases where NO cndx are below coff
+```{r}
+check.rows <- dat2[!grepl('DIV12',aenm) & !grepl('_up',aenm) & min_consecutive_cndx_above_coff == 1 & !treatment %in% c('DMSO','H2O'), unique(.SD), .SDcols = c('treatment','aenm')]
+setkey(dat2, treatment, aenm)
+nrow(check.rows) # 131... woah!!
+for (i in sample(nrow(check.rows), size = 10)) {
+  plot_dose_response(dat2[.(check.rows[i])])
+}
+```
+
+yep, these all look legitimately concerning!!
+
+
+Takeways:
+
+- I think if the median resp at the first 2 cndx's are below the cutoff, then we're good (and note that the general trend seems to be that the bmads will be a bit larger with the addition of this data to tpcl)
+- Will continue to stick with the dn endpoints, these seem the most convincing
+ 
+# Other thoughts
+
+Do I need to consider cases where the med resp is e.g. 1/3 or 2/3 of coff?
+-> I don't think so. Because you saw cases like this where the min conc did not get down to 0
+But it still looked sufficient to me to signify dose-response activity.
+Maybe I will checkout a nuance like this after lab meeting
+
+
+# To do:
+
+- (if continue to use the "min consecutive cndx above coff" metric) Figure out why I'm getting all of these warning messages re the max cndx above coff (in apply in house processign script)... make sure I understand all the deets here
+- Could I estimate whether the AC50 would be less than the highest conc tested? I think that's what we really want to flag the need for a rescreen (but probs apply some nuance re which assays need not have that, bc some assay endpoints just error prone)
+- check out activity of controls compared to all other cultures, to make sure thsi data is usable for that reason.
+- Check if there were any chem in dat before removed wllq 0 that only had wllq 0 points, or e.g. only 1 usable replicate
+- Any other reasons to repeat a chemical? (noise, or other reason likely to get a flag in tcpl?)
+- Get final list of chem to repeat
+
+
+## Ideas to estimate whether the AC50 will be below the min conc tested:
+-	Estimate the modl_tp… as the max_med? Then calculate half of that. If the med resp at the lowest conc is less than the max_med, flag it
+   -But, we know that cndx1 can be highly variable
+-	Load tcplfit2, generate dose response curves.
+   -Restrict it to the curves available in tcpl fit (or not, knowing that tcplfit2 is coming!!)
+   -Apply all of the flags traditionally applied at level 6!
+   -Look for 
+-	Run all in tcplLite (many chem to pseudo register… maybe it wouldn’t be difficult though… I will have blind codes. It just feels messy.
+I think tcplLite would be a fine option.
+But, I kind of want to learn tcplfit2
+
+Maybe let’s take some time to learn tcplfit2. Just to get familiar – and I think that will be long-term helpful!
+Then, re-evaluate balance of relative ease with tcplLite vs training with tcplfit2 to get the dose-response estimates.
+
+
+Next step: keep trying out tcplfit2, get reasonable plots.
+
+## Old notes, before I decided to abandon this approach and just use tcplfit2
+
+•	What Seline wants from me: a list of chem that need to be restested based on the standards of acceptability for TCPL. So think things like
+  - AC50 within conc range tested!
+   -Too noisy, or too many other flags? (Maybe compare to standard noise / flag counts by endpoint?)
+•	**figure out cause of warning messages in rmd when calculated min consecutive cndx above coff
+•	Also figure out why the cndx 1 cat is so high in the distribution plot… this seems sus
+•	Would we want to repeat all where min cons cndx above coff is 3 or 2 or 1? (bottom line: what’s needed to get AC50 within conc range tested? Can I estimate that? Use tcplfit2?)
+
+
+

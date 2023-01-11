@@ -1,0 +1,107 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+plotting.data <- use.dat[spid == '7126 B10' & aenm == 'CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_dn']
+row <- list(conc = plotting.data[, concentration_unlogged],
+            resp = plotting.data[, response],
+            bmed = plotting.data[, unique(bmed)],
+            cutoff = plotting.data[, unique(coff)],
+            onesd = plotting.data[, unique(osd)],
+            name = plotting.data[, unique(spid)],
+            assay = plotting.data[, unique(aenm)])
+res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                      "exp4", "exp5"),conthits = T, do.plot=T)
+concRespPlot(res)
+
+# Okay, why does the curve start at 1e-03?
+
+plotting.data[, unique(logc_min)] # -1 on log scale = 0.1 uM scale
+plotting.data[, unlist(response)][1:3] # okay, so these values really are below the curve
+
+
+# I think this is a moment when I am overanalyzing a bit
+# In the vast majority of cases, the difference in the ac50's seems to be within +/-10% 
+
+```
+
+Compare up direction
+```{r}
+plotting.data <- use.dat[spid == '7126 B10' & aenm == 'CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_up']
+row <- list(conc = plotting.data[, concentration_unlogged],
+            resp = plotting.data[, response],
+            bmed = plotting.data[, unique(bmed)],
+            cutoff = plotting.data[, unique(coff)],
+            onesd = plotting.data[, unique(osd)],
+            name = plotting.data[, unique(spid)],
+            assay = plotting.data[, unique(aenm)])
+res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                      "exp4", "exp5"),conthits = T, do.plot=F)
+concRespPlot(res)
+```
+
+This is really weird... the models are the same (exp 4), the magnitude of the "tops" are very similar (44 and -37), so why are the AC50 values over an order of magnitude apart?
+
+Oh wait... I just realized that the hit calls are quite near 0 in both cases!! So we would assume that the model is fitting noise in these cases.
+
+Let's check out how many differences in AC50 cases where hitcall > 0.5
+```{r}
+mc5[, ac50_below_minconc_and_hit := as.numeric(hitcall > 0.5 & log10(ac50) < logc_min)]
+flag.tb <- dcast(mc5, spid + acnm ~ aenm_dir, value.var = 'ac50_below_minconc_and_hit')
+flag.tb[, .N, by = .(dn, up)]
+```
+
+Now only 4 cases, which seems very negligible to me.
+
+
+# Check out more plots to gain confidence
+
+```{r}
+# Let's check out 3 MFR up and dn, 3 network spike peak up and dn
+for (acnmi in c('CCTE_Shafer_MEA_dev_firing_rate_mean','CCTE_Shafer_MEA_dev_network_spike_peak','CCTE_Shafer_MEA_dev_mutual_information_norm','CCTE_Shafer_MEA_dev_per_burst_interspike_interval')) {
+  plot.spids <- mc5[acnm == acnmi & hitcall > 0.75, unique(spid)][1:2]
+  for (spidi in plot.spids) {
+    for (aenm_dir in c('up','dn')) {
+      plotting.data <- use.dat[spid == spidi & aenm == paste0(acnmi, '_',aenm_dir)]
+      
+      row <- list(conc = plotting.data[, concentration_unlogged],
+                  resp = plotting.data[, response],
+                  bmed = plotting.data[, unique(bmed)],
+                  cutoff = plotting.data[, unique(coff)],
+                  onesd = plotting.data[, unique(osd)],
+                  name = plotting.data[, unique(spid)],
+                  assay = plotting.data[, unique(aenm)])
+      res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                            "exp4", "exp5"),conthits = T, do.plot=F)
+      concRespPlot(res)
+    }
+  }
+}
+
+
+```
+
+
+# Any others to check out before next section?
+
+
+# How often is modl_ga < lowest conc tested?
+
+
+# Any other flags?

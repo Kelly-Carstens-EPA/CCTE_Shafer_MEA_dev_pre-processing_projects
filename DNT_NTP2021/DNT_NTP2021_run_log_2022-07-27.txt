@@ -1,0 +1,1091 @@
+Output from the script run_me_DNT_NTP2021.R
+Date Ran: 2022-07-27 
+R version 4.1.1 (2021-08-10) 
+USER INPUT settings:
+                                                                                                                       dataset_title 
+                                                                                                                       "DNT_NTP2021" 
+                                                                                                        default_ControlTreatmentName 
+                                                                                                                              "DMSO" 
+                                                                                                                   get_new_files_log 
+                                                                                                                             "FALSE" 
+                                                                                                                 pause_between_steps 
+                                                                                                                              "TRUE" 
+                                                                                                                         project.dir 
+                                                                                          "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021" 
+                                                                                                                     root_output_dir 
+                                                                      "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                                   save_notes_graphs 
+                                                                                                                              "TRUE" 
+                                                                                                                         scripts.dir 
+                                    "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                                          spid_sheet 
+                                                                                                                     "Chemical List" 
+                                                                                                                        spidmap_file 
+"L:/Lab/NHEERL_Mundy/Project - DNT Test Set 2021 NTP/Coded Plate Map - Plate No. 4001207126 DNT HEI EPA SHIP CHEM14214 MRI3110.xlsx" 
+                                                                                                         update_concs_without_prompt 
+                                                                                                                             "FALSE" 
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 1 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 A3 prrecipitates in media (need to be repeated)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 2 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 A12 precipitates in media, need to be repeated on lower concentration
+7126 A9 turns the media yellow - may be acidic
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210929_NFA_DNT 2021_Group 3 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 B2 precipitates in media, had a different dilution scheme
+-5ul innto 495ul media, then 50ul into 450ul media in well
+will be repeated with lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210929_NFA_DNT 2021_Group 4 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 B11 precipitates in media, had a different dilution scheme
+-5ul innto 495ul media, then 50ul into 450ul media in well
+Chemical 7126 B12 is yellow in color.
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211027_NFA_DNT 2021_Group 20 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 H10 will be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211110_NFA_DNT 2021_Group 5 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211110_NFA_DNT 2021_Group 6 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 C11 will be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211124_NFA_DNT 2021_Group 7 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 D4 and 7126 D5 will be repeated at a lower concentration.
+Column 4 and 5 on Plate 1 (78-6214) are switched - dosing error (Plate Map is updated)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211124_NFA_DNT 2021_Group 8 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X All wells from plate 78-6217
+-Reasoning : CTB incubation time is less than one hour
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 D7 need to be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211208_NFA_DNT 2021_Group 10 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211208_NFA_DNT 2021_Group 9 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 E3 may be needed to be repeated on a lower concentration 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 11 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 F1, 7126 F2 need to be repeated on a lower concentration 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 12 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 F8 need to be repeated on a lower concentration
+7126 F12 may be needed to be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220223_NFA_DNT 2021_Group 13 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 G3 may need to be repeated at a lower concentration.
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220223_NFA_DNT 2021_Group 14 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220316_NFA_DNT 2021_Group 15 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220316_NFA_DNT 2021_Group 16 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 H7 needs to be repeated (dosing error) 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220330_NFA_DNT 2021_Group 19 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X MW7118 A8 (cell debris)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 17 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 18 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X 78-7205 Well D7 (cell debris)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220601_NFA_DNT 2021_Reps 2 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220601_NFA_PFAS+ G3 & DNT Reps 1 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X Plate 78-7217 for 7126 C11 0.00015 uM
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220615_NFA_DNT 2021_Reps 3 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X 78-7220 A1, 78-7220 B1, 78-7220 D4
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220615_NFA_DNT 2021_Reps 4 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/Template Folder 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+[1] 25
+$`20210915_NFA_DNT 2021_Group 1`
+[1] "7126 A3 prrecipitates in media (need to be repeated)"
+
+$`20210915_NFA_DNT 2021_Group 2`
+[1] "7126 A12 precipitates in media, need to be repeated on lower concentration" "7126 A9 turns the media yellow - may be acidic"                            
+
+$`20210929_NFA_DNT 2021_Group 3`
+[1] "Chemical 7126 B2 precipitates in media, had a different dilution scheme" "-5ul innto 495ul media, then 50ul into 450ul media in well"             
+[3] "will be repeated with lower concentration"                              
+
+$`20210929_NFA_DNT 2021_Group 4`
+[1] "Chemical 7126 B11 precipitates in media, had a different dilution scheme" "-5ul innto 495ul media, then 50ul into 450ul media in well"              
+[3] "Chemical 7126 B12 is yellow in color."                                   
+
+$`20211027_NFA_DNT 2021_Group 20`
+[1] "7126 H10 will be repeated on a lower concentration"
+
+$`20211110_NFA_DNT 2021_Group 6`
+[1] "7126 C11 will be repeated on a lower concentration"
+
+$`20211124_NFA_DNT 2021_Group 7`
+[1] "Chemical 7126 D4 and 7126 D5 will be repeated at a lower concentration."               
+[2] "Column 4 and 5 on Plate 1 (78-6214) are switched - dosing error (Plate Map is updated)"
+
+$`20211124_NFA_DNT 2021_Group 8`
+[1] "X All wells from plate 78-6217"                         "-Reasoning : CTB incubation time is less than one hour" "7126 D7 need to be repeated on a lower concentration"  
+
+$`20211208_NFA_DNT 2021_Group 9`
+[1] "7126 E3 may be needed to be repeated on a lower concentration "
+
+$`20220119_NFA_DNT 2021_Group 11`
+[1] "7126 F1, 7126 F2 need to be repeated on a lower concentration "
+
+$`20220119_NFA_DNT 2021_Group 12`
+[1] "7126 F8 need to be repeated on a lower concentration"           "7126 F12 may be needed to be repeated on a lower concentration"
+
+$`20220223_NFA_DNT 2021_Group 13`
+[1] "7126 G3 may need to be repeated at a lower concentration."
+
+$`20220316_NFA_DNT 2021_Group 16`
+[1] "7126 H7 needs to be repeated (dosing error) "
+
+$`20220330_NFA_DNT 2021_Group 19`
+[1] "X MW7118 A8 (cell debris)"
+
+$`20220413_NFA_DNT 2021_Group 18`
+[1] "X 78-7205 Well D7 (cell debris)"
+
+$`20220601_NFA_PFAS+ G3 & DNT Reps 1`
+[1] "X Plate 78-7217 for 7126 C11 0.00015 uM"
+
+$`20220615_NFA_DNT 2021_Reps 3`
+[1] "X 78-7220 A1, 78-7220 B1, 78-7220 D4"
+
+
+- Select files for files_log:
+3 files already exist.   rescreen  N
+1:        1 20
+2:        0 95
+3: optional  2
+[1] "Acetamenophin"
+[1] "test"
+st.
+- Calculate the Mutual Information:
+72 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( DNT_NTP2021_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( DNT_NTP2021_cytotox.csv )
+'source_steps.R' is complete.
+cytotox data does not have units. Will fill with NA
+long-format data is ready.
+     treatment     N
+  1:      DMSO 35190
+  2:       H2O  1530
+  3:   7126 A3    12
+  4:  7126 A12    12
+  5:  7126 B11    12
+ ---                
+118:   9163 B4     6
+119:   9163 B5     6
+120:  7258 G01     6
+121:  7258 G02     6
+122:  7258 H01     6
+        treatment conc     N
+ 1:          DMSO    0 35190
+ 2:         Water    0  1530
+ 3:       7126 A3    0    12
+ 4:      7126 A12    0    12
+ 5:      7126 B11    0    12
+ 6:      7126 H10    0    12
+ 7:   Bisphenol A    0    12
+ 8:       7126 C1    0    12
+ 9:       7126 C2    0    12
+10:       7126 C3    0    12
+11:       7126 C4    0    12
+12:       7126 C5    0    12
+13:       7126 C6    0    12
+14:       7126 C7    0    12
+15:       7126 C8    0    12
+16:       7126 C9    0    12
+17:      7126 C10    0    12
+18:      7126 C11    0    12
+19:      7126 C12    0    12
+20:       7126 D4    0    12
+21:       7126 D5    0    12
+22:       7126 D7    0    12
+23:       7126 F1    0    12
+24:       7126 F8    0    12
+25: Acetamenophin    0    12
+26:       7126 H7    0    12
+        treatment conc     N
+       treatment                    acsn N
+1:       7126 A3  CCTE_Shafer_MEA_dev_AB 6
+2:   Bisphenol A  CCTE_Shafer_MEA_dev_AB 6
+3: Acetamenophin  CCTE_Shafer_MEA_dev_AB 6
+4:       7126 A3 CCTE_Shafer_MEA_dev_LDH 6
+5:   Bisphenol A CCTE_Shafer_MEA_dev_LDH 6
+6: Acetamenophin CCTE_Shafer_MEA_dev_LDH 6
+   treatment     N
+1:      DMSO 35190
+2:     Water  1530
+   treatment    N
+1:   7126 H8 1785
+2:   7126 H9 1785
+3:  7126 H10 3570
+4:  7126 H11 1785
+5:  7126 G10 1785
+   treatment    N
+1:   7126 H8    6
+2:     Water 1530
+3:   7126 H9    6
+4:  7126 H10   12
+5:  7126 H11    6
+6:  7126 G10    6
+   Blind-Code         Conc..(mM) Plate.Position
+1:       1638            100.932             A1
+2:       4465 20.071999999999999             A2
+3:       4285 50.003999999999998             A3
+4:       2976            100.032             A4
+5:       3761 100.21299999999999             A5
+6:       3053 25.024999999999999             A6
+[1] NA      "%"     "uM"    "mg/ml"
+[1] "Coded Plate Map - Plate No. 4001207126 DNT HEI EPA SHIP CHEM14214 MRI3110.xlsx"
+                                                                                                                                                   Blind-Code      Conc..(mM)
+ 1:                                                                                                                                                      4887         50.015a
+ 2:                                                                                                                                                      4616        100.109ß
+ 3:                                                                                                                                                      4004        100.394ß
+ 4:                                                                                                                                                      3086 100.718<U+03B3>
+ 5: Note: Blank DMSO, CAS No: 67-68-5, Supplier: Gaylord Chemical Company LLC. Lot # USP180404, CoA Purity: 100.0%, Amount: 50 mL, Suggested Storage: Ambient            <NA>
+ 6:                  Note: Blank Water, CAS No: 7732-18-5, Supplier: Labconco Water Pro PS. 18.2 M<U+2126>·cm, Amount: 50 mL, Suggested Storage: Refrigerate             <NA>
+ 7:                                                                              Note: Argon gas headspace added to chemical vials prior to storage/shipment.            <NA>
+ 8:                           Vial Type: polypropylene, 1.4-mL alphanumeric screw-cap tubes, 96-vial plate rack, polypropylene screw-cap with silicon o-ring.            <NA>
+ 9:                                                                                                                a Water solution; max DMSO solubility 2 mM            <NA>
+10:                                                                                                                       ß Water solution; insoluble in DMSO            <NA>
+11:                                                                                                        <U+03B3> Water solution; max DMSO solubility 10 mM            <NA>
+12:                                                                                                                         <U+0394> Cholinesterase Inhibitor            <NA>
+    Plate.Position treatment sheet_stock_conc_units
+ 1:             H8   7126 H8                     mM
+ 2:             H9   7126 H9                     mM
+ 3:            H10  7126 H10                     mM
+ 4:            H11  7126 H11                     mM
+ 5:           <NA>   7126 NA                     mM
+ 6:           <NA>   7126 NA                     mM
+ 7:           <NA>   7126 NA                     mM
+ 8:           <NA>   7126 NA                     mM
+ 9:           <NA>   7126 NA                     mM
+10:           <NA>   7126 NA                     mM
+11:           <NA>   7126 NA                     mM
+12:           <NA>   7126 NA                     mM
+                                                                                                                                                   Blind-Code      Conc..(mM)
+ 1:                                                                                                                                                      4887         50.015a
+ 2:                                                                                                                                                      4616        100.109ß
+ 3:                                                                                                                                                      4004        100.394ß
+ 4:                                                                                                                                                      3086 100.718<U+03B3>
+ 5: Note: Blank DMSO, CAS No: 67-68-5, Supplier: Gaylord Chemical Company LLC. Lot # USP180404, CoA Purity: 100.0%, Amount: 50 mL, Suggested Storage: Ambient            <NA>
+ 6:                  Note: Blank Water, CAS No: 7732-18-5, Supplier: Labconco Water Pro PS. 18.2 M<U+2126>·cm, Amount: 50 mL, Suggested Storage: Refrigerate             <NA>
+ 7:                                                                              Note: Argon gas headspace added to chemical vials prior to storage/shipment.            <NA>
+ 8:                           Vial Type: polypropylene, 1.4-mL alphanumeric screw-cap tubes, 96-vial plate rack, polypropylene screw-cap with silicon o-ring.            <NA>
+ 9:                                                                                                                a Water solution; max DMSO solubility 2 mM            <NA>
+10:                                                                                                                       ß Water solution; insoluble in DMSO            <NA>
+11:                                                                                                        <U+03B3> Water solution; max DMSO solubility 10 mM            <NA>
+12:                                                                                                                         <U+0394> Cholinesterase Inhibitor            <NA>
+    Plate.Position treatment sheet_stock_conc_units conc_numeric_test
+ 1:             H8   7126 H8                     mM                NA
+ 2:             H9   7126 H9                     mM                NA
+ 3:            H10  7126 H10                     mM                NA
+ 4:            H11  7126 H11                     mM                NA
+ 5:           <NA>   7126 NA                     mM                NA
+ 6:           <NA>   7126 NA                     mM                NA
+ 7:           <NA>   7126 NA                     mM                NA
+ 8:           <NA>   7126 NA                     mM                NA
+ 9:           <NA>   7126 NA                     mM                NA
+10:           <NA>   7126 NA                     mM                NA
+11:           <NA>   7126 NA                     mM                NA
+12:           <NA>   7126 NA                     mM                NA
+Empty data.table (0 rows and 7 cols): Blind-Code,Conc..(mM),Plate.Position,treatment,sheet_stock_conc_units,conc_numeric_test...
+ [1] "DMSO"          "Water"         "Bisphenol A"   "Acetamenophin" "9163 A1"       "9163 A2"       "9163 A3"       "9163 A4"       "9163 A5"       "9163 B6"       "9163 B7"      
+[12] "9163 B8"       "9163 A6"       "9163 A7"       "9163 A8"       "9163 A9"       "9163 A10"      "9163 A11"      "9163 A12"      "9163 B1"       "9163 B2"       "9163 B3"      
+[23] "9163 B4"       "9163 B5"       "7258 G01"      "7258 G1"       "7258 G02"      "7258 G2"       "7258 H01"      "7258 H1"      
+                                                                                                                         Blind-Code Conc..(mg/mL)1 Plate.Position treatment
+ 1:                                                                                                                            3914         = 10**             A5   9163 A5
+ 2:                                                                                                                            1675         = 10**             A7   9163 A7
+ 3:                                                                                                                            4314         = 10**            A11  9163 A11
+ 4:                                                                                                                            3264         = 10**             B1   9163 B1
+ 5:                                                                                                                            1570         = 10**             B2   9163 B2
+ 6:                                                                                                                            3601         = 10**             B3   9163 B3
+ 7:                                                                                                                            3215         = 10**             B5   9163 B5
+ 8:                                                                                                                            2200         = 10**             B6   9163 B6
+ 9:                                                                                                                            4897         = 10**             B8   9163 B8
+10:                                                    Note: Argon gas headspace added to chemical vials prior to storage/shipment.           <NA>           <NA>   9163 NA
+11: Vial Type: polypropylene, 1.4-mL alphanumeric screw-cap tubes, 96-vial plate rack, polypropylene screw-cap with silicon o-ring.           <NA>           <NA>   9163 NA
+12:                                                                               1 Complex mixture in DMSO, concentration in mg/mL           <NA>           <NA>   9163 NA
+13:                                                                                 ** Exact concentration could not be determined.           <NA>           <NA>   9163 NA
+    conc_numeric_test sheet_stock_conc_units
+ 1:                NA                  mg/mL
+ 2:                NA                  mg/mL
+ 3:                NA                  mg/mL
+ 4:                NA                  mg/mL
+ 5:                NA                  mg/mL
+ 6:                NA                  mg/mL
+ 7:                NA                  mg/mL
+ 8:                NA                  mg/mL
+ 9:                NA                  mg/mL
+10:                NA                  mg/mL
+11:                NA                  mg/mL
+12:                NA                  mg/mL
+13:                NA                  mg/mL
+Empty data.table (0 rows and 7 cols): Blind-Code,Conc..(mg/mL)1,Plate.Position,treatment,conc_numeric_test,sheet_stock_conc_units...
+[1] "DMSO"          "Water"         "Acetamenophin" "7258 G01"      "7258 G1"       "7258 G02"      "7258 G2"       "7258 H01"      "7258 H1"      
+[1] "DMSO"     "Water"    "7258 G01" "7258 G1"  "7258 G02" "7258 G2"  "7258 H01" "7258 H1" 
+    treatment               apid   N
+ 1:  7258 G01 20220601_MW78-7214  14
+ 2:   7258 G1 20220601_MW78-7214 595
+ 3:  7258 G02 20220601_MW78-7214  14
+ 4:   7258 G2 20220601_MW78-7214 595
+ 5:  7258 H01 20220601_MW78-7214  14
+ 6:   7258 H1 20220601_MW78-7214 595
+ 7:  7258 H01 20220601_MW78-7215  14
+ 8:   7258 H1 20220601_MW78-7215 595
+ 9:  7258 G01 20220601_MW78-7215  14
+10:   7258 G1 20220601_MW78-7215 595
+11:  7258 G02 20220601_MW78-7215  14
+12:   7258 G2 20220601_MW78-7215 595
+13:  7258 G02 20220601_MW78-7216  14
+14:   7258 G2 20220601_MW78-7216 595
+15:  7258 H01 20220601_MW78-7216  14
+16:   7258 H1 20220601_MW78-7216 595
+17:  7258 G01 20220601_MW78-7216  14
+18:   7258 G1 20220601_MW78-7216 595
+    treatment               apid   N
+ 1:  7126 A12 20220601_MW78-7214 609
+ 2:   7126 D7 20220601_MW78-7214 609
+ 3:  7126 H10 20220601_MW78-7214 609
+ 4:  7258 G01 20220601_MW78-7214  14
+ 5:  7258 G02 20220601_MW78-7214  14
+ 6:   7258 G1 20220601_MW78-7214 595
+ 7:   7258 G2 20220601_MW78-7214 595
+ 8:  7258 H01 20220601_MW78-7214  14
+ 9:   7258 H1 20220601_MW78-7214 595
+10:  7126 A12 20220601_MW78-7215 609
+11:   7126 D7 20220601_MW78-7215 609
+12:  7126 H10 20220601_MW78-7215 609
+13:  7258 G01 20220601_MW78-7215  14
+14:  7258 G02 20220601_MW78-7215  14
+15:   7258 G1 20220601_MW78-7215 595
+16:   7258 G2 20220601_MW78-7215 595
+17:  7258 H01 20220601_MW78-7215  14
+18:   7258 H1 20220601_MW78-7215 595
+19:  7126 A12 20220601_MW78-7216 609
+20:   7126 D7 20220601_MW78-7216 609
+21:  7126 H10 20220601_MW78-7216 609
+22:  7258 G01 20220601_MW78-7216  14
+23:  7258 G02 20220601_MW78-7216  14
+24:   7258 G1 20220601_MW78-7216 595
+25:   7258 G2 20220601_MW78-7216 595
+26:  7258 H01 20220601_MW78-7216  14
+27:   7258 H1 20220601_MW78-7216 595
+    treatment               apid   N
+                                                                                                                                                   Blind-Code
+ 1: Note: Blank DMSO, CAS No: 67-68-5, Supplier: Gaylord Chemical Company LLC. Lot # USP180404, CoA Purity: 100.0%, Amount: 50 mL, Suggested Storage: Ambient
+ 2:                  Note: Blank Water, CAS No: 7732-18-5, Supplier: Labconco Water Pro PS. 18.2 M<U+2126>·cm, Amount: 50 mL, Suggested Storage: Refrigerate 
+ 3:                                                                              Note: Argon gas headspace added to chemical vials prior to storage/shipment.
+ 4:                           Vial Type: polypropylene, 1.4-mL alphanumeric screw-cap tubes, 96-vial plate rack, polypropylene screw-cap with silicon o-ring.
+ 5:                                                                                                                a Water solution; max DMSO solubility 2 mM
+ 6:                                                                                                                       ß Water solution; insoluble in DMSO
+ 7:                                                                                                        <U+03B3> Water solution; max DMSO solubility 10 mM
+ 8:                                                                                                                         <U+0394> Cholinesterase Inhibitor
+ 9:                                                                              Note: Argon gas headspace added to chemical vials prior to storage/shipment.
+10:                           Vial Type: polypropylene, 1.4-mL alphanumeric screw-cap tubes, 96-vial plate rack, polypropylene screw-cap with silicon o-ring.
+11:                                                                                                         1 Complex mixture in DMSO, concentration in mg/mL
+12:                                                                                                           ** Exact concentration could not be determined.
+   footnote_chars  N
+1:             ,, 81
+2:     <U+0394>,, 21
+3:            ,a,  1
+4:            ,ß,  2
+5:     ,<U+03B3>,  1
+6:          ,=**,  9
+7:           <NA>  2
+   footnote_chars  N
+1:                81
+2:       <U+0394> 21
+3:              a  1
+4:              ß  2
+5:       <U+03B3>  1
+6:            =**  9
+7:           <NA>  2
+   treatment footnote_chars
+1:   7126 H8              a
+2:   7126 H9              ß
+3:  7126 H10              ß
+4:  7126 H11       <U+03B3>
+   DNTP_blind_code sheet_stock_conc Plate.Position treatment sheet_stock_conc_units conc_numeric_test footnote_chars footnote
+1:            3914               10             A5   9163 A5                  mg/mL                10            =**     <NA>
+2:            1675               10             A7   9163 A7                  mg/mL                10            =**     <NA>
+3:            4314               10            A11  9163 A11                  mg/mL                10            =**     <NA>
+4:            3264               10             B1   9163 B1                  mg/mL                10            =**     <NA>
+5:            1570               10             B2   9163 B2                  mg/mL                10            =**     <NA>
+6:            3601               10             B3   9163 B3                  mg/mL                10            =**     <NA>
+7:            3215               10             B5   9163 B5                  mg/mL                10            =**     <NA>
+8:            2200               10             B6   9163 B6                  mg/mL                10            =**     <NA>
+9:            4897               10             B8   9163 B8                  mg/mL                10            =**     <NA>
+    DNTP_blind_code   sheet_stock_conc Plate.Position treatment sheet_stock_conc_units conc_numeric_test footnote_chars footnote
+ 1:            2156            100.714             B1   7126 B1                     mM           100.714       <U+0394>     <NA>
+ 2:            3442            100.181             B8   7126 B8                     mM           100.181       <U+0394>     <NA>
+ 3:            4404 99.965000000000003             B9   7126 B9                     mM            99.965       <U+0394>     <NA>
+ 4:            1032              101.6             C2   7126 C2                     mM           101.600       <U+0394>     <NA>
+ 5:            3976            101.015             C4   7126 C4                     mM           101.015       <U+0394>     <NA>
+ 6:            2506 104.43899999999999             D2   7126 D2                     mM           104.439       <U+0394>     <NA>
+ 7:            4395            100.751             D3   7126 D3                     mM           100.751       <U+0394>     <NA>
+ 8:            1562            100.771            D10  7126 D10                     mM           100.771       <U+0394>     <NA>
+ 9:            4121 99.525999999999996             E5   7126 E5                     mM            99.526       <U+0394>     <NA>
+10:            2134             101.02             E6   7126 E6                     mM           101.020       <U+0394>     <NA>
+11:            1957             99.119            E10  7126 E10                     mM            99.119       <U+0394>     <NA>
+12:            4276 97.948999999999998            E11  7126 E11                     mM            97.949       <U+0394>     <NA>
+13:            4054             100.18             F3   7126 F3                     mM           100.180       <U+0394>     <NA>
+14:            1833             99.619             F6   7126 F6                     mM            99.619       <U+0394>     <NA>
+15:            1103 99.334000000000003             G3   7126 G3                     mM            99.334       <U+0394>     <NA>
+16:            2772 99.045000000000002             G4   7126 G4                     mM            99.045       <U+0394>     <NA>
+17:            4806            103.078             G8   7126 G8                     mM           103.078       <U+0394>     <NA>
+18:            2559 99.765000000000001            G12  7126 G12                     mM            99.765       <U+0394>     <NA>
+19:            4144             100.41             H4   7126 H4                     mM           100.410       <U+0394>     <NA>
+20:            4281            103.036             H5   7126 H5                     mM           103.036       <U+0394>     <NA>
+21:            3399 99.323999999999998             H7   7126 H7                     mM            99.324       <U+0394>     <NA>
+    DNTP_blind_code   sheet_stock_conc Plate.Position treatment sheet_stock_conc_units conc_numeric_test footnote_chars footnote
+   footnote_chars  N
+1:       <U+0394> 21
+Empty data.table (0 rows and 8 cols): DNTP_blind_code,sheet_stock_conc,Plate.Position,treatment,sheet_stock_conc_units,conc_numeric_test...
+                                                                         footnote  N
+1:                                                                           <NA> 83
+2:                                                       Cholinesterase Inhibitor 21
+3:                                       Water solution; max DMSO solubility 2 mM  1
+4:                                              Water solution; insoluble in DMSO  2
+5:                                      Water solution; max DMSO solubility 10 mM  1
+6: Coded Plate Map stock conc <= 10. Exact concentration could not be determined.  9
+[1] "DMSO"  "Water"
+[1] "DMSO"  "Water"
+Empty data.table (0 rows and 2 cols): treatment,N
+   treatment solvent    N
+1:  7126 H10   Water 3654
+2:  7126 H11   Water 1827
+3:   7126 H8   Water 1827
+4:   7126 H9   Water 1827
+   treatment solvent                                  footnote    N
+1:  7126 G10   Water                                      <NA> 1827
+2:  7126 H10   Water         Water solution; insoluble in DMSO 3654
+3:  7126 H11   Water Water solution; max DMSO solubility 10 mM 1827
+4:   7126 H8   Water  Water solution; max DMSO solubility 2 mM 1827
+5:   7126 H9   Water         Water solution; insoluble in DMSO 1827
+   treatment                                                                       footnote    N
+1:  9163 A11 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+2:   9163 A5 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+3:   9163 A7 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+4:   9163 B1 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+5:   9163 B2 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+6:   9163 B3 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+7:   9163 B5 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+8:   9163 B6 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+9:   9163 B8 Coded Plate Map stock conc <= 10. Exact concentration could not be determined. 1827
+Empty data.table (0 rows and 4 cols): apid,rowi,coli,V1
+Empty data.table (0 rows and 22 cols): treatment,apid,rowi,coli,conc,wllq_by_well...
+    treatment     conc conc_calc_file  culture               apid                              srcf  N
+ 1:   7126 D2   0.1000       0.104439 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+ 2:   7126 D2   0.1000       0.104439 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+ 3:   7126 D2   0.1000       0.104439 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+ 4:   7126 D2   0.1000       0.104439 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+ 5:   7126 D2   0.3000       0.313317 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+ 6:   7126 D2   0.3000       0.313317 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+ 7:   7126 D2   0.3000       0.313317 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+ 8:   7126 D2   0.3000       0.313317 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+ 9:   7126 D2   1.0000       1.044390 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+10:   7126 D2   1.0000       1.044390 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+11:   7126 D2   1.0000       1.044390 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+12:   7126 D2   1.0000       1.044390 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+13:   7126 D2   3.0000       3.133170 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+14:   7126 D2   3.0000       3.133170 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+15:   7126 D2   3.0000       3.133170 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+16:   7126 D2   3.0000       3.133170 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+17:   7126 D2  10.0000      10.443900 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+18:   7126 D2  10.0000      10.443900 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+19:   7126 D2  10.0000      10.443900 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+20:   7126 D2  10.0000      10.443900 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+21:   7126 D2  30.0000      31.331700 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+22:   7126 D2  30.0000      31.331700 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+23:   7126 D2  30.0000      31.331700 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+24:   7126 D2  30.0000      31.331700 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+25:   7126 D2 100.0000     104.439000 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+26:   7126 D2 100.0000     104.439000 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+27:   7126 D2 100.0000     104.439000 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+28:   7126 D2 100.0000     104.439000 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+29:   7126 D3   0.1044       0.100751 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+30:   7126 D3   0.1044       0.100751 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+31:   7126 D3   0.1044       0.100751 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+32:   7126 D3   0.1044       0.100751 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+33:   7126 D3   0.3133       0.302253 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+34:   7126 D3   0.3133       0.302253 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+35:   7126 D3   0.3133       0.302253 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+36:   7126 D3   0.3133       0.302253 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+37:   7126 D3   1.0440       1.007510 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+38:   7126 D3   1.0440       1.007510 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+39:   7126 D3   1.0440       1.007510 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+40:   7126 D3   1.0440       1.007510 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+41:   7126 D3   3.1330       3.022530 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+42:   7126 D3   3.1330       3.022530 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+43:   7126 D3   3.1330       3.022530 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+44:   7126 D3   3.1330       3.022530 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+45:   7126 D3  10.4400      10.075100 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+46:   7126 D3  10.4400      10.075100 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+47:   7126 D3  10.4400      10.075100 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+48:   7126 D3  10.4400      10.075100 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+49:   7126 D3  31.3300      30.225300 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+50:   7126 D3  31.3300      30.225300 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+51:   7126 D3  31.3300      30.225300 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+52:   7126 D3  31.3300      30.225300 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+53:   7126 D3 104.4000     100.751000 20211124 20211124_MW78-6215               DNT_NTP2021_AUC.csv 17
+54:   7126 D3 104.4000     100.751000 20211124 20211124_MW78-6215 DNT_NTP2021_parameters_by_DIV.csv 68
+55:   7126 D3 104.4000     100.751000 20211124 20211124_MW78-6216               DNT_NTP2021_AUC.csv 17
+56:   7126 D3 104.4000     100.751000 20211124 20211124_MW78-6216 DNT_NTP2021_parameters_by_DIV.csv 68
+    treatment     conc conc_calc_file  culture               apid                              srcf  N
+    culture               apid wllt    N
+1: 20211124 20211124_MW78-6215    t 1190
+2: 20211124 20211124_MW78-6216    t 1190
+Empty data.table (0 rows and 3 cols): treatment,conc,conc_calc_file
+Empty data.table (0 rows and 3 cols): treatment,apid,V1
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   1.000   3.000   3.618   5.000   7.000 
+   cndx dilution_cndx_multiplier dilution_factor
+1:    7                1.0000000           1.000
+2:    6                0.3000000           0.300
+3:    5                0.3333333           0.100
+4:    4                0.3000000           0.030
+5:    3                0.3333333           0.010
+6:    2                0.3000000           0.003
+7:    1                0.3333333           0.001
+    treatment sheet_stock_conc cndx        conc my_anticipated_conc   N
+ 1:  7126 A12          100.026    1 0.000100026            0.100026 261
+ 2:  7126 A12          100.026    2 0.000300078            0.300078 261
+ 3:  7126 A12          100.026    3 0.001000260            1.000260 261
+ 4:  7126 A12          100.026    4 0.003000780            3.000780 261
+ 5:  7126 A12          100.026    5 0.010002600           10.002600 261
+ 6:  7126 A12          100.026    6 0.030007800           30.007800 261
+ 7:  7126 A12          100.026    7 0.100026000          100.026000 261
+ 8:   7126 A4          100.032    1 0.000300096            0.100032 261
+ 9:   7126 A4          100.032    2 0.001000320            0.300096 261
+10:   7126 A4          100.032    3 0.003000960            1.000320 261
+11:   7126 A4          100.032    4 0.010003200            3.000960 261
+12:   7126 A4          100.032    5 0.030009600           10.003200 261
+13:   7126 A4          100.032    6 0.100032000           30.009600 261
+14:   7126 A4          100.032    7 0.300096000          100.032000 261
+15:  7126 B11          101.024    1 0.000101024            0.101024 261
+16:  7126 B11          101.024    2 0.000303072            0.303072 261
+17:  7126 B11          101.024    3 0.001010240            1.010240 261
+18:  7126 B11          101.024    4 0.003030720            3.030720 261
+19:  7126 B11          101.024    5 0.010102400           10.102400 261
+20:  7126 B11          101.024    6 0.030307200           30.307200 261
+21:  7126 B11          101.024    7 0.101024000          101.024000 261
+22:  7126 C11           50.015    1 0.000050015            0.050015 261
+23:  7126 C11           50.015    2 0.000150045            0.150045 261
+24:  7126 C11           50.015    3 0.000500150            0.500150 261
+25:  7126 C11           50.015    4 0.001500450            1.500450 261
+26:  7126 C11           50.015    5 0.005001500            5.001500 261
+27:  7126 C11           50.015    6 0.015004500           15.004500 261
+28:  7126 C11           50.015    7 0.050015000           50.015000 261
+29:   7126 D4          100.020    1 0.000100020            0.100020 261
+30:   7126 D4          100.020    2 0.000300060            0.300060 261
+31:   7126 D4          100.020    3 0.001000200            1.000200 261
+32:   7126 D4          100.020    4 0.003000600            3.000600 261
+33:   7126 D4          100.020    5 0.010002000           10.002000 261
+34:   7126 D4          100.020    6 0.030006000           30.006000 261
+35:   7126 D4          100.020    7 0.100020000          100.020000 261
+36:   7126 D5          100.121    1 0.000100121            0.100121 261
+37:   7126 D5          100.121    2 0.000300363            0.300363 261
+38:   7126 D5          100.121    3 0.001001210            1.001210 261
+39:   7126 D5          100.121    4 0.003003630            3.003630 261
+40:   7126 D5          100.121    5 0.010012100           10.012100 261
+41:   7126 D5          100.121    6 0.030036300           30.036300 261
+42:   7126 D5          100.121    7 0.100121000          100.121000 261
+43:   7126 D7          100.183    1 0.001000000            0.100183 261
+44:   7126 D7          100.183    2 0.003000000            0.300549 261
+45:   7126 D7          100.183    3 0.010000000            1.001830 261
+46:   7126 D7          100.183    4 0.030000000            3.005490 261
+47:   7126 D7          100.183    5 0.100000000           10.018300 261
+48:   7126 D7          100.183    6 0.300000000           30.054900 261
+49:   7126 D7          100.183    7 1.000000000          100.183000 261
+50:   7126 F1          100.089    1 0.000100089            0.100089 261
+51:   7126 F1          100.089    2 0.000300267            0.300267 261
+52:   7126 F1          100.089    3 0.001000890            1.000890 261
+53:   7126 F1          100.089    4 0.003002670            3.002670 261
+54:   7126 F1          100.089    5 0.010008900           10.008900 261
+55:   7126 F1          100.089    6 0.030026700           30.026700 261
+56:   7126 F1          100.089    7 0.100089000          100.089000 261
+57:   7126 F8           25.014    1 0.000025014            0.025014 261
+58:   7126 F8           25.014    2 0.000075042            0.075042 261
+59:   7126 F8           25.014    3 0.000250140            0.250140 261
+60:   7126 F8           25.014    4 0.000750420            0.750420 261
+61:   7126 F8           25.014    5 0.002501400            2.501400 261
+62:   7126 F8           25.014    6 0.007504200            7.504200 261
+63:   7126 F8           25.014    7 0.025014000           25.014000 261
+64:  7126 H10          100.394    1 0.000100026            0.100394 261
+65:  7126 H10          100.394    2 0.000300078            0.301182 261
+66:  7126 H10          100.394    3 0.001000260            1.003940 261
+67:  7126 H10          100.394    4 0.003000780            3.011820 261
+68:  7126 H10          100.394    5 0.010002600           10.039400 261
+69:  7126 H10          100.394    6 0.030007800           30.118200 261
+70:  7126 H10          100.394    7 0.100026000          100.394000 261
+    treatment sheet_stock_conc cndx        conc my_anticipated_conc   N
+    treatment sheet_stock_conc max_conc_by_treatment_culture    N
+ 1:  7126 C11           50.015                      0.050015 1827
+ 2:   7126 D5          100.121                      0.100121 1827
+ 3:  7126 A12          100.026                      0.100026 1827
+ 4:   7126 A4          100.032                      0.300096 1827
+ 5:  7126 B11          101.024                      0.101024 1827
+ 6:   7126 D7          100.183                      1.000000 1827
+ 7:   7126 F1          100.089                      0.100089 1827
+ 8:   7126 D4          100.020                      0.100020 1827
+ 9:  7126 H10          100.394                      0.100026 1827
+10:   7126 F8           25.014                      0.025014 1827
+   retested_at_diff_concs max_conc_below_stck  V1
+1:                  FALSE               FALSE 105
+2:                   TRUE               FALSE   9
+3:                   TRUE                TRUE   9
+4:                  FALSE                TRUE   1
+5:                  FALSE                  NA   2
+   treatment sheet_stock_conc max_conc_by_treatment_culture    N
+1:  7126 C11           50.015                      0.050015 1827
+2:   7126 D5          100.121                      0.100121 1827
+3:  7126 A12          100.026                      0.100026 1827
+4:  7126 B11          101.024                      0.101024 1827
+5:   7126 D7          100.183                      1.000000 1827
+6:   7126 F1          100.089                      0.100089 1827
+7:   7126 D4          100.020                      0.100020 1827
+8:  7126 H10          100.394                      0.100026 1827
+9:   7126 F8           25.014                      0.025014 1827
+       treatment    N
+1: Acetaminophen 3654
+2:   Bisphenol A 3654
+        treatment cndx  conc   N
+ 1: Acetaminophen    1  0.03 522
+ 2: Acetaminophen    2  0.10 522
+ 3: Acetaminophen    3  0.30 522
+ 4: Acetaminophen    4  1.00 522
+ 5: Acetaminophen    5  3.00 522
+ 6: Acetaminophen    6 10.00 522
+ 7: Acetaminophen    7 30.00 522
+ 8:   Bisphenol A    1  0.03 522
+ 9:   Bisphenol A    2  0.09 261
+10:   Bisphenol A    2  0.10 261
+11:   Bisphenol A    3  0.30 522
+12:   Bisphenol A    4  0.90 261
+13:   Bisphenol A    4  1.00 261
+14:   Bisphenol A    5  3.00 522
+15:   Bisphenol A    6  9.00 261
+16:   Bisphenol A    6 10.00 261
+17:   Bisphenol A    7 30.00 522
+    cndx  conc                                                 srcf   N
+ 1:    1  0.03 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+ 2:    1  0.03                                  DNT_NTP2021_AUC.csv 102
+ 3:    1  0.03                    DNT_NTP2021_parameters_by_DIV.csv 408
+ 4:    1  0.03 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+ 5:    2  0.09 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+ 6:    2  0.09                                  DNT_NTP2021_AUC.csv  51
+ 7:    2  0.09                    DNT_NTP2021_parameters_by_DIV.csv 204
+ 8:    2  0.10 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+ 9:    2  0.10                                  DNT_NTP2021_AUC.csv  51
+10:    2  0.10                    DNT_NTP2021_parameters_by_DIV.csv 204
+11:    3  0.30 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+12:    3  0.30                                  DNT_NTP2021_AUC.csv 102
+13:    3  0.30                    DNT_NTP2021_parameters_by_DIV.csv 408
+14:    3  0.30 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+15:    4  0.90 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+16:    4  0.90                                  DNT_NTP2021_AUC.csv  51
+17:    4  0.90                    DNT_NTP2021_parameters_by_DIV.csv 204
+18:    4  1.00 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+19:    4  1.00                                  DNT_NTP2021_AUC.csv  51
+20:    4  1.00                    DNT_NTP2021_parameters_by_DIV.csv 204
+21:    5  3.00 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+22:    5  3.00                                  DNT_NTP2021_AUC.csv 102
+23:    5  3.00                    DNT_NTP2021_parameters_by_DIV.csv 408
+24:    5  3.00 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+25:    6  9.00 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+26:    6  9.00                                  DNT_NTP2021_AUC.csv  51
+27:    6  9.00                    DNT_NTP2021_parameters_by_DIV.csv 204
+28:    6 10.00 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+29:    6 10.00                                  DNT_NTP2021_AUC.csv  51
+30:    6 10.00                    DNT_NTP2021_parameters_by_DIV.csv 204
+31:    7 30.00 20211027_NFA_DNT_NTP 2021_Group 20_Calculations.xlsx   6
+32:    7 30.00                                  DNT_NTP2021_AUC.csv 102
+33:    7 30.00                    DNT_NTP2021_parameters_by_DIV.csv 408
+34:    7 30.00 20220330_NFA_DNT_NTP 2021_Group 19_Calculations.xlsx   6
+    cndx  conc                                                 srcf   N
+Empty data.table (0 rows and 4 cols): cndx,srcf,culture,V1
+    culture treatment sheet_stock_conc cndx        conc my_anticipated_conc   N
+1: 20210915   7126 A4          100.032    1 0.000300096            0.100032 261
+2: 20210915   7126 A4          100.032    2 0.001000320            0.300096 261
+3: 20210915   7126 A4          100.032    3 0.003000960            1.000320 261
+4: 20210915   7126 A4          100.032    4 0.010003200            3.000960 261
+5: 20210915   7126 A4          100.032    5 0.030009600           10.003200 261
+6: 20210915   7126 A4          100.032    6 0.100032000           30.009600 261
+7: 20210915   7126 A4          100.032    7 0.300096000          100.032000 261
+   top_conc sheet_stock_conc max_conc_by_treatment_culture    N
+1: 0.300096          100.032                      0.300096 1827
+Empty data.table (0 rows and 6 cols): treatment,sheet_stock_conc,cndx,conc,my_anticipated_conc,N
+    culture_date group treatment cndx                                                      wllq_notes_by_trt source_wllq_notes_by_trt wllq_by_trt endpoint_type
+ 1:     20211124    G7   7126 D4    7                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           mea
+ 2:     20211124    G7   7126 D4    7                              will be repeated on a lower concentration              readme note           1           mea
+ 3:     20211124    G7   7126 D4    6                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           mea
+ 4:     20211124    G7   7126 D4    6                              will be repeated on a lower concentration              readme note           1           mea
+ 5:     20211124    G7   7126 D5    7                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           mea
+ 6:     20211124    G7   7126 D5    7                              will be repeated on a lower concentration              readme note           1           mea
+ 7:     20211124    G7   7126 D5    6                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           mea
+ 8:     20211124    G7   7126 D5    6                              will be repeated on a lower concentration              readme note           1           mea
+ 9:     20211208    G9   7126 E3    7 precipitates in dosing plate but dissolved in well (10 in 490uL media)             lab notebook    evaluate           mea
+10:     20211208    G9   7126 E3    7                       may need to be repeated on a lower concentration              readme note           1           mea
+11:     20211208    G9   7126 E3    6 precipitates in dosing plate but dissolved in well (10 in 490uL media)             lab notebook    evaluate           mea
+12:     20211208    G9   7126 E3    6                       may need to be repeated on a lower concentration              readme note           1           mea
+13:     20211124    G7   7126 D4    7                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           CTB
+14:     20211124    G7   7126 D4    7                              will be repeated on a lower concentration              readme note           1           CTB
+15:     20211124    G7   7126 D4    6                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           CTB
+16:     20211124    G7   7126 D4    6                              will be repeated on a lower concentration              readme note           1           CTB
+17:     20211124    G7   7126 D5    7                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           CTB
+18:     20211124    G7   7126 D5    7                              will be repeated on a lower concentration              readme note           1           CTB
+19:     20211124    G7   7126 D5    6                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           CTB
+20:     20211124    G7   7126 D5    6                              will be repeated on a lower concentration              readme note           1           CTB
+21:     20211208    G9   7126 E3    7 precipitates in dosing plate but dissolved in well (10 in 490uL media)             lab notebook    evaluate           CTB
+22:     20211208    G9   7126 E3    7                       may need to be repeated on a lower concentration              readme note           1           CTB
+23:     20211208    G9   7126 E3    6 precipitates in dosing plate but dissolved in well (10 in 490uL media)             lab notebook    evaluate           CTB
+24:     20211208    G9   7126 E3    6                       may need to be repeated on a lower concentration              readme note           1           CTB
+25:     20211124    G7   7126 D4    7                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           LDH
+26:     20211124    G7   7126 D4    7                              will be repeated on a lower concentration              readme note           1           LDH
+27:     20211124    G7   7126 D4    6                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           LDH
+28:     20211124    G7   7126 D4    6                              will be repeated on a lower concentration              readme note           1           LDH
+29:     20211124    G7   7126 D5    7                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           LDH
+30:     20211124    G7   7126 D5    7                              will be repeated on a lower concentration              readme note           1           LDH
+31:     20211124    G7   7126 D5    6                  precipitates in media, but not when in 37 C incubator             lab notebook    evaluate           LDH
+32:     20211124    G7   7126 D5    6                              will be repeated on a lower concentration              readme note           1           LDH
+33:     20211208    G9   7126 E3    7 precipitates in dosing plate but dissolved in well (10 in 490uL media)             lab notebook    evaluate           LDH
+34:     20211208    G9   7126 E3    7                       may need to be repeated on a lower concentration              readme note           1           LDH
+35:     20211208    G9   7126 E3    6 precipitates in dosing plate but dissolved in well (10 in 490uL media)             lab notebook    evaluate           LDH
+36:     20211208    G9   7126 E3    6                       may need to be repeated on a lower concentration              readme note           1           LDH
+    culture_date group treatment cndx                                                      wllq_notes_by_trt source_wllq_notes_by_trt wllq_by_trt endpoint_type
+[1] "evaluate" "1"        "0"       
+Empty data.table (0 rows and 8 cols): culture_date,group,treatment,cndx,endpoint_type,wllq_by_trt...
+[1] "treatment"     "cndx"          "endpoint_type"
+Empty data.table (0 rows and 39 cols): culture_date,treatment,cndx,endpoint_type,DNTP_blind_code,apid...
+    group group_by_calc_file    N
+ 1:    G1            Group 1 1827
+ 2:   G10           Group 10  522
+ 3:   G11           Group 11 3654
+ 4:   G12           Group 12 3654
+ 5:   G13           Group 13 1827
+ 6:   G16           Group 16 1827
+ 7:   G19           Group 19 5481
+ 8:    G2            Group 2 5481
+ 9:   G20           Group 20 1827
+10:    G3            Group 3 1827
+11:    G4            Group 4 3654
+12:    G5            Group 5 1566
+13:    G6            Group 6 1827
+14:    G7            Group 7 4698
+15:    G8            Group 8 2349
+16:    G9            Group 9 2871
+[1] 1 0
+   wllq_by_well wllq_by_trt wllq_merged      N
+1:            1        <NA>           1 231676
+2:            1    evaluate    evaluate  13831
+3:            1           1           1  27658
+4:            0        <NA>           0  18623
+5:            0    evaluate           0   1568
+6:            0           1           0      8
+7:            1           0           0   1827
+   units      N
+1:  <NA>   5922
+2:    uM 216070
+3:     %  37584
+4: mg/ml  35615
+     treatment  N
+  1:   7126 A1 42
+  2:  7126 A10 42
+  3:  7126 A11 42
+  4:  7126 A12 84
+  5:   7126 A2 42
+ ---             
+113:   9163 B1 42
+114:   9163 B2 42
+115:   9163 B3 42
+116:   9163 B4 42
+117:   9163 B5 42
+   endpoint_type    N
+1:           CTB 2961
+2:           LDH 2961
+   treatment V1
+1:   9163 A1  2
+    units                                                 srcf               apid   N
+ 1:  <NA> 20220316_NFA_DNT_NTP 2021_Group 16_Calculations.xlsx 20220316_MW78-7115  14
+ 2:  <NA> 20220316_NFA_DNT_NTP 2021_Group 16_Calculations.xlsx 20220316_MW78-7116  14
+ 3:  <NA> 20220316_NFA_DNT_NTP 2021_Group 16_Calculations.xlsx 20220316_MW78-7117  14
+ 4:    uM                                  DNT_NTP2021_AUC.csv 20220316_MW78-7115  17
+ 5:    uM                    DNT_NTP2021_parameters_by_DIV.csv 20220316_MW78-7115  68
+ 6: mg/ml                                  DNT_NTP2021_AUC.csv 20220316_MW78-7116 119
+ 7: mg/ml                    DNT_NTP2021_parameters_by_DIV.csv 20220316_MW78-7116 476
+ 8: mg/ml                                  DNT_NTP2021_AUC.csv 20220316_MW78-7117 119
+ 9: mg/ml                    DNT_NTP2021_parameters_by_DIV.csv 20220316_MW78-7117 476
+10: mg/ml                                  DNT_NTP2021_AUC.csv 20220316_MW78-7115 102
+11: mg/ml                    DNT_NTP2021_parameters_by_DIV.csv 20220316_MW78-7115 408
+Empty data.table (0 rows and 2 cols): treatment,V1
+   sheet_stock_conc_units units wllt      N
+1:                     mM    uM    t 213759
+2:                   <NA>     %    n  37584
+3:                   <NA>    uM    t   7308
+4:                  mg/mL mg/ml    t  36540
+       treatment sheet_stock_conc_units units     N
+1:          DMSO                   <NA>     % 36018
+2:   Bisphenol A                   <NA>    uM  3654
+3:         Water                   <NA>     %  1566
+4: Acetaminophen                   <NA>    uM  3654
+   units trt_not_in_mM num_trts
+1:    uM         FALSE       97
+2:     %         FALSE        2
+3: mg/ml          TRUE       20
+   units from_plate2      N
+1:    uM       FALSE 221067
+2:     %       FALSE  37584
+3: mg/ml        TRUE  36540
+   conc units     N
+1:  0.1     % 37584
+
+Final Checks
+Number of cultures dates: 13
+Range of culture dates: 20210915 20220615
+Number of plates tested: 72
+Number of compounds tested: 117
+NA or infinite rvals for AUC or cytotoxicity endpoints:
+   wllq  N
+1:    0 48
+
+Wllq counts for all data points:
+       wllq      N
+1:        1 259334
+2: evaluate  13831
+3:        0  22026
+Number of unique acsn's present: 87  (expect 2 cyto + 17 AUC + 4*17 DIV = 87)
+The following plates don't have the expected number of points (48):
+                 apid AB LDH MEA_pts
+1: 20220601_MW78-7214 27  27      27
+                 apid AB LDH MEA_pts
+1: 20220601_MW78-7215 27  27        
+                 apid AB LDH MEA_pts
+1: 20220601_MW78-7216 27  27        
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min   median   max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB      82    25444 44240      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0     0.72   1.9      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       73   136      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       15    16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        1    16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        7    16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0       14    16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      5.5   253      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12   0.071     0.85    41    488
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.15      0.7   101   2117
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.11     0.86    74   1083
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9   0.089     0.96    78    632
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0      9.4    44      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      2.1    11      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0    15      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0     0.68    14      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0      1.2    12      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       39   136      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       15    16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0    16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        2    16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0        5    16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean  -0.013     0.84     4      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12  -0.004     0.32  0.81      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0062        0   0.2      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0048   0.0053  0.49      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9  -0.006     0.13  0.64      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      8.7    36      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      1.6    11      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0     0.17   8.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.96   8.1      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0      1.2   5.7      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      552  2483      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     0.2       34   726    512
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      54      165   690   2569
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     0.2      136   821   1695
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     1.3      127   769    793
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      213   616      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.1       32   125    488
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5    0.85       40   126   2117
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.92       36   121   1083
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.1       41   117    632
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.023  0.21      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0    0.011 0.076      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.005      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000012 0.019      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0   0.0017 0.036      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.32   2.8      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12  0.0024    0.087  0.73    512
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5       0    0.055  0.47   2569
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.045  0.44   1695
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0    0.084  0.68    793
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0       48   562      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       21   326      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0    17      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        1    63      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0        4    90      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       64   136      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5       15    16    508
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5       5       14    16   2503
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       14    16   1487
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       15    16    677
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.33   1.2      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0062    0.026   0.2    488
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.024    0.083  0.25   2117
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.013    0.078  0.27   1083
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9  0.0099    0.044  0.24    632
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      289   737      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       80   100      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0   100      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       23    99      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       47   100      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      456  1101      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12       8      101   228    508
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       8       38   157   2503
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       77   197   1487
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9       8      105   219    677
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       27   279      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       10    63      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0    34      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0    0.038    48      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0      3.1    47      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0      1.7   6.2      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.055      0.3   1.5    508
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5    0.05     0.34  0.82   2503
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7    0.05     0.36  0.99   1487
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9    0.05     0.44   1.4    677
+                                                             acsn     min   median   max num_NA
+[1] 0
+     DNTP_blind_code      conc V1
+  1:            1852  0.100026  6
+  2:            4285  0.050004  6
+  3:            4285  0.150012  6
+  4:            4285  0.500040  6
+  5:            4285  1.500120  6
+ ---                             
+105:            3399  0.993240  6
+106:            3399  2.979720  6
+107:            3399  9.932400  6
+108:            3399 29.797200  6
+109:            3399 99.324000  6
+    DNTP_blind_code      conc rescreened_lower_conc V1
+ 1:     Bisphenol A  0.030000                 FALSE  6
+ 2:     Bisphenol A  0.300000                 FALSE  6
+ 3:     Bisphenol A  3.000000                 FALSE  6
+ 4:     Bisphenol A 30.000000                 FALSE  6
+ 5:            1291  0.050015                  TRUE  6
+ 6:            3990  0.100020                  TRUE  6
+ 7:            1605  0.100121                  TRUE  6
+ 8:            3576  0.100089                  TRUE  6
+ 9:            4584  0.025014                  TRUE  6
+10:   Acetaminophen  0.030000                 FALSE  6
+11:   Acetaminophen  0.100000                 FALSE  6
+12:   Acetaminophen  0.300000                 FALSE  6
+13:   Acetaminophen  1.000000                 FALSE  6
+14:   Acetaminophen  3.000000                 FALSE  6
+15:   Acetaminophen 10.000000                 FALSE  6
+16:   Acetaminophen 30.000000                 FALSE  6

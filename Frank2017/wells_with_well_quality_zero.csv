@@ -1,0 +1,10 @@
+date,Plate.SN,DIV,well,wllq,wllq_notes,affected_endpoints
+20150805,MW1038-36,all,all,0,"Data unusable, controls did not develop","mea,LDH,CTB"
+20150805,MW1040-11,,all,0,Data unusable,LDH
+20151125,MW1088-3,,all,0,"Controls did not develop, LDH plate spill","mea,CTB,LDH"
+20141015,MW1007-107,all,A3,0,Flagged sample,"mea,CTB,LDH"
+20141015,MW1007-107,all,A5,0,Flagged sample,"mea,CTB,LDH"
+20141015,MW1007-108,all,A3,0,Flagged sample,"mea,CTB,LDH"
+20141015,MW1007-108,all,A5,0,Flagged sample,"mea,CTB,LDH"
+20150128,MW1008-41,all,E1,0,Flagged sample (control that did not develop),"mea,CTB,LDH"
+20150128,MW1008-41,all,F1,0,Flagged sample (control that did not develop),"mea,CTB,LDH"

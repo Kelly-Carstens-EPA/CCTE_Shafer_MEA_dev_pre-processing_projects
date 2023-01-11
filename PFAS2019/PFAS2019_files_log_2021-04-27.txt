@@ -1,0 +1,193 @@
+PFAS2019 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2021-04-27 18:12:26
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA/Project PFAS 2019/MEA NFA 
+Collected 134 files from 26 sub-directories.
+
+L:/Lab/NHEERL_MEA/Project PFAS 2019/MEA NFA
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlorpyrifos oxon\20210127_NFA_Pos Ctrl+Chlorpyrifos oxon_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\20210217_NFA_PFAS_Group 3_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\20210217_NFA_PFAS_Group 4_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\20210303_NFA_PFAS_Group 1_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\20210303_NFA_PFAS_Group 2_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\20210317_NFA_PFAS_Group 5_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\20210317_NFA_PFAS_Group 6_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\20210331_NFA_PFAS_Group 7_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\20210331_NFA_PFAS_Group 8_ Calculations.xlsx
+
+20210127 Culture Chlorpyrifos oxon/75-5620
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlorpyrifos oxon\75-5620\csv Files\20210127_MW75-5620_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlorpyrifos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlorpyrifos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlorpyrifos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlorpyrifos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_12_00(000)_spike_list.csv
+
+20210217 Culture CR G3/75-5806
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5806\csv Files\20210217_MW75-5806_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5806\Spike List Files\NFA_20210217_MW75-5806_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5806\Spike List Files\NFA_20210217_MW75-5806_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5806\Spike List Files\NFA_20210217_MW75-5806_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5806\Spike List Files\NFA_20210217_MW75-5806_12_00(000)_spike_list.csv
+
+20210217 Culture CR G3/75-5807
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5807\csv Files\20210217_MW75-5807_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5807\Spike List Files\NFA_20210217_MW75-5807_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5807\Spike List Files\NFA_20210217_MW75-5807_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5807\Spike List Files\NFA_20210217_MW75-5807_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5807\Spike List Files\NFA_20210217_MW75-5807_12_00(000)_spike_list.csv
+
+20210217 Culture CR G3/75-5808
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5808\csv Files\20210217_MW75-5808_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5808\Spike List Files\NFA_20210217_MW75-5808_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5808\Spike List Files\NFA_20210217_MW75-5808_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5808\Spike List Files\NFA_20210217_MW75-5808_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G3\75-5808\Spike List Files\NFA_20210217_MW75-5808_12_00(000)_spike_list.csv
+
+20210217 Culture CR G4 (Chlorpyrifos oxon)/75-5809
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5809\csv Files\20210217_MW75-5809_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_12_00(000)_spike_list.csv
+
+20210217 Culture CR G4 (Chlorpyrifos oxon)/75-5810
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5810\csv Files\20210217_MW75-5810_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_12_00(000)_spike_list.csv
+
+20210217 Culture CR G4 (Chlorpyrifos oxon)/75-5811
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5811\csv Files\20210217_MW75-5811_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrifos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_12_00(000)_spike_list.csv
+
+20210303 Culture CR G1 Repeat/75-5813
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5813\csv Files\20210303_MW75-5813_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5813\Spike List Files\NFA_20210303_MW75-5813_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5813\Spike List Files\NFA_20210303_MW75-5813_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5813\Spike List Files\NFA_20210303_MW75-5813_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5813\Spike List Files\NFA_20210303_MW75-5813_12_00(000)_spike_list.csv
+
+20210303 Culture CR G1 Repeat/75-5814
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5814\csv Files\20210303_MW75-5814_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5814\Spike List Files\NFA_20210303_MW75-5814_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5814\Spike List Files\NFA_20210303_MW75-5814_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5814\Spike List Files\NFA_20210303_MW75-5814_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5814\Spike List Files\NFA_20210303_MW75-5814_12_00(000)_spike_list.csv
+
+20210303 Culture CR G1 Repeat/75-5815
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5815\csv Files\20210303_MW75-5815_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5815\Spike List Files\NFA_20210303_MW75-5815_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5815\Spike List Files\NFA_20210303_MW75-5815_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5815\Spike List Files\NFA_20210303_MW75-5815_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G1 Repeat\75-5815\Spike List Files\NFA_20210303_MW75-5815_12_00(000)_spike_list.csv
+
+20210303 Culture CR G2 Repeat/75-5816
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5816\csv Files\20210303_MW75-5816_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5816\Spike List Files\NFA_20210303_MW75-5816_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5816\Spike List Files\NFA_20210303_MW75-5816_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5816\Spike List Files\NFA_20210303_MW75-5816_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5816\Spike List Files\NFA_20210303_MW75-5816_12_00(000)_spike_list.csv
+
+20210303 Culture CR G2 Repeat/75-5817
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5817\csv Files\20210303_MW75-5817_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5817\Spike List Files\NFA_20210303_MW75-5817_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5817\Spike List Files\NFA_20210303_MW75-5817_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5817\Spike List Files\NFA_20210303_MW75-5817_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5817\Spike List Files\NFA_20210303_MW75-5817_12_00(000)_spike_list.csv
+
+20210303 Culture CR G2 Repeat/75-5818
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5818\csv Files\20210303_MW75-5818_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5818\Spike List Files\NFA_20210303_MW75-5818_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5818\Spike List Files\NFA_20210303_MW75-5818_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5818\Spike List Files\NFA_20210303_MW75-5818_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210303 Culture CR G2 Repeat\75-5818\Spike List Files\NFA_20210303_MW75-5818_12_00(000)_spike_list.csv
+
+20210317 Culture CR G5/75-8006
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8006\csv Files\20210317_MW75-8006_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8006\Spike List Files\NFA_20210317_MW75-8006_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8006\Spike List Files\NFA_20210317_MW75-8006_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8006\Spike List Files\NFA_20210317_MW75-8006_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8006\Spike List Files\NFA_20210317_MW75-8006_12_00(000)_spike_list.csv
+
+20210317 Culture CR G5/75-8007
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8007\csv Files\20210317_MW75-8007_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8007\Spike List Files\NFA_20210317_MW75-8007_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8007\Spike List Files\NFA_20210317_MW75-8007_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8007\Spike List Files\NFA_20210317_MW75-8007_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8007\Spike List Files\NFA_20210317_MW75-8007_12_00(000)_spike_list.csv
+
+20210317 Culture CR G5/75-8008
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8008\csv Files\20210317_MW75-8008_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8008\Spike List Files\NFA_20210317_MW75-8008_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8008\Spike List Files\NFA_20210317_MW75-8008_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8008\Spike List Files\NFA_20210317_MW75-8008_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G5\75-8008\Spike List Files\NFA_20210317_MW75-8008_12_00(000)_spike_list.csv
+
+20210317 Culture CR G6/75-8009
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8009\csv Files\20210317_MW75-8009_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8009\Spike List Files\NFA_20210317_MW75-8009_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8009\Spike List Files\NFA_20210317_MW75-8009_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8009\Spike List Files\NFA_20210317_MW75-8009_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8009\Spike List Files\NFA_20210317_MW75-8009_12_00(000)_spike_list.csv
+
+20210317 Culture CR G6/75-8010
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8010\csv Files\20210317_MW75-8010_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8010\Spike List Files\NFA_20210317_MW75-8010_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8010\Spike List Files\NFA_20210317_MW75-8010_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8010\Spike List Files\NFA_20210317_MW75-8010_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8010\Spike List Files\NFA_20210317_MW75-8010_12_00(000)_spike_list.csv
+
+20210317 Culture CR G6/75-8011
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8011\csv Files\20210317_MW75-8011_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8011\Spike List Files\NFA_20210317_MW75-8011_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8011\Spike List Files\NFA_20210317_MW75-8011_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8011\Spike List Files\NFA_20210317_MW75-8011_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210317 Culture CR G6\75-8011\Spike List Files\NFA_20210317_MW75-8011_12_00(000)_spike_list.csv
+
+20210331 Culture CR G7/75-8019
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8019\csv Files\20210331_MW75-8019_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8019\Spike List Files\NFA_20210331_MW75-8019_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8019\Spike List Files\NFA_20210331_MW75-8019_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8019\Spike List Files\NFA_20210331_MW75-8019_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8019\Spike List Files\NFA_20210331_MW75-8019_12_00(000)_spike_list.csv
+
+20210331 Culture CR G7/75-8020
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8020\csv Files\20210331_MW75-8020_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8020\Spike List Files\NFA_20210331_MW75-8020_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8020\Spike List Files\NFA_20210331_MW75-8020_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8020\Spike List Files\NFA_20210331_MW75-8020_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8020\Spike List Files\NFA_20210331_MW75-8020_12_00(000)_spike_list.csv
+
+20210331 Culture CR G7/75-8101
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8101\csv Files\20210331_MW75-8101_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8101\Spike List Files\NFA_20210331_MW75-8101_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8101\Spike List Files\NFA_20210331_MW75-8101_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8101\Spike List Files\NFA_20210331_MW75-8101_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G7\75-8101\Spike List Files\NFA_20210331_MW75-8101_12_00(000)_spike_list.csv
+
+20210331 Culture CR G8/75-8102
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8102\csv Files\20210331_MW75-8102_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8102\Spike List Files\NFA_20210331_MW75-8102_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8102\Spike List Files\NFA_20210331_MW75-8102_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8102\Spike List Files\NFA_20210331_MW75-8102_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8102\Spike List Files\NFA_20210331_MW75-8102_12_00(000)_spike_list.csv
+
+20210331 Culture CR G8/75-8103
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8103\csv Files\20210331_MW75-8103_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8103\Spike List Files\NFA_20210331_MW75-8103_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8103\Spike List Files\NFA_20210331_MW75-8103_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8103\Spike List Files\NFA_20210331_MW75-8103_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8103\Spike List Files\NFA_20210331_MW75-8103_12_00(000)_spike_list.csv
+
+20210331 Culture CR G8/75-8104
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8104\csv Files\20210331_MW75-8104_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8104\Spike List Files\NFA_20210331_MW75-8104_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8104\Spike List Files\NFA_20210331_MW75-8104_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8104\Spike List Files\NFA_20210331_MW75-8104_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210331 Culture CR G8\75-8104\Spike List Files\NFA_20210331_MW75-8104_12_00(000)_spike_list.csv

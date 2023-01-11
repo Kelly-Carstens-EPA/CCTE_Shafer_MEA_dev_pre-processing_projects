@@ -1,0 +1,13 @@
+On 11/15/2019, Katie PF send me chemical sample inventory file at this link
+L:\Lab\NCCT_ToxCast\Mahmoud\MEA_developmental\Chemical_Sample_Inventory\HTP Chem Log.xlsx
+This file contains the HTP_LOG information, but does not contain the SPIDs.
+
+I found another copy of the file here: L:\Lab\NHEERL_Mundy\DNT chemicals\HTP Chem LOG.xlsx. This one includes CASN, but not spids. Created Bill Mundy, last modified by Theresa F.
+
+On 2/14/2020, I apparently discovered the file "Copy of HTP_Chem_Log_cg2.xlsx" in the Toxcast_data HCI folder. (see email to Tim titled '"missing' DNT reference compounds update"). This file contains the SPIDs!
+I have saved a copy of this file in "Sample ID", and I save a copy of the first page, "HTP_LOG", as a separate csv file in the folder "Frank2017"
+
+I found another copy of this file here, with spids
+L:\Lab\Toxcast_Data\toxcast_data\files\nheerl_mundy_hci\chem_map\Copy of HTP_Chem_Log_cg2.xlsx. It apppears to be identical to the file I sent in the email 2/14/2020.
+
+- Amy C 10/23/2020

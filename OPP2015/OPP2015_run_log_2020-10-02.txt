@@ -1,0 +1,151 @@
+Output from the script run_me_OPP2015.R
+Date Ran: 2020-10-02 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                                          dataset_title 
+                                                                                                              "OPP2015" 
+                                                                                           default_ControlTreatmentName 
+                                                                                                                 "DMSO" 
+                                                                                                    pause_between_steps 
+                                                                                                                 "TRUE" 
+                                                                                                        root_output_dir 
+                                                         "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                      save_notes_graphs 
+                                                                                                                 "TRUE" 
+                                                                                                            scripts.dir 
+                       "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                             spid_sheet 
+                                                                                                  "Mundy corrected map" 
+                                                                                                           spidmap_file 
+"L:/Lab/NHEERL_MEA/PIP3 - Project/Data/Organophosphates/Sample ID Data/EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx" 
+
+- Select files for files_log:
+1 files already exist. ( OPP2015_files_log_2020-08-28.txt )
+- Create h5 files:
+60 files already exist.
+- Calculate the components:
+15 files already exist.
+- Calculate the Mutual Information:
+15 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( OPP2015_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( OPP2015_cytotox.csv )
+'source_steps.R' is complete.
+long-format data is ready.
+Checking conc's:
+
+All compounds are assumed to have conc's 0.1 0.3 1 3 10 30 100 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+All compounds have the expected concetration-corrected values
+
+Final Checks
+Number of cultures dates: 5
+Range of culture dates: 20151209 20160413
+Number of plates tested: 15
+Number of compounds tested: 27
+Any NA rvals?    wllq    N
+1:    1 5391
+2:    0   74
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 62289
+2:    0   351
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn                min median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB                  0  29276  51496      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH                  0      1    3.2      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number                  0     94    131      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12                  0     16     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5                  0      3     14      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7                  0     12     16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9                  0     16     16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean                  0    3.6    122      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12                0.1   0.35    7.4     58
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5                0.1   0.42     16    342
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7               0.12   0.46     19     83
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9               0.16   0.54     40     66
+13:                                CCTE_Shafer_MEA_dev_burst_rate                  0     22     66      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12                  0    5.9     14      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5                  0   0.21     12      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7                  0    1.8     12      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9                  0    2.9    9.8      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number                  0     84    126      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12                  0     16     16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5                  0      1     12      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7                  0     10     16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9                  0     15     16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean            -0.0074    1.8    3.2      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12            -0.0019   0.39   0.73      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5            -0.0051 0.0028   0.28      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7            -0.0029   0.15   0.42      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9            -0.0021   0.32   0.55      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean                  0     10     28      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12                  0    2.2    5.6      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5                  0   0.38    6.7      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7                  0   0.93    4.4      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9                  0    1.5    4.6      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean                  0    161   1723      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12                1.9    5.2    186     60
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5                 26     90    532    539
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7                6.3     42    812    103
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9                2.5     19    334     69
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean                  0    211    665      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12                1.5     12     73     58
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5                1.5     50    109    342
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7                2.6     37    124     83
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9               0.86     23     73     66
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm                  0   0.06   0.17      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12                  0  0.019   0.05      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5                  0      0 0.0012      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7                  0 0.0017  0.016      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9                  0  0.011  0.036      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std                  0   0.44      1      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12              0.011  0.079   0.24     60
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5 0.0000000000000005  0.024  0.082    539
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7             0.0041  0.042   0.17    103
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9             0.0032  0.096   0.25     69
+53:                      CCTE_Shafer_MEA_dev_network_spike_number                  0    424   1578      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12                  0    158    472      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5                  0      0     34      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7                  0     19    141      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9                  0     41    357      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak                  0     77    130      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12                6.4     13     16     60
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5                  5    9.1     16    508
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7                  5     13     16     98
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9                5.2     13     16     68
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval                  0   0.28   0.87      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12             0.0085  0.021   0.16     58
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5              0.014  0.067    0.2    342
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7              0.015  0.038   0.19     83
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9              0.012  0.027   0.17     66
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent                  0    467    718      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12                  0     82     94      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5                  0    5.5    100      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7                  0     60     92      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9                  0     77     99      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean                  0    294    786      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12                 10     51    125     60
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5                  8     14     68    508
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7                  9     43    151     98
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9                8.6     51    139     68
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent                  0     99    244      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12                  0     24     78      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5                  0      0     25      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7                  0    9.1     37      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9                  0     15     54      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean                  0    1.2    2.6      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12              0.058   0.16   0.35     60
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5              0.057   0.12   0.25    508
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7              0.058    0.2   0.44     98
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9               0.05   0.21   0.46     68
+                                                             acsn                min median    max num_NA

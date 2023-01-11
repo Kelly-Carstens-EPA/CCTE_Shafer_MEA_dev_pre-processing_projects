@@ -1,0 +1,357 @@
+Output from the script run_me_Brown2014.R
+Date: 2020-10-22 
+USER INPUT settings:
+                                                                                                       dataset_title 
+                                                                                                         "Brown2014" 
+                                                                                        default_ControlTreatmentName 
+                                                                                                              "DMSO" 
+                                                                                                 pause_between_steps 
+                                                                                                              "TRUE" 
+                                                                                                     root_output_dir 
+                                                      "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                   save_notes_graphs 
+                                                                                                              "TRUE" 
+                                                                                                         scripts.dir 
+                    "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                          spid_sheet 
+                                                                                                                 "1" 
+                                                                                                        spidmap_file 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES202_EPA-Shafer_103_20191218_key.xlsx" 
+
+- Select files for files_log:
+2 files already exist.
+- Create h5 files:
+23 files already exist.
+- Calculate the components:
+6 files already exist.
+- Calculate the Mutual Information:
+6 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( Brown2014_AUC.csv )
+Starting AUC preparations...
+Got 6 parameter csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Brown2014/prepared_data 
+Got 6 MI csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Brown2014/All_MI 
+
+Updating wllq...
+The following data rows will be removed because wllq==0 and DIV is not 'all':
+Empty data.table (0 rows and 12 cols): date,Plate.SN,well,DIV,full_id,trt...
+Wllq summary:
+   wllq                                                 wllq_notes number_of_well_recordings
+1:    1                                                                                 1080
+2:    0 Not included in published data because N=1 for this dose;                          8
+3:    0                                                 misdosed;                          4
+4:    0                             possibly misdosed with Bis 1;                         12
+        date   Plate.SN well                  trt  dose DIV wllq                                                 wllq_notes
+ 1: 20140205  MW1007-26   C2          Domoic Acid 3e-04  12    0 Not included in published data because N=1 for this dose; 
+ 2: 20140205  MW1007-26   C2          Domoic Acid 3e-04   5    0 Not included in published data because N=1 for this dose; 
+ 3: 20140205  MW1007-26   C2          Domoic Acid 3e-04   7    0 Not included in published data because N=1 for this dose; 
+ 4: 20140205  MW1007-26   C2          Domoic Acid 3e-04   9    0 Not included in published data because N=1 for this dose; 
+ 5: 20140205  MW1007-26   C3          Domoic Acid 1e-03  12    0 Not included in published data because N=1 for this dose; 
+ 6: 20140205  MW1007-26   C3          Domoic Acid 1e-03   5    0 Not included in published data because N=1 for this dose; 
+ 7: 20140205  MW1007-26   C3          Domoic Acid 1e-03   7    0 Not included in published data because N=1 for this dose; 
+ 8: 20140205  MW1007-26   C3          Domoic Acid 1e-03   9    0 Not included in published data because N=1 for this dose; 
+ 9: 20140716  MW1007-26   B7 Bisindolymaleimide 1 0e+00  12    0                                                 misdosed; 
+10: 20140716  MW1007-26   B7 Bisindolymaleimide 1 0e+00   5    0                                                 misdosed; 
+11: 20140716  MW1007-26   B7 Bisindolymaleimide 1 0e+00   7    0                                                 misdosed; 
+12: 20140716  MW1007-26   B7 Bisindolymaleimide 1 0e+00   9    0                                                 misdosed; 
+13: 20140730 MW1007-104   E3           Glyphosate 3e-01  12    0                             possibly misdosed with Bis 1; 
+14: 20140730 MW1007-104   E3           Glyphosate 3e-01   5    0                             possibly misdosed with Bis 1; 
+15: 20140730 MW1007-104   E3           Glyphosate 3e-01   7    0                             possibly misdosed with Bis 1; 
+16: 20140730 MW1007-104   E4           Glyphosate 1e+00  12    0                             possibly misdosed with Bis 1; 
+17: 20140730 MW1007-104   E4           Glyphosate 1e+00   5    0                             possibly misdosed with Bis 1; 
+18: 20140730 MW1007-104   E4           Glyphosate 1e+00   7    0                             possibly misdosed with Bis 1; 
+19: 20140730 MW1007-104   E5           Glyphosate 3e+00  12    0                             possibly misdosed with Bis 1; 
+20: 20140730 MW1007-104   E5           Glyphosate 3e+00   5    0                             possibly misdosed with Bis 1; 
+21: 20140730 MW1007-104   E5           Glyphosate 3e+00   7    0                             possibly misdosed with Bis 1; 
+22: 20140730 MW1007-104   E6           Glyphosate 1e+01  12    0                             possibly misdosed with Bis 1; 
+23: 20140730 MW1007-104   E6           Glyphosate 1e+01   5    0                             possibly misdosed with Bis 1; 
+24: 20140730 MW1007-104   E6           Glyphosate 1e+01   7    0                             possibly misdosed with Bis 1; 
+        date   Plate.SN well                  trt  dose DIV wllq                                                 wllq_notes
+    meanfiringrate nAE
+ 1:       1.852848  16
+ 2:       1.058568  10
+ 3:       2.593506  16
+ 4:       2.092251  16
+ 5:       0.954445  15
+ 6:       1.921412   4
+ 7:       1.063585  14
+ 8:       1.059570  15
+ 9:       0.498401   9
+10:       0.000000   0
+11:       0.000000   0
+12:       0.000000   0
+13:       1.930856  13
+14:       0.426121   2
+15:       0.750158  15
+16:       1.831182  16
+17:       0.339341   5
+18:       0.827048  15
+19:       0.851876  16
+20:       0.000000   0
+21:       1.097570  10
+22:       1.023556  15
+23:       0.000000   0
+24:       0.415931   3
+    meanfiringrate nAE
+
+Checking for any DIV other than 5 7 9 12 ...
+
+Checking that every plate has a recording for DIV 5 7 9 12 ...
+20140730_MW1007-104 
+No plates found that were ran on the same date as 20140730_MW1007-104 and tested the same compounds.
+Will use all plates in data set.
+Estimating values for DIV 9 on 20140730_MW1007-104 from the plates 20140205_MW1007-26 20140212_MW1007-27 20140402_MW1007-27 20140423_MW1007-38 20140716_MW1007-26 
+Multiple DIV missing for
+Empty data.table (0 rows and 8 cols): date,Plate.SN,well,DIV,trt,dose...
+Wllq set to 0 for these wells.
+
+Brown2014_AUC.csv is ready
+
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( Brown2014_cytotox.csv )
+'source_steps.R' is complete.
+long-format data is ready.
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140205_MW1007-26      DMSO    1    1    0
+2: 20140205_MW1007-26      DMSO    1    8    0
+3: 20140205_MW1007-26      DMSO    3    1    0
+4: 20140205_MW1007-26      DMSO    3    8    0
+5: 20140205_MW1007-26      DMSO    6    1    0
+6: 20140205_MW1007-26      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140212_MW1007-27      DMSO    1    1    0
+2: 20140212_MW1007-27      DMSO    1    8    0
+3: 20140212_MW1007-27      DMSO    3    1    0
+4: 20140212_MW1007-27      DMSO    3    8    0
+5: 20140212_MW1007-27      DMSO    6    1    0
+6: 20140212_MW1007-27      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140402_MW1007-27      DMSO    1    1    0
+2: 20140402_MW1007-27      DMSO    1    8    0
+3: 20140402_MW1007-27      DMSO    3    1    0
+4: 20140402_MW1007-27      DMSO    3    8    0
+5: 20140402_MW1007-27      DMSO    6    1    0
+6: 20140402_MW1007-27      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140423_MW1007-38      DMSO    1    1    0
+2: 20140423_MW1007-38      DMSO    1    8    0
+3: 20140423_MW1007-38      DMSO    3    1    0
+4: 20140423_MW1007-38      DMSO    3    8    0
+5: 20140423_MW1007-38      DMSO    6    1    0
+6: 20140423_MW1007-38      DMSO    6    8    0
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140716_MW1007-26      DMSO    1    1    0
+2: 20140716_MW1007-26      DMSO    3    1    0
+3: 20140716_MW1007-26      DMSO    4    1    0
+4: 20140716_MW1007-26      DMSO    6    1    0
+Control treatment will be updated to Water for the following wells:
+                  apid treatment rowi coli conc
+1: 20140730_MW1007-104      DMSO    2    1    0
+2: 20140730_MW1007-104      DMSO    3    1    0
+3: 20140730_MW1007-104      DMSO    5    1    0
+4: 20140730_MW1007-104      DMSO    6    1    0
+
+
+Final Checks
+Number of cultures dates: 6
+Range of culture dates: 20140205 20140730
+Number of plates tested: 6
+Number of compounds tested: 6
+Any NA rvals?    wllq    N
+1:    1 3111
+2:    0   34
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 22102
+2:    0   258
+Number of unique acsn's present: 86 
+The following plates don't have the expected number of points (48):
+                 apid AB MEA_pts
+1: 20140716_MW1007-26 34      34
+                  apid AB MEA_pts
+1: 20140730_MW1007-104 34        
+
+Apid/acsn pairs without 6 control wells:
+                                                       acsn                apid  N
+  1:                                 CCTE_Shafer_MEA_dev_AB  20140205_MW1007-26 12
+  2:                   CCTE_Shafer_MEA_dev_burst_rate_DIV12  20140205_MW1007-26 12
+  3:                    CCTE_Shafer_MEA_dev_burst_rate_DIV5  20140205_MW1007-26 12
+  4:                    CCTE_Shafer_MEA_dev_burst_rate_DIV7  20140205_MW1007-26 12
+  5:                    CCTE_Shafer_MEA_dev_burst_rate_DIV9  20140205_MW1007-26 12
+ ---                                                                              
+512: CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 20140730_MW1007-104  8
+513:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 20140730_MW1007-104  8
+514:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 20140730_MW1007-104  8
+515:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 20140730_MW1007-104  8
+516:       CCTE_Shafer_MEA_dev_correlation_coefficient_mean 20140730_MW1007-104  8
+
+Range of rval's by acsn:
+                                                             acsn     min   median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB       0    49382  60339      0
+ 2:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       69    136      0
+ 3:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       15     16      0
+ 4:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        1     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        6     16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0       13     16      0
+ 7:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      3.5    127      0
+ 8:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.13     0.36    3.7     31
+ 9:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.15     0.65    8.7    187
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.11     0.68     28     74
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.16      0.6     50     37
+12:                                CCTE_Shafer_MEA_dev_burst_rate       0       13     57      0
+13:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      3.4     16      0
+14:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0     13      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0        1    8.2      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0      1.9    5.4      0
+17:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       58    134      0
+18:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       14     16      0
+19:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0     15      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        3     16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0       12     16      0
+22:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0055      1.2    3.3      0
+23:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12       0     0.37   0.69      0
+24:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0037        0   0.24      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0019    0.023   0.34      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0048     0.22   0.56      0
+27:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      7.3     22      0
+28:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      1.3    4.4      0
+29:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0     0.21    3.1      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.75    6.2      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0     0.96    4.6      0
+32:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      161   1423      0
+33:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     1.7      8.2    126     37
+34:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      64      105    214    239
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7      20       56    659    114
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     3.3       27    179     42
+37:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      204    487      0
+38:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     3.9       20     78     31
+39:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.4       33    108    187
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.94       41    108     74
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     2.8       37     97     37
+42:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0     0.03   0.11      0
+43:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0    0.012  0.034      0
+44:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.0013      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000021 0.0091      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0   0.0032  0.022      0
+47:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.26    1.1      0
+48:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12   0.011    0.053   0.25     37
+49:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5   0.014     0.03  0.074    239
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.044   0.12    114
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9  0.0092    0.067   0.35     42
+52:                      CCTE_Shafer_MEA_dev_network_spike_number       0      269    938      0
+53:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       89    519      0
+54:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0     13      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        3     45      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0       28    271      0
+57:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       58    124      0
+58:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12     6.4       12     16     37
+59:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     6.5      8.5     16    236
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       12     16    106
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       12     16     41
+62:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.27   0.95      0
+63:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0092    0.023   0.13     31
+64:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.031    0.094   0.25    187
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.017    0.059    0.2     74
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9   0.013    0.034   0.16     37
+67:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      360    673      0
+68:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       74     98      0
+69:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0     84      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       40     99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       65     96      0
+72:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      183    887      0
+73: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12      16       49    157     37
+74:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       9       12     99    236
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       27    129    106
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9      10       42    133     41
+77:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       81    195      0
+78:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       28     58      0
+79:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0     10      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0     0.98     42      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0       13     50      0
+82:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0     0.79    2.6      0
+83:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.073     0.14   0.36     37
+84:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5   0.073     0.13   0.24    236
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.079      0.2   0.49    106
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.075     0.17   0.46     41
+                                                             acsn     min   median    max num_NA
+[1] "20140716_MW1007-26"  "20140730_MW1007-104"
+Empty data.table (0 rows and 3 cols): apid,acsn,N
+Empty data.table (0 rows and 49 cols): date,Plate.SN,well,DIV,trt,dose.org...
+       date  Plate.SN well DIV           trt dose.org units.org meanfiringrate.org burst.per.min.org mean.isis.org per.spikes.in.burst.org mean.dur.org mean.IBIs.org
+1: 20140212 MW1007-27   A6   5 Acetaminophen       10        uM            0.88259           1.41000     0.1263526                 33.7180     0.712000      18.87000
+2: 20140212 MW1007-27   A6   7 Acetaminophen       10        uM            2.06092           3.96000     0.1369859                 42.6503     1.164667       6.75967
+3: 20140212 MW1007-27   A6   9 Acetaminophen       10        uM            1.30131           2.86714     0.0553531                 59.7300     0.885231      39.60462
+4: 20140212 MW1007-27   A6  12 Acetaminophen       10        uM            1.69752           4.88250     0.0260708                 67.5105     0.327733      20.90020
+5: 20140212 MW1007-27   A7   5 Acetaminophen       30        uM            0.00000           0.00000            NA                  0.0000           NA            NA
+6: 20140212 MW1007-27   A7   7 Acetaminophen       30        uM            1.13244           2.39143     0.0879805                 62.0630     1.084000       2.50200
+7: 20140212 MW1007-27   A7   9 Acetaminophen       30        uM            1.33144           2.94400     0.0554723                 62.3955     0.628000      44.77133
+8: 20140212 MW1007-27   A7  12 Acetaminophen       30        uM            2.12821           5.18625     0.0316988                 72.6259     0.441875      16.13519
+   nAE.org nABE.org ns.n.org ns.peak.m.org ns.durn.m.org ns.percent.of.spikes.in.ns.org ns.mean.insis.org ns.durn.sd.org ns.mean.spikes.in.ns.org       r.org  cv.time
+1:       2        1        0            NA            NA                       0.000000                NA             NA                       NA 0.000223331 1.626740
+2:       6        3        2       6.50000      0.106042                       0.176897         121.20000      0.0385962                  10.0000 0.009161935 0.878139
+3:      14       13       36       9.11111      0.162552                       4.762769          23.10429      0.0867206                  21.8611 0.088840864 0.756481
+4:      16       15      276      10.28623      0.107241                      35.503775           3.24764      0.0488830                  31.6884 0.315496310 0.377746
+5:       0        0        0            NA            NA                       0.000000                NA             NA                       NA 0.000000000 0.000000
+6:       7        1        0            NA            NA                       0.000000                NA             NA                       NA 0.001048585 0.861574
+7:      15       15       51       7.62745      0.121202                       5.848180          17.64000      0.0664840                  20.7255 0.120529434 0.702615
+8:      16       16      345      10.57681      0.100356                      43.313690           2.60363      0.0525582                  38.7739 0.378405754 0.342586
+   cv.network                         file.name.org     treatment dose.new units.new                                                      file.name.new
+1:   0.986285    ON_20140212_MW1007-27_DIV05_001.h5 Acetaminophen       30        uM  ON_20140212_MW1007-27_05_00(000)_Spike Detector (8 x STD)(001).h5
+2:   1.593788    ON_20140212_MW1007-27_DIV07_001.h5 Acetaminophen       30        uM  ON_20140212_MW1007-27_07_00(000)_Spike Detector (8 x STD)(000).h5
+3:   1.322769    ON_20140212_MW1007-27_DIV09_001.h5 Acetaminophen       30        uM  ON_20140212_MW1007-27_09_00(000)_Spike Detector (8 x STD)(000).h5
+4:   0.833148 ON_20140212_MW1007-27_DIV12_00_001.h5 Acetaminophen       30        uM ON_20140212_MW1007-27_012_00(000)_Spike Detector (8 x STD)(000).h5
+5:   0.000000    ON_20140212_MW1007-27_DIV05_001.h5 Acetaminophen       10        uM  ON_20140212_MW1007-27_05_00(000)_Spike Detector (8 x STD)(001).h5
+6:   2.066425    ON_20140212_MW1007-27_DIV07_001.h5 Acetaminophen       10        uM  ON_20140212_MW1007-27_07_00(000)_Spike Detector (8 x STD)(000).h5
+7:   1.377759    ON_20140212_MW1007-27_DIV09_001.h5 Acetaminophen       10        uM  ON_20140212_MW1007-27_09_00(000)_Spike Detector (8 x STD)(000).h5
+8:   0.802538 ON_20140212_MW1007-27_DIV12_00_001.h5 Acetaminophen       10        uM ON_20140212_MW1007-27_012_00(000)_Spike Detector (8 x STD)(000).h5
+   meanfiringrate.new burst.per.min.new mean.isis.new per.spikes.in.burst.new mean.dur.new mean.IBIs.new nAE.new nABE.new ns.n.new ns.peak.m.new ns.durn.m.new
+1:           0.970012           1.62000     0.1283476                 37.5000     0.767000       15.5170       2        1        0            NA            NA
+2:           1.589862           2.85429     0.1394013                 38.4750     1.112000       11.1137       7        3        2       7.00000      0.098750
+3:           1.368413           2.97429     0.0515644                 60.8671     0.863308       39.6978      14       13       35       9.22857      0.168232
+4:           1.796598           4.96875     0.0263846                 66.3376     0.339500       22.4910      16       16      283      10.43816      0.106242
+5:           0.000000           0.00000            NA                  0.0000           NA            NA       0        0        0            NA            NA
+6:           1.479464           2.81000     0.0884880                 65.4060     1.238000        2.3740       6        1        0            NA            NA
+7:           1.438149           3.10800     0.0524988                 65.0384     0.651933       38.5980      15       15       63       7.26984      0.119620
+8:           2.317015           5.38875     0.0306454                 74.1077     0.455562       14.9351      16       16      338      10.89941      0.101132
+   ns.percent.of.spikes.in.ns.new ns.mean.insis.new ns.durn.sd.new ns.mean.spikes.in.ns.new      r.new          mi wllq wllq_notes
+1:                       0.000000                NA             NA                       NA 0.00526673 4.50276e-06    1           
+2:                       0.226981         121.20000      0.0282843                  11.5000 0.00216806 3.56482e-06    1           
+3:                       4.884809          23.78382      0.0983137                  24.1714 0.09337436 1.46083e-03    1           
+4:                      34.888485           3.15053      0.0479095                  31.8940 0.32246487 1.31830e-02    1           
+5:                       0.000000                NA             NA                       NA 0.00000000 0.00000e+00    1           
+6:                       0.000000                NA             NA                       NA 0.00314906 1.75430e-05    1           
+7:                       6.598776          14.16694      0.0629613                  20.3651 0.13129641 2.35057e-03    1           
+8:                      42.652480           2.63531      0.0498394                  42.1036 0.39268228 2.04797e-02    1           
+Empty data.table (0 rows and 49 cols): date,Plate.SN,well,DIV,trt,dose.org...
+integer(0)
+integer(0)
+       date  Plate.SN well DIV        trt dose.org units.org meanfiringrate.org burst.per.min.org mean.isis.org per.spikes.in.burst.org mean.dur.org mean.IBIs.org
+1: 20140205 MW1007-26   E6   9 Mevastatin       10        uM            6.55844              0.03            NA                   0.000           NA            NA
+2: 20140212 MW1007-27   E5   9 Mevastatin        3        uM            7.55518              6.24      0.124987                  82.713        7.382          2.11
+   nAE.org nABE.org ns.n.org ns.peak.m.org ns.durn.m.org ns.percent.of.spikes.in.ns.org ns.mean.insis.org ns.durn.sd.org ns.mean.spikes.in.ns.org       r.org  cv.time
+1:       2        0        0            NA            NA                              0                NA             NA                       NA  0.00127238 0.472614
+2:       1        1        0            NA            NA                              0                NA             NA                       NA -0.00119316 1.009000
+   cv.network                      file.name.org  treatment dose.new units.new                                                     file.name.new meanfiringrate.new
+1:    1.38507 ON_20140205_MW1007-26_DIV09_001.h5 Mevastatin       10        uM ON_20140205_MW1007-26_09_00(000)_Spike Detector (8 x STD)(000).h5            4.60340
+2:    2.63817 ON_20140212_MW1007-27_DIV09_001.h5 Mevastatin        3        uM ON_20140212_MW1007-27_09_00(000)_Spike Detector (8 x STD)(000).h5            3.64278
+   burst.per.min.new mean.isis.new per.spikes.in.burst.new mean.dur.new mean.IBIs.new nAE.new nABE.new ns.n.new ns.peak.m.new ns.durn.m.new
+1:              0.02            NA                    0.00           NA            NA       3        0        0            NA            NA
+2:              3.36      0.129232                   75.19        6.064          2.78       2        1        0            NA            NA
+   ns.percent.of.spikes.in.ns.new ns.mean.insis.new ns.durn.sd.new ns.mean.spikes.in.ns.new        r.new          mi wllq wllq_notes
+1:                              0                NA             NA                       NA  0.000731802 1.09729e-06    1           
+2:                              0                NA             NA                       NA -0.001870084 0.00000e+00    1           
+       date  Plate.SN well DIV                  trt dose.org dose.new nAE.org nAE.new
+1: 20140205 MW1007-26   B5   5 Bisindolymaleimide 1        1        1       2       6
+2: 20140205 MW1007-26   B6   9 Bisindolymaleimide 1        3        3       9      12
+3: 20140205 MW1007-26   B8   7 Bisindolymaleimide 1        0        0       7      10
+4: 20140205 MW1007-26   F8   5 Sodium Orthovanadate        0        0       5       8
+5: 20140212 MW1007-27   B6  12 Bisindolymaleimide 1        3        3       7      10
+       date  Plate.SN well DIV        trt dose.org dose.new meanfiringrate.org meanfiringrate.new
+1: 20140205 MW1007-26   E6   9 Mevastatin       10       10            6.55844            4.60340
+2: 20140212 MW1007-27   E5   9 Mevastatin        3        3            7.55518            3.64278

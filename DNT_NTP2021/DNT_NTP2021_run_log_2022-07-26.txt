@@ -1,0 +1,424 @@
+Output from the script run_me_DNT_NTP2021.R
+Date Ran: 2022-07-26 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                                                       dataset_title 
+                                                                                                                       "DNT_NTP2021" 
+                                                                                                        default_ControlTreatmentName 
+                                                                                                                              "DMSO" 
+                                                                                                                   get_new_files_log 
+                                                                                                                             "FALSE" 
+                                                                                                                 pause_between_steps 
+                                                                                                                              "TRUE" 
+                                                                                                                         project.dir 
+                                                                                          "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021" 
+                                                                                                                     root_output_dir 
+                                                                      "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                                   save_notes_graphs 
+                                                                                                                              "TRUE" 
+                                                                                                                         scripts.dir 
+                                    "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                                          spid_sheet 
+                                                                                                                     "Chemical List" 
+                                                                                                                        spidmap_file 
+"L:/Lab/NHEERL_Mundy/Project - DNT Test Set 2021 NTP/Coded Plate Map - Plate No. 4001207126 DNT HEI EPA SHIP CHEM14214 MRI3110.xlsx" 
+                                                                                                         update_concs_without_prompt 
+                                                                                                                             "FALSE" 
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 1 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 A3 prrecipitates in media (need to be repeated)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 2 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 A12 precipitates in media, need to be repeated on lower concentration
+7126 A9 turns the media yellow - may be acidic
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210929_NFA_DNT 2021_Group 3 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 B2 precipitates in media, had a different dilution scheme
+-5ul innto 495ul media, then 50ul into 450ul media in well
+will be repeated with lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210929_NFA_DNT 2021_Group 4 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 B11 precipitates in media, had a different dilution scheme
+-5ul innto 495ul media, then 50ul into 450ul media in well
+Chemical 7126 B12 is yellow in color.
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211027_NFA_DNT 2021_Group 20 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 H10 will be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211110_NFA_DNT 2021_Group 5 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211110_NFA_DNT 2021_Group 6 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 C11 will be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211124_NFA_DNT 2021_Group 7 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 D4 and 7126 D5 will be repeated at a lower concentration.
+Column 4 and 5 on Plate 1 (78-6214) are switched - dosing error (Plate Map is updated)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211124_NFA_DNT 2021_Group 8 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X All wells from plate 78-6217
+-Reasoning : CTB incubation time is less than one hour
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 D7 need to be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211208_NFA_DNT 2021_Group 10 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211208_NFA_DNT 2021_Group 9 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 E3 may be needed to be repeated on a lower concentration 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 11 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 F1, 7126 F2 need to be repeated on a lower concentration 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 12 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 F8 need to be repeated on a lower concentration
+7126 F12 may be needed to be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220223_NFA_DNT 2021_Group 13 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 G3 may need to be repeated at a lower concentration.
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220223_NFA_DNT 2021_Group 14 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220316_NFA_DNT 2021_Group 15 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220316_NFA_DNT 2021_Group 16 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 H7 needs to be repeated (dosing error) 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220330_NFA_DNT 2021_Group 19 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X MW7118 A8 (cell debris)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 17 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 18 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X 78-7205 Well D7 (cell debris)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220601_NFA_DNT 2021_Reps 2 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220601_NFA_PFAS+ G3 & DNT Reps 1 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X Plate 78-7217 for 7126 C11 0.00015 uM
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220615_NFA_DNT 2021_Reps 3 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X 78-7220 A1, 78-7220 B1, 78-7220 D4
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220615_NFA_DNT 2021_Reps 4 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/Template Folder 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+
+- Select files for files_log:
+3 files already exist.
+- Create h5 files:
+288 files already exist.
+- Calculate the components:
+72 files already exist.
+- Calculate the Mutual Information:
+72 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( DNT_NTP2021_AUC.csv )
+Starting AUC preparations...
+Got 72 parameter csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/prepared_data 
+Got 72 MI csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/DNT_NTP2021/All_MI 
+
+Updating wllq...
+The following data rows will be REMOVED from the AUC analysis because wllq==0 and DIV is not 'all':
+Empty data.table (0 rows and 12 cols): date,Plate.SN,well,DIV,full_id,trt...
+Wllq update summary:
+    wllq_by_well
+ 1:            1
+ 2:            1
+ 3:            0
+ 4:            0
+ 5:            0
+ 6:            0
+ 7:            0
+ 8:            0
+ 9:            0
+10:            0
+11:            0
+12:            0
+13:            0
+                                                                                                                                                                   wllq_notes_by_well
+ 1:                                                                                                                                                                                  
+ 2:                                                                                                                                                  Hot water shut off in building; 
+ 3:  (7126 C1) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ 4:  (7126 C2) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ 5:  (7126 C3) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ 6:  (7126 C4) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ 7:  (7126 C5) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ 8:  (7126 C6) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ 9:  (7126 C7) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+10:  (7126 C8) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+11:  (7126 C9) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+12: (7126 C10) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+13: (7126 C12) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+    number_of_well_recordings
+ 1:                      8668
+ 2:                      4232
+ 3:                        84
+ 4:                        84
+ 5:                        84
+ 6:                        84
+ 7:                        84
+ 8:                        84
+ 9:                        84
+10:                        84
+11:                        84
+12:                        84
+13:                        84
+         date  Plate.SN well      trt       dose DIV wllq_by_well
+  1: 20211110 MW78-6208   A1  7126 C1   0.100142  12            0
+  2: 20211110 MW78-6208   A1  7126 C1   0.100142   5            0
+  3: 20211110 MW78-6208   A1  7126 C1   0.100142   7            0
+  4: 20211110 MW78-6208   A1  7126 C1   0.100142   9            0
+  5: 20211110 MW78-6208   A3  7126 C1   0.300426  12            0
+ ---                                                             
+920: 20211110 MW78-6213   F7 7126 C10  30.012900   9            0
+921: 20211110 MW78-6213   F8 7126 C10 100.043000  12            0
+922: 20211110 MW78-6213   F8 7126 C10 100.043000   5            0
+923: 20211110 MW78-6213   F8 7126 C10 100.043000   7            0
+924: 20211110 MW78-6213   F8 7126 C10 100.043000   9            0
+                                                                                                                                                                    wllq_notes_by_well
+  1:  (7126 C1) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+  2:  (7126 C1) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+  3:  (7126 C1) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+  4:  (7126 C1) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+  5:  (7126 C1) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+ ---                                                                                                                                                                                  
+920: (7126 C10) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+921: (7126 C10) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+922: (7126 C10) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+923: (7126 C10) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+924: (7126 C10) Sample has >= 4 noisy endpoints and platewise median of controls < 2SD below mean of all NFA data for key general activity endpoints; Hot water shut off in building; 
+     meanfiringrate nAE
+  1:       0.000000   0
+  2:       0.000000   0
+  3:       0.000000   0
+  4:       0.000000   0
+  5:       1.420910  11
+ ---                   
+920:       0.864815   3
+921:       0.000000   0
+922:       0.000000   0
+923:       0.000000   0
+924:       0.000000   0
+
+Checking for any DIV other than 5 7 9 12 ...
+
+Checking that every plate has a recording on DIV 5 7 9 12 ...
+Every well has data from DIVs 5 7 9 12 
+
+DNT_NTP2021_AUC.csv is ready
+
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( DNT_NTP2021_cytotox.csv )
+'source_steps.R' is complete.
+cytotox data does not have units. Will fill with NA
+long-format data is ready.
+
+Final Checks
+Number of cultures dates: 13
+Range of culture dates: 20210915 20220615
+Number of plates tested: 72
+Number of compounds tested: 117
+NA or infinite rvals for AUC or cytotoxicity endpoints:
+   wllq  N
+1:    0 48
+
+Wllq counts for all data points:
+       wllq      N
+1:        1 259334
+2: evaluate  13831
+3:        0  22026
+Number of unique acsn's present: 87  (expect 2 cyto + 17 AUC + 4*17 DIV = 87)
+The following plates don't have the expected number of points (48):
+                 apid AB LDH MEA_pts
+1: 20220601_MW78-7214 27  27      27
+                 apid AB LDH MEA_pts
+1: 20220601_MW78-7215 27  27        
+                 apid AB LDH MEA_pts
+1: 20220601_MW78-7216 27  27        
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min   median   max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB      82    25444 44240      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0     0.72   1.9      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       73   136      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       15    16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        1    16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        7    16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0       14    16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      5.5   253      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12   0.071     0.85    41    488
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.15      0.7   101   2117
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.11     0.86    74   1083
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9   0.089     0.96    78    632
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0      9.4    44      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      2.1    11      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0    15      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0     0.68    14      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0      1.2    12      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       39   136      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       15    16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0    16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        2    16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0        5    16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean  -0.013     0.84     4      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12  -0.004     0.32  0.81      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0062        0   0.2      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0048   0.0053  0.49      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9  -0.006     0.13  0.64      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      8.7    36      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      1.6    11      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0     0.17   8.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.96   8.1      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0      1.2   5.7      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      552  2483      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     0.2       34   726    512
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      54      165   690   2569
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     0.2      136   821   1695
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     1.3      127   769    793
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      213   616      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.1       32   125    488
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5    0.85       40   126   2117
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.92       36   121   1083
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.1       41   117    632
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.023  0.21      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0    0.011 0.076      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.005      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000012 0.019      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0   0.0017 0.036      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.32   2.8      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12  0.0024    0.087  0.73    512
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5       0    0.055  0.47   2569
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.045  0.44   1695
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0    0.084  0.68    793
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0       48   562      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       21   326      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0    17      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        1    63      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0        4    90      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       64   136      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5       15    16    508
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5       5       14    16   2503
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       14    16   1487
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       15    16    677
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.33   1.2      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0062    0.026   0.2    488
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.024    0.083  0.25   2117
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.013    0.078  0.27   1083
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9  0.0099    0.044  0.24    632
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      289   737      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       80   100      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0   100      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       23    99      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       47   100      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      456  1101      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12       8      101   228    508
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       8       38   157   2503
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       77   197   1487
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9       8      105   219    677
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       27   279      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       10    63      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0    34      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0    0.038    48      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0      3.1    47      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0      1.7   6.2      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.055      0.3   1.5    508
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5    0.05     0.34  0.82   2503
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7    0.05     0.36  0.99   1487
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9    0.05     0.44   1.4    677
+                                                             acsn     min   median   max num_NA

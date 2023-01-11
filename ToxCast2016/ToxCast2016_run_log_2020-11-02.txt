@@ -1,0 +1,292 @@
+Output from the script run_me_ToxCast2016.R
+Date Ran: 2020-11-02 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                                               dataset_title 
+                                                                                                               "ToxCast2016" 
+                                                                                                default_ControlTreatmentName 
+                                                                                                                      "DMSO" 
+                                                                                                         pause_between_steps 
+                                                                                                                      "TRUE" 
+                                                                                                             root_output_dir 
+                                                              "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                           save_notes_graphs 
+                                                                                                                      "TRUE" 
+                                                                                                                 scripts.dir 
+                            "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                                 spid_sheet1 
+                                                                                                                         "1" 
+                                                                                                                 spid_sheet2 
+                                                                                                                         "1" 
+                                                                                                                 spid_sheet3 
+                                                                                                         "NeuroTox 91 Cmpds" 
+                                                                                                               spidmap_file1 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx" 
+                                                                                                               spidmap_file2 
+      "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx" 
+                                                                                                               spidmap_file3 
+   "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx" 
+                                                                                                 update_concs_without_prompt 
+                                                                                                                      "TRUE" 
+long-format data is ready.
+   ALIQUOT_PLATE_BARCODE ALIQUOT_WELL_ID EPA_SAMPLE_ID ALIQUOT_SOLVENT ALIQUOT_CONC ALIQUOT_CONC_UNIT ALIQUOT_VOLUME ALIQUOT_VOLUME_UNIT ALIQUOT_DATE    pd_sample  gsid         casrn preferred_name
+1:             TP0001649             A01  TP0001649A01            DMSO           20                mM             75                  uL        42586 TP0001649A01 37717   '1478-61-1'   Bisphenol AF
+2:             TP0001649             A02  TP0001649A02            DMSO           20                mM             75                  uL        42586 TP0001649A02 20895   '2385-85-5'          Mirex
+3:             TP0001649             A03  TP0001649A03            DMSO           20                mM             75                  uL        42586 TP0001649A03 21237     '50-55-5'      Reserpine
+4:             TP0001649             A04  TP0001649A04            DMSO           20                mM             75                  uL        42586 TP0001649A04 24091    '759-94-4'           EPTC
+5:             TP0001649             A05  TP0001649A05            DMSO           20                mM             75                  uL        42586 TP0001649A05 20910     '55-98-1'       Busulfan
+6:             TP0001649             A06  TP0001649A06            DMSO           20                mM             75                  uL        42586 TP0001649A06 47276 '194098-25-4'      CP-409092
+[1] "mM"
+[1] "DMSO"
+      treatment         spid stock_conc
+1: Bisphenol AF TP0001649A01         20
+2:        Mirex TP0001649A02         20
+3:    Reserpine TP0001649A03         20
+4:         EPTC TP0001649A04         20
+5:     Busulfan TP0001649A05         20
+6:    CP-409092 TP0001649A06         20
+   ALIQUOT_PLATE_BARCODE ALIQUOT_WELL_ID EPA_SAMPLE_ID ALIQUOT_SOLVENT ALIQUOT_CONC ALIQUOT_CONC_UNIT ALIQUOT_VOLUME ALIQUOT_VOLUME_UNIT pd_sample_id dsstox_gsid  dsstox_casrn dsstox_preferred_name
+1:             TP0001411             A01  TP0001411A01            DMSO           20                mM             75                  uL     TX001551       20764    '101-21-3'          Chlorpropham
+2:             TP0001411             A02  TP0001411A02            DMSO           20                mM             75                  uL     TX009687       20653    '548-62-9'        Gentian Violet
+3:             TP0001411             A03  TP0001411A03            DMSO           20                mM             75                  uL     TX015538       47339 '181640-09-5'              SR144190
+4:             TP0001411             A04  TP0001411A04            DMSO           20                mM             75                  uL     TX001417       32398 '131341-86-1'           Fludioxonil
+5:             TP0001411             A05  TP0001411A05            DMSO           20                mM             75                  uL     TX000969       32548 '114369-43-6'         Fenbuconazole
+6:             TP0001411             A06  TP0001411A06            DMSO           20                mM             75                  uL     TX006899       20336    '637-07-0'            Clofibrate
+[1] "mM"    "mg/ml"
+   ALIQUOT_PLATE_BARCODE ALIQUOT_WELL_ID EPA_SAMPLE_ID ALIQUOT_SOLVENT ALIQUOT_CONC ALIQUOT_CONC_UNIT ALIQUOT_VOLUME ALIQUOT_VOLUME_UNIT pd_sample_id dsstox_gsid dsstox_casrn
+1:             TP0001413             B02  TP0001413B02            DMSO           10             mg/ml             75                  uL     TX001586       47526 '91082-17-6'
+                 dsstox_preferred_name
+1: C10-21 sulfonic acids phenyl esters
+[1] "DMSO"
+                           treatment         spid stock_conc
+1:                      Clotrimazole TP0001411E01         20
+2:          Perfluoroundecanoic acid TP0001411E11         20
+3: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04          5
+   Molecular.Weight                                Chemical.Name         CAS Conc..(mM)                        Supplier  Lot.Number CoA.Purity.(%) Determined.Purity.(%) Plate.Position  Culture     SPID
+1:           264.26 1-Ethyl-3-methylimidazolium diethylphosphate 848641-69-0       20.2                   Sigma-Aldrich     1426075           99.5                  <NA>             A1 20160907 EX000278
+2:           297.13           1-Methyl-4-phenylpyridinium iodide  36913-39-0       18.8                   Sigma-Aldrich   092M4729V           99.8                  <NA>             A2 20160817 EX000279
+3:           362.41              2-Ethylhexyl diphenyl phosphate   1241-94-7       20.2                     TCI America       BKUNE           92.8                  <NA>             A3 20160720 EX000280
+4:           549.92      2-Ethylhexyl-2,3,4,5-tetrabromobenzoate 183658-27-7         20 Toronto Research Chemicals Inc. 3-JUZ-193-8             95                  <NA>             A4 20160720 EX000281
+5:            76.09                             2-Methoxyethanol    109-86-4       20.9                   Sigma-Aldrich   SHBD1377V          99.94                  <NA>             A5 20160817 EX000282
+6:           564.69         2,2',4,4',5-Pentabromodiphenyl ether  60348-60-9         20                Cerilliant Corp.    35081-70             96                   100             A6 20160720 EX000283
+     treatment     spid stock_conc
+1: Valinomycin EX000362       19.9
+      treatment         spid stock_conc expected_stock_conc
+1: Bisphenol AF TP0001649A01         20                  20
+2:        Mirex TP0001649A02         20                  20
+3:    Reserpine TP0001649A03         20                  20
+4:         EPTC TP0001649A04         20                  20
+5:     Busulfan TP0001649A05         20                  20
+6:    CP-409092 TP0001649A06         20                  20
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 20 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+The concentrations for the following compounds might need to be corrected:
+            spid    stkc expected_stock_conc                         spidmap_guess_concs                          treatment                                        source_concs num_concs
+ 1:     EX000362 19.9000                  20    0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                        Valinomycin               1e-04,3e-04,0.001,0.003,0.01,0.03,0.1         7
+ 2: TP0001413A04  5.0000                  20          0.0075,0.025,0.075,0.25,0.75,2.5,5  1H,1H,2H,2H-Perfluorooctyl iodide                              0.03,0.1,0.3,1,3,10,20         7
+ 3: TP0001649B02 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                           Mancozeb                              0.03,0.1,0.3,1,3,10,20         7
+ 4: TP0001649B03 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                          Tamoxifen                              0.03,0.1,0.3,1,3,10,20         7
+ 5: TP0001649D07  5.0000                  20          0.0075,0.025,0.075,0.25,0.75,2.5,5                       Erythromycin                              0.03,0.1,0.3,1,3,10,20         7
+ 6: TP0001649D10 14.5000                  20    0.0217,0.0725,0.218,0.725,2.17,7.25,14.5            Methadone hydrochloride                              0.03,0.1,0.3,1,3,10,20         7
+ 7: TP0001649E02  5.2175                  20 0.00783,0.0261,0.0783,0.261,0.783,2.61,5.22                     Clove leaf oil                              0.03,0.1,0.3,1,3,10,20         7
+ 8: TP0001649E06 19.9000                  20    0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                       Methoxychlor                              0.03,0.1,0.3,1,3,10,20         7
+ 9: TP0001649E12 10.0000                  20                0.015,0.05,0.15,0.5,1.5,5,10                 Pravastatin sodium                              0.03,0.1,0.3,1,3,10,20         7
+10: TP0001649F10 19.9000                  20    0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                        Prallethrin                              0.03,0.1,0.3,1,3,10,20         7
+11: TP0001649F11 19.7000                  20    0.0296,0.0985,0.296,0.985,2.96,9.85,19.7                             Captan                              0.03,0.1,0.3,1,3,10,20         7
+12: TP0001649G07 14.9000                  20    0.0223,0.0745,0.223,0.745,2.23,7.45,14.9                Cariporide mesylate                              0.03,0.1,0.3,1,3,10,20         7
+13: TP0001649E01 20.0000                  20                      0.03,0.1,0.3,1,3,10,20 3-Iodo-2-propynyl-N-butylcarbamate                         0.01,0.03,0.1,0.3,1,3,10,20         8
+14: TP0001649C08 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                        Simvastatin                   0.003,0.01,0.03,0.1,0.3,1,3,10,20         9
+15: TP0001649C11 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                  Mercuric chloride                   0.003,0.01,0.03,0.1,0.3,1,3,10,20         9
+16: TP0001649D08 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                         Lovastatin                   0.003,0.01,0.03,0.1,0.3,1,3,10,20         9
+17: TP0001649G05 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                       Azoxystrobin                   0.003,0.01,0.03,0.1,0.3,1,3,10,20         9
+18: TP0001649C07 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                      Fluoxastrobin             0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        10
+19: TP0001649G10 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                    Trifloxystrobin             0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        10
+20: TP0001649A07 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                      Picoxystrobin       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+21: TP0001649C09 20.0000                  20                      0.03,0.1,0.3,1,3,10,20               Tributyltin chloride       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+22: TP0001649D04 20.0000                  20                      0.03,0.1,0.3,1,3,10,20           Tributyltin methacrylate       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+23: TP0001649D11 20.0000                  20                      0.03,0.1,0.3,1,3,10,20             Phenylmercuric acetate       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+24: TP0001649E11 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                         Disulfiram       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+25: TP0001649F09 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                     Pyraclostrobin       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+26: TP0001649H03 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                          Abamectin       3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        11
+27: TP0001649H01 20.0000                  20                      0.03,0.1,0.3,1,3,10,20                           Rotenone 1e-04,3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        12
+            spid    stkc expected_stock_conc                         spidmap_guess_concs                          treatment                                        source_concs num_concs
+Correcting conc's...
+                            treatment         spid    stkc expected_stock_conc concs_in_source_dat conc_updated
+ 1: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                0.03    0.0075000
+ 2: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                 0.1    0.0250000
+ 3: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                 0.3    0.0750000
+ 4: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                   1    0.2500000
+ 5: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                   3    0.7500000
+ 6: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                  10    2.5000000
+ 7: 1H,1H,2H,2H-Perfluorooctyl iodide TP0001413A04  5.0000                  20                  20    5.0000000
+ 8:                          Mancozeb TP0001649B02 10.0000                  20                0.03    0.0150000
+ 9:                          Mancozeb TP0001649B02 10.0000                  20                 0.1    0.0500000
+10:                          Mancozeb TP0001649B02 10.0000                  20                 0.3    0.1500000
+11:                          Mancozeb TP0001649B02 10.0000                  20                   1    0.5000000
+12:                          Mancozeb TP0001649B02 10.0000                  20                   3    1.5000000
+13:                          Mancozeb TP0001649B02 10.0000                  20                  10    5.0000000
+14:                          Mancozeb TP0001649B02 10.0000                  20                  20   10.0000000
+15:                         Tamoxifen TP0001649B03 10.0000                  20                0.03    0.0150000
+16:                         Tamoxifen TP0001649B03 10.0000                  20                 0.1    0.0500000
+17:                         Tamoxifen TP0001649B03 10.0000                  20                 0.3    0.1500000
+18:                         Tamoxifen TP0001649B03 10.0000                  20                   1    0.5000000
+19:                         Tamoxifen TP0001649B03 10.0000                  20                   3    1.5000000
+20:                         Tamoxifen TP0001649B03 10.0000                  20                  10    5.0000000
+21:                         Tamoxifen TP0001649B03 10.0000                  20                  20   10.0000000
+22:                      Erythromycin TP0001649D07  5.0000                  20                0.03    0.0075000
+23:                      Erythromycin TP0001649D07  5.0000                  20                 0.1    0.0250000
+24:                      Erythromycin TP0001649D07  5.0000                  20                 0.3    0.0750000
+25:                      Erythromycin TP0001649D07  5.0000                  20                   1    0.2500000
+26:                      Erythromycin TP0001649D07  5.0000                  20                   3    0.7500000
+27:                      Erythromycin TP0001649D07  5.0000                  20                  10    2.5000000
+28:                      Erythromycin TP0001649D07  5.0000                  20                  20    5.0000000
+29:           Methadone hydrochloride TP0001649D10 14.5000                  20                0.03    0.0217000
+30:           Methadone hydrochloride TP0001649D10 14.5000                  20                 0.1    0.0725000
+31:           Methadone hydrochloride TP0001649D10 14.5000                  20                 0.3    0.2180000
+32:           Methadone hydrochloride TP0001649D10 14.5000                  20                   1    0.7250000
+33:           Methadone hydrochloride TP0001649D10 14.5000                  20                   3    2.1700000
+34:           Methadone hydrochloride TP0001649D10 14.5000                  20                  10    7.2500000
+35:           Methadone hydrochloride TP0001649D10 14.5000                  20                  20   14.5000000
+36:                    Clove leaf oil TP0001649E02  5.2175                  20                0.03    0.0078300
+37:                    Clove leaf oil TP0001649E02  5.2175                  20                 0.1    0.0261000
+38:                    Clove leaf oil TP0001649E02  5.2175                  20                 0.3    0.0783000
+39:                    Clove leaf oil TP0001649E02  5.2175                  20                   1    0.2610000
+40:                    Clove leaf oil TP0001649E02  5.2175                  20                   3    0.7830000
+41:                    Clove leaf oil TP0001649E02  5.2175                  20                  10    2.6100000
+42:                    Clove leaf oil TP0001649E02  5.2175                  20                  20    5.2200000
+43:                Pravastatin sodium TP0001649E12 10.0000                  20                0.03    0.0150000
+44:                Pravastatin sodium TP0001649E12 10.0000                  20                 0.1    0.0500000
+45:                Pravastatin sodium TP0001649E12 10.0000                  20                 0.3    0.1500000
+46:                Pravastatin sodium TP0001649E12 10.0000                  20                   1    0.5000000
+47:                Pravastatin sodium TP0001649E12 10.0000                  20                   3    1.5000000
+48:                Pravastatin sodium TP0001649E12 10.0000                  20                  10    5.0000000
+49:                Pravastatin sodium TP0001649E12 10.0000                  20                  20   10.0000000
+50:                            Captan TP0001649F11 19.7000                  20                 0.1    0.0985000
+51:                            Captan TP0001649F11 19.7000                  20                   1    0.9850000
+52:                            Captan TP0001649F11 19.7000                  20                  10    9.8500000
+53:               Cariporide mesylate TP0001649G07 14.9000                  20                0.03    0.0223000
+54:               Cariporide mesylate TP0001649G07 14.9000                  20                 0.1    0.0745000
+55:               Cariporide mesylate TP0001649G07 14.9000                  20                 0.3    0.2230000
+56:               Cariporide mesylate TP0001649G07 14.9000                  20                   1    0.7450000
+57:               Cariporide mesylate TP0001649G07 14.9000                  20                   3    2.2300000
+58:               Cariporide mesylate TP0001649G07 14.9000                  20                  10    7.4500000
+59:               Cariporide mesylate TP0001649G07 14.9000                  20                  20   14.9000000
+                            treatment         spid    stkc expected_stock_conc concs_in_source_dat conc_updated
+
+Final Checks
+Number of cultures dates: 12
+Range of culture dates: 20160921 20171011
+Number of plates tested: 66
+Number of compounds tested: 100
+Any NA rvals?    wllq     N
+1:    1 32598
+2:    0   855
+
+Wllq breakdown for all points:
+   wllq      N
+1:    1 265268
+2:    0  10348
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB       0  19294  41305      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0   0.94      3      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0     82    136      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0     16     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0      1     16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0      9     16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0     15     16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0    3.6    139      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12   0.073   0.38     23    391
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.13   0.48     22   1787
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7   0.088   0.52     68    786
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9   0.076   0.58     23    429
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0     16     70      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0    3.9     25      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0      0     23      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0    1.4     12      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0    2.3    9.2      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0     69    136      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0     15     16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0      0     16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0      6     16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0     14     16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean  -0.012    1.1    3.3      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 -0.0027   0.31   0.75      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0064      0   0.65      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0047  0.047   0.43      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0031   0.19   0.74      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0    7.6     70      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0    1.5     11      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0   0.24    8.9      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0   0.74    6.4      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0    1.1     15      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0    201   1905      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     1.6     11    404    411
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      32     79    709   2462
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     2.3     41    786   1206
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     2.2     27    507    502
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0    208    527      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.1     17    115    391
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5       1     44    120   1787
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7     1.2     34    123    786
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.1     29    127    429
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0  0.027   0.31      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0   0.01  0.093      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0      0 0.0035      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.0001  0.013      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0 0.0038  0.076      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0   0.36    1.2      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12  0.0044  0.074   0.52    411
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5 0.00029  0.042   0.16   2462
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7  0.0015  0.048   0.23   1206
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9  0.0016  0.074   0.32    502
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0    232   1551      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0     72    558      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0      0     27      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0      9     72      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0     27    388      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0     68    131      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5     13     16    409
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5       5     10     16   2400
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5     13     16   1127
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5     13     16    483
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0   0.29   0.98      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0054  0.025   0.19    391
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.019  0.066   0.25   1787
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.015  0.047    0.2    786
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9  0.0068  0.037   0.26    429
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0    399    776      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0     78    100      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0      0    100      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0     48    100      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0     69    100      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0    228    908      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12     8.2     52    219    409
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       8     17     92   2400
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8     35    110   1127
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9       8     48    198    483
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0     67    257      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0     21     62      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0      0     18      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0    2.4     45      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0    9.5     60      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0    1.1    3.7      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.053   0.18   0.57    409
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5   0.072   0.21    0.5   2400
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.054   0.22   0.53   1127
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.063   0.24   0.58    483
+                                                             acsn     min median    max num_NA
+[1] 0
+   ifelse    N
+1:    AUC  912
+2:    DIV 3264

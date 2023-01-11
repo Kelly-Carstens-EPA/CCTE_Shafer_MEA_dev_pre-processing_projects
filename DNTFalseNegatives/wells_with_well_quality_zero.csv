@@ -1,0 +1,7 @@
+date,Plate.SN,DIV,well,wllq,wllq_notes,affected_endpoints
+20210818,MW75-9206,12,all,1,5% CO2 ran out during reading,mea
+20210818,MW75-9207,12,all,1,5% CO2 ran out during reading,mea
+20210818,MW75-9207,12,E1,0,contamination,"mea,CTB,LDH"
+20210818,MW75-9207,12,F1,0,contamination,"mea,CTB,LDH"
+20210818,MW75-9207,12,F7,0,contamination,"mea,CTB,LDH"
+20210818,MW75-9207,12,F8,0,contamination,"mea,CTB,LDH"

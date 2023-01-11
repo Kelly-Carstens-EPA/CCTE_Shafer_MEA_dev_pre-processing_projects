@@ -1,0 +1,18 @@
+dataset,spid_source,spid_file,number_of_spids,V2
+Brown2014,DNT_EXTRA,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,5,"Bisindolylmaleimide I,L-Domoic acid,Loperamide"
+Brown2014,HTP_LOG,EPA_ES202_EPA-Shafer_103_20191218_key.xlsx,1,Acetaminophen
+DNTGF2019,OECD 20190524 (DNT),All Assays_list_toxcast_OECD 20190524.xlsx,70,
+DNTGF2019,HTP_LOG,EPA_ES202_EPA-Shafer_103_20191218_key.xlsx,6,"3 Glufosinate-P Technical,4 Glufosinate-P Technical,Glufosinate Ammonium"
+Frank2017,HTP_LOG,EPA_ES202_EPA-Shafer_103_20191218_key.xlsx,68,
+Frank2017,DNT_EXTRA2,EPA_ES204_EPA-Shafer_12_20200117_key.xlsx,7,
+Frank2017,DNT_EXTRA2,Copy of EPA_ES204_EPA-Shafer_5_20200114_key.xlsx,5,"1,2-Propylene glycol,Flusilazole,Methylchloroisothiazolinone"
+Frank2017,DNT_EXTRA,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,4,"Bisindolylmaleimide I (Bis 1),Domoic Acid,Mevastatin"
+Frank2017,NTP91,EPA_ES201_EPA-Shafer_91_20200110_key.xlsx,2,"Triphenyl phosphate (TPHP),Tris (2-chloroethyl) phosphate (TCEP)"
+NTP91,NTP91,EPA_ES201_EPA-Shafer_91_20200110_key.xlsx,50,
+OPP2015,TT0000177,EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx,27,
+PFAS2018,EPA_9238_EPa-Shafer_75 (PFAS),EPA_9238_EPA-Shafer_75_20180511_key_MW Waste Calculations.xlsx,75,
+PFAS2018,HTP_LOG,EPA_ES202_EPA-Shafer_103_20191218_key.xlsx,3,"4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride,Acetaminophen,Bisphenol A"
+ToxCast2016,TP0001649,EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx,96,
+ToxCast2016,TP0001411,EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx,2,"1,1,2,2-Tetrahydroperfluoro-1-decanol,Perfluoroundecanoic acid"
+ToxCast2016,NTP91,EPA_ES201_EPA-Shafer_91_20200110_key.xlsx,1,Valinomycin
+ToxCast2016,TP0001413,EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx,1,"1H,1H,2H,2H-Perfluorooctyl iodide"

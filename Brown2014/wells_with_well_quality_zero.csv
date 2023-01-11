@@ -1,0 +1,8 @@
+date,Plate.SN,DIV,well,wllq,wllq_notes,affected_endpoints
+20140205,MW1007-26,all,C2,0,Not included in published data because N=1 for this dose,"mea,CTB,LDH"
+20140205,MW1007-26,all,C3,0,Not included in published data because N=1 for this dose,"mea,CTB,LDH"
+20140716,MW1007-26,all,B7,0,misdosed,"mea,CTB,LDH"
+20140730,MW1007-104,all,E6,0,possibly misdosed with Bis 1,"mea,CTB,LDH"
+20140730,MW1007-104,all,E3,0,possibly misdosed with Bis 1,"mea,CTB,LDH"
+20140730,MW1007-104,all,E4,0,possibly misdosed with Bis 1,"mea,CTB,LDH"
+20140730,MW1007-104,all,E5,0,possibly misdosed with Bis 1,"mea,CTB,LDH"

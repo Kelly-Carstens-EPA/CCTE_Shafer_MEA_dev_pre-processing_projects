@@ -1,0 +1,333 @@
+Output from the script run_me_SPS_PFAS2019.R
+Date Ran: 2021-06-09 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                 copy_maestro_exp_log_treatments 
+                                                                                         "FALSE" 
+                                                                                   dataset_title 
+                                                                                  "SPS_PFAS2019" 
+                                                                    default_ControlTreatmentName 
+                                                                                          "DMSO" 
+                                                                             pause_between_steps 
+                                                                                          "TRUE" 
+                                                                                 root_output_dir 
+                                  "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                               save_notes_graphs 
+                                                                                          "TRUE" 
+                                                                                     scripts.dir 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                      spid_sheet 
+                                                                                              "" 
+                                                                                    spidmap_file 
+                                                                                              "" 
+                                                                     update_concs_without_prompt 
+                                                                                          "TRUE" 
+
+- Select files for files_log:
+1 files already exist. ( SPS_PFAS2019_files_log_2020-12-24.txt )
+- Create h5 files:
+40 files already exist.
+- Calculate the components:
+10 files already exist.
+- Calculate the Mutual Information:
+10 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( SPS_PFAS2019_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( SPS_PFAS2019_cytotox.csv )
+'source_steps.R' is complete.
+long-format data is ready.
+[1] "DMSO"     "Media"    "3360 G12"
+                 apid rowi coli                                             srcf conc
+1: 20201209_MW71-7211    1    6 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   30
+2: 20201209_MW71-7213    2    6 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   30
+3: 20201209_MW71-7214    3    6 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   30
+4: 20201209_MW71-7211    1    6               SPS_PFAS2019_parameters_by_DIV.csv    0
+5: 20201209_MW71-7213    2    6               SPS_PFAS2019_parameters_by_DIV.csv    0
+6: 20201209_MW71-7214    3    6               SPS_PFAS2019_parameters_by_DIV.csv    0
+7: 20201209_MW71-7211    1    6                             SPS_PFAS2019_AUC.csv    0
+8: 20201209_MW71-7213    2    6                             SPS_PFAS2019_AUC.csv    0
+9: 20201209_MW71-7214    3    6                             SPS_PFAS2019_AUC.csv    0
+[1] "DMSO"  "Media"
+[1] "n"
+Empty data.table (0 rows and 3 cols): apid,rowi,coli
+Empty data.table (0 rows and 6 cols): apid,srcf,rowi,coli,conc,V1
+   conc                                             srcf   N
+1:   30 20201118_NFA_PFAS_Group_1_SPS__Calculations.xlsx   6
+2:   30               SPS_PFAS2019_parameters_by_DIV.csv 680
+3:   30                             SPS_PFAS2019_AUC.csv 170
+4:   30 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   6
+5:   30 20201209_NFA_PFAS_Group_3_SPS__Calculations.xlsx   6
+6:   30 20201209_NFA_PFAS_Group_4_SPS__Calculations.xlsx   2
+[1] "t"
+[1] "3360" "3361" "3612"
+[1] "mM"
+[1] 30  5 20 10
+   treatment       spid
+1:  3360 A01 1210309389
+2:  3360 A02 1210314354
+3:  3360 A03 1210314362
+4:  3360 A04 1210314370
+5:  3360 A05 1210314378
+6:  3360 A06 1210314386
+[1] "DMSO"      "Media"     "Bisphenol"
+Empty data.table (0 rows and 2 cols): treatment,N
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+character(0)
+Empty data.table (0 rows and 4 cols): spid,treatment,srcf,V1
+Empty data.table (0 rows and 2 cols): spid,V1
+Checking conc's:
+
+All compounds are assumed to have conc's 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+
+FYI, the following stock conc's pulled from invitrodb do not match the expected stock conc:
+Empty data.table (0 rows and 7 cols): spid,treatment,stkc,expected_stock_conc,spidmap_guess_concs,source_concs...
+The concentrations for the following compounds might need to be corrected:
+          spid stkc expected_stock_conc spidmap_guess_concs treatment source_concs num_concs
+ 1: 1208990398   10                  10                  30  3612 D02           10         1
+ 2: 1208990403   10                  10                  30  3612 A03           10         1
+ 3: 1208990411   10                  10                  30  3612 A04           10         1
+ 4: 1208990413   10                  10                  30  3612 C04           10         1
+ 5: 1210313675   20                  20                  30  3361 B01           20         1
+ 6: 1210313676   10                  10                  30  3361 C01           10         1
+ 7: 1210313677   10                  10                  30  3361 D01           10         1
+ 8: 1210313678   10                  10                  30  3361 E01           10         1
+ 9: 1210313679   10                  10                  30  3361 F01           10         1
+10: 1210313680   10                  10                  30  3361 G01           10         1
+11: 1210313681   10                  10                  30  3361 H01           10         1
+12: 1210313706    5                   5                  30  3361 A05            5         1
+13: 1210313707    5                   5                  30  3361 B05            5         1
+14: 1210313708    5                   5                  30  3361 C05            5         1
+15: 1210313709    5                   5                  30  3361 D05            5         1
+16: 1210313710    5                   5                  30  3361 E05            5         1
+17: 1210313711    5                   5                  30  3361 F05            5         1
+Correcting conc's...
+conc's that changed:
+Empty data.table (0 rows and 6 cols): treatment,spid,stkc,expected_stock_conc,concs_in_source_dat,conc_updated
+
+Final Checks
+Number of cultures dates: 2
+Range of culture dates: 20201118 20201209
+Number of plates tested: 10
+Number of compounds tested: 132
+Any NA rvals?
+   wllq    N
+1:    1 6884
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 41712
+2:    0    48
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min   median      max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB     447    26875    45113      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0     0.64      1.9      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       52      112      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       13       16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        0        8      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        4       15      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0        9       16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      3.7      137      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.14     0.54       14     50
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5     0.2     0.78       12    439
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.16     0.89       68    178
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.17      0.8       49    133
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0      5.9       35      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      1.1      9.7      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0      5.8      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0     0.56      7.5      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0     0.58        6      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       25       90      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       12       16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0        2      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        1       12      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0        2       16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0048     0.87      2.2      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 -0.0028     0.34     0.62      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0064        0     0.09      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0035   0.0014    0.088      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0041     0.14      0.6      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      5.6       34      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      0.7      9.4      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0        0      5.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.88      8.7      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0     0.63      5.8      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      628     2748      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12       2       62      601     42
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5     Inf       NA     -Inf    480
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     6.5      275      785    362
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9      23      194      804     65
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      206      715      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.2       57      122     50
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.6       30      116    439
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7     1.1       26      101    178
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.9       46      117    133
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.012    0.052      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0   0.0064     0.02      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.000027      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000004   0.0024      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0  0.00086   0.0099      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.22      1.4      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12 0.00034    0.073     0.39     42
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5     Inf       NA     -Inf    480
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.025     0.21    362
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0    0.044     0.35     65
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0       30      389      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       13      241      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0        0      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        0       29      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0        4       39      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       58       95      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5       13       16     36
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     Inf       NA     -Inf    480
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       10       16    302
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       14       16     44
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.31      1.2      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12    0.01    0.022     0.12     50
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.016     0.14     0.27    439
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7    0.02      0.1     0.25    178
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9    0.01    0.056     0.17    133
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      249      644      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       77       99      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0       99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       15      100      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       38       97      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      403      954      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12      16       98      213     36
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5     Inf       NA     -Inf    480
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       29      142    302
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9      11       98      196     44
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       43      167      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       17       51      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0        0      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0        0       18      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0      6.4       41      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0      1.1      2.8      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.053     0.24     0.64     36
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5     Inf       NA     -Inf    480
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.054     0.12     0.51    302
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.062     0.27      0.7     44
+                                                             acsn     min   median      max num_NA
+[1] 0
+     treatment rep_count
+1:        DMSO        60
+2: Bisphenol A        10
+3:       Media        17
+Empty data.table (0 rows and 14 cols): spid,treatment,mea_treatment_name,apid,rowi,coli...
+character(0)
+ [1] "CCTE_Shafer_MEA_dev_burst_rate_DIV5"                          "CCTE_Shafer_MEA_dev_burst_rate_DIV7"                         
+ [3] "CCTE_Shafer_MEA_dev_burst_rate_DIV9"                          "CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5"           
+ [5] "CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7"            "CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9"           
+ [7] "CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5"                 "CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7"                
+ [9] "CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9"                 "CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5"      
+[11] "CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7"       "CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9"      
+[13] "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5"                    "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7"                   
+[15] "CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9"                    "CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5"            
+[17] "CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7"             "CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9"            
+[19] "CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5"          "CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7"         
+[21] "CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9"          "CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5"           
+[23] "CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7"            "CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9"           
+[25] "CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5"                 "CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7"                
+[27] "CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9"                 "CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5"         
+[29] "CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7"          "CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9"         
+[31] "CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5"   "CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7"  
+[33] "CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9"   "CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5"
+[35] "CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7" "CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9"
+[37] "CCTE_Shafer_MEA_dev_network_spike_number_DIV5"                "CCTE_Shafer_MEA_dev_network_spike_number_DIV7"               
+[39] "CCTE_Shafer_MEA_dev_network_spike_number_DIV9"                "CCTE_Shafer_MEA_dev_network_spike_peak_DIV5"                 
+[41] "CCTE_Shafer_MEA_dev_network_spike_peak_DIV7"                  "CCTE_Shafer_MEA_dev_network_spike_peak_DIV9"                 
+[43] "CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5"     "CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7"    
+[45] "CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9"     "CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5"            
+[47] "CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7"             "CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9"            
+[49] "CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5"        "CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7"       
+[51] "CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9"       
+[1] TRUE
+[1] "EX000597"
+[1] "Datasets has different keys. 'target': spid. 'current' has no key."
+[1] "Dataset 'current' has rows not present in 'target'"
+            spid               apid rowi coli                                             srcf                                                          acsn
+  1: Bisphenol A 20201118_MW71-7107    6    8 20201118_NFA_PFAS_Group_1_SPS__Calculations.xlsx                                        CCTE_Shafer_MEA_dev_AB
+  2: Bisphenol A 20201118_MW71-7107    6    8 20201118_NFA_PFAS_Group_1_SPS__Calculations.xlsx                                       CCTE_Shafer_MEA_dev_LDH
+  3: Bisphenol A 20201118_MW71-7107    6    8                             SPS_PFAS2019_AUC.csv                  CCTE_Shafer_MEA_dev_active_electrodes_number
+  4: Bisphenol A 20201118_MW71-7107    6    8                             SPS_PFAS2019_AUC.csv                       CCTE_Shafer_MEA_dev_burst_duration_mean
+  5: Bisphenol A 20201118_MW71-7107    6    8                             SPS_PFAS2019_AUC.csv                                CCTE_Shafer_MEA_dev_burst_rate
+ ---                                                                                                                                                        
+356: Bisphenol A 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12
+357: Bisphenol A 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12
+358: Bisphenol A 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12
+359: Bisphenol A 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12
+360: Bisphenol A 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12
+             rval wllt treatment.x mea_treatment_name.x conc.x wllq.x wllq_notes.x conc_srcf treatment.y mea_treatment_name.y conc.y wllq.y wllq_notes.y
+  1: 1.970433e+04    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+  2: 4.192667e-01    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+  3: 1.400000e+01    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+  4: 6.615000e-01    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+  5: 4.395000e+00    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+ ---                                                                                                                                                    
+356:           NA    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      0           NA
+357: 0.000000e+00    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+358:           NA    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      0           NA
+359: 0.000000e+00    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      1           NA
+360:           NA    p        <NA>                 <NA>     NA     NA         <NA>        NA   Bisphenol            Bisphenol     30      0           NA
+     expected_stock_conc      dataset
+  1:                  NA SPS_PFAS2019
+  2:                  NA SPS_PFAS2019
+  3:                  NA SPS_PFAS2019
+  4:                  NA SPS_PFAS2019
+  5:                  NA SPS_PFAS2019
+ ---                                 
+356:                  NA SPS_PFAS2019
+357:                  NA SPS_PFAS2019
+358:                  NA SPS_PFAS2019
+359:                  NA SPS_PFAS2019
+360:                  NA SPS_PFAS2019
+         spid               apid rowi coli                                             srcf                                                          acsn
+  1: EX000597 20201118_MW71-7107    6    8 20201118_NFA_PFAS_Group_1_SPS__Calculations.xlsx                                        CCTE_Shafer_MEA_dev_AB
+  2: EX000597 20201118_MW71-7107    6    8 20201118_NFA_PFAS_Group_1_SPS__Calculations.xlsx                                       CCTE_Shafer_MEA_dev_LDH
+  3: EX000597 20201118_MW71-7107    6    8                             SPS_PFAS2019_AUC.csv                  CCTE_Shafer_MEA_dev_active_electrodes_number
+  4: EX000597 20201118_MW71-7107    6    8                             SPS_PFAS2019_AUC.csv                       CCTE_Shafer_MEA_dev_burst_duration_mean
+  5: EX000597 20201118_MW71-7107    6    8                             SPS_PFAS2019_AUC.csv                                CCTE_Shafer_MEA_dev_burst_rate
+ ---                                                                                                                                                     
+356: EX000597 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12
+357: EX000597 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12
+358: EX000597 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12
+359: EX000597 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12
+360: EX000597 20201209_MW72-8207    6    8               SPS_PFAS2019_parameters_by_DIV.csv                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12
+             rval wllt treatment.x mea_treatment_name.x conc.x wllq.x                                                                          wllq_notes.x conc_srcf
+  1: 1.970433e+04    t Bisphenol A            Bisphenol     30      1    Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC        30
+  2: 4.192667e-01    t Bisphenol A            Bisphenol     30      1    Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC        30
+  3: 1.400000e+01    t Bisphenol A            Bisphenol     30      1  Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC;         30
+  4: 6.615000e-01    t Bisphenol A            Bisphenol     30      1  Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC;         30
+  5: 4.395000e+00    t Bisphenol A            Bisphenol     30      1  Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC;         30
+ ---                                                                                                                                                                 
+356:           NA    t Bisphenol A            Bisphenol     30      1                                                                                              30
+357: 0.000000e+00    t Bisphenol A            Bisphenol     30      1                                                                                              30
+358:           NA    t Bisphenol A            Bisphenol     30      1                                                                                              30
+359: 0.000000e+00    t Bisphenol A            Bisphenol     30      1                                                                                              30
+360:           NA    t Bisphenol A            Bisphenol     30      1                                                                                              30
+     treatment.y mea_treatment_name.y conc.y wllq.y wllq_notes.y expected_stock_conc dataset
+  1:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+  2:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+  3:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+  4:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+  5:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+ ---                                                                                        
+356:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+357:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+358:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+359:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+360:        <NA>                 <NA>     NA     NA           NA                  NA    <NA>
+Empty data.table (0 rows and 21 cols): spid,apid,rowi,coli,srcf,acsn...
+   conc.x conc.y        spid    N
+1:     NA     30 Bisphenol A  360
+2:  1e-03     NA        DMSO 2160
+3:  3e+01     NA    EX000597  360
+Empty data.table (0 rows and 3 cols): treatment.x,treatment.y,N

@@ -1,0 +1,162 @@
+---
+title: "Visualization of Controls over DIV"
+author: "Amy Carpenter"
+date: "5/19/2022"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+library(ggplot2)
+library(stringi)
+```
+
+# Purpose
+Create a visualization of the parameter values over DIV time
+
+**Ugh, this is not doing what I want it to do with looping over the plots.
+
+I'll just use an R script to make some pdf's instead
+
+
+# Load data 
+
+```{r}
+load('lvl0_snapshots/mea_nfa_lvl0_extra_cols_2021-05-05.RData')
+
+# Make the artificial point at DIV = 2 clear
+add.div2 <- mea_nfa_lvl0[grepl('DIV12',acnm)]
+add.div2[, acnm := sub('DIV12','DIV2',acnm)]
+add.div2[, rval := NA_real_]
+mea_nfa_lvl0 <- rbind(mea_nfa_lvl0, add.div2)
+rm(add.div2)
+
+# Add DIV
+mea_nfa_lvl0[, DIV_char := stri_extract(acnm, regex = 'DIV[0-9]*')]
+mea_nfa_lvl0[, DIV := as.numeric(stri_extract(DIV_char, regex = '[0-9]{1,2}'))]
+
+# Note where NA rvals set to 0 for AUC calculation
+mea_nfa_lvl0[, plot_rval := ifelse(!is.na(rval), rval, 0)]
+mea_nfa_lvl0[, added_0 := as.numeric(is.na(rval))]
+mea_nfa_lvl0$added_0 <- factor(mea_nfa_lvl0$added_0, levels = c('0','1'), ordered = T)
+
+```
+
+
+# Make plots
+
+```{r}
+controldat <- mea_nfa_lvl0[wllt == 'n' & wllq == 1]
+rm(mea_nfa_lvl0)
+controldat[, culture := sub('_.*$','',apid)]
+controldat[, well_id := paste0(apid, '_', rowi,'_',coli)]
+controldat[, plate_id := frank(apid, ties.method='dense'), by = .(culture)]
+controldat[, plate_char := paste0('Plate',plate_id)]
+use.cultures <- sample(unique(controldat[plate_id >= 6, culture]), size = 5)
+
+plotdat <- controldat[culture %in% use.cultures & grepl('firing_rate_mean_DIV',acnm)]
+
+ggplot(plotdat[culture %in% use.cultures], aes(x = DIV, y = plot_rval)) +
+  geom_point(aes(color = added_0))+
+  geom_line(aes(group = well_id))+
+  facet_grid(rows = vars(culture), 
+             cols = vars(plate_char))+
+  scale_color_manual(values = c('0' = 'black',
+                                '1' = 'red'))+
+  scale_x_continuous(breaks = c(2,5,7,9,12))+
+  # scale_y_continuous(limits = quantile(plotdat$plot_rval, c(0, 0.99))) + # don't let outliers throw off the scale
+  ggtitle('Mean Firing Rate Over DIV')
+
+```
+
+
+
+# Mean Burst Duration
+```{r eval = FALSE}
+acnm_sub <- 'CCTE_Shafer_MEA_dev_burst_duration_mean_DIV'
+acnm_sub <- 'CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV'
+plotdat <- controldat[culture %in% use.cultures & grepl(acnm_sub, acnm)]
+
+ggplot(plotdat[culture %in% use.cultures], aes(x = DIV, y = plot_rval)) +
+  geom_point(aes(color = added_0))+
+  geom_line(aes(group = well_id))+
+  facet_grid(rows = vars(culture), 
+             cols = vars(plate_char),
+             scales = 'free_y',
+             switch = 'y')+
+  scale_color_manual(values = c('0' = 'black',
+                                '1' = 'red'))+
+  scale_x_continuous(breaks = c(2,5,7,9,12))+
+  # scale_y_continuous(limits = quantile(plotdat$plot_rval, c(0, 0.99))) + # don't let outliers throw off the scale
+  ggtitle(paste0(sub('_DIV','',acnm_sub),' over DIV'))
+```
+
+
+# Use loop function
+
+## Create plots
+```{r}
+acnms <- unique(controldat[is.na(DIV) & !grepl('(LDH)|(AB)',acnm), acnm])[1:3]
+plotdat <- controldat[culture %in% use.cultures]
+
+plot.object <- list()
+
+for (acnm_sub in paste0(acnms,'_DIV')) {
+  
+  p <- ggplot(plotdat[grepl(acnm_sub, acnm)], aes(x = DIV, y = plot_rval)) +
+    geom_point(aes(color = added_0))+
+    geom_line(aes(group = well_id))+
+    facet_grid(rows = vars(culture), 
+               cols = vars(plate_char),
+               scales = 'free_y',
+               switch = 'y')+
+    scale_color_manual(values = c('0' = 'black',
+                                  '1' = 'red'))+
+    scale_x_continuous(breaks = c(2,5,7,9,12))+
+    # scale_y_continuous(limits = quantile(plotdat$plot_rval, c(0, 0.99))) + # don't let outliers throw off the scale
+    ggtitle(paste0(sub('_DIV','',acnm_sub),' over DIV'))+
+    theme(legend.position = 'top')+
+    ylab('rval')
+  plot.object[[acnm_sub]] <- p
+}
+
+```
+
+
+## Testing
+
+```{r echo = FALSE, eval = TRUE}
+out <- lapply(seq_along(plot.object), function(i) {
+  a1 <- knitr::knit_expand(text = sprintf("### %s\n", names(plot.object)[i])) # tab header, auto extracts names of `hcs`
+  a2 <- knitr::knit_expand(text = "\n```{r}") # start r chunk
+  a3 <- knitr::knit_expand(text = sprintf("\nplot.object[[%s]]",i)) # extract graphs by "writing" out `hcs[[1]]`, `hcs[[2]]` etc. to be rendered later
+  a4 <- knitr::knit_expand(text = "\n```\n") # end r chunk
+  paste(a1, a2, a3, a4, collapse = '\n') # collapse together all lines with newline separator
+})
+cat(unlist(out), sep = '')
+```
+
+Want to use this, but it is not working when out includes any type of plot
+`r knitr::knit(text = paste(out, collapse = '\n'))`
+
+
+### CCTE_Shafer_MEA_dev_burst_rate_DIV
+ 
+```{r} 
+print(plot.object[[1]])
+```
+### CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV
+ 
+```{r} 
+print(plot.object[[2]] )
+```
+### CCTE_Shafer_MEA_dev_burst_duration_mean_DIV
+ 
+```{r} 
+print(plot.object[[3]] )

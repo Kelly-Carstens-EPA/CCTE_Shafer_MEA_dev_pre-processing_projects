@@ -1,0 +1,402 @@
+Output from the script run_me_DNT_NTP2021.R
+Date Ran: 2022-05-17 
+R version 4.1.1 (2021-08-10) 
+USER INPUT settings:
+                                                                                                                       dataset_title 
+                                                                                                                       "DNT_NTP2021" 
+                                                                                                        default_ControlTreatmentName 
+                                                                                                                              "DMSO" 
+                                                                                                                   get_new_files_log 
+                                                                                                                             "FALSE" 
+                                                                                                                 pause_between_steps 
+                                                                                                                              "TRUE" 
+                                                                                                                         project.dir 
+                                                                                          "L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021" 
+                                                                                                                     root_output_dir 
+                                                                      "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                                   save_notes_graphs 
+                                                                                                                              "TRUE" 
+                                                                                                                         scripts.dir 
+                                    "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                                          spid_sheet 
+                                                                                                                     "Chemical List" 
+                                                                                                                        spidmap_file 
+"L:/Lab/NHEERL_Mundy/Project - DNT Test Set 2021 NTP/Coded Plate Map - Plate No. 4001207126 DNT HEI EPA SHIP CHEM14214 MRI3110.xlsx" 
+                                                                                                         update_concs_without_prompt 
+                                                                                                                             "FALSE" 
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 1 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 A3 prrecipitates in media (need to be repeated)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 2 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 A12 precipitates in media, need to be repeated on lower concentration
+7126 A9 turns the media yellow - may be acidic
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210929_NFA_DNT 2021_Group 3 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 B2 precipitates in media, had a different dilution scheme
+-5ul innto 495ul media, then 50ul into 450ul media in well
+will be repeated with lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20210929_NFA_DNT 2021_Group 4 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 B11 precipitates in media, had a different dilution scheme
+-5ul innto 495ul media, then 50ul into 450ul media in well
+Chemical 7126 B12 is yellow in color.
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211027_NFA_DNT 2021_Group 20 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 H10 will be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211110_NFA_DNT 2021_Group 5 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211110_NFA_DNT 2021_Group 6 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 C11 will be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211124_NFA_DNT 2021_Group 7 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+Chemical 7126 D4 and 7126 D5 will be repeated at a lower concentration.
+Column 4 and 5 on Plate 1 (78-6214) are switched - dosing error (Plate Map is updated)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211124_NFA_DNT 2021_Group 8 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X All wells from plate 78-6217
+-Reasoning : CTB incubation time is less than one hour
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 D7 need to be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211208_NFA_DNT 2021_Group 10 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20211208_NFA_DNT 2021_Group 9 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 E3 may be needed to be repeated on a lower concentration 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 11 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 F1, 7126 F2 need to be repeated on a lower concentration 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220119_NFA_DNT 2021_Group 12 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 F8 need to be repeated on a lower concentration
+7126 F12 may be needed to be repeated on a lower concentration
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220223_NFA_DNT 2021_Group 13 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 G3 may need to be repeated at a lower concentration.
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220223_NFA_DNT 2021_Group 14 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220316_NFA_DNT 2021_Group 15 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220316_NFA_DNT 2021_Group 16 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+7126 H7 needs to be repeated (dosing error) 
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220330_NFA_DNT 2021_Group 19 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X MW7118 A8 (cell debris)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 17 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/20220413_NFA_DNT 2021_Group 18 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X 78-7205 Well D7 (cell debris)
+
+L:/Lab/NHEERL_MEA/Project - DNT_NTP_2021/Template Folder 
+The following wells have been discarded from the Alamar Blue assay due to returning results outside the acceptable bounds of the assay:
+X
+The following wells have been discarded from the LDH assay due to returning results outside the acceptable bounds of the assay:
+X
+
+[1] 21
+$`20210915_NFA_DNT 2021_Group 1`
+[1] "7126 A3 prrecipitates in media (need to be repeated)"
+
+$`20210915_NFA_DNT 2021_Group 2`
+[1] "7126 A12 precipitates in media, need to be repeated on lower concentration"
+[2] "7126 A9 turns the media yellow - may be acidic"                            
+
+$`20210929_NFA_DNT 2021_Group 3`
+[1] "Chemical 7126 B2 precipitates in media, had a different dilution scheme"
+[2] "-5ul innto 495ul media, then 50ul into 450ul media in well"             
+[3] "will be repeated with lower concentration"                              
+
+$`20210929_NFA_DNT 2021_Group 4`
+[1] "Chemical 7126 B11 precipitates in media, had a different dilution scheme"
+[2] "-5ul innto 495ul media, then 50ul into 450ul media in well"              
+[3] "Chemical 7126 B12 is yellow in color."                                   
+
+$`20211027_NFA_DNT 2021_Group 20`
+[1] "7126 H10 will be repeated on a lower concentration"
+
+$`20211110_NFA_DNT 2021_Group 6`
+[1] "7126 C11 will be repeated on a lower concentration"
+
+$`20211124_NFA_DNT 2021_Group 7`
+[1] "Chemical 7126 D4 and 7126 D5 will be repeated at a lower concentration."               
+[2] "Column 4 and 5 on Plate 1 (78-6214) are switched - dosing error (Plate Map is updated)"
+
+$`20211124_NFA_DNT 2021_Group 8`
+[1] "X All wells from plate 78-6217"                        
+[2] "-Reasoning : CTB incubation time is less than one hour"
+[3] "7126 D7 need to be repeated on a lower concentration"  
+
+$`20211208_NFA_DNT 2021_Group 9`
+[1] "7126 E3 may be needed to be repeated on a lower concentration "
+
+$`20220119_NFA_DNT 2021_Group 11`
+[1] "7126 F1, 7126 F2 need to be repeated on a lower concentration "
+
+$`20220119_NFA_DNT 2021_Group 12`
+[1] "7126 F8 need to be repeated on a lower concentration"          
+[2] "7126 F12 may be needed to be repeated on a lower concentration"
+
+$`20220223_NFA_DNT 2021_Group 13`
+[1] "7126 G3 may need to be repeated at a lower concentration."
+
+$`20220316_NFA_DNT 2021_Group 16`
+[1] "7126 H7 needs to be repeated (dosing error) "
+
+$`20220330_NFA_DNT 2021_Group 19`
+[1] "X MW7118 A8 (cell debris)"
+
+$`20220413_NFA_DNT 2021_Group 18`
+[1] "X 78-7205 Well D7 (cell debris)"
+
+
+- Select files for files_log:
+2 files already exist.
+- Create h5 files:
+240 files already exist.
+- Calculate the components:
+60 files already exist.
+- Calculate the Mutual Information:
+60 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( DNT_NTP2021_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( DNT_NTP2021_cytotox.csv )
+'source_steps.R' is complete.
+cytotox data does not have units. Will fill with NA
+long-format data is ready.
+     treatment     N
+  1:   7126 A1     6
+  2:   7126 A2     6
+  3:   7126 A3    12
+  4:   7126 A4     6
+  5:   7126 A5     6
+ ---                
+115:   9163 B3     6
+116:   9163 B4     6
+117:   9163 B5     6
+118:      DMSO 29325
+119:       H2O  1275
+       treatment conc     N
+1:          DMSO    0 29325
+2:         Water    0  1275
+3:       7126 A3    0    12
+4:   Bisphenol A    0    12
+5: Acetamenophin    0    12
+       treatment                    acsn N
+1:       7126 A3  CCTE_Shafer_MEA_dev_AB 6
+2:   Bisphenol A  CCTE_Shafer_MEA_dev_AB 6
+3: Acetamenophin  CCTE_Shafer_MEA_dev_AB 6
+4:       7126 A3 CCTE_Shafer_MEA_dev_LDH 6
+5:   Bisphenol A CCTE_Shafer_MEA_dev_LDH 6
+6: Acetamenophin CCTE_Shafer_MEA_dev_LDH 6
+   treatment     N
+1:      DMSO 29325
+2:     Water  1275
+   treatment    N
+1:   7126 H8 1785
+2:   7126 H9 1785
+3:  7126 H10 1785
+4:  7126 H11 1785
+5:  7126 G10 1785
+   treatment    N
+1:   7126 H8 1785
+2:   7126 H9 1785
+3:  7126 H10 1785
+4:  7126 H11 1785
+5:  7126 G10 1785
+   treatment    N
+1:   7126 H8    6
+2:     Water 1275
+3:   7126 H9    6
+4:  7126 H10    6
+5:  7126 H11    6
+6:  7126 G10    6
+
+Final Checks
+Number of cultures dates: 11
+Range of culture dates: 20210915 20220413
+Number of plates tested: 60
+Number of compounds tested: 117
+NA or infinite rvals for AUC or cytotoxicity endpoints:
+Empty data.table (0 rows and 2 cols): wllq,N
+
+Wllq counts for all data points:
+   wllq      N
+1:    1 241375
+2:    0   9185
+Number of unique acsn's present: 87  (expect 2 cyto + 17 AUC + 4*17 DIV = 87)
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min    median   max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB      82     24282 44036      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0      0.67   1.9      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0        64   136      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0        15    16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0         0    16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0         5    16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0        12    16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0         5   253      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12   0.071      0.83    41    509
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.15      0.69   101   2149
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.11      0.84    74   1240
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.16      0.96    78    733
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0       8.1    45      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0       2.1    11      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0         0    12      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0       0.4    21      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0       1.1    12      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0        34   136      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0        14    16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0         0    16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0         1    16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0         4    16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean  -0.013      0.69     4      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12  -0.004       0.3  0.81      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0062         0   0.2      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0048    0.0026  0.49      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9  -0.006     0.083  0.64      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0         8    36      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0       1.6    11      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0         0   8.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0      0.77   8.1      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0       1.1   5.9      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0       475  2483      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     0.2        33   794    545
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      54       167   690   2506
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     0.2       147   821   1723
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     1.3       136   769    975
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0       184   616      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.1        30   125    509
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.1        41   126   2149
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.92        34   121   1240
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.1        38   117    733
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0     0.018  0.21      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0    0.0095 0.076      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0         0 0.005      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.0000053 0.019      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0   0.00069 0.036      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0      0.25   2.8      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12  0.0019     0.086  0.73    545
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5   0.001      0.04  0.47   2506
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0     0.043  0.34   1723
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0     0.082  0.68    975
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0        41   562      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0        20   326      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0         0    17      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0         0    63      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0         3    90      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0        61   136      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5        15    16    537
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     5.7        15    16   2463
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5        14    16   1536
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5        15    16    861
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0      0.31   1.3      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0062     0.027   0.2    509
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.024     0.083  0.27   2149
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.013     0.082  0.27   1240
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9   0.011     0.053  0.24    733
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0       259   737      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0        77   100      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0         0    99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0        12    99      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0        41    99      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0       385  1101      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12     8.5        97   214    537
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       8        76   157   2463
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8        72   197   1536
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9       8       102   210    861
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0        22   279      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       9.3    58      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0         0    34      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0         0    48      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0       2.2    47      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0       1.4   6.2      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12    0.05      0.28   1.5    537
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5    0.05      0.25   0.7   2463
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7    0.05      0.32  0.74   1536
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9    0.05      0.43   1.4    861
+                                                             acsn     min    median   max num_NA
+[1] 0

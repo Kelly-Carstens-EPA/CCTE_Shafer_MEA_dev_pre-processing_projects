@@ -1,0 +1,2791 @@
+Output from the script run_me_SPS_PFAS2019.R
+Date Ran: 2021-01-05 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                   dataset_title 
+                                                                                  "SPS_PFAS2019" 
+                                                                    default_ControlTreatmentName 
+                                                                                          "DMSO" 
+                                                                             pause_between_steps 
+                                                                                          "TRUE" 
+                                                                                 root_output_dir 
+                                  "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                               save_notes_graphs 
+                                                                                          "TRUE" 
+                                                                                     scripts.dir 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                      spid_sheet 
+                                                                                              "" 
+                                                                                    spidmap_file 
+                                                                                              "" 
+                                                                     update_concs_without_prompt 
+                                                                                          "TRUE" 
+
+- Select files for files_log:
+1 files already exist. ( SPS_PFAS2019_files_log_2020-12-24.txt )
+- Create h5 files:
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 40 spike_list files.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 10 MaestroExperimentLog files.
+Total number of spikes: 34574
+Unique number of electrodes: 235
+Time range [0.007 899.983] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7107_05_00(000)         235   34574  0.00656  899.983
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 235 x 2
+2     /  names H5I_DATASET  STRING     235
+3     / sCount H5I_DATASET INTEGER     235
+4     / spikes H5I_DATASET   FLOAT   34574
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     235
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 235 x 2
+4      /     names H5I_DATASET  STRING     235
+5      /    sCount H5I_DATASET INTEGER     235
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   34574
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 233727
+Unique number of electrodes: 529
+Time range [0.000 899.745] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7107_07_00(000)         529  233727    8e-05 899.7454
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 529 x 2
+2     /  names H5I_DATASET  STRING     529
+3     / sCount H5I_DATASET INTEGER     529
+4     / spikes H5I_DATASET   FLOAT  233727
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     529
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 529 x 2
+4      /     names H5I_DATASET  STRING     529
+5      /    sCount H5I_DATASET INTEGER     529
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  233727
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 580601
+Unique number of electrodes: 730
+Time range [0.003 899.750] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7107_09_00(000)         730  580601  0.00328 899.7497
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 730 x 2
+2     /  names H5I_DATASET  STRING     730
+3     / sCount H5I_DATASET INTEGER     730
+4     / spikes H5I_DATASET   FLOAT  580601
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     730
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 730 x 2
+4      /     names H5I_DATASET  STRING     730
+5      /    sCount H5I_DATASET INTEGER     730
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  580601
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 626739
+Unique number of electrodes: 735
+Time range [0.008 900.007] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7107_12_00(000)         735  626739    0.008 900.0066
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 735 x 2
+2     /  names H5I_DATASET  STRING     735
+3     / sCount H5I_DATASET INTEGER     735
+4     / spikes H5I_DATASET   FLOAT  626739
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     735
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 735 x 2
+4      /     names H5I_DATASET  STRING     735
+5      /    sCount H5I_DATASET INTEGER     735
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  626739
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 29701
+Unique number of electrodes: 193
+Time range [0.050 899.942] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7108_05_00(000)         193   29701  0.04976 899.9422
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 193 x 2
+2     /  names H5I_DATASET  STRING     193
+3     / sCount H5I_DATASET INTEGER     193
+4     / spikes H5I_DATASET   FLOAT   29701
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     193
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 193 x 2
+4      /     names H5I_DATASET  STRING     193
+5      /    sCount H5I_DATASET INTEGER     193
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   29701
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 196752
+Unique number of electrodes: 494
+Time range [0.003 899.997] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7108_07_00(000)         494  196752  0.00272  899.997
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 494 x 2
+2     /  names H5I_DATASET  STRING     494
+3     / sCount H5I_DATASET INTEGER     494
+4     / spikes H5I_DATASET   FLOAT  196752
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     494
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 494 x 2
+4      /     names H5I_DATASET  STRING     494
+5      /    sCount H5I_DATASET INTEGER     494
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  196752
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 428265
+Unique number of electrodes: 722
+Time range [0.002 899.744] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7108_09_00(000)         722  428265  0.00192 899.7445
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 722 x 2
+2     /  names H5I_DATASET  STRING     722
+3     / sCount H5I_DATASET INTEGER     722
+4     / spikes H5I_DATASET   FLOAT  428265
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     722
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 722 x 2
+4      /     names H5I_DATASET  STRING     722
+5      /    sCount H5I_DATASET INTEGER     722
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  428265
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 670440
+Unique number of electrodes: 738
+Time range [0.002 899.750] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7108_12_00(000)         738  670440  0.00208 899.7499
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 738 x 2
+2     /  names H5I_DATASET  STRING     738
+3     / sCount H5I_DATASET INTEGER     738
+4     / spikes H5I_DATASET   FLOAT  670440
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     738
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 738 x 2
+4      /     names H5I_DATASET  STRING     738
+5      /    sCount H5I_DATASET INTEGER     738
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  670440
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 28902
+Unique number of electrodes: 223
+Time range [0.007 899.963] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7109_05_00(000)         223   28902  0.00736 899.9626
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 223 x 2
+2     /  names H5I_DATASET  STRING     223
+3     / sCount H5I_DATASET INTEGER     223
+4     / spikes H5I_DATASET   FLOAT   28902
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     223
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 223 x 2
+4      /     names H5I_DATASET  STRING     223
+5      /    sCount H5I_DATASET INTEGER     223
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   28902
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 286527
+Unique number of electrodes: 565
+Time range [0.001 900.000] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7109_07_00(000)         565  286527   0.0012 899.9997
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 565 x 2
+2     /  names H5I_DATASET  STRING     565
+3     / sCount H5I_DATASET INTEGER     565
+4     / spikes H5I_DATASET   FLOAT  286527
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     565
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 565 x 2
+4      /     names H5I_DATASET  STRING     565
+5      /    sCount H5I_DATASET INTEGER     565
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  286527
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 578959
+Unique number of electrodes: 735
+Time range [0.002 899.997] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7109_09_00(000)         735  578959  0.00192  899.997
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 735 x 2
+2     /  names H5I_DATASET  STRING     735
+3     / sCount H5I_DATASET INTEGER     735
+4     / spikes H5I_DATASET   FLOAT  578959
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     735
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 735 x 2
+4      /     names H5I_DATASET  STRING     735
+5      /    sCount H5I_DATASET INTEGER     735
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  578959
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 1496088
+Unique number of electrodes: 752
+Time range [0.000 895.999] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201118_MW71-7109_12_00(000)(000)         752 1496088    8e-05 895.9993
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 752 x 2
+2     /  names H5I_DATASET  STRING     752
+3     / sCount H5I_DATASET INTEGER     752
+4     / spikes H5I_DATASET   FLOAT 1496088
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     752
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 752 x 2
+4      /     names H5I_DATASET  STRING     752
+5      /    sCount H5I_DATASET INTEGER     752
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT 1496088
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 44433
+Unique number of electrodes: 191
+Time range [0.007 899.992] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7211_05_00(000)         191   44433   0.0068 899.9922
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 191 x 2
+2     /  names H5I_DATASET  STRING     191
+3     / sCount H5I_DATASET INTEGER     191
+4     / spikes H5I_DATASET   FLOAT   44433
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     191
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 191 x 2
+4      /     names H5I_DATASET  STRING     191
+5      /    sCount H5I_DATASET INTEGER     191
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   44433
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 424158
+Unique number of electrodes: 609
+Time range [0.005 899.746] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7211_07_00(000)(000)         609  424158   0.0048 899.7462
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 609 x 2
+2     /  names H5I_DATASET  STRING     609
+3     / sCount H5I_DATASET INTEGER     609
+4     / spikes H5I_DATASET   FLOAT  424158
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     609
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 609 x 2
+4      /     names H5I_DATASET  STRING     609
+5      /    sCount H5I_DATASET INTEGER     609
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  424158
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 381287
+Unique number of electrodes: 684
+Time range [0.000 899.991] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7211_09_00(000)         684  381287  0.00016 899.9908
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 684 x 2
+2     /  names H5I_DATASET  STRING     684
+3     / sCount H5I_DATASET INTEGER     684
+4     / spikes H5I_DATASET   FLOAT  381287
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     684
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 684 x 2
+4      /     names H5I_DATASET  STRING     684
+5      /    sCount H5I_DATASET INTEGER     684
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  381287
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 446624
+Unique number of electrodes: 716
+Time range [0.005 899.998] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7211_12_00(000)         716  446624  0.00544 899.9982
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 716 x 2
+2     /  names H5I_DATASET  STRING     716
+3     / sCount H5I_DATASET INTEGER     716
+4     / spikes H5I_DATASET   FLOAT  446624
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     716
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 716 x 2
+4      /     names H5I_DATASET  STRING     716
+5      /    sCount H5I_DATASET INTEGER     716
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  446624
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 27294
+Unique number of electrodes: 148
+Time range [0.064 899.741] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7213_05_00(000)         148   27294  0.06432 899.7406
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 148 x 2
+2     /  names H5I_DATASET  STRING     148
+3     / sCount H5I_DATASET INTEGER     148
+4     / spikes H5I_DATASET   FLOAT   27294
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     148
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 148 x 2
+4      /     names H5I_DATASET  STRING     148
+5      /    sCount H5I_DATASET INTEGER     148
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   27294
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 390743
+Unique number of electrodes: 513
+Time range [0.007 899.498] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7213_07_00(000)(000)         513  390743  0.00704 899.4983
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 513 x 2
+2     /  names H5I_DATASET  STRING     513
+3     / sCount H5I_DATASET INTEGER     513
+4     / spikes H5I_DATASET   FLOAT  390743
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     513
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 513 x 2
+4      /     names H5I_DATASET  STRING     513
+5      /    sCount H5I_DATASET INTEGER     513
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  390743
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 285656
+Unique number of electrodes: 679
+Time range [0.005 899.750] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7213_09_00(000)         679  285656   0.0052 899.7496
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 679 x 2
+2     /  names H5I_DATASET  STRING     679
+3     / sCount H5I_DATASET INTEGER     679
+4     / spikes H5I_DATASET   FLOAT  285656
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     679
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 679 x 2
+4      /     names H5I_DATASET  STRING     679
+5      /    sCount H5I_DATASET INTEGER     679
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  285656
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 493463
+Unique number of electrodes: 731
+Time range [0.003 899.997] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7213_12_00(000)         731  493463  0.00288 899.9974
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 731 x 2
+2     /  names H5I_DATASET  STRING     731
+3     / sCount H5I_DATASET INTEGER     731
+4     / spikes H5I_DATASET   FLOAT  493463
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     731
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 731 x 2
+4      /     names H5I_DATASET  STRING     731
+5      /    sCount H5I_DATASET INTEGER     731
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  493463
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 9224
+Unique number of electrodes: 83
+Time range [0.066 899.706] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7214_05_00(000)          83    9224  0.06584 899.7062
+  group   name       otype  dclass    dim
+0     /  array H5I_DATASET  STRING      1
+1     /   epos H5I_DATASET   FLOAT 83 x 2
+2     /  names H5I_DATASET  STRING     83
+3     / sCount H5I_DATASET INTEGER     83
+4     / spikes H5I_DATASET   FLOAT   9224
+   group      name       otype  dclass    dim
+0      /     array H5I_DATASET  STRING      1
+1      /  channels H5I_DATASET  STRING     83
+2      /      dose H5I_DATASET  STRING     48
+3      /      epos H5I_DATASET   FLOAT 83 x 2
+4      /     names H5I_DATASET  STRING     83
+5      /    sCount H5I_DATASET INTEGER     83
+6      /      size H5I_DATASET  STRING     48
+7      /    spikes H5I_DATASET   FLOAT   9224
+8      / treatment H5I_DATASET  STRING     48
+9      /     units H5I_DATASET  STRING     48
+10     /      well H5I_DATASET  STRING     48
+Total number of spikes: 138670
+Unique number of electrodes: 338
+Time range [0.002 899.746] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7214_07_00(000)(000)         338  138670  0.00224  899.746
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 338 x 2
+2     /  names H5I_DATASET  STRING     338
+3     / sCount H5I_DATASET INTEGER     338
+4     / spikes H5I_DATASET   FLOAT  138670
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     338
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 338 x 2
+4      /     names H5I_DATASET  STRING     338
+5      /    sCount H5I_DATASET INTEGER     338
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  138670
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 176074
+Unique number of electrodes: 613
+Time range [0.011 899.744] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7214_09_00(000)         613  176074  0.01072 899.7442
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 613 x 2
+2     /  names H5I_DATASET  STRING     613
+3     / sCount H5I_DATASET INTEGER     613
+4     / spikes H5I_DATASET   FLOAT  176074
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     613
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 613 x 2
+4      /     names H5I_DATASET  STRING     613
+5      /    sCount H5I_DATASET INTEGER     613
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  176074
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 222286
+Unique number of electrodes: 693
+Time range [0.000 899.993] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7214_12_00(000)         693  222286  0.00016 899.9926
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 693 x 2
+2     /  names H5I_DATASET  STRING     693
+3     / sCount H5I_DATASET INTEGER     693
+4     / spikes H5I_DATASET   FLOAT  222286
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     693
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 693 x 2
+4      /     names H5I_DATASET  STRING     693
+5      /    sCount H5I_DATASET INTEGER     693
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  222286
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 7210
+Unique number of electrodes: 85
+Time range [0.062 899.937] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7215_05_00(000)          85    7210   0.0624 899.9372
+  group   name       otype  dclass    dim
+0     /  array H5I_DATASET  STRING      1
+1     /   epos H5I_DATASET   FLOAT 85 x 2
+2     /  names H5I_DATASET  STRING     85
+3     / sCount H5I_DATASET INTEGER     85
+4     / spikes H5I_DATASET   FLOAT   7210
+   group      name       otype  dclass    dim
+0      /     array H5I_DATASET  STRING      1
+1      /  channels H5I_DATASET  STRING     85
+2      /      dose H5I_DATASET  STRING     48
+3      /      epos H5I_DATASET   FLOAT 85 x 2
+4      /     names H5I_DATASET  STRING     85
+5      /    sCount H5I_DATASET INTEGER     85
+6      /      size H5I_DATASET  STRING     48
+7      /    spikes H5I_DATASET   FLOAT   7210
+8      / treatment H5I_DATASET  STRING     48
+9      /     units H5I_DATASET  STRING     48
+10     /      well H5I_DATASET  STRING     48
+Total number of spikes: 244182
+Unique number of electrodes: 352
+Time range [0.000 899.498] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7215_07_00(000)(000)         352  244182    8e-05 899.4978
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 352 x 2
+2     /  names H5I_DATASET  STRING     352
+3     / sCount H5I_DATASET INTEGER     352
+4     / spikes H5I_DATASET   FLOAT  244182
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     352
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 352 x 2
+4      /     names H5I_DATASET  STRING     352
+5      /    sCount H5I_DATASET INTEGER     352
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  244182
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 276207
+Unique number of electrodes: 612
+Time range [0.001 899.997] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7215_09_00(000)         612  276207  0.00144  899.997
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 612 x 2
+2     /  names H5I_DATASET  STRING     612
+3     / sCount H5I_DATASET INTEGER     612
+4     / spikes H5I_DATASET   FLOAT  276207
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     612
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 612 x 2
+4      /     names H5I_DATASET  STRING     612
+5      /    sCount H5I_DATASET INTEGER     612
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  276207
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 354343
+Unique number of electrodes: 701
+Time range [0.000 899.996] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7215_12_00(000)         701  354343  0.00024 899.9964
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 701 x 2
+2     /  names H5I_DATASET  STRING     701
+3     / sCount H5I_DATASET INTEGER     701
+4     / spikes H5I_DATASET   FLOAT  354343
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     701
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 701 x 2
+4      /     names H5I_DATASET  STRING     701
+5      /    sCount H5I_DATASET INTEGER     701
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  354343
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 24617
+Unique number of electrodes: 147
+Time range [0.051 899.994] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7217_05_00(000)         147   24617  0.05136  899.994
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 147 x 2
+2     /  names H5I_DATASET  STRING     147
+3     / sCount H5I_DATASET INTEGER     147
+4     / spikes H5I_DATASET   FLOAT   24617
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     147
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 147 x 2
+4      /     names H5I_DATASET  STRING     147
+5      /    sCount H5I_DATASET INTEGER     147
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   24617
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 343834
+Unique number of electrodes: 516
+Time range [0.001 899.745] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7217_07_00(000)(000)         516  343834  0.00144 899.7446
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 516 x 2
+2     /  names H5I_DATASET  STRING     516
+3     / sCount H5I_DATASET INTEGER     516
+4     / spikes H5I_DATASET   FLOAT  343834
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     516
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 516 x 2
+4      /     names H5I_DATASET  STRING     516
+5      /    sCount H5I_DATASET INTEGER     516
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  343834
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 361808
+Unique number of electrodes: 671
+Time range [0.000 899.997] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7217_09_00(000)         671  361808  0.00024 899.9971
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 671 x 2
+2     /  names H5I_DATASET  STRING     671
+3     / sCount H5I_DATASET INTEGER     671
+4     / spikes H5I_DATASET   FLOAT  361808
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     671
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 671 x 2
+4      /     names H5I_DATASET  STRING     671
+5      /    sCount H5I_DATASET INTEGER     671
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  361808
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 477350
+Unique number of electrodes: 713
+Time range [0.000 900.000] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW71-7217_12_00(000)         713  477350        0 899.9998
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 713 x 2
+2     /  names H5I_DATASET  STRING     713
+3     / sCount H5I_DATASET INTEGER     713
+4     / spikes H5I_DATASET   FLOAT  477350
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     713
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 713 x 2
+4      /     names H5I_DATASET  STRING     713
+5      /    sCount H5I_DATASET INTEGER     713
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  477350
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 35579
+Unique number of electrodes: 258
+Time range [0.022 899.941] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8203_05_00(000)         258   35579   0.0224 899.9413
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 258 x 2
+2     /  names H5I_DATASET  STRING     258
+3     / sCount H5I_DATASET INTEGER     258
+4     / spikes H5I_DATASET   FLOAT   35579
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     258
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 258 x 2
+4      /     names H5I_DATASET  STRING     258
+5      /    sCount H5I_DATASET INTEGER     258
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   35579
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 482983
+Unique number of electrodes: 530
+Time range [0.001 899.499] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8203_07_00(000)(000)         530  482983  0.00088 899.4994
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 530 x 2
+2     /  names H5I_DATASET  STRING     530
+3     / sCount H5I_DATASET INTEGER     530
+4     / spikes H5I_DATASET   FLOAT  482983
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     530
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 530 x 2
+4      /     names H5I_DATASET  STRING     530
+5      /    sCount H5I_DATASET INTEGER     530
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  482983
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 594548
+Unique number of electrodes: 706
+Time range [0.002 900.001] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8203_09_00(000)         706  594548  0.00152 900.0006
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 706 x 2
+2     /  names H5I_DATASET  STRING     706
+3     / sCount H5I_DATASET INTEGER     706
+4     / spikes H5I_DATASET   FLOAT  594548
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     706
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 706 x 2
+4      /     names H5I_DATASET  STRING     706
+5      /    sCount H5I_DATASET INTEGER     706
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  594548
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 518554
+Unique number of electrodes: 717
+Time range [0.001 899.999] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8203_12_00(000)         717  518554  0.00144 899.9994
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 717 x 2
+2     /  names H5I_DATASET  STRING     717
+3     / sCount H5I_DATASET INTEGER     717
+4     / spikes H5I_DATASET   FLOAT  518554
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     717
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 717 x 2
+4      /     names H5I_DATASET  STRING     717
+5      /    sCount H5I_DATASET INTEGER     717
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  518554
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 32548
+Unique number of electrodes: 224
+Time range [0.059 899.990] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8207_05_00(000)         224   32548  0.05872 899.9902
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 224 x 2
+2     /  names H5I_DATASET  STRING     224
+3     / sCount H5I_DATASET INTEGER     224
+4     / spikes H5I_DATASET   FLOAT   32548
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     224
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 224 x 2
+4      /     names H5I_DATASET  STRING     224
+5      /    sCount H5I_DATASET INTEGER     224
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT   32548
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 409411
+Unique number of electrodes: 502
+Time range [0.001 899.498] (seconds)
+                                       nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8207_07_00(000)(000)         502  409411  0.00064 899.4982
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 502 x 2
+2     /  names H5I_DATASET  STRING     502
+3     / sCount H5I_DATASET INTEGER     502
+4     / spikes H5I_DATASET   FLOAT  409411
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     502
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 502 x 2
+4      /     names H5I_DATASET  STRING     502
+5      /    sCount H5I_DATASET INTEGER     502
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  409411
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 338549
+Unique number of electrodes: 609
+Time range [0.000 899.750] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8207_09_00(000)         609  338549  0.00016 899.7498
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 609 x 2
+2     /  names H5I_DATASET  STRING     609
+3     / sCount H5I_DATASET INTEGER     609
+4     / spikes H5I_DATASET   FLOAT  338549
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     609
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 609 x 2
+4      /     names H5I_DATASET  STRING     609
+5      /    sCount H5I_DATASET INTEGER     609
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  338549
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+Total number of spikes: 365863
+Unique number of electrodes: 620
+Time range [0.008 900.005] (seconds)
+                                  nelectrodes nspikes time.min time.max
+NFA_20201209_MW72-8207_12_00(000)         620  365863  0.00832  900.005
+  group   name       otype  dclass     dim
+0     /  array H5I_DATASET  STRING       1
+1     /   epos H5I_DATASET   FLOAT 620 x 2
+2     /  names H5I_DATASET  STRING     620
+3     / sCount H5I_DATASET INTEGER     620
+4     / spikes H5I_DATASET   FLOAT  365863
+   group      name       otype  dclass     dim
+0      /     array H5I_DATASET  STRING       1
+1      /  channels H5I_DATASET  STRING     620
+2      /      dose H5I_DATASET  STRING      48
+3      /      epos H5I_DATASET   FLOAT 620 x 2
+4      /     names H5I_DATASET  STRING     620
+5      /    sCount H5I_DATASET INTEGER     620
+6      /      size H5I_DATASET  STRING      48
+7      /    spikes H5I_DATASET   FLOAT  365863
+8      / treatment H5I_DATASET  STRING      48
+9      /     units H5I_DATASET  STRING      48
+10     /      well H5I_DATASET  STRING      48
+h5files are ready in folder L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/SPS_PFAS2019/h5files 
+
+- Calculate the components:
+
+Starting parameter calculations...
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+*** No network spikes found
+[1] "-----------------       Done with file # 4"
+
+- Calculate the Mutual Information:
+Output from the script run_me_SPS_PFAS2019.R
+Date Ran: 2021-01-05 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                   dataset_title 
+                                                                                  "SPS_PFAS2019" 
+                                                                    default_ControlTreatmentName 
+                                                                                          "DMSO" 
+                                                                             pause_between_steps 
+                                                                                          "TRUE" 
+                                                                                 root_output_dir 
+                                  "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                               save_notes_graphs 
+                                                                                          "TRUE" 
+                                                                                     scripts.dir 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                      spid_sheet 
+                                                                                              "" 
+                                                                                    spidmap_file 
+                                                                                              "" 
+                                                                     update_concs_without_prompt 
+                                                                                          "TRUE" 
+
+- Select files for files_log:
+1 files already exist. ( SPS_PFAS2019_files_log_2020-12-24.txt )
+- Create h5 files:
+40 files already exist.
+- Calculate the components:
+10 files already exist.
+- Calculate the Mutual Information:
+
+Starting Normalized Mutual Information Calculations...
+Starting 20201118 MW71-7107 at 2021-01-05 14:27:41 
+	Completed NMI_20201118_MW71-7107.csv at 2021-01-05 14:37:04 
+Starting 20201118 MW71-7108 at 2021-01-05 14:37:04 
+	Completed NMI_20201118_MW71-7108.csv at 2021-01-05 14:46:00 
+Starting 20201118 MW71-7109 at 2021-01-05 14:46:00 
+	Completed NMI_20201118_MW71-7109.csv at 2021-01-05 14:56:09 
+Starting 20201209 MW71-7211 at 2021-01-05 14:56:09 
+	Completed NMI_20201209_MW71-7211.csv at 2021-01-05 15:05:33 
+Starting 20201209 MW71-7213 at 2021-01-05 15:05:33 
+	Completed NMI_20201209_MW71-7213.csv at 2021-01-05 15:14:26 
+Starting 20201209 MW71-7214 at 2021-01-05 15:14:26 
+	Completed NMI_20201209_MW71-7214.csv at 2021-01-05 15:20:03 
+Starting 20201209 MW71-7215 at 2021-01-05 15:20:03 
+	Completed NMI_20201209_MW71-7215.csv at 2021-01-05 15:26:51 
+Starting 20201209 MW71-7217 at 2021-01-05 15:26:51 
+	Completed NMI_20201209_MW71-7217.csv at 2021-01-05 15:35:27 
+Starting 20201209 MW72-8203 at 2021-01-05 15:35:27 
+	Completed NMI_20201209_MW72-8203.csv at 2021-01-05 15:43:54 
+Starting 20201209 MW72-8207 at 2021-01-05 15:43:54 
+	Completed NMI_20201209_MW72-8207.csv at 2021-01-05 15:51:40 
+[1] "MI files are ready in folder L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/SPS_PFAS2019/All_MI"
+
+- Check over component values by DIV, calculate AUC:
+
+Starting AUC preparations...
+Got 10 parameter csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/SPS_PFAS2019/prepared_data 
+Got 10 MI csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/SPS_PFAS2019/All_MI 
+
+Updating wllq...
+The following data rows will be removed because wllq==0 and DIV is not 'all':
+Empty data.table (0 rows and 12 cols): date,Plate.SN,well,DIV,full_id,trt...
+Wllq summary:
+   wllq wllq_notes number_of_well_recordings
+1:    1                                 1920
+Empty data.table (0 rows and 10 cols): date,Plate.SN,well,trt,dose,DIV...
+
+Checking for any DIV other than 5 7 9 12 ...
+
+Checking that every plate has a recording for DIV 5 7 9 12 ...
+Every well has data from DIVs 5 7 9 12 
+
+SPS_PFAS2019_AUC.csv is ready
+
+- Extract the cytotoxicity data from Calculations files:
+
+Starting cytotoxicity data collection...
+Any negative blank-corrected values will be set to 0.
+
+- Select files for files_log:
+1 files already exist. ( SPS_PFAS2019_files_log_2020-12-24.txt )
+- Create h5 files:
+40 files already exist.
+- Calculate the components:
+10 files already exist.
+- Calculate the Mutual Information:
+10 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( SPS_PFAS2019_AUC.csv )
+
+- Extract the cytotoxicity data from Calculations files:
+Continue? (y/n): y
+
+Starting cytotoxicity data collection...
+Any negative blank-corrected values will be set to 0.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 4 Calculations files.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 0 Summary files.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 10 MaestroExperimentLog files.
+MW71-7107 AB 
+MW71-7108 AB 
+MW71-7109 AB 
+MW71-7107 LDH 
+MW71-7108 LDH 
+MW71-7109 LDH 
+MW71-7211 AB 
+MW71-7213 AB 
+MW71-7214 AB 
+MW71-7211 LDH 
+MW71-7213 LDH 
+MW71-7214 LDH 
+MW71-7215 AB 
+MW71-7217 AB 
+MW72-8203 AB 
+MW71-7215 LDH 
+MW71-7217 LDH 
+MW72-8203 LDH 
+MW72-8207 AB 
+MW72-8207 LDH 
+Wllq summary:
+   src_acsn wllq wllq_notes   N
+1:       AB    1            480
+2:      LDH    1            480
+SPS_PFAS2019_cytotox.csv is ready
+
+'source_steps.R' is complete.
+
+Final Checks
+Number of cultures dates: 2
+Range of culture dates: 20201118 20201209
+Number of plates tested: 10
+Number of compounds tested: 136
+Any NA rvals?    wllq    N
+1:    1 6884
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 41760
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+                                                       acsn               apid  N
+  1:                   CCTE_Shafer_MEA_dev_burst_rate_DIV12 20201118_MW71-7107  7
+  2:                    CCTE_Shafer_MEA_dev_burst_rate_DIV5 20201118_MW71-7107  7
+  3:                    CCTE_Shafer_MEA_dev_burst_rate_DIV7 20201118_MW71-7107  7
+  4:                    CCTE_Shafer_MEA_dev_burst_rate_DIV9 20201118_MW71-7107  7
+  5:                         CCTE_Shafer_MEA_dev_burst_rate 20201118_MW71-7107  7
+ ---                                                                             
+338: CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 20201209_MW72-8207 20
+339:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 20201209_MW72-8207 20
+340:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 20201209_MW72-8207 20
+341:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 20201209_MW72-8207 20
+342:       CCTE_Shafer_MEA_dev_correlation_coefficient_mean 20201209_MW72-8207 20
+
+Range of rval's by acsn:
+                                                             acsn     min   median      max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB     447    26875    45113      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0     0.67        2      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       52      112      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       13       16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        0        8      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        4       15      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0        9       16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      3.7      137      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.14     0.54       14     50
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5     0.2     0.78       12    439
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.16     0.89       68    178
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.17      0.8       49    133
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0      5.9       35      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      1.1      9.7      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0      5.8      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0     0.56      7.5      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0     0.58        6      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       25       90      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       12       16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0        2      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        1       12      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0        2       16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0048     0.87      2.2      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 -0.0028     0.34     0.62      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0064        0     0.09      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0035   0.0014    0.088      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0041     0.14      0.6      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      5.6       34      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      0.7      9.4      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0        0      5.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.88      8.7      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0     0.63      5.8      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      628     2748      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12       2       62      601     42
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5     Inf       NA     -Inf    480
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     6.5      275      785    362
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9      23      194      804     65
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      206      715      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.2       57      122     50
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.6       30      116    439
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7     1.1       26      101    178
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.9       46      117    133
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.012    0.052      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0   0.0064     0.02      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.000027      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000004   0.0024      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0  0.00086   0.0099      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.22      1.4      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12 0.00034    0.073     0.39     42
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5     Inf       NA     -Inf    480
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.025     0.21    362
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0    0.044     0.35     65
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0       30      389      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       13      241      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0        0      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        0       29      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0        4       39      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       58       95      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5       13       16     36
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     Inf       NA     -Inf    480
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       10       16    302
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       14       16     44
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.31      1.2      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12    0.01    0.022     0.12     50
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.016     0.14     0.27    439
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7    0.02      0.1     0.25    178
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9    0.01    0.056     0.17    133
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      249      644      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       77       99      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0       99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       15      100      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       38       97      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      403      954      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12      16       98      213     36
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5     Inf       NA     -Inf    480
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       29      142    302
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9      11       98      196     44
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       43      167      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       17       51      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0        0      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0        0       18      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0      6.4       41      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0      1.1      2.8      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.053     0.24     0.64     36
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5     Inf       NA     -Inf    480
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.054     0.12     0.51    302
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.062     0.27      0.7     44
+                                                             acsn     min   median      max num_NA

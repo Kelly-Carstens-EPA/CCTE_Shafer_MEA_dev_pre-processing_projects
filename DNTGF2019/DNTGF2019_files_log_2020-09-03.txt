@@ -1,0 +1,332 @@
+testpipeline2020 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2020-09-03 15:52:55
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA 
+Collected 191 files from 67 sub-directories.
+
+L:/Lab/NHEERL_MEA/Project - DNT 2019/Project DNT 2019 NFA MEA
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\20190807_NFA DNT Group 1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\20190807_NFA DNT Group 2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\20190904_NFA DNT Group 3 Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\20190904_NFA DNT Group 4 Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\20190918_NFA_DNT_Group 5_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\20190918_NFA_DNT_Group 6_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\20191016_NFA_DNT_Group 7_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\20191016_NFA_DNT_Group 8_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\20191030_NFA_DNT_Group 10_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\20191030_NFA_DNT_Group 9_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\20191113_NFA_DNT_Group 11_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\20191113_NFA_DNT_Group 12_ Calculations.xlsx
+
+20190807 Culture DNT Group 1/MW 69-3715
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\csv Files\20190807_MW69-3715_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_07_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_12_00(000)_spike_list.csv
+
+20190807 Culture DNT Group 1/MW 69-3802
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\csv Files\20190807_MW69-3802_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_12_00(000)_spike_list.csv
+
+20190807 Culture DNT Group 1/MW 69-3803
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\csv Files\20190807_MW69-3803_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_12_00(000)_spike_list.csv
+
+20190807 Culture DNT Group 2/MW 69-3804
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3804\csv Files\20190807_MW69-3804_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3804\Spike List Files\NFA_20190807_MW69-3804_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3804\Spike List Files\NFA_20190807_MW69-3804_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3804\Spike List Files\NFA_20190807_MW69-3804_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3804\Spike List Files\NFA_20190807_MW69-3804_12_00(000)_spike_list.csv
+
+20190807 Culture DNT Group 2/MW 69-3805
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3805\csv Files\20190807_MW69-3805_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3805\Spike List Files\NFA_20190807_MW69-3805_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3805\Spike List Files\NFA_20190807_MW69-3805_07_00(000)(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3805\Spike List Files\NFA_20190807_MW69-3805_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3805\Spike List Files\NFA_20190807_MW69-3805_12_00(000)_spike_list.csv
+
+20190807 Culture DNT Group 2/MW 69-3806
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3806\csv Files\20190807_MW69-3806_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3806\Spike List Files\NFA_20190807_MW69-3806_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3806\Spike List Files\NFA_20190807_MW69-3806_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3806\Spike List Files\NFA_20190807_MW69-3806_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 2\MW 69-3806\Spike List Files\NFA_20190807_MW69-3806_12_00(000)_spike_list.csv
+
+20190904 Culture DNT Group 3/MW 69-3813
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3813\csv Files\20190904_MW69-3813_MaestroExperimentLog_Ontogeny.csv
+
+20190904 Culture DNT Group 3/MW 69-3813/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3813\Spike List Files\Original Spike lists\NFA_20190904_MW69-3813_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3813\Spike List Files\Original Spike lists\NFA_20190904_MW69-3813_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3813\Spike List Files\Original Spike lists\NFA_20190904_MW69-3813_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3813\Spike List Files\Original Spike lists\NFA_20190904_MW69-3813_12_00(000)_spike_list.csv
+
+20190904 Culture DNT Group 3/MW 69-3814
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3814\csv Files\20190904_MW69-3814_MaestroExperimentLog_Ontogeny.csv
+
+20190904 Culture DNT Group 3/MW 69-3814/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3814\Spike List Files\Original spike list\NFA_20190904_MW69-3814_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3814\Spike List Files\Original spike list\NFA_20190904_MW69-3814_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3814\Spike List Files\Original spike list\NFA_20190904_MW69-3814_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3814\Spike List Files\Original spike list\NFA_20190904_MW69-3814_12_00(000)_spike_list.csv
+
+20190904 Culture DNT Group 3/MW 69-3816
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3816\csv Files\20190904_MW69-3816_MaestroExperimentLog_Ontogeny.csv
+
+20190904 Culture DNT Group 3/MW 69-3816/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3816\Spike List Files\Original Spike lists\NFA_20190904_MW69-3816_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3816\Spike List Files\Original Spike lists\NFA_20190904_MW69-3816_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3816\Spike List Files\Original Spike lists\NFA_20190904_MW69-3816_09_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 3\MW 69-3816\Spike List Files\Original Spike lists\NFA_20190904_MW69-3816_12_00(000)_spike_list.csv
+
+20190904 Culture DNT Group 4/MW 69-3817
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3817\csv Files\20190904_MW69-3817_MaestroExperimentLog_Ontogeny.csv
+
+20190904 Culture DNT Group 4/MW 69-3817/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3817\Spike List Files\Original Spike lists\NFA_20190904_MW69-3817_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3817\Spike List Files\Original Spike lists\NFA_20190904_MW69-3817_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3817\Spike List Files\Original Spike lists\NFA_20190904_MW69-3817_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3817\Spike List Files\Original Spike lists\NFA_20190904_MW69-3817_12_00(000)_spike_list.csv
+
+20190904 Culture DNT Group 4/MW 69-3818
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3818\csv Files\20190904_MW69-3818_MaestroExperimentLog_Ontogeny.csv
+
+20190904 Culture DNT Group 4/MW 69-3818/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3818\Spike List Files\Original Spike lists\NFA_20190904_MW69-3818_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3818\Spike List Files\Original Spike lists\NFA_20190904_MW69-3818_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3818\Spike List Files\Original Spike lists\NFA_20190904_MW69-3818_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3818\Spike List Files\Original Spike lists\NFA_20190904_MW69-3818_12_00(000)_spike_list.csv
+
+20190904 Culture DNT Group 4/MW 69-3819
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3819\csv Files\20190904_MW69-3819_MaestroExperimentLog_Ontogeny.csv
+
+20190904 Culture DNT Group 4/MW 69-3819/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3819\Spike List Files\Original Spike lists\NFA_20190904_MW69-3819_05_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3819\Spike List Files\Original Spike lists\NFA_20190904_MW69-3819_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3819\Spike List Files\Original Spike lists\NFA_20190904_MW69-3819_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190904 Culture DNT Group 4\MW 69-3819\Spike List Files\Original Spike lists\NFA_20190904_MW69-3819_12_00(000)_spike_list.csv
+
+20190918 Culture DNT Group 5/70-2401
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2401\csv Files\20190918_MW70-2401_MaestroExperimentLog_Ontogeny.csv
+
+20190918 Culture DNT Group 5/70-2401/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2401\Spike List Files\Original\NFA_20190918_MW70-2401_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2401\Spike List Files\Original\NFA_20190918_MW70-2401_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2401\Spike List Files\Original\NFA_20190918_MW70-2401_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2401\Spike List Files\Original\NFA_20190918_MW70-2401_12_00(000)_spike_list.csv
+
+20190918 Culture DNT Group 5/70-2402
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2402\csv Files\20190918_MW70-2402_MaestroExperimentLog_Ontogeny.csv
+
+20190918 Culture DNT Group 5/70-2402/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2402\Spike List Files\Original\NFA_20190918_MW70-2402_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2402\Spike List Files\Original\NFA_20190918_MW70-2402_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2402\Spike List Files\Original\NFA_20190918_MW70-2402_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2402\Spike List Files\Original\NFA_20190918_MW70-2402_12_00(000)_spike_list.csv
+
+20190918 Culture DNT Group 5/70-2403
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2403\csv Files\20190918_MW70-2403_MaestroExperimentLog_Ontogeny.csv
+
+20190918 Culture DNT Group 5/70-2403/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2403\Spike List Files\Original\NFA_20190918_MW70-2403_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2403\Spike List Files\Original\NFA_20190918_MW70-2403_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2403\Spike List Files\Original\NFA_20190918_MW70-2403_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 5\70-2403\Spike List Files\Original\NFA_20190918_MW70-2403_12_00(001)_spike_list.csv
+
+20190918 Culture DNT Group 6/70-2404
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2404\csv Files\20190918_MW70-2404_MaestroExperimentLog_Ontogeny.csv
+
+20190918 Culture DNT Group 6/70-2404/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2404\Spike List Files\Original\NFA_20190918_MW70-2404_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2404\Spike List Files\Original\NFA_20190918_MW70-2404_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2404\Spike List Files\Original\NFA_20190918_MW70-2404_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2404\Spike List Files\Original\NFA_20190918_MW70-2404_12_00(000)_spike_list.csv
+
+20190918 Culture DNT Group 6/70-2405
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2405\csv Files\20190918_MW70-2405_MaestroExperimentLog_Ontogeny.csv
+
+20190918 Culture DNT Group 6/70-2405/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2405\Spike List Files\Original\NFA_20190918_MW70-2405_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2405\Spike List Files\Original\NFA_20190918_MW70-2405_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2405\Spike List Files\Original\NFA_20190918_MW70-2405_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2405\Spike List Files\Original\NFA_20190918_MW70-2405_12_00(000)_spike_list.csv
+
+20190918 Culture DNT Group 6/70-2406
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2406\csv Files\20190918_MW70-2406_MaestroExperimentLog_Ontogeny.csv
+
+20190918 Culture DNT Group 6/70-2406/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2406\Spike List Files\Original\NFA_20190918_MW70-2406_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2406\Spike List Files\Original\NFA_20190918_MW70-2406_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2406\Spike List Files\Original\NFA_20190918_MW70-2406_09_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190918 Culture DNT Group 6\70-2406\Spike List Files\Original\NFA_20190918_MW70-2406_12_00(000)_spike_list.csv
+
+20191016 Culture DNT Group 7/70-2413
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2413\csv Files\20191016_MW70-2413_MaestroExperimentLog_Ontogeny.csv
+
+20191016 Culture DNT Group 7/70-2413/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2413\Spike List Files\Original\NFA_20191016_MW70-2413_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2413\Spike List Files\Original\NFA_20191016_MW70-2413_12_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2413\Spike List Files\Original\NFA_20191016_MW70-2413_5_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2413\Spike List Files\Original\NFA_20191016_MW70-2413_7_00(000)_spike_list.csv
+
+20191016 Culture DNT Group 7/70-2414
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2414\csv Files\20191016_MW70-2414_MaestroExperimentLog_Ontogeny.csv
+
+20191016 Culture DNT Group 7/70-2414/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2414\Spike List Files\Original\NFA_20191016_MW70-2414_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2414\Spike List Files\Original\NFA_20191016_MW70-2414_5_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2414\Spike List Files\Original\NFA_20191016_MW70-2414_7_00(000)_spike_list.csv
+
+20191016 Culture DNT Group 7/70-2415
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2415\csv Files\20191016_MW70-2415_MaestroExperimentLog_Ontogeny.csv
+
+20191016 Culture DNT Group 7/70-2415/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2415\Spike List Files\Original\NFA_20191016_MW70-2415_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2415\Spike List Files\Original\NFA_20191016_MW70-2415_12_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2415\Spike List Files\Original\NFA_20191016_MW70-2415_5_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 7\70-2415\Spike List Files\Original\NFA_20191016_MW70-2415_7_00(000)_spike_list.csv
+
+20191016 Culture DNT Group 8/70-2416
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2416\csv Files\20191016_MW70-2416_MaestroExperimentLog_Ontogeny.csv
+
+20191016 Culture DNT Group 8/70-2416/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2416\Spike List Files\Original\NFA_20191016_MW70-2416_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2416\Spike List Files\Original\NFA_20191016_MW70-2416_12_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2416\Spike List Files\Original\NFA_20191016_MW70-2416_5_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2416\Spike List Files\Original\NFA_20191016_MW70-2416_7_00(000)_spike_list.csv
+
+20191016 Culture DNT Group 8/70-2417
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2417\csv Files\20191016_MW70-2417_MaestroExperimentLog_Ontogeny.csv
+
+20191016 Culture DNT Group 8/70-2417/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2417\Spike List Files\Original\NFA_20191016_MW70-2417_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2417\Spike List Files\Original\NFA_20191016_MW70-2417_12_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2417\Spike List Files\Original\NFA_20191016_MW70-2417_5_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2417\Spike List Files\Original\NFA_20191016_MW70-2417_7_00(001)_spike_list.csv
+
+20191016 Culture DNT Group 8/70-2418
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2418\csv Files\20191016_MW70-2418_MaestroExperimentLog_Ontogeny.csv
+
+20191016 Culture DNT Group 8/70-2418/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2418\Spike List Files\Original\NFA_20191016_MW70-2418_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2418\Spike List Files\Original\NFA_20191016_MW70-2418_12_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2418\Spike List Files\Original\NFA_20191016_MW70-2418_5_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191016 Culture DNT Group 8\70-2418\Spike List Files\Original\NFA_20191016_MW70-2418_7_00(000)_spike_list.csv
+
+20191030 Culture DNT Group 10/70-2508
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2508\csv Files\20191030_MW70-2508_MaestroExperimentLog_Ontogeny.csv
+
+20191030 Culture DNT Group 10/70-2508/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2508\Spike List Files\Original\NFA_20191030_MW70-2508_05_00(003)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2508\Spike List Files\Original\NFA_20191030_MW70-2508_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2508\Spike List Files\Original\NFA_20191030_MW70-2508_09_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2508\Spike List Files\Original\NFA_20191030_MW70-2508_12_00(000)_spike_list.csv
+
+20191030 Culture DNT Group 10/70-2509
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2509\csv Files\20191030_MW70-2509_MaestroExperimentLog_Ontogeny.csv
+
+20191030 Culture DNT Group 10/70-2509/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2509\Spike List Files\Original\NFA_20191030_MW70-2509_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2509\Spike List Files\Original\NFA_20191030_MW70-2509_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2509\Spike List Files\Original\NFA_20191030_MW70-2509_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2509\Spike List Files\Original\NFA_20191030_MW70-2509_12_00(000)_spike_list.csv
+
+20191030 Culture DNT Group 10/70-2510
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2510\csv Files\20191030_MW70-2510_MaestroExperimentLog_Ontogeny.csv
+
+20191030 Culture DNT Group 10/70-2510/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2510\Spike List Files\Original\NFA_20191030_MW70-2510_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2510\Spike List Files\Original\NFA_20191030_MW70-2510_07_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2510\Spike List Files\Original\NFA_20191030_MW70-2510_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 10\70-2510\Spike List Files\Original\NFA_20191030_MW70-2510_12_00(000)_spike_list.csv
+
+20191030 Culture DNT Group 9/70-2505
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2505\csv Files\20191030_MW70-2505_MaestroExperimentLog_Ontogeny.csv
+
+20191030 Culture DNT Group 9/70-2505/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2505\Spike List Files\Original\NFA_20191030_MW70-2505_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2505\Spike List Files\Original\NFA_20191030_MW70-2505_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2505\Spike List Files\Original\NFA_20191030_MW70-2505_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2505\Spike List Files\Original\NFA_20191030_MW70-2505_12_00(000)_spike_list.csv
+
+20191030 Culture DNT Group 9/70-2506
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2506\csv Files\20191030_MW70-2506_MaestroExperimentLog_Ontogeny.csv
+
+20191030 Culture DNT Group 9/70-2506/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2506\Spike List Files\Original\NFA_20191030_MW70-2506_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2506\Spike List Files\Original\NFA_20191030_MW70-2506_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2506\Spike List Files\Original\NFA_20191030_MW70-2506_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2506\Spike List Files\Original\NFA_20191030_MW70-2506_12_00(000)_spike_list.csv
+
+20191030 Culture DNT Group 9/70-2507
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2507\csv Files\20191030_MW70-2507_MaestroExperimentLog_Ontogeny.csv
+
+20191030 Culture DNT Group 9/70-2507/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2507\Spike List Files\Original\NFA_20191030_MW70-2507_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2507\Spike List Files\Original\NFA_20191030_MW70-2507_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2507\Spike List Files\Original\NFA_20191030_MW70-2507_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191030 Culture DNT Group 9\70-2507\Spike List Files\Original\NFA_20191030_MW70-2507_12_00(000)_spike_list.csv
+
+20191113 Culture DNT Group 11/70-2517
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2517\csv Files\20191113_MW70-2517_MaestroExperimentLog_Ontogeny.csv
+
+20191113 Culture DNT Group 11/70-2517/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2517\Spike List Files\Original\NFA_20191113_MW70-2517_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2517\Spike List Files\Original\NFA_20191113_MW70-2517_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2517\Spike List Files\Original\NFA_20191113_MW70-2517_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2517\Spike List Files\Original\NFA_20191113_MW70-2517_12_00(000)_spike_list.csv
+
+20191113 Culture DNT Group 11/70-2518
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2518\csv Files\20191113_MW70-2518_MaestroExperimentLog_Ontogeny.csv
+
+20191113 Culture DNT Group 11/70-2518/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2518\Spike List Files\Original\NFA_20191113_MW70-2518_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2518\Spike List Files\Original\NFA_20191113_MW70-2518_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2518\Spike List Files\Original\NFA_20191113_MW70-2518_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2518\Spike List Files\Original\NFA_20191113_MW70-2518_12_00(000)_spike_list.csv
+
+20191113 Culture DNT Group 11/70-2519
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2519\csv Files\20191113_MW70-2519_MaestroExperimentLog_Ontogeny.csv
+
+20191113 Culture DNT Group 11/70-2519/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2519\Spike List Files\Original\NFA_20191113_MW70-2519_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2519\Spike List Files\Original\NFA_20191113_MW70-2519_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2519\Spike List Files\Original\NFA_20191113_MW70-2519_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 11\70-2519\Spike List Files\Original\NFA_20191113_MW70-2519_12_00(000)_spike_list.csv
+
+20191113 Culture DNT Group 12/70-2520
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2520\csv Files\20191113_MW70-2520_MaestroExperimentLog_Ontogeny.csv
+
+20191113 Culture DNT Group 12/70-2520/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2520\Spike List Files\Original\NFA_20191113_MW70-2520_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2520\Spike List Files\Original\NFA_20191113_MW70-2520_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2520\Spike List Files\Original\NFA_20191113_MW70-2520_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2520\Spike List Files\Original\NFA_20191113_MW70-2520_12_00(000)_spike_list.csv
+
+20191113 Culture DNT Group 12/70-2601
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2601\csv Files\20191113_MW70-2601_MaestroExperimentLog_Ontogeny.csv
+
+20191113 Culture DNT Group 12/70-2601/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2601\Spike List Files\Original\NFA_20191113_MW70-2601_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2601\Spike List Files\Original\NFA_20191113_MW70-2601_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2601\Spike List Files\Original\NFA_20191113_MW70-2601_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2601\Spike List Files\Original\NFA_20191113_MW70-2601_12_00(000)_spike_list.csv
+
+20191113 Culture DNT Group 12/70-2602
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2602\csv Files\20191113_MW70-2602_MaestroExperimentLog_Ontogeny.csv
+
+20191113 Culture DNT Group 12/70-2602/Spike List Files
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2602\Spike List Files\Original\NFA_20191113_MW70-2602_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2602\Spike List Files\Original\NFA_20191113_MW70-2602_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2602\Spike List Files\Original\NFA_20191113_MW70-2602_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20191113 Culture DNT Group 12\70-2602\Spike List Files\Original\NFA_20191113_MW70-2602_12_00(000)_spike_list.csv

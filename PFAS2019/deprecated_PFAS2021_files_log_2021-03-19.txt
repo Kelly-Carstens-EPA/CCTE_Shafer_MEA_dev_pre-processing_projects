@@ -1,0 +1,39 @@
+PFAS2021 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2021-03-18 16:44:30
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA/Project PFAS 2019/MEA NFA 
+Collected 103 files from 21 sub-directories.
+
+L:/Lab/NHEERL_MEA/Project PFAS 2019/MEA NFA
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlropyrafos oxon\20210127_NFA_Pos Ctrl+Chlropyrafos oxon_ Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\20210217_NFA_PFAS_Group 4_ Calculations.xlsx
+
+20210127 Culture Chlropyrafos oxon/75-5620
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlropyrafos oxon\75-5620\csv Files\20210127_MW75-5620_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlropyrafos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlropyrafos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlropyrafos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210127 Culture Chlropyrafos oxon\75-5620\Spike List Files\NFA_20210127_MW75-5620_12_00(000)_spike_list.csv
+
+20210217 Culture CR G4 (Chlorpyrafos oxon)/75-5809
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5809\csv Files\20210217_MW75-5809_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5809\Spike List Files\NFA_20210217_MW75-5809_12_00(000)_spike_list.csv
+
+20210217 Culture CR G4 (Chlorpyrafos oxon)/75-5810
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5810\csv Files\20210217_MW75-5810_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5810\Spike List Files\NFA_20210217_MW75-5810_12_00(000)_spike_list.csv
+
+20210217 Culture CR G4 (Chlorpyrafos oxon)/75-5811
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5811\csv Files\20210217_MW75-5811_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2019\MEA NFA\20210217 Culture CR G4 (Chlorpyrafos oxon)\75-5811\Spike List Files\NFA_20210217_MW75-5811_12_00(000)_spike_list.csv

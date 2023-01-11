@@ -1,0 +1,575 @@
+Output from the script run_me_DNTGF2019.R
+Date Ran: 2020-11-10 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                   dataset_title 
+                                                                                     "DNTGF2019" 
+                                                                    default_ControlTreatmentName 
+                                                                                          "DMSO" 
+                                                                             pause_between_steps 
+                                                                                          "TRUE" 
+                                                                                 root_output_dir 
+                                  "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                               save_notes_graphs 
+                                                                                          "TRUE" 
+                                                                                     scripts.dir 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                      spid_sheet 
+                                                                                    "NFA Groups" 
+                                                                                    spidmap_file 
+               "L:/Lab/NHEERL_MEA/Project - DNT 2019/All Assays_list_toxcast_OECD 20190524.xlsx" 
+                                                                     update_concs_without_prompt 
+                                                                                          "TRUE" 
+long-format data is ready.
+Control treatment will be updated to Water for the following wells:
+                  apid treatment rowi coli conc
+ 1: 20190710_MW69-0210      DMSO    1    2    0
+ 2: 20190710_MW69-0210      DMSO    2    2    0
+ 3: 20190710_MW69-0210      DMSO    3    2    0
+ 4: 20190710_MW69-0210      DMSO    4    2    0
+ 5: 20190710_MW69-0210      DMSO    5    2    0
+ 6: 20190710_MW69-0210      DMSO    6    2    0
+ 7: 20190710_MW69-0212      DMSO    1    2    0
+ 8: 20190710_MW69-0212      DMSO    2    2    0
+ 9: 20190710_MW69-0212      DMSO    3    2    0
+10: 20190710_MW69-0212      DMSO    4    2    0
+11: 20190710_MW69-0212      DMSO    5    2    0
+12: 20190710_MW69-0212      DMSO    6    2    0
+13: 20190710_MW69-0213      DMSO    1    2    0
+14: 20190710_MW69-0213      DMSO    2    2    0
+15: 20190710_MW69-0213      DMSO    3    2    0
+16: 20190710_MW69-0213      DMSO    4    2    0
+17: 20190710_MW69-0213      DMSO    5    2    0
+18: 20190710_MW69-0213      DMSO    6    2    0
+19: 20190724_MW69-0220      DMSO    1    2    0
+20: 20190724_MW69-0220      DMSO    2    2    0
+21: 20190724_MW69-0220      DMSO    3    2    0
+22: 20190724_MW69-0220      DMSO    4    2    0
+23: 20190724_MW69-0220      DMSO    5    2    0
+24: 20190724_MW69-0220      DMSO    6    2    0
+25: 20190724_MW69-3713      DMSO    1    2    0
+26: 20190724_MW69-3713      DMSO    2    2    0
+27: 20190724_MW69-3713      DMSO    3    2    0
+28: 20190724_MW69-3713      DMSO    4    2    0
+29: 20190724_MW69-3713      DMSO    5    2    0
+30: 20190724_MW69-3713      DMSO    6    2    0
+31: 20190724_MW69-3714      DMSO    1    2    0
+32: 20190724_MW69-3714      DMSO    2    2    0
+33: 20190724_MW69-3714      DMSO    3    2    0
+34: 20190724_MW69-3714      DMSO    4    2    0
+35: 20190724_MW69-3714      DMSO    5    2    0
+36: 20190724_MW69-3714      DMSO    6    2    0
+                  apid treatment rowi coli conc
+        sub num_water_wells
+1: 20190710              18
+2: 20190724              18
+3: 20190904               6
+Empty data.table (0 rows and 3 cols): treatment,num_cultures,num_plates
+                  apid V1
+ 1: 20190807_MW69-3715  2
+ 2: 20190807_MW69-3802  2
+ 3: 20190807_MW69-3803  2
+ 4: 20190807_MW69-3804  2
+ 5: 20190807_MW69-3805  2
+ 6: 20190807_MW69-3806  2
+ 7: 20190904_MW69-3813  2
+ 8: 20190904_MW69-3814  2
+ 9: 20190904_MW69-3816  2
+10: 20190918_MW70-2401  2
+11: 20190918_MW70-2402  2
+12: 20190918_MW70-2403  2
+13: 20190918_MW70-2404  2
+14: 20190918_MW70-2405  2
+15: 20190918_MW70-2406  2
+16: 20191016_MW70-2413  2
+17: 20191016_MW70-2414  2
+18: 20191016_MW70-2415  2
+19: 20191016_MW70-2416  2
+20: 20191016_MW70-2417  2
+21: 20191016_MW70-2418  2
+22: 20191030_MW70-2505  2
+23: 20191030_MW70-2506  2
+24: 20191030_MW70-2507  2
+25: 20191030_MW70-2508  2
+26: 20191030_MW70-2509  2
+27: 20191030_MW70-2510  2
+28: 20191113_MW70-2517  2
+29: 20191113_MW70-2518  2
+30: 20191113_MW70-2519  2
+31: 20191113_MW70-2520  2
+32: 20191113_MW70-2601  2
+33: 20191113_MW70-2602  2
+                  apid V1
+[1] 33
+                  apid  V1
+ 1: 20190807_MW69-3715 5 6
+ 2: 20190807_MW69-3802 4 6
+ 3: 20190807_MW69-3803 4 5
+ 4: 20190807_MW69-3804 5 6
+ 5: 20190807_MW69-3805 4 6
+ 6: 20190807_MW69-3806 4 5
+ 7: 20190904_MW69-3813 5 6
+ 8: 20190904_MW69-3814 4 6
+ 9: 20190904_MW69-3816 4 5
+10: 20190918_MW70-2401 5 6
+11: 20190918_MW70-2402 4 6
+12: 20190918_MW70-2403 4 5
+13: 20190918_MW70-2404 5 6
+14: 20190918_MW70-2405 4 6
+15: 20190918_MW70-2406 4 5
+16: 20191016_MW70-2413 5 6
+17: 20191016_MW70-2414 4 6
+18: 20191016_MW70-2415 4 5
+19: 20191016_MW70-2416 5 6
+20: 20191016_MW70-2417 4 6
+21: 20191016_MW70-2418 4 5
+22: 20191030_MW70-2505 5 6
+23: 20191030_MW70-2506 4 6
+24: 20191030_MW70-2507 4 5
+25: 20191030_MW70-2508 5 6
+26: 20191030_MW70-2509 4 6
+27: 20191030_MW70-2510 4 5
+28: 20191113_MW70-2517 5 6
+29: 20191113_MW70-2518 4 6
+30: 20191113_MW70-2519 4 5
+31: 20191113_MW70-2520 5 6
+32: 20191113_MW70-2601 4 6
+33: 20191113_MW70-2602 4 5
+                  apid  V1
+   treatment    conc  V1
+1:     Water 0.00100  42
+2:      DMSO 0.00100 144
+3:      DMSO 0.00146  66
+   treatment wllt               apid rowi coli    conc  N
+1:     Water    n 20190710_MW69-0210    4    2 0.00100 87
+2:     Water    n 20190710_MW69-0212    4    2 0.00100 87
+3:     Water    n 20190710_MW69-0213    4    2 0.00100 87
+4:     Water    n 20190724_MW69-0220    4    2 0.00100 87
+5:     Water    n 20190724_MW69-3713    4    2 0.00100 87
+6:     Water    n 20190724_MW69-3714    4    2 0.00100 87
+7:      DMSO    n 20191113_MW70-2520    6    2 0.00146 87
+8:      DMSO    n 20191113_MW70-2601    4    2 0.00146 87
+9:      DMSO    n 20191113_MW70-2602    5    2 0.00146 87
+                  apid                  V1
+ 1: 20190807_MW69-3715          11,12,DMSO
+ 2: 20190807_MW69-3802          11,12,DMSO
+ 3: 20190807_MW69-3803          11,12,DMSO
+ 4: 20190807_MW69-3804          21,22,DMSO
+ 5: 20190807_MW69-3805          21,22,DMSO
+ 6: 20190807_MW69-3806          21,22,DMSO
+ 7: 20190904_MW69-3813          27,29,DMSO
+ 8: 20190904_MW69-3814          27,29,DMSO
+ 9: 20190904_MW69-3816          27,29,DMSO
+10: 20190918_MW70-2401          19,28,DMSO
+11: 20190918_MW70-2402          19,28,DMSO
+12: 20190918_MW70-2403          19,28,DMSO
+13: 20190918_MW70-2404          46,47,DMSO
+14: 20190918_MW70-2405          46,47,DMSO
+15: 20190918_MW70-2406          46,47,DMSO
+16: 20191016_MW70-2413          56,58,DMSO
+17: 20191016_MW70-2414          56,58,DMSO
+18: 20191016_MW70-2415          56,58,DMSO
+19: 20191016_MW70-2416          65,66,DMSO
+20: 20191016_MW70-2417          65,66,DMSO
+21: 20191016_MW70-2418          65,66,DMSO
+22: 20191030_MW70-2505          73,74,DMSO
+23: 20191030_MW70-2506          73,74,DMSO
+24: 20191030_MW70-2507          73,74,DMSO
+25: 20191030_MW70-2508          80,81,DMSO
+26: 20191030_MW70-2509          80,81,DMSO
+27: 20191030_MW70-2510          80,81,DMSO
+28: 20191113_MW70-2517          89,90,DMSO
+29: 20191113_MW70-2518          89,90,DMSO
+30: 20191113_MW70-2519          89,90,DMSO
+31: 20191113_MW70-2520 100,DMSO,Loperamide
+32: 20191113_MW70-2601 100,DMSO,Loperamide
+33: 20191113_MW70-2602 100,DMSO,Loperamide
+                  apid                  V1
+                 apid coli          V1
+1: 20190710_MW69-0210    2 1,2,3,4,5,6
+2: 20190710_MW69-0212    2 1,2,3,4,5,6
+3: 20190710_MW69-0213    2 1,2,3,4,5,6
+4: 20190724_MW69-0220    2 1,2,3,4,5,6
+5: 20190724_MW69-3713    2 1,2,3,4,5,6
+6: 20190724_MW69-3714    2 1,2,3,4,5,6
+7: 20190904_MW69-3817    2         5,6
+8: 20190904_MW69-3818    2         4,6
+9: 20190904_MW69-3819    2         4,5
+   NFA.Group Chemical.ID NCCT.ID       MW    Conc Unit Culture.Date Status NFA Chemical.ID NCCT.ID  X12 X13    X14 X15
+1:         1           3  167A06 244.2060 20.0000   mM           NA      D   X           3  167A06 Done   7 167A05   1
+2:        NA           5  167A01 183.1670 20.0000   mM           NA      D   X           5  167A01 Done  13 167D08   2
+3:        NA           8  167B05 210.2800 19.6809   mM           NA      D   X           7  167A05 <NA>  16 167E06   3
+4:        NA           9  167F02 416.3021 20.0000   mM           NA      D   X           9  167F02 Done  17 167A11   4
+5:        NA          11  167C02 349.4091 19.9995   mM           NA      D   X          11  167C02 Done  19 167A09   5
+6:        NA          12  167C05 294.3052 20.0000   mM           NA      D   X          13  167D08 <NA>  28 167D07   6
+[1] "mM"
+   treatment          spid stock_conc expected_stock_conc
+1:         3 EPAPLT0167A06    20.0000                  20
+2:         5 EPAPLT0167A01    20.0000                  20
+3:         8 EPAPLT0167B05    19.6809                  20
+4:         9 EPAPLT0167F02    20.0000                  20
+5:        11 EPAPLT0167C02    19.9995                  20
+6:        12 EPAPLT0167C05    20.0000                  20
+              spid                 treatment stock_conc expected_stock_conc
+ 1:  EPAPLT0167A06                         3   20.00000                  20
+ 2:  EPAPLT0167A01                         5   20.00000                  20
+ 3:  EPAPLT0167B05                         8   19.68090                  20
+ 4:  EPAPLT0167F02                         9   20.00000                  20
+ 5:  EPAPLT0167C02                        11   19.99950                  20
+ 6:  EPAPLT0167C05                        12   20.00000                  20
+ 7:  EPAPLT0167G04                        14   20.00030                  20
+ 8:  EPAPLT0167C10                        15   20.00040                  20
+ 9:  EPAPLT0167D05                        18   21.03650                  20
+10:  EPAPLT0167B11                        20   19.99970                  20
+11:  EPAPLT0167B04                        21   20.00030                  20
+12:  EPAPLT0169G09                        22   20.00000                  20
+13:  EPAPLT0167D01                        23   20.00000                  20
+14:  EPAPLT0167C07                        24   20.00140                  20
+15:  EPAPLT0167E05                        25   20.00060                  20
+16:  EPAPLT0167C09                        26   19.99950                  20
+17:  EPAPLT0167F10                        27   20.00020                  20
+18:  EPAPLT0167G05                        29   20.00140                  20
+19:  EPAPLT0167E09                        31   20.00000                  20
+20:  EPAPLT0169F08                        33   19.99920                  20
+21:  EPAPLT0169A05                        34   19.26730                  20
+22:  EPAPLT0170D06                        35   20.00000                  20
+23:  EPAPLT0167C04                        38   20.00150                  20
+24:  EPAPLT0167F06                        39   20.00000                  20
+25:  EPAPLT0167A05                         7   20.00040                  20
+26:  EPAPLT0167D08                        13   19.99960                  20
+27:  EPAPLT0167E06                        16   19.99960                  20
+28:  EPAPLT0167A11                        17   20.00000                  20
+29:  EPAPLT0167A09                        19   19.99950                  20
+30:  EPAPLT0167D07                        28   20.02350                  20
+31:  EPAPLT0167G06                        36   20.00940                  20
+32:  EPAPLT0167H01                        37   19.13810                  20
+33:  EPAPLT0167E08                        40   20.00050                  20
+34:  EPAPLT0167C11                        44   20.00000                  20
+35:  EPAPLT0167C01                        46   19.99970                  20
+36:  EPAPLT0167E02                        47   19.99960                  20
+37:  EPAPLT0167F09                        49   15.12330                  20
+38:  EPAPLT0167E04                        50   19.99960                  20
+39:  EPAPLT0167B01                        52   19.99970                  20
+40:  EPAPLT0170C04                        54   20.00000                  20
+41:  EPAPLT0167B06                        56   20.00000                  20
+42:  EPAPLT0167E10                        58   20.00000                  20
+43:  EPAPLT0167G08                        61   20.00090                  20
+44:  EPAPLT0167A10                        62   10.02880                  20
+45:  EPAPLT0167D03                        63   19.99970                  20
+46:  EPAPLT0167A03                        64   19.99940                  20
+47:  EPAPLT0167A02                        65   24.19380                  20
+48:  EPAPLT0167A08                        66   20.00000                  20
+49:  EPAPLT0167H08                        68   19.99640                  20
+50:  EPAPLT0167A04                        69   20.00000                  20
+51:  EPAPLT0167D09                        70   20.00000                  20
+52:  EPAPLT0167H03                        71   20.00070                  20
+53:  EPAPLT0167C03                        73   20.00030                  20
+54:  EPAPLT0167H09                        74   20.00000                  20
+55:  EPAPLT0167F07                        75   20.00000                  20
+56:  EPAPLT0167E07                        77   19.99960                  20
+57:  EPAPLT0167B07                        78   19.99970                  20
+58:  EPAPLT0167D11                        79   20.00000                  20
+59:  EPAPLT0167D04                        80   20.00000                  20
+60:  EPAPLT0167C06                        81   20.00000                  20
+61:  EPAPLT0167G07                        82   19.38670                  20
+62:  EPAPLT0167H07                        83   20.00000                  20
+63:  EPAPLT0169B03                        84   20.00090                  20
+64:  EPAPLT0167D10                        88    8.55832                  20
+65:  EPAPLT0167F05                        89   20.00000                  20
+66:  EPAPLT0167F08                        90   20.00030                  20
+67:  EPAPLT0170D03                        93   20.00000                  20
+68:  EPAPLT0167B02                        94   20.00000                  20
+69:  EPAPLT0167C08                        97   19.02800                  20
+70:  EPAPLT0167D02                        99   20.00000                  20
+71:  EPAPLT0167H06                       100   17.13870                  20
+72:       EX000371      Glufosinate Ammonium         NA                  20
+73:       EX000372 4 Glufosinate-P Technical         NA                  20
+74:       EX000373 3 Glufosinate-P Technical         NA                  20
+75:       EX000374    L-Glufosinate Ammonium         NA                  20
+76: MEA20201109A10                Glyphosate   30.00000                  30
+77: MEA20201109A13  Loperamide hydrochloride   30.00000                  30
+              spid                 treatment stock_conc expected_stock_conc
+     treatment               apid rowi coli num_unique_concs_in_well
+  1:       100 20191113_MW70-2520    5    1                        2
+  2:       100 20191113_MW70-2520    5    3                        2
+  3:       100 20191113_MW70-2520    5    4                        2
+  4:       100 20191113_MW70-2520    5    5                        2
+  5:       100 20191113_MW70-2601    6    1                        2
+ ---                                                                
+108:        97 20191113_MW70-2601    1    5                        2
+109:        97 20191113_MW70-2602    2    1                        2
+110:        97 20191113_MW70-2602    2    3                        2
+111:        97 20191113_MW70-2602    2    4                        2
+112:        97 20191113_MW70-2602    2    5                        2
+ [1] "100" "18"  "34"  "37"  "46"  "49"  "8"   "82"  "88"  "97" 
+    treatment                                                              V1
+ 1:       100    0.0257,0.03,0.0857,0.09,0.257,0.26,0.857,0.86,2.57,8.57,25.7
+ 2:        18           0.03,0.0316,0.105,0.11,0.316,0.32,1.05,3.16,10.5,31.6
+ 3:        34      0.0289,0.03,0.0964,0.1,0.289,0.3,0.96,0.964,2.89,9.64,28.9
+ 4:        37     0.0287,0.03,0.0957,0.1,0.287,0.29,0.957,0.96,2.87,9.57,28.7
+ 5:        46 0.0287,0.03,0.0957,0.1,0.287,0.3,0.957,1,2.87,3,9.57,10,28.7,30
+ 6:        49    0.02,0.0227,0.0756,0.08,0.227,0.23,0.756,0.76,2.27,7.56,22.7
+ 7:         8      0.0295,0.03,0.0984,0.1,0.295,0.3,0.98,0.984,2.95,9.84,29.5
+ 8:        82     0.0291,0.03,0.0969,0.1,0.29,0.291,0.969,0.97,2.91,9.69,29.1
+ 9:        88    0.01,0.0128,0.04,0.0428,0.128,0.13,0.428,0.43,1.28,4.28,12.8
+10:        97     0.0285,0.03,0.0951,0.1,0.285,0.29,0.95,0.951,2.85,9.51,28.5
+                  apid treatment rowi coli   AUC        Calc   DIV
+ 1: 20191113_MW70-2520       100    5    1  0.03  0.02570805  0.03
+ 2: 20191113_MW70-2601       100    6    1  0.03  0.02570805  0.03
+ 3: 20191113_MW70-2602       100    4    1  0.03  0.02570805  0.03
+ 4: 20191113_MW70-2520       100    5    3  0.09  0.08569350  0.09
+ 5: 20191113_MW70-2601       100    6    3  0.09  0.08569350  0.09
+ 6: 20191113_MW70-2602       100    4    3  0.09  0.08569350  0.09
+ 7: 20191113_MW70-2520       100    5    4  0.26  0.25708050  0.26
+ 8: 20191113_MW70-2601       100    6    4  0.26  0.25708050  0.26
+ 9: 20191113_MW70-2602       100    4    4  0.26  0.25708050  0.26
+10: 20191113_MW70-2520       100    5    5  0.86  0.85693500  0.86
+11: 20191113_MW70-2601       100    6    5  0.86  0.85693500  0.86
+12: 20191113_MW70-2602       100    4    5  0.86  0.85693500  0.86
+13: 20191113_MW70-2520       100    5    6  2.57  2.57080500  2.57
+14: 20191113_MW70-2601       100    6    6  2.57  2.57080500  2.57
+15: 20191113_MW70-2602       100    4    6  2.57  2.57080500  2.57
+16: 20191113_MW70-2520       100    5    7  8.57  8.56935000  8.57
+17: 20191113_MW70-2601       100    6    7  8.57  8.56935000  8.57
+18: 20191113_MW70-2602       100    4    7  8.57  8.56935000  8.57
+19: 20191113_MW70-2520       100    5    8 25.71 25.70805000 25.71
+20: 20191113_MW70-2601       100    6    8 25.71 25.70805000 25.71
+21: 20191113_MW70-2602       100    4    8 25.71 25.70805000 25.71
+                  apid treatment rowi coli   AUC        Calc   DIV
+      AUC    V2
+ 1:  0.03  0.03
+ 2:  0.03  0.03
+ 3:  0.03  0.03
+ 4:  0.11  0.11
+ 5:  0.11  0.11
+ 6:  0.11  0.11
+ 7:  0.32  0.32
+ 8:  0.32  0.32
+ 9:  0.32  0.32
+10:  1.05  1.05
+11:  1.05  1.05
+12:  1.05  1.05
+13:  3.16  3.16
+14:  3.16  3.16
+15:  3.16  3.16
+16: 10.52 10.52
+17: 10.52 10.52
+18: 10.52 10.52
+19: 31.55 31.55
+20: 31.55 31.55
+21: 31.55 31.55
+      AUC    V2
+      AUC    V2
+ 1:  0.03  0.03
+ 2:  0.03  0.03
+ 3:  0.03  0.03
+ 4:  0.10  0.10
+ 5:  0.10  0.10
+ 6:  0.10  0.10
+ 7:  0.30  0.29
+ 8:  0.30  0.29
+ 9:  0.30  0.29
+10:  0.96  0.96
+11:  0.96  0.96
+12:  0.96  0.96
+13:  2.89  2.89
+14:  2.89  2.89
+15:  2.89  2.89
+16:  9.64  9.63
+17:  9.64  9.63
+18:  9.64  9.63
+19: 28.91 28.91
+20: 28.91 28.91
+21: 28.91 28.91
+      AUC    V2
+      AUC    V2
+ 1:  0.03  0.03
+ 2:  0.03  0.03
+ 3:  0.03  0.03
+ 4:  0.10  0.10
+ 5:  0.10  0.10
+ 6:  0.10  0.10
+ 7:  0.29  0.29
+ 8:  0.29  0.29
+ 9:  0.29  0.29
+10:  0.96  0.96
+11:  0.96  0.96
+12:  0.96  0.96
+13:  2.87  2.87
+14:  2.87  2.87
+15:  2.87  2.87
+16:  9.57  9.57
+17:  9.57  9.57
+18:  9.57  9.57
+19: 28.71 28.71
+20: 28.71 28.71
+21: 28.71 28.71
+      AUC    V2
+                  apid treatment rowi coli   AUC       Calc   DIV
+ 1: 20190904_MW69-3817        34    3    4  0.30  0.2890500  0.30
+ 2: 20190904_MW69-3817        34    3    7  9.64  9.6350000  9.64
+ 3: 20190904_MW69-3818        34    1    4  0.30  0.2890500  0.30
+ 4: 20190904_MW69-3818        34    1    7  9.64  9.6350000  9.64
+ 5: 20190904_MW69-3819        34    2    4  0.30  0.2890500  0.30
+ 6: 20190904_MW69-3819        34    2    7  9.64  9.6350000  9.64
+ 7: 20190918_MW70-2406        46    4    4  0.30  0.2870715  0.30
+ 8: 20190918_MW70-2406        46    4    5  1.00  0.9569050  1.00
+ 9: 20190918_MW70-2406        46    4    6  3.00  2.8707150  3.00
+10: 20190918_MW70-2406        46    4    7 10.00  9.5690500 10.00
+11: 20190918_MW70-2406        46    4    8 30.00 28.7071500 30.00
+[1] 9.63
+[1] 10
+[1]  0.028905  0.096350  0.289050  0.963500  2.890500  9.635000 28.905000
+        conc    V1
+1:  0.028905  0.03
+2:  0.096350  0.10
+3:  0.289050  0.30
+4:  0.963500  1.00
+5:  2.890500  3.00
+6:  9.635000 10.00
+7: 28.905000 30.00
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+The concentrations for the following compounds might need to be corrected:
+             spid     stkc expected_stock_conc                      spidmap_guess_concs              treatment                             source_concs num_concs
+ 1: EPAPLT0167B05 19.68090                  20 0.0295,0.0984,0.295,0.984,2.95,9.84,29.5                      8 0.0295,0.0984,0.295,0.984,2.95,9.84,29.5         7
+ 2: EPAPLT0167C08 19.02800                  20 0.0285,0.0951,0.285,0.951,2.85,9.51,28.5                     97 0.0285,0.0951,0.285,0.951,2.85,9.51,28.5         7
+ 3: EPAPLT0167D05 21.03650                  20   0.0316,0.105,0.316,1.05,3.16,10.5,31.6                     18   0.0316,0.105,0.316,1.05,3.16,10.5,31.6         7
+ 4: EPAPLT0167D07 20.02350                  20                   0.03,0.1,0.3,1,3,10,30                     28                   0.03,0.1,0.3,1,3,10,30         7
+ 5: EPAPLT0167D10  8.55832                  20 0.0128,0.0428,0.128,0.428,1.28,4.28,12.8                     88 0.0128,0.0428,0.128,0.428,1.28,4.28,12.8         7
+ 6: EPAPLT0167F09 15.12330                  20 0.0227,0.0756,0.227,0.756,2.27,7.56,22.7                     49 0.0227,0.0756,0.227,0.756,2.27,7.56,22.7         7
+ 7: EPAPLT0167G07 19.38670                  20 0.0291,0.0969,0.291,0.969,2.91,9.69,29.1                     82 0.0291,0.0969,0.291,0.969,2.91,9.69,29.1         7
+ 8: EPAPLT0167H01 19.13810                  20 0.0287,0.0957,0.287,0.957,2.87,9.57,28.7                     37 0.0287,0.0957,0.287,0.957,2.87,9.57,28.7         7
+ 9: EPAPLT0167H06 17.13870                  20 0.0257,0.0857,0.257,0.857,2.57,8.57,25.7                    100 0.0257,0.0857,0.257,0.857,2.57,8.57,25.7         7
+10: EPAPLT0169A05 19.26730                  20 0.0289,0.0963,0.289,0.963,2.89,9.63,28.9                     34                   0.03,0.1,0.3,1,3,10,30         7
+11:      EX000374 20.00000                  20                   0.03,0.1,0.3,1,3,10,30 L-Glufosinate Ammonium               0.03,0.1,0.3,1,3,10,30,100         8
+12: EPAPLT0167A02 24.19380                  20   0.0363,0.121,0.363,1.21,3.63,12.1,36.3                     65   0.0363,0.121,0.363,1.21,3.63,12.1,36.3        10
+13: EPAPLT0167A10 10.02880                  20      0.015,0.0501,0.15,0.501,1.5,5.01,15                     62      0.015,0.0501,0.15,0.501,1.5,5.01,15        10
+14: EPAPLT0167G06 20.00940                  20                   0.03,0.1,0.3,1,3,10,30                     36                   0.03,0.1,0.3,1,3,10,30        15
+Correcting conc's...
+View the table 'update_summary' to confirm that the concentration-corrections are correct.
+If it looks correct, enter c to continue. Else Q to quit and fix.
+Called from: confirm_concs(dat, spidmap, expected_target_concs = c(0.03, 0.1, 
+    0.3, 1, 3, 10, 30))
+[1] "conc's that changed:\n"
+   treatment          spid    stkc expected_stock_conc concs_in_source_dat conc_updated
+1:        34 EPAPLT0169A05 19.2673                  20                0.03       0.0289
+2:        34 EPAPLT0169A05 19.2673                  20                 0.1       0.0963
+3:        34 EPAPLT0169A05 19.2673                  20                 0.3       0.2890
+4:        34 EPAPLT0169A05 19.2673                  20                   1       0.9630
+5:        34 EPAPLT0169A05 19.2673                  20                   3       2.8900
+6:        34 EPAPLT0169A05 19.2673                  20                  10       9.6300
+7:        34 EPAPLT0169A05 19.2673                  20                  30      28.9000
+
+Final Checks
+Number of cultures dates: 8
+Range of culture dates: 20190710 20191113
+Number of plates tested: 42
+Number of compounds tested: 76
+Any NA rvals?    wllq     N
+1:    1 25156
+
+Wllq breakdown for all points:
+   wllq      N
+1:    1 175392
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min    median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB       0     13385  29876      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0      0.63    3.2      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0        66    128      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0        15     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0         1     13      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0         5     16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0        13     16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0       4.9    222      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.14      0.73    101    155
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5   0.088      0.56     85   1504
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7   0.096      0.78     86    791
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.09      0.93     34    275
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0       7.9     64      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0       1.9    8.7      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0         0    9.2      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0      0.42     29      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0      0.99     22      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0        38    118      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0        15     16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0         0     11      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0         1     16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0         5     16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean  -0.014      0.99    3.7      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 -0.0021      0.33   0.71      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0079         0   0.43      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0059    0.0082   0.52      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0049      0.19    0.6      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0         7     31      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0       1.3    4.8      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0      0.16    7.3      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0      0.64      8      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0      0.98    5.9      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0       582   2688      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     2.2        38    718    172
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      57       218    826   1931
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7    0.75       188    798   1075
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9       1       135    767    370
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0       253    770      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.6        36    116    155
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.2        45    123   1504
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.95        44    123    791
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.2        54    127    275
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0     0.023   0.13      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0     0.011  0.042      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0         0 0.0089      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.0000046 0.0096      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0    0.0021  0.022      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0      0.28    2.5      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12   0.002     0.079   0.55    172
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5  0.0044     0.063   0.19   1931
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7 0.00014     0.029   0.27   1075
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0     0.059   0.81    370
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0        50   1200      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0        21    406      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0         0     16      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0         1     18      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0         5    231      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0        65    129      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5        15     16    154
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5       5         8     15   1871
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5        15     16    969
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5        15     16    301
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0      0.29    1.1      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12    0.01     0.025    0.2    155
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.012     0.078   0.23   1504
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.013      0.07   0.26    791
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9  0.0088     0.042   0.21    275
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0       313    726      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0        83     99      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0         0     99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0        19    100      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0        55    100      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0       445   1176      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12       9       103    219    154
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       8        13    131   1871
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8        78    224    969
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9       8       106    226    301
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0        35    223      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0        13     41      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0         0     13      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0      0.34     38      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0       4.6     35      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0       1.4    6.1      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.093      0.29    1.5    154
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5    0.05       0.3   0.72   1871
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.066      0.28   0.77    969
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.068      0.33    1.6    301
+                                                             acsn     min    median    max num_NA
+[1] 0

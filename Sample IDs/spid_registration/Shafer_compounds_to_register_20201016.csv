@@ -1,0 +1,53 @@
+mea_treatment_name,CAS,SPID,existing_spid_source,dataset,dates_tested,Supplier,Catalogue,Lot,Solvent,dilution_sheet_date,solvent_lot_info,sample_info_source
+Acetaminophen,103-90-2,,,Brown2014,20140205,Sigma,A7085,088K0040,H2O,20140205, 12-17-13,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf
+Acetaminophen,103-90-2,,,Brown2014,20140212,Sigma,A7085,088K0040,H2O,20140205, 12-17-13,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf
+Acetaminophen,103-90-2,,,Brown2014,20140402,Sigma,A7085,088K0040,H2O,20140205, 12-17-13,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf
+Acetaminophen,103-90-2,,,Brown2014,20140423,Sigma,A7085,088K0040,H2O,20140205, 12-17-13,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf
+Acetaminophen,,,,Frank2017,20140827,,,,,,,
+Acetaminophen,,,,Frank2017,20141112,,,,,,,
+Acetaminophen,103-90-2,,,Frank2017,20141203,Sigma,A7085,088K0040,H2O,20141203, 11-13-14,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20141203.pdf
+Acetaminophen,,,,Frank2017,20150805,,,,,,,
+Acetaminophen,,,,Frank2017,20150819,,,,,,,
+Acetaminophen,103-90-2,,,PFAS2018,20181114,Sigma,A7085,SLBR2060V,DMSO,20181114, SHBJ6335,PFAS Lab Notebook 20181114 G4-2.pdf
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140205,,,,,,,
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140212,,,,,,,
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140402,,,D00150457,DMSO,20140407, SHBC0617V,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140402.pdf
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140423,,,,,,,
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140716,,,,,,,
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140730,,,,,,,
+Bisindolylmaleimide 1,133052-90-1,EX000475,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Frank2017,20141203,,,,,,,
+Bisphenol A,80-05-7,EX000420,Copy of HTP_Chem_Log_cg2.xlsx,Frank2017,20140827,Aldrich,239658,MKAA2480,DMSO,,,HTP_LOG
+Bisphenol A,80-05-7,EX000420,Copy of HTP_Chem_Log_cg2.xlsx,Frank2017,20141112,Aldrich,239658,MKAA2480,DMSO,,,HTP_LOG
+Bisphenol A,80-05-7,,,PFAS2018,20181114,Sigma,239658,MKBX9458V,DMSO,20181114,,PFAS Lab Notebook 20181114 G4-2.pdf
+Domoic Acid,14277-97-5,EX000487,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140205,,,,H2O,20140205, 12-17-13,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf
+Domoic Acid,14277-97-5,EX000487,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140212,,,,,,,
+Domoic Acid,14277-97-5,EX000487,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140402,,,,,,,
+Domoic Acid,14277-97-5,EX000487,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140423,,,,,,,
+Domoic Acid,14277-97-5,EX000487,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Frank2017,20141203,Sigma,D6152,MKBR8219V,H2O,20141203, 11-13-14,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20141203.pdf
+Glyphosate,1071-83-6,,,DNTGF2019,20190710,Chem Service,N-12133-250MG,6465500,,,,L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Glyphosate_CoA.pdf
+Glyphosate,1071-83-6,,,DNTGF2019,20190724,Chem Service,N-12133-250MG,6465500,,,,L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Glyphosate_CoA.pdf
+Glyphosate,1071-83-6,,,Frank2017,20140910,Chem Serv,PS-1051,107K4612,H2O,20140205,,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf
+Loperamide,34552-83-5,EX000411,,Brown2014,20140205,Sigma, L4762,057K1424,,,,HTP_LOG
+Loperamide,34552-83-5,EX000411,,Brown2014,20140212,Sigma, L4762,057K1424,,,,HTP_LOG
+Loperamide,34552-83-5,EX000411,,Brown2014,20140402,Sigma, L4762,057K1424,,,,HTP_LOG
+Loperamide,34552-83-5,EX000411,,Brown2014,20140423,Sigma, L4762,057K1424,,,,HTP_LOG
+Loperamide,34552-83-5,,,DNTGF2019,20190710,Sigma-Aldrich ,L4762,BCBP2026,,,,L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Loperamide_CoA.pdf
+Loperamide,34552-83-5,,,DNTGF2019,20190724,Sigma-Aldrich ,L4762,BCBP2026,,,,L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Loperamide_CoA.pdf
+Loperamide,34552-83-5,,,DNTGF2019,20191113,Sigma-Aldrich ,L4762,BCBP2026,,,,L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Loperamide_CoA.pdf
+Loperamide,34552-83-5,EX000411,,Frank2017,20140910,Sigma, L4762,057K1424,,,,HTP_LOG
+Loperamide,34552-83-5,EX000411,,Frank2017,20141203,Sigma, L4762,057K1424,,,,HTP_LOG
+Loperamide,34552-83-5,,,PFAS2018,20181114,Sigma-Aldrich ,L4762,BCBP2026,DMSO,20181114, SHBJ6335,PFAS Lab Notebook 20181114 G4-2.pdf
+Mevastatin,73573-88-3,EX000498,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140205,,,,,,,
+Mevastatin,73573-88-3,EX000498,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140212,,,,,,,
+Mevastatin,73573-88-3,EX000498,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140402,,,,,,,
+Mevastatin,73573-88-3,EX000498,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140423,,,,,,,
+Mevastatin,73573-88-3,EX000498,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Frank2017,20150128,EMD Millipore,,D00103782,DMSO,20150128, 73296KMV,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20150128.pdf
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140205,Sigma-Aldrich ,S6508,9-8-7 200mM Stock,H2O,"20140205, 20141014, 20141414", 12-17-13,"Brown et al, 2016, L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140205.pdf"
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140212,Sigma-Aldrich ,S6508,9-8-7 200mM,H2O,"20140212, 20140217, 20140221", 12-17-13,"Brown et al, 2016, L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140212.pdf"
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140402,Sigma-Aldrich ,S6508,9-8-7 200mM,H2O,"20140402, 20140714, 20140411", 9-20-13,"Brown et al, 2016, L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140402.pdf"
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140423,Sigma-Aldrich ,S6508,9-8-7 200mM,H2O,"20140423, 20142814, 20140502"," 1-23-14, 9-20-13","Brown et al, 2016, L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140423.pdf"
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140716,Sigma-Aldrich ,S6508, 200mM,H2O,"20140716, 20140721, 20140725"," 4-10-14, 3-12-14","Brown et al, 2016, L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140716.pdf"
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Brown2014,20140730,Sigma-Aldrich ,S6508, 200mM,H2O,"20140730, 20140804, 20140808"," 4-10-14, 3-12-14","Brown et al, 2016, L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20140730.pdf"
+Sodium Orthovanadate,13721-39-6,EX000499,EPA_ES203_EPA-Shafer_42_20200110_key.xlsx,Frank2017,20141203,,,,H2O,"20141203, 20141208, 20141212",,L:\Lab\NHEERL_MEA\Archive\Screening for Developmental Neurotoxicants\Volume 1\20141203.pdf
+Tris (2-chloroethyl) phosphate,115-96-8,EX000361,,Frank2017,20150128,Sigma-Aldrich,,SLBC9758V,,,,
+Tris(2-chloroethyl) phosphate,115-96-8,EX000361,,NTP91,20160720,,,,,,,

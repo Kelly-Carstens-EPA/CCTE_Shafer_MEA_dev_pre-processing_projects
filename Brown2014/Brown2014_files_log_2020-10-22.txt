@@ -1,0 +1,39 @@
+Brown2014 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2020-10-22 08:52:35
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA 
+Collected 25 files from 3 sub-directories.
+
+Carpenter_Amy/pre-process_mea_nfa_for_tcpl
+L:\Lab\NHEERL_MEA\Carpenter_Amy\pre-process_mea_nfa_for_tcpl\Brown2014\20140205_MW1007-26_20140212_MW1007-27_20140402_MW1007-27_20140423_MW1007-38_MaestroExperimentLog.csv
+
+L:\Lab\NHEERL_MEA\Carpenter_Amy\pre-process_mea_nfa_for_tcpl\Brown2014\Master Chem Files\20140716_MW1007-26_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Carpenter_Amy\pre-process_mea_nfa_for_tcpl\Brown2014\Master Chem Files\20140730_MW1007-104_MaestroExperimentLog_Ontogeny.csv
+
+PIP3 - Project/Data/Specific Aim 1
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140205 Ontogeny\ON_20140205_MW1007-26Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140212 Ontogeny\ON_20140212_MW1007-27Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140402 Ontogeny\ON_20140402_MW1007-27Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140423 Ontogeny\ON_20140423_MW1007-38Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140716 Ontogeny\ON_20140716_MW1007-26Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140730 Ontogeny\ON_20140730_MW1007-104Summary.xlsx
+
+PIP3 - Project/Data/Specific Aim 1/Regenerated spikelist files SA1 compounds
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140205\ON_20140205_MW1007-26_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140205\ON_20140205_MW1007-26_07_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140205\ON_20140205_MW1007-26_09_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140205\ON_20140205_MW1007-26_12_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140212\ON_20140212_MW1007-27_012_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140212\ON_20140212_MW1007-27_05_00(000)_Spike Detector (8 x STD)(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140212\ON_20140212_MW1007-27_07_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140212\ON_20140212_MW1007-27_09_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140402\ON_20140402_MW1007-27_05_00(000)_Spike Detector (8 x STD)(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140402\ON_20140402_MW1007-27_07_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140402\ON_20140402_MW1007-27_09_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140402\ON_20140402_MW1007-27_12_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140423\ON_20140423_MW1007-38_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140423\ON_20140423_MW1007-38_07_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140423\ON_20140423_MW1007-38_09_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Regenerated spikelist files SA1 compounds\20140423\ON_20140423_MW1007-38_12_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv

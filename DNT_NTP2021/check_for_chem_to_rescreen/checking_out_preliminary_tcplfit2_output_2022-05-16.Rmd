@@ -1,0 +1,400 @@
+---
+title: "Checking out the preliminary tcplFit2 output based on the MEA NFA DNT NTP2021 data set"
+author: "Amy Carpenter"
+date: "5/16/2022"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+library(ggplot2)
+library(tcplfit2)
+
+# Load level-3 equivalent data
+load(file.path('DNT_NTP2021/check_for_chem_to_rescreen/DNT_NTP2021_preliminary_in_house_normalized_values_2022-05-11.RData'))
+cat(description)
+# An mc3-like table containing resp values along with current invitrodb cutoffs.
+# Created from DNT_NTP2021_preliminary_longfile.RData.
+# Created with apply_in_house_tcpl-like_processing_2022-05-11.R
+
+# Add needed columns to mc3-like "dat2" again
+source('DNT_NTP2021/check_for_chem_to_rescreen/diy_tcplfit2_functions_2022-05-12.R')
+dat.by.spid.aenm <- create_dat.by.spid.aenm(dat2)
+rm(dat2)
+
+# Load tcplfit2 processed data
+load('DNT_NTP2021/check_for_chem_to_rescreen/data/DNT_NTP2021_tcplfit2_exploratory_ac50_estimates_2022-05-16.RData')
+```
+
+# Purpose
+
+Checking out the results of preliminary tcplfit2 results for the DNT NTP 2021.
+To gain a better understanding, and to determine if I can use only the 'up' endpoints alone with bidirectional fitting to get a permissive estimate of whether the AC50 might be below the lowest conc tested.
+
+# Any cases where AC50 below logc_min differs by endpoint direction?
+
+```{r}
+mc5[, ac50_below_minconc := as.numeric(log10(ac50) < logc_min)]
+flag.tb <- dcast(mc5, spid + acnm ~ aenm_dir, value.var = 'ac50_below_minconc')
+flag.tb[, .N, by = .(dn, up)]
+
+# are they borderline, or drastic difference?
+check.rows <- flag.tb[dn != up, .(spid, acnm)]
+setkey(mc5, spid, acnm)
+mc5[.(check.rows), .(spid, aenm, ac50_log10 = log10(ac50), logc_min)][order(spid, aenm, ac50_log10)]
+# spid                                                       aenm ac50_log10   logc_min
+# 1: 7126 B10     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_dn -1.9999995 -1.0000000
+# 2: 7126 B10     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_up -0.3840194 -1.0000000
+# 3:  7126 B3                    CCTE_Shafer_MEA_dev_firing_rate_mean_dn -2.3010299 -1.3010300
+# 4:  7126 B3                    CCTE_Shafer_MEA_dev_firing_rate_mean_up  1.3979400 -1.3010300
+# 5: 7126 C12                  CCTE_Shafer_MEA_dev_network_spike_peak_dn  0.9965717 -1.0000000
+# 6: 7126 C12                  CCTE_Shafer_MEA_dev_network_spike_peak_up -2.0000000 -1.0000000
+# 7:  7126 C9 CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_dn -2.0000674 -1.0000000
+# 8:  7126 C9 CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_up  1.6989700 -1.0000000
+# 9: 7126 D10        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_dn -1.9956786 -0.9956786
+# 10: 7126 D10        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_up  1.7032914 -0.9956786
+# 11: 7126 D11                          CCTE_Shafer_MEA_dev_burst_rate_dn -1.9956786 -0.9956786
+# 12: 7126 D11                          CCTE_Shafer_MEA_dev_burst_rate_up -0.5218257 -0.9956786
+# 13:  7126 G2          CCTE_Shafer_MEA_dev_network_spike_duration_std_dn -1.0145010 -0.9956786
+# 14:  7126 G2          CCTE_Shafer_MEA_dev_network_spike_duration_std_up -0.9414168 -0.9956786
+# 15:  9163 A2 CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_dn -1.8774734 -1.9586073
+# 16:  9163 A2 CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_up -2.4942797 -1.9586073
+# 17:  9163 B8                 CCTE_Shafer_MEA_dev_burst_duration_mean_dn -3.0000222 -2.0000000
+# 18:  9163 B8                 CCTE_Shafer_MEA_dev_burst_duration_mean_up  0.6989700 -2.0000000
+
+
+```
+
+## Check some plots - is the relatively potent "dn" AC50 correct here, or is it flukey?
+
+```{r}
+plotting.data <- dat.by.spid.aenm[spid == '7126 B10' & aenm == 'CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_dn']
+row <- list(conc = plotting.data[, concentration_unlogged],
+            resp = plotting.data[, response],
+            bmed = plotting.data[, unique(bmed)],
+            cutoff = plotting.data[, unique(coff)],
+            onesd = plotting.data[, unique(osd)],
+            name = plotting.data[, unique(spid)],
+            assay = plotting.data[, unique(aenm)])
+res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                      "exp4", "exp5"),conthits = T, do.plot=T)
+concRespPlot(res)
+
+# Okay, why does the curve start at 1e-03?
+
+plotting.data[, unique(logc_min)] # -1 on log scale = 0.1 uM scale
+plotting.data[, unlist(response)][1:3] # okay, so these values really are below the curve
+
+
+# I think this is a moment when I am overanalyzing a bit
+# In the vast majority of cases, the difference in the ac50's seems to be within +/-10% 
+
+```
+
+## Compare up direction
+
+```{r}
+plotting.data <- dat.by.spid.aenm[spid == '7126 B10' & aenm == 'CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_up']
+row <- list(conc = plotting.data[, concentration_unlogged],
+            resp = plotting.data[, response],
+            bmed = plotting.data[, unique(bmed)],
+            cutoff = plotting.data[, unique(coff)],
+            onesd = plotting.data[, unique(osd)],
+            name = plotting.data[, unique(spid)],
+            assay = plotting.data[, unique(aenm)])
+res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                      "exp4", "exp5"),conthits = T, do.plot=F)
+concRespPlot(res)
+```
+
+This is really weird... the models are the same (exp 4), the magnitude of the "tops" are very similar (44 and -37), so why are the AC50 values over an order of magnitude apart?
+
+Oh wait... I just realized that the hit calls are quite near 0 in both cases!! So we would assume that the model is fitting noise in these cases.
+
+Let's check out how many differences in AC50 cases where hitcall > 0.5
+
+# Any HITS where AC50 below logc_min differs by endpoint direction?
+
+
+```{r}
+mc5[, ac50_below_minconc_and_hit := as.numeric(hitcall > 0.5 & log10(ac50) < logc_min)]
+flag.tb <- dcast(mc5, spid + acnm ~ aenm_dir, value.var = 'ac50_below_minconc_and_hit')
+flag.tb[, .N, by = .(dn, up)]
+```
+
+Now only 4 cases, which seems very negligible to me.
+
+```{r}
+mc5[, ac50_hitc := ifelse(hitcall >= 0.5, ac50, 10^logc_max)]
+ac50.diff <- mc5[, .(diff_val = ac50_hitc[aenm_dir == 'dn'] - ac50_hitc[aenm_dir == 'up'],
+                     mean_val = (ac50_hitc[aenm_dir == 'dn'] + ac50_hitc[aenm_dir == 'up'])*0.5), by = .(acnm, spid)]
+
+ac50.diff[, diff_perc := diff_val/abs(mean_val)*100]
+p <- ggplot(ac50.diff, aes(x = diff_perc)) +
+  geom_histogram()+
+  ggtitle('DNT NT 2021 Distribution of % different in tcplfit2 AC50 values\nwhen fitting up vs dn endpoints resp values
+% diff = (AC50_dn - AC50 up)/|mean(AC50_dn, AC50_up)|*100%
+Where hitcall < 0.5, AC50 set to max conc tested')
+plot(p)
+```
+
+
+
+# Check out more plots to gain confidence {.tabset .tabset-fade}
+
+Goal:
+- up and dn side by side
+- each endpoint in a separate tab
+
+```{r}
+# Let's check out 3 MFR up and dn, 3 network spike peak up and dn
+acnms <- c('CCTE_Shafer_MEA_dev_firing_rate_mean','CCTE_Shafer_MEA_dev_network_spike_peak','CCTE_Shafer_MEA_dev_mutual_information_norm','CCTE_Shafer_MEA_dev_per_burst_interspike_interval')
+for (i in seq_along(acnms)) {
+  acnmi <- acnms[i]
+  plot.spids <- mc5[acnm == acnmi & hitcall > 0.75, unique(spid)][1:2]
+  for (spidi in plot.spids) {
+    for (aenm_dir in c('up','dn')) {
+      plotting.data <- dat.by.spid.aenm[spid == spidi & aenm == paste0(acnmi, '_',aenm_dir)]
+      
+      row <- list(conc = plotting.data[, concentration_unlogged],
+                  resp = plotting.data[, response],
+                  bmed = plotting.data[, unique(bmed)],
+                  cutoff = plotting.data[, unique(coff)],
+                  onesd = plotting.data[, unique(osd)],
+                  name = plotting.data[, unique(spid)],
+                  assay = plotting.data[, unique(aenm)])
+      res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                            "exp4", "exp5"),conthits = T, do.plot=F)
+      concRespPlot(res)
+    }
+  }
+}
+
+
+```
+
+
+## What's going on with 7126 A11 in the mutual information?
+
+Why is the confidence interval SO wide, and why is the BMD NA, even though the hit call is 1?
+Is there a difference in the BMD, hitcall assigned with concRespCore and tcplhit2?
+
+```{r}
+mc5[acnm == 'CCTE_Shafer_MEA_dev_mutual_information_norm' & spid == '7126 A11']
+```
+
+Looks like the BMResponse is 145. 
+
+```{r}
+mc5[acnm == 'CCTE_Shafer_MEA_dev_mutual_information_norm', summary(bmdl)]
+```
+
+So not all are NA...
+
+Reading more about tcplhit2_core, the BMR is the onesd*bmr_scale (usually 1.349). So the BMR allows the user to define threshold at which activity is important BUT is separate from the cutoff to be used for the hit calls. So in the case above, the tp surpassed the cutoff, but did not surpass the BMR.
+
+How often is the bmr higher than the cutoff, or vice versa?
+```{r}
+plotdat <- mc5[, unique(.SD), .SDcols = c('acnm','bmr','coff')]
+p <- ggplot(plotdat, aes(x = bmr, y = coff, text = acnm))+
+  geom_point()+
+  geom_abline(intercept = 0, slope = 1)
+plotly::ggplotly(p)
+```
+
+Okay, so the bmr = onesd*bmr_scale is usually a bit higher than the coff, for these MEA acute endpoints.
+
+BUT, the hitcall, AC50 and ACC won't be affected by the BMR.
+
+
+# Any others to check out before next section?
+
+none that I can think of - I'm sure more will arise
+
+
+# How often is modl_ga < lowest conc tested?
+
+```{r}
+mc5[hitcall >= 0.5 & (grepl('_up',aenm) | grepl('(LDH)|(AB)',aenm)), .(num_ac50s = .N), by = .(ac50_below_lowest_conc = ac50 < 10^logc_min)]
+
+```
+
+
+125 cases, that is fairly significant.
+
+Which endpoints/chem being affected the most?
+```{r}
+# By aenm
+mc5[hitcall >= 0.5 & (grepl('_up',aenm) | grepl('(LDH)|(AB)',aenm)) & ac50 < 10^logc_min, .N, by = .(aenm)][order(-N)]
+
+```
+
+All endpoints have a few instances.
+
+BY SPID
+```{r}
+# By spid
+mc5[hitcall >= 0.5 & (grepl('_up',aenm) | grepl('(LDH)|(AB)',aenm)) & ac50 < 10^logc_min, .N, by = .(spid)][order(-N)]
+
+# How many below out of total number of hits?
+mc5[(grepl('_up',aenm) | grepl('(LDH)|(AB)',aenm)), .(num_hits = sum(hitcall > 0.5), num_hits_below_logc_min = sum(hitcall >= 0.5 & ac50 < 10^logc_min)), by = .(spid)][order(-num_hits_below_logc_min)]
+
+```
+But only 13 spid are affected -> This is good, indicates that the issue is likely just that a few chem are very potent, rather than an issue with the curves/normalization for a particular assay.
+
+I'll present the data, let others decide which of these substances need to be repeated.
+
+
+# Any other flags to consider, other than comparing to rest of controls?
+
+I could make some threshold for noise...
+
+What does the distribution of the rmse's look like? Any noticeable outliers?
+
+```{r}
+ggplot(mc5, aes(x = rmse)) +
+  geom_histogram(aes(fill = as.factor(hitcall >= 0.5)))
+ggplot(mc5, aes(x = rmse)) +
+  geom_histogram(aes(fill = as.factor(hitcall >= 0.5)))+
+  geom_vline(xintercept = 100)+
+  geom_vline(xintercept = 300)+
+  scale_x_log10()
+```
+
+Let's check out the cases where hitcall > 0.5 and RMSE is huge
+
+```{r}
+mc5[hitcall >= 0.5 & rmse > 500, .N]
+mc5[hitcall >= 0.5 & rmse > 100, .N, by = .(spid)][order(-N)]
+
+```
+
+Let's check out a few cases 
+
+Table of values
+```{r}
+use.aenms <- mc5[grepl('up',aenm) | grepl('(LDH)|(AB)',aenm), unique(aenm)]
+mc5[spid == '7126 C6' & hitcall >= 0.5 & aenm %in% use.aenms][order(rmse), .(aenm, hitcall, rmse, fit_method)]
+```
+
+Plots
+
+```{r}
+plot.aenms <- mc5[spid == '7126 C6' & hitcall >= 0.5 & aenm %in% use.aenms][order(rmse), unique(aenm)]
+for (aenmi in plot.aenms) {
+  plotting.data <- dat.by.spid.aenm[spid == '7126 C6' & aenm == aenmi]
+  
+  row <- list(conc = plotting.data[, concentration_unlogged],
+              resp = plotting.data[, response],
+              bmed = plotting.data[, unique(bmed)],
+              cutoff = plotting.data[, unique(coff)],
+              onesd = plotting.data[, unique(osd)],
+              name = plotting.data[, unique(spid)],
+              assay = plotting.data[, unique(aenm)])
+  res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                        "exp4", "exp5"),conthits = T, do.plot=F)
+  concRespPlot(res)  
+}
+```
+
+TBH, many of these endpionts are just squirelly, and that's just the way it is.
+
+How about I focus on a few empirical endpoints?
+
+```{r}
+for (aenmi in c('CCTE_Shafer_MEA_dev_firing_rate_mean_up','CCTE_Shafer_MEA_dev_LDH_dn','CCTE_Shafer_MEA_dev_AB_dn','CCTE_Shafer_MEA_dev_mutual_information_norm_up')) {
+  p <- ggplot(mc5[aenm == aenmi], aes(x = rmse)) +
+    geom_histogram(aes(fill = as.factor(hitcall >= 0.5)))+
+    geom_vline(xintercept = 100)+
+    geom_vline(xintercept = 300)+
+    scale_x_log10()+
+    ggtitle(paste0('Distribution of RMSE for\n',aenmi))
+  print(p)
+}
+```
+
+
+```{r}
+plotdat <- mc5[aenm %in% use.aenms, .(avg_rmse_by_spid = mean(rmse, na.rm = T)), by = .(spid)]
+ggplot(plotdat, aes(x = avg_rmse_by_spid))+
+  geom_histogram()+
+  scale_x_log10()
+```
+
+Where the average RMSE is above 100 - that's probably concerning
+
+```{r}
+check.spids <- plotdat[avg_rmse_by_spid > 100, unique(spid)]
+mc5[aenm %in% use.aenms & spid %in% check.spids, .(spid, aenm, hitcall, rmse)][order(spid, aenm)]
+```
+
+```{r}
+# plot.aenms <- mc5[spid == '7126 C10' & hitcall >= 0.5 & aenm %in% use.aenms][order(rmse), unique(aenm)]
+plot.aenms <- c('CCTE_Shafer_MEA_dev_burst_rate_up','CCTE_Shafer_MEA_dev_burst_duration_mean_up','CCTE_Shafer_MEA_dev_correlation_coefficient_mean_up','CCTE_Shafer_MEA_dev_firing_rate_mean_up','CCTE_Shafer_MEA_dev_LDH_dn')
+for (aenmi in plot.aenms) {
+  plotting.data <- dat.by.spid.aenm[spid == '7126 C1' & aenm == aenmi]
+  
+  row <- list(conc = plotting.data[, concentration_unlogged],
+              resp = plotting.data[, response],
+              bmed = plotting.data[, unique(bmed)],
+              cutoff = plotting.data[, unique(coff)],
+              onesd = plotting.data[, unique(osd)],
+              name = plotting.data[, unique(spid)],
+              assay = plotting.data[, unique(aenm)])
+  res <- concRespCore(row,fitmodels = c("cnst", "hill", "gnls", "poly1", "poly2", "pow", "exp2", "exp3",
+                                        "exp4", "exp5"),conthits = T, do.plot=F)
+  concRespPlot(res)  
+}
+```
+
+
+What usually triggers the flag for "noise"? -> oh, just if the RMSE is greater than the cutoff!
+
+```{r}
+mc5[, length(unique(spid))] # 113
+mc5[aenm %in% use.aenms, .(num_pts_noise = sum(rmse > coff)), by = .(aenm)][order(-num_pts_noise)]
+length(use.aenms) # 18 (shouldn't there be 19...?)
+mc5[aenm %in% use.aenms, .(num_pts_noise = sum(rmse > coff)), by = .(spid)][order(-num_pts_noise)]
+
+```
+
+(Note that I don't jsut care about hits, but also non-hit that might seem active if they were less noisy... I think).
+
+Ideas:
+
+- If over half of the endpoints have RMSE > coff for a given spid, then that might be a reason to rescreen
+- If a spid has RMSE > coff for a particular set of endpoints that usually have lower noise relative to coff (e.g. mean firing rate, mutual information, etc.), then that might be a reason to rescreen.
+
+Method 1 would be easier (bc wouldn't have to determine which endpoints matter!), but maybe method 2 woudl be better, bc would take the specific endpoints into consideration. Let's get a sense of how the results woudl compare.
+
+```{r}
+# Method 1:
+check.spids1 <- mc5[aenm %in% use.aenms, .(num_pts_noise = sum(rmse > coff)), by = .(spid)][num_pts_noise >= 9, unique(spid)]
+
+# Method 2
+key.aenms <- mc5[aenm %in% use.aenms, .(num_pts_noise = sum(rmse > coff)), by = .(aenm)][num_pts_noise < 0.25*113, unique(aenm)]
+length(key.aenms) # 15
+mc5[aenm %in% key.aenms & rmse > coff, .N, by = .(spid)][order(-N)]
+# Let's say at least 3 of these endpoints must be affected
+check.spids2 <- mc5[aenm %in% key.aenms & rmse > coff, .N, by = .(spid)][N >= 3, unique(spid)]
+
+# Compare
+length(intersect(check.spids2, check.spids2)) # 23
+length(setdiff(check.spids1, check.spids2))
+length(setdiff(check.spids2, check.spids1))
+
+```
+
+This is all so arbitrary, would require a much fuller analysis.
+
+Let's just find a way to present this to Tim and others, and let them decide. Knowing that it will be imperfect, we will improve this in the future.
+
+
+

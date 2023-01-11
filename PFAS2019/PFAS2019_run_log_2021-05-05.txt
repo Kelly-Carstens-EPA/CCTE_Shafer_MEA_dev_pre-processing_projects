@@ -1,0 +1,616 @@
+Output from the script run_me_PFAS2019.R
+Date Ran: 2021-05-05 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                   dataset_title 
+                                                                                      "PFAS2019" 
+                                                                    default_ControlTreatmentName 
+                                                                                          "DMSO" 
+                                                                             pause_between_steps 
+                                                                                          "TRUE" 
+                                                                                 root_output_dir 
+                                  "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                               save_notes_graphs 
+                                                                                          "TRUE" 
+                                                                                     scripts.dir 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                      spid_sheet 
+                                                                                              "" 
+                                                                                    spidmap_file 
+                                                                                              "" 
+                                                                     update_concs_without_prompt 
+                                                                                         "FALSE" 
+
+- Select files for files_log:
+3 files already exist.
+- Create h5 files:
+100 files already exist.
+- Calculate the components:
+25 files already exist.
+- Calculate the Mutual Information:
+25 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( PFAS2019_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( PFAS2019_cytotox.csv )
+'source_steps.R' is complete.
+long-format data is ready.
+   conc wllt     N
+1:    0    n 11745
+            treatment    N
+ 1:              DMSO 9192
+ 2: Chlorpyrifos oxon  255
+ 3:             Media 1870
+ 4:       Bisphenol A   91
+ 5:     Acetomenophin   91
+ 6:          3360 E05    6
+ 7:          3360 F02    6
+ 8:          3360 F07    6
+ 9:          3360 F10    6
+10:          3360 F11    6
+11:          3360 G09    6
+12:          3360 G10    6
+13:          3360 H02    6
+14:          3360 H07    6
+15:          3361 A03    6
+16:          3361 D02    6
+17: Chlorpyrifos Oxon   12
+18:          3361 E03    6
+19:          3361 E05    6
+20:          3361 F01    6
+21:          3361 G03    6
+22:          3361 H02    6
+23:          3612 B02    6
+24:          3612 B05    6
+25:          3612 C03    6
+26:          3612 D03    6
+27:          3612 E01    6
+28:          3612 E02    6
+29:          3612 E03    6
+30:          3612 E04    6
+31:          3612 F01    6
+32:          3612 G01    6
+33:          3612 G02    6
+34:          3612 H01    6
+35:          3612 H02    6
+36:          3612 H03    6
+37:      Chlorpyrifos    6
+38:                 0   48
+            treatment    N
+Empty data.table (0 rows and 11 cols): apid,rowi,coli,treatment.mcl,conc.mcl,wllt.mcl...
+Empty data.table (0 rows and 11 cols): apid,rowi,coli,treatment.mcl,conc.mcl,wllt.mcl...
+    treatment coli rowi                                                       srcf               apid  N
+ 1:      DMSO    2    3 20210127_NFA_Pos_Ctrl+Chlorpyrifos oxon_ Calculations.xlsx 20210127_MW75-5620  2
+ 2:      DMSO    2    3                             PFAS2019_parameters_by_DIV.csv 20210127_MW75-5620 68
+ 3:      DMSO    2    3                                           PFAS2019_AUC.csv 20210127_MW75-5620 17
+ 4:      DMSO    2    6               20210331_NFA_PFAS_Group_8_ Calculations.xlsx 20210331_MW75-8102  2
+ 5:      DMSO    2    6                             PFAS2019_parameters_by_DIV.csv 20210331_MW75-8102 68
+ 6:      DMSO    2    6                                           PFAS2019_AUC.csv 20210331_MW75-8102 17
+ 7:      DMSO    2    4               20210331_NFA_PFAS_Group_8_ Calculations.xlsx 20210331_MW75-8103  2
+ 8:      DMSO    2    4                             PFAS2019_parameters_by_DIV.csv 20210331_MW75-8103 68
+ 9:      DMSO    2    4                                           PFAS2019_AUC.csv 20210331_MW75-8103 17
+10:      DMSO    2    5               20210331_NFA_PFAS_Group_8_ Calculations.xlsx 20210331_MW75-8104  2
+11:      DMSO    2    5                             PFAS2019_parameters_by_DIV.csv 20210331_MW75-8104 68
+12:      DMSO    2    5                                           PFAS2019_AUC.csv 20210331_MW75-8104 17
+    treatment               apid rowi coli  N
+ 1:     Media 20210127_MW75-5620    3    1 87
+ 2:     Media 20210127_MW75-5620    3    2 87
+ 3:     Media 20210127_MW75-5620    3    3 87
+ 4:     Media 20210127_MW75-5620    3    4 87
+ 5:     Media 20210127_MW75-5620    3    5 87
+ 6:     Media 20210127_MW75-5620    3    6 87
+ 7:     Media 20210127_MW75-5620    3    7 87
+ 8:     Media 20210127_MW75-5620    3    8 87
+ 9:     Media 20210331_MW75-8102    6    1 87
+10:     Media 20210331_MW75-8102    6    2 87
+11:     Media 20210331_MW75-8102    6    3 87
+12:     Media 20210331_MW75-8102    6    4 87
+13:     Media 20210331_MW75-8102    6    5 87
+14:     Media 20210331_MW75-8102    6    6 87
+15:     Media 20210331_MW75-8102    6    7 87
+16:     Media 20210331_MW75-8102    6    8 87
+17:     Media 20210331_MW75-8103    4    1 87
+18:     Media 20210331_MW75-8103    4    2 87
+19:     Media 20210331_MW75-8103    4    3 87
+20:     Media 20210331_MW75-8103    4    4 87
+21:     Media 20210331_MW75-8103    4    5 87
+22:     Media 20210331_MW75-8103    4    6 87
+23:     Media 20210331_MW75-8103    4    7 87
+24:     Media 20210331_MW75-8103    4    8 87
+25:     Media 20210331_MW75-8104    5    1 87
+26:     Media 20210331_MW75-8104    5    2 87
+27:     Media 20210331_MW75-8104    5    3 87
+28:     Media 20210331_MW75-8104    5    4 87
+29:     Media 20210331_MW75-8104    5    5 87
+30:     Media 20210331_MW75-8104    5    6 87
+31:     Media 20210331_MW75-8104    5    7 87
+32:     Media 20210331_MW75-8104    5    8 87
+    treatment               apid rowi coli  N
+                   apid rowi coli treatment    treatment_srcf conc wllt  N
+  1: 20210127_MW75-5620    1    2      DMSO Chlorpyrifos oxon    0    n 85
+  2: 20210127_MW75-5620    2    2      DMSO Chlorpyrifos oxon    0    n 85
+  3: 20210127_MW75-5620    3    2     Media              DMSO    0    n  2
+  4: 20210127_MW75-5620    4    2      DMSO       Bisphenol A    0    n 85
+  5: 20210127_MW75-5620    5    2      DMSO     Acetomenophin    0    n 85
+ ---                                                                      
+134: 20210331_MW75-8104    5    5     Media                 0    0    n  2
+135: 20210331_MW75-8104    5    6     Media                 0    0    n  2
+136: 20210331_MW75-8104    5    7     Media                 0    0    n  2
+137: 20210331_MW75-8104    5    8     Media                 0    0    n  2
+138: 20210331_MW75-8104    6    2      DMSO      Chlorpyrifos    0    n  2
+    conc treatment    N
+ 1:    0      DMSO 9570
+ 2:    0     Media 2784
+ 3:    0  3360 A04  261
+ 4:    0  3360 A07  261
+ 5:    0  3360 A11  261
+ 6:    0  3360 B03  261
+ 7:    0  3360 B04  261
+ 8:    0  3360 B12  261
+ 9:    0  3360 C09  261
+10:    0  3360 C11  261
+11:    0  3360 D01  261
+12:    0  3360 D03  261
+13:    0  3360 D07  261
+14:    0  3360 D12  261
+                 apid  N
+1: 20210303_MW75-5813 12
+2: 20210303_MW75-5814 12
+3: 20210303_MW75-5815 12
+4: 20210303_MW75-5816 12
+5: 20210303_MW75-5817 12
+6: 20210303_MW75-5818 12
+   conc treatment     N
+1:    0      DMSO 12702
+2:    0     Media  2784
+   wllt    N
+1:    n 2784
+                 apid dmso_control_col
+1: 20210127_MW75-5620                2
+2: 20210331_MW75-8102                2
+3: 20210331_MW75-8103                2
+4: 20210331_MW75-8104                2
+                  apid V1
+ 1: 20210127_MW75-5620  6
+ 2: 20210217_MW75-5806  6
+ 3: 20210217_MW75-5807  6
+ 4: 20210217_MW75-5808  6
+ 5: 20210217_MW75-5809  6
+ 6: 20210217_MW75-5810  6
+ 7: 20210217_MW75-5811  6
+ 8: 20210303_MW75-5813  6
+ 9: 20210303_MW75-5814  6
+10: 20210303_MW75-5815  6
+11: 20210303_MW75-5816  6
+12: 20210303_MW75-5817  6
+13: 20210303_MW75-5818  6
+14: 20210317_MW75-8006  6
+15: 20210317_MW75-8007  6
+16: 20210317_MW75-8008  6
+17: 20210317_MW75-8009  6
+18: 20210317_MW75-8010  6
+19: 20210317_MW75-8011  6
+20: 20210331_MW75-8019  6
+21: 20210331_MW75-8020  6
+22: 20210331_MW75-8101  6
+23: 20210331_MW75-8102  6
+24: 20210331_MW75-8103  6
+25: 20210331_MW75-8104  6
+                  apid V1
+   treatment conc wllt     N
+1:      DMSO    0    n 12702
+2:     Media    0    b  2436
+3:     Media    0    n   348
+    wllt         treatment     N
+ 1:    t Chlorpyrifos oxon  1827
+ 2:    n              DMSO 12702
+ 3:    b             Media  2436
+ 4:    n             Media   348
+ 5:    t       Bisphenol A  2436
+ 6:    t     Acetomenophin  2436
+ 7:    t          3360 E05  1827
+ 8:    t          3360 F02  1827
+ 9:    t          3360 F07  1827
+10:    t          3360 F10  1827
+11:    t          3360 F11  1827
+12:    t          3360 G09  1827
+13:    t          3360 G10  1827
+14:    t          3360 H02  1827
+15:    t          3360 H07  1827
+16:    t          3361 A03  1827
+17:    t          3361 D02  1827
+18:    t Chlorpyrifos Oxon  3654
+19:    t          3360 A04  1827
+20:    t          3360 A07  1827
+21:    t          3360 A11  1827
+22:    t          3360 B03  1827
+23:    t          3360 B04  1827
+24:    t          3360 B12  1827
+25:    t          3360 C09  1827
+26:    t          3360 C11  1827
+27:    t          3360 D01  1827
+28:    t          3360 D03  1827
+29:    t          3360 D07  1827
+30:    t          3360 D12  1827
+31:    t          3361 E03  1827
+32:    t          3361 E05  1827
+33:    t          3361 F01  1827
+34:    t          3361 G03  1827
+35:    t          3361 H02  1827
+36:    t          3612 B02  1827
+37:    t          3612 B05  1827
+38:    t          3612 C03  1827
+39:    t          3612 D03  1827
+40:    t          3612 E01  1827
+41:    t          3612 E02  1827
+42:    t          3612 E03  1827
+43:    t          3612 E04  1827
+44:    t          3612 F01  1827
+45:    t          3612 G01  1827
+46:    t          3612 G02  1827
+47:    t          3612 H01  1827
+48:    t          3612 H02  1827
+49:    t          3612 H03  1827
+50:    t      Chlorpyrifos  1827
+    wllt         treatment     N
+[1] "3360" "3361"
+[1] "mM"
+   EPA_SAMPLE_ID  BOTTLE_ID         DTXSID      CASRN                      PREFERRED_NAME treatment expected_stock_conc stock_conc
+1:    1210309389 1205300249 DTXSID60377821  3792-02-7           4:4 Fluorotelomer alcohol  3360 A01                  30         NA
+2:    1210314354 1205300257  DTXSID7074616 21652-58-4         1H,1H,2H-Perfluoro-1-decene  3360 A02                  30         NA
+3:    1210314362 1205300265  DTXSID4059914   375-01-9            1H,1H-Heptafluorobutanol  3360 A03                  30         NA
+4:    1210314370 1205300273 DTXSID30880413 38565-52-5 3-(Perfluorohexyl)-1,2-epoxypropane  3360 A04                  30         NA
+5:    1210314378 1205300281 DTXSID50382621 25600-66-2           7:3 Fluorotelomer alcohol  3360 A05                  30         NA
+6:    1210314386 1205300289 DTXSID10461880  1005-73-8        1H,2H-Hexafluorocyclopentene  3360 A06                  30         NA
+   treatment       spid expected_stock_conc
+1:  3360 A01 1210309389                  30
+2:  3360 A02 1210314354                  30
+3:  3360 A03 1210314362                  30
+4:  3360 A04 1210314370                  30
+5:  3360 A05 1210314378                  30
+6:  3360 A06 1210314386                  30
+[1] "Acetomenophin"     "Chlorpyrifos Oxon"
+Empty data.table (0 rows and 2 cols): treatment,N
+    treatment               apid rowi coli num_unique_concs_in_well
+ 1:  3361 F01 20210317_MW75-8006    3    3                        2
+ 2:  3361 F01 20210317_MW75-8006    3    5                        2
+ 3:  3361 F01 20210317_MW75-8006    3    7                        2
+ 4:  3361 F01 20210317_MW75-8007    1    3                        2
+ 5:  3361 F01 20210317_MW75-8007    1    5                        2
+ 6:  3361 F01 20210317_MW75-8007    1    7                        2
+ 7:  3361 F01 20210317_MW75-8008    2    3                        2
+ 8:  3361 F01 20210317_MW75-8008    2    5                        2
+ 9:  3361 F01 20210317_MW75-8008    2    7                        2
+10:  3612 H02 20210331_MW75-8019    6    3                        2
+11:  3612 H02 20210331_MW75-8019    6    5                        2
+12:  3612 H02 20210331_MW75-8019    6    7                        2
+13:  3612 H02 20210331_MW75-8020    4    3                        2
+14:  3612 H02 20210331_MW75-8020    4    5                        2
+15:  3612 H02 20210331_MW75-8020    4    7                        2
+16:  3612 H02 20210331_MW75-8101    5    3                        2
+17:  3612 H02 20210331_MW75-8101    5    5                        2
+18:  3612 H02 20210331_MW75-8101    5    7                        2
+19:  3612 H03 20210331_MW75-8102    1    3                        2
+20:  3612 H03 20210331_MW75-8102    1    5                        2
+21:  3612 H03 20210331_MW75-8102    1    7                        2
+22:  3612 H03 20210331_MW75-8103    2    3                        2
+23:  3612 H03 20210331_MW75-8103    2    5                        2
+24:  3612 H03 20210331_MW75-8103    2    7                        2
+25:  3612 H03 20210331_MW75-8104    3    3                        2
+26:  3612 H03 20210331_MW75-8104    3    5                        2
+27:  3612 H03 20210331_MW75-8104    3    7                        2
+    treatment               apid rowi coli num_unique_concs_in_well
+[1] "3361 F01" "3612 H02" "3612 H03"
+    treatment rowi coli        conc  N
+ 1:  3361 F01    1    1  0.01000000 87
+ 2:  3361 F01    1    3  0.03000000 85
+ 3:  3361 F01    1    3  0.03333333  2
+ 4:  3361 F01    1    4  0.10000000 87
+ 5:  3361 F01    1    5  0.30000000 85
+ 6:  3361 F01    1    5  0.33333333  2
+ 7:  3361 F01    1    6  1.00000000 87
+ 8:  3361 F01    1    7  3.00000000 85
+ 9:  3361 F01    1    7  3.33333333  2
+10:  3361 F01    1    8 10.00000000 87
+11:  3361 F01    2    1  0.01000000 87
+12:  3361 F01    2    3  0.03000000 85
+13:  3361 F01    2    3  0.03333333  2
+14:  3361 F01    2    4  0.10000000 87
+15:  3361 F01    2    5  0.30000000 85
+16:  3361 F01    2    5  0.33333333  2
+17:  3361 F01    2    6  1.00000000 87
+18:  3361 F01    2    7  3.00000000 85
+19:  3361 F01    2    7  3.33333333  2
+20:  3361 F01    2    8 10.00000000 87
+21:  3361 F01    3    1  0.01000000 87
+22:  3361 F01    3    3  0.03000000 85
+23:  3361 F01    3    3  0.03333333  2
+24:  3361 F01    3    4  0.10000000 87
+25:  3361 F01    3    5  0.30000000 85
+26:  3361 F01    3    5  0.33333333  2
+27:  3361 F01    3    6  1.00000000 87
+28:  3361 F01    3    7  3.00000000 85
+29:  3361 F01    3    7  3.33333333  2
+30:  3361 F01    3    8 10.00000000 87
+31:  3612 H02    4    1  0.01000000 87
+32:  3612 H02    4    3  0.03000000 85
+33:  3612 H02    4    3  0.03333333  2
+34:  3612 H02    4    4  0.10000000 87
+35:  3612 H02    4    5  0.30000000 85
+36:  3612 H02    4    5  0.33333333  2
+37:  3612 H02    4    6  1.00000000 87
+38:  3612 H02    4    7  3.00000000 85
+39:  3612 H02    4    7  3.33333333  2
+40:  3612 H02    4    8 10.00000000 87
+41:  3612 H02    5    1  0.01000000 87
+42:  3612 H02    5    3  0.03000000 85
+43:  3612 H02    5    3  0.03333333  2
+44:  3612 H02    5    4  0.10000000 87
+45:  3612 H02    5    5  0.30000000 85
+46:  3612 H02    5    5  0.33333333  2
+47:  3612 H02    5    6  1.00000000 87
+48:  3612 H02    5    7  3.00000000 85
+49:  3612 H02    5    7  3.33333333  2
+50:  3612 H02    5    8 10.00000000 87
+51:  3612 H02    6    1  0.01000000 87
+52:  3612 H02    6    3  0.03000000 85
+53:  3612 H02    6    3  0.03333333  2
+54:  3612 H02    6    4  0.10000000 87
+55:  3612 H02    6    5  0.30000000 85
+56:  3612 H02    6    5  0.33333333  2
+57:  3612 H02    6    6  1.00000000 87
+58:  3612 H02    6    7  3.00000000 85
+59:  3612 H02    6    7  3.33333333  2
+60:  3612 H02    6    8 10.00000000 87
+61:  3612 H03    1    1  0.01000000 87
+62:  3612 H03    1    3  0.03000000 85
+63:  3612 H03    1    3  0.03333333  2
+64:  3612 H03    1    4  0.10000000 87
+65:  3612 H03    1    5  0.30000000 85
+66:  3612 H03    1    5  0.33333333  2
+67:  3612 H03    1    6  1.00000000 87
+68:  3612 H03    1    7  3.00000000 85
+69:  3612 H03    1    7  3.33333333  2
+70:  3612 H03    1    8 10.00000000 87
+71:  3612 H03    2    1  0.01000000 87
+72:  3612 H03    2    3  0.03000000 85
+73:  3612 H03    2    3  0.03333333  2
+74:  3612 H03    2    4  0.10000000 87
+75:  3612 H03    2    5  0.30000000 85
+76:  3612 H03    2    5  0.33333333  2
+77:  3612 H03    2    6  1.00000000 87
+78:  3612 H03    2    7  3.00000000 85
+79:  3612 H03    2    7  3.33333333  2
+80:  3612 H03    2    8 10.00000000 87
+81:  3612 H03    3    1  0.01000000 87
+82:  3612 H03    3    3  0.03000000 85
+83:  3612 H03    3    3  0.03333333  2
+84:  3612 H03    3    4  0.10000000 87
+85:  3612 H03    3    5  0.30000000 85
+86:  3612 H03    3    5  0.33333333  2
+87:  3612 H03    3    6  1.00000000 87
+88:  3612 H03    3    7  3.00000000 85
+89:  3612 H03    3    7  3.33333333  2
+90:  3612 H03    3    8 10.00000000 87
+    treatment rowi coli        conc  N
+Empty data.table (0 rows and 4 cols): apid,rowi,coli,V1
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+
+FYI, the following stock conc's pulled from invitrodb do not match the expected stock conc:
+         spid treatment stkc expected_stock_conc                spidmap_guess_concs                       source_concs num_concs
+1: 1208990402  3612 H02   10                  30    0.01,0.0333,0.1,0.333,1,3.33,10    0.01,0.0333,0.1,0.333,1,3.33,10         7
+2: 1208990410  3612 H03   10                  30    0.01,0.0333,0.1,0.333,1,3.33,10    0.01,0.0333,0.1,0.333,1,3.33,10         7
+3: 1210313679  3361 F01   10                  30    0.01,0.0333,0.1,0.333,1,3.33,10    0.01,0.0333,0.1,0.333,1,3.33,10         7
+4: 1210313710  3361 E05    5                  30 0.005,0.0167,0.05,0.167,0.5,1.67,5 0.005,0.0167,0.05,0.167,0.5,1.67,5        10
+
+All compounds have the expected concentration-corrected values
+   treatment  spid    N
+1:     Media Media 2784
+
+Final Checks
+Number of cultures dates: 5
+Range of culture dates: 20210127 20210331
+Number of plates tested: 25
+Number of compounds tested: 46
+Any NA rvals?
+   wllq     N
+1:    1 11283
+2:    0  1457
+
+Wllq breakdown for all points:
+   wllq      N
+1:    1 100137
+2:    0   4263
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn                 min  median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB                 506   27487  49394      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH               0.004     0.7    1.4      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number                   0      78    131      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12                   0      15     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5                   0       3     14      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7                   0       8     16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9                   0      13     16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean                   0     3.8    114      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12               0.069    0.58     10     79
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5                0.11    0.48     45    738
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7                0.13    0.61     41    272
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9                0.14    0.57     11    106
+13:                                CCTE_Shafer_MEA_dev_burst_rate                   0     8.6     51      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12                   0     1.7     16      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5                   0    0.06     10      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7                   0     0.8    8.9      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9                   0    0.97    6.4      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number                   0      43    109      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12                   0      14     16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5                   0       0      8      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7                   0       2     16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9                   0       7     16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean             -0.0047     1.2    3.1      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12             -0.0023    0.31   0.68      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5             -0.0059       0   0.66      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7              -0.003   0.046   0.51      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9             -0.0015    0.25   0.63      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean                   0     6.1     27      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12                   0    0.98      7      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5                   0     0.4    7.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7                   0    0.72    4.4      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9                   0    0.61    4.3      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean                   0     653   2049      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12                 1.5      40    477     81
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5                  58     228    645   1134
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7                  33     200    748    291
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9                 2.9     107    695    105
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean                   0     299    812      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12                 1.8      41    116     79
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5                 1.2      43    124    738
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7                 1.2      42    119    272
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9                   3      57    125    106
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm                   0    0.02  0.098      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12                   0  0.0078  0.034      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5                   0       0 0.0051      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7                   0 0.00013  0.012      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9                   0  0.0031  0.017      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std                   0    0.32    1.6      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12              0.0038    0.08   0.56     81
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5               0.016   0.066  0.092   1134
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7 0.00000000000000051   0.025    0.2    291
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9                   0   0.071   0.26    105
+53:                      CCTE_Shafer_MEA_dev_network_spike_number                   0      56   1270      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12                   0      19    501      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5                   0       0     16      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7                   0       3     26      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9                   0       7    306      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak                   0      76    118      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12                   5      13     16     76
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5                   5     6.8     11   1109
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7                   5      14     16    219
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9                   5      14     16     88
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval                   0     0.3   0.96      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12              0.0092   0.025   0.14     79
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5               0.019   0.082   0.23    738
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7              0.0082   0.067   0.19    272
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9                0.01    0.03   0.17    106
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent                   0     349    675      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12                   0      77    100      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5                   0       0    100      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7                   0      30     98      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9                   0      64     98      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean                   0     454    990      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12                  10      86    219     76
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5                   8      11     37   1109
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7                   8      69    182    219
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9                  10      86    192     88
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent                   0      53    189      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12                   0      13     58      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5                   0       0     12      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7                   0     2.9     39      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9                   0      10     39      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean                   0     1.3    3.1      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12               0.062    0.25   0.56     76
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5               0.054    0.21   0.54   1109
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7               0.065    0.18   0.52    219
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9               0.081    0.27    0.5     88
+                                                             acsn                 min  median    max num_NA
+[1] 0
+                 apid         treatment    N
+1: 20210127_MW75-5620     Acetaminophen  609
+2: 20210127_MW75-5620       Bisphenol A  609
+3: 20210127_MW75-5620 Chlorpyrifos oxon 1827
+4: 20210127_MW75-5620              DMSO  435
+5: 20210127_MW75-5620             Media  696
+       date V1
+1: 20210127  1
+2: 20210217  6
+3: 20210303  6
+4: 20210317  6
+5: 20210331  6
+                                                            acsn   N
+1:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12 122
+2:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12 122
+3:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12 122
+4:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12 124
+5:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12 130
+6:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12 130
+7: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12 124
+8:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12 124
+ [1]  43 101 102 103 104 105 106 107 108 109 110 111 112
+character(0)
+[1] "EX000530" "EX000531" "EX000596" "EX000595" "DMSO"     "Media"   
+   wllt conc    N
+1:    b   NA 2436
+2:    n   NA  348
+                 apid rowi coli  N
+1: 20210127_MW75-5620    3    2 87
+2: 20210331_MW75-8102    6    2 87
+3: 20210331_MW75-8103    4    2 87
+4: 20210331_MW75-8104    5    2 87
+                  apid V1
+ 1: 20210127_MW75-5620  6
+ 2: 20210217_MW75-5806  6
+ 3: 20210217_MW75-5807  6
+ 4: 20210217_MW75-5808  6
+ 5: 20210217_MW75-5809  6
+ 6: 20210217_MW75-5810  6
+ 7: 20210217_MW75-5811  6
+ 8: 20210303_MW75-5813  6
+ 9: 20210303_MW75-5814  6
+10: 20210303_MW75-5815  6
+11: 20210303_MW75-5816  6
+12: 20210303_MW75-5817  6
+13: 20210303_MW75-5818  6
+14: 20210317_MW75-8006  6
+15: 20210317_MW75-8007  6
+16: 20210317_MW75-8008  6
+17: 20210317_MW75-8009  6
+18: 20210317_MW75-8010  6
+19: 20210317_MW75-8011  6
+20: 20210331_MW75-8019  6
+21: 20210331_MW75-8020  6
+22: 20210331_MW75-8101  6
+23: 20210331_MW75-8102  6
+24: 20210331_MW75-8103  6
+25: 20210331_MW75-8104  6
+                  apid V1
+                  apid V1
+ 1: 20210303_MW75-5813 42
+ 2: 20210303_MW75-5814 42
+ 3: 20210303_MW75-5815 42
+ 4: 20210303_MW75-5816 42
+ 5: 20210303_MW75-5817 42
+ 6: 20210303_MW75-5818 42
+ 7: 20210217_MW75-5806 42
+ 8: 20210217_MW75-5807 42
+ 9: 20210217_MW75-5808 42
+10: 20210217_MW75-5809 42
+11: 20210217_MW75-5810 42
+12: 20210217_MW75-5811 42
+13: 20210317_MW75-8006 42
+14: 20210317_MW75-8007 42
+15: 20210317_MW75-8008 42
+16: 20210317_MW75-8009 42
+17: 20210317_MW75-8010 42
+18: 20210317_MW75-8011 42
+19: 20210331_MW75-8019 42
+20: 20210331_MW75-8020 42
+21: 20210331_MW75-8101 42
+22: 20210331_MW75-8102 35
+23: 20210331_MW75-8103 35
+24: 20210331_MW75-8104 35
+25: 20210127_MW75-5620 35
+                  apid V1
+                 apid    N
+1: 20210331_MW75-8101   87
+2: 20210127_MW75-5620 4176
+   wllq    N
+1:    0 4176

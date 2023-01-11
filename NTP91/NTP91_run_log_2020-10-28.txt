@@ -1,0 +1,224 @@
+Output from the script run_me_NTP91.R
+Date Ran: 2020-10-28 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                                                 dataset_title 
+                                                                                                       "NTP91" 
+                                                                                  default_ControlTreatmentName 
+                                                                                                        "DMSO" 
+                                                                                           pause_between_steps 
+                                                                                                        "TRUE" 
+                                                                                               root_output_dir 
+                                                "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                             save_notes_graphs 
+                                                                                                        "TRUE" 
+                                                                                                   scripts.dir 
+              "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                    spid_sheet 
+                                                                                           "NeuroTox 91 Cmpds" 
+                                                                                                  spidmap_file 
+"L:/Lab/NHEERL_MEA/PIP3 - Project/Data/NTP tcpl prep/SPID map/Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx" 
+long-format data is ready.
+   Molecular.Weight                                Chemical.Name         CAS Conc..(mM)                        Supplier  Lot.Number CoA.Purity.(%) Determined.Purity.(%) Plate.Position  Culture     SPID
+1:           264.26 1-Ethyl-3-methylimidazolium diethylphosphate 848641-69-0       20.2                   Sigma-Aldrich     1426075           99.5                  <NA>             A1 20160907 EX000278
+2:           297.13           1-Methyl-4-phenylpyridinium iodide  36913-39-0       18.8                   Sigma-Aldrich   092M4729V           99.8                  <NA>             A2 20160817 EX000279
+3:           362.41              2-Ethylhexyl diphenyl phosphate   1241-94-7       20.2                     TCI America       BKUNE           92.8                  <NA>             A3 20160720 EX000280
+4:           549.92      2-Ethylhexyl-2,3,4,5-tetrabromobenzoate 183658-27-7         20 Toronto Research Chemicals Inc. 3-JUZ-193-8             95                  <NA>             A4 20160720 EX000281
+5:            76.09                             2-Methoxyethanol    109-86-4       20.9                   Sigma-Aldrich   SHBD1377V          99.94                  <NA>             A5 20160817 EX000282
+6:           564.69         2,2',4,4',5-Pentabromodiphenyl ether  60348-60-9         20                Cerilliant Corp.    35081-70             96                   100             A6 20160720 EX000283
+NULL
+                                      treatment     spid stock_conc expected_stock_conc
+1: 1-Ethyl-3-methylimidazolium diethylphosphate EX000278       20.2                  20
+2:           1-Methyl-4-phenylpyridinium iodide EX000279       18.8                  20
+3:              2-Ethylhexyl diphenyl phosphate EX000280       20.2                  20
+4:      2-Ethylhexyl-2,3,4,5-tetrabromobenzoate EX000281       20.0                  20
+5:                             2-Methoxyethanol EX000282       20.9                  20
+6:         2,2',4,4',5-Pentabromodiphenyl ether EX000283       20.0                  20
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+character(0)
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 20 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+The concentrations for the following compounds might need to be corrected:
+        spid stkc expected_stock_conc                      spidmap_guess_concs                                      treatment                                              source_concs num_concs
+ 1: EX000278 20.2                20.0   0.0303,0.101,0.303,1.01,3.03,10.1,20.2   1-Ethyl-3-methylimidazolium diethylphosphate                                    0.03,0.1,0.3,1,3,10,20         7
+ 2: EX000279 18.8                20.0    0.0282,0.094,0.282,0.94,2.82,9.4,18.8             1-Methyl-4-phenylpyridinium iodide                                  0.01,0.03,0.1,0.3,1,3,10         7
+ 3: EX000280 20.2                20.0   0.0303,0.101,0.303,1.01,3.03,10.1,20.2                2-Ethylhexyl diphenyl phosphate                                    0.03,0.1,0.3,1,3,10,20         7
+ 4: EX000282 20.9                20.0   0.0313,0.104,0.313,1.04,3.13,10.4,20.9                               2-Methoxyethanol                                    0.03,0.1,0.3,1,3,10,20         7
+ 5: EX000284 10.0                10.0                   0.03,0.1,0.3,1,3,10,20         2,2',4,4',5,5'-Hexabromodiphenyl ether                               0.02,0.05,0.15,0.5,1.5,5,10         7
+ 6: EX000287 20.4                20.0   0.0306,0.102,0.306,1.02,3.06,10.2,20.4                    3,3'-Iminobispropanenitrile                                    0.03,0.1,0.3,1,3,10,20         7
+ 7: EX000289 20.4                20.0   0.0306,0.102,0.306,1.02,3.06,10.2,20.4              4-H-Cyclopenta(d,e,f)phenanthrene                                    0.03,0.1,0.3,1,3,10,20         7
+ 8: EX000296 19.6                20.0    0.0294,0.098,0.294,0.98,2.94,9.8,19.6               Acetic acid, manganese (2+) salt                                    0.03,0.1,0.3,1,3,10,20         7
+ 9: EX000297 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                           Acetylsalicylic acid                                    0.03,0.1,0.3,1,3,10,20         7
+10: EX000301 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                                     Anthracene                                    0.03,0.1,0.3,1,3,10,20         7
+11: EX000302 19.8                20.0    0.0297,0.099,0.297,0.99,2.97,9.9,19.8                                     Auramine O                                    0.03,0.1,0.3,1,3,10,20         7
+12: EX000304 20.3                20.0   0.0304,0.101,0.304,1.01,3.04,10.1,20.3                                 Benzo(a)pyrene                                    0.03,0.1,0.3,1,3,10,20         7
+13: EX000306 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                                 Benzo(e)pyrene                                    0.03,0.1,0.3,1,3,10,20         7
+14: EX000307 19.8                20.0    0.0297,0.099,0.297,0.99,2.97,9.9,19.8                           Benzo(k)fluoranthene                                    0.03,0.1,0.3,1,3,10,20         7
+15: EX000313 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                                   Bisphenol AF                                    0.03,0.1,0.3,1,3,10,20         7
+16: EX000314 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                                    Bisphenol S                                    0.03,0.1,0.3,1,3,10,20         7
+17: EX000316 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                                         Captan                                    0.03,0.1,0.3,1,3,10,20         7
+18: EX000317 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9 Carbamic acid, butyl-, 3-iodo-2-propynyl ester                                    0.03,0.1,0.3,1,3,10,20         7
+19: EX000320  9.7                 9.7                   0.03,0.1,0.3,1,3,10,20                                       Chrysene                         0.01,0.05,0.15,0.49,1.46,4.85,9.7         7
+20: EX000322 20.2                20.0   0.0303,0.101,0.303,1.01,3.03,10.1,20.2                                     D-Glucitol                                    0.03,0.1,0.3,1,3,10,20         7
+21: EX000326 10.1                10.0   0.0303,0.101,0.303,1.01,3.03,10.1,20.2                          Dibenz(a,h)anthracene                               0.02,0.05,0.15,0.5,1.5,5,10         7
+22: EX000327 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                          Dibenz[a,c]anthracene                                    0.03,0.1,0.3,1,3,10,20         7
+23: EX000328 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                Dichlorodiphenyltrichloroethane                                    0.03,0.1,0.3,1,3,10,20         7
+24: EX000337 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                    Isodecyl diphenyl phosphate                                    0.03,0.1,0.3,1,3,10,20         7
+25: EX000344 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                                    Naphthalene                                    0.03,0.1,0.3,1,3,10,20         7
+26: EX000345 19.7                20.0 0.0296,0.0985,0.296,0.985,2.96,9.85,19.7                                      Parathion                                    0.03,0.1,0.3,1,3,10,20         7
+27: EX000346 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                                     Permethrin                                    0.03,0.1,0.3,1,3,10,20         7
+28: EX000347 19.6                20.0    0.0294,0.098,0.294,0.98,2.94,9.8,19.6                                   Phenanthrene                                    0.03,0.1,0.3,1,3,10,20         7
+29: EX000348 20.4                20.0   0.0306,0.102,0.306,1.02,3.06,10.2,20.4                                  Phenobarbital                                    0.03,0.1,0.3,1,3,10,20         7
+30: EX000350 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1         Phenol, isopropylated, phosphate (3:1)                                    0.03,0.1,0.3,1,3,10,20         7
+31: EX000351 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                                         Pyrene                                    0.03,0.1,0.3,1,3,10,20         7
+32: EX000355 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1            tert-Butylphenyl diphenyl phosphate                                    0.03,0.1,0.3,1,3,10,20         7
+33: EX000362 19.9                20.0 0.0298,0.0995,0.298,0.995,2.98,9.95,19.9                                    Valinomycin                                    0.03,0.1,0.3,1,3,10,20         7
+34: EX000291 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                6-Hydroxydopamine hydrochloride                               0.01,0.03,0.1,0.3,1,3,10,20         8
+35: EX000331 20.0                20.0                   0.03,0.1,0.3,1,3,10,20                                      Estradiol                               0.01,0.03,0.1,0.3,1,3,10,20         8
+36: EX000335 20.0                20.0                   0.03,0.1,0.3,1,3,10,20                                Hexachlorophene                               0.01,0.03,0.1,0.3,1,3,10,20         8
+37: EX000309 20.1                20.0   0.0302,0.101,0.302,1.01,3.02,10.1,20.1                             Berberine chloride       1e-04,3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        12
+38: EX000356 20.0                20.0                   0.03,0.1,0.3,1,3,10,20                    Tetraethylthiuram disulfide       1e-04,3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        12
+39: EX000352 20.2                20.0   0.0303,0.101,0.303,1.01,3.03,10.1,20.2                                       Rotenone 3e-05,1e-04,3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10,20        13
+        spid stkc expected_stock_conc                      spidmap_guess_concs                                      treatment                                              source_concs num_concs
+Correcting conc's...
+View the table 'update_summary' to confirm that the concentration-corrections are correct.
+If it looks correct, enter c to continue. Else Q to quit and fix.
+Called from: confirm_concs(dat, spidmap, expected_target_concs = c(0.03, 0.1, 
+    0.3, 1, 3, 10, 20))
+                            treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+1: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                0.01    0.0094000
+2: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                0.03    0.0282000
+3: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                 0.1    0.0940000
+4: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                 0.3    0.2820000
+5: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                   1    0.9400000
+6: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                   3    2.8200000
+7: 1-Methyl-4-phenylpyridinium iodide EX000279 18.8                  20                  10    9.4000000
+Empty data.table (0 rows and 6 cols): treatment,spid,stkc,expected_stock_conc,concs_in_source_dat,conc_updated
+    treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+ 1:  Rotenone EX000352 20.2                  20               3e-05    0.0000303
+ 2:  Rotenone EX000352 20.2                  20               1e-04    0.0001010
+ 3:  Rotenone EX000352 20.2                  20               3e-04    0.0003030
+ 4:  Rotenone EX000352 20.2                  20               0.001    0.0010100
+ 5:  Rotenone EX000352 20.2                  20               0.003    0.0030300
+ 6:  Rotenone EX000352 20.2                  20                0.01    0.0101000
+ 7:  Rotenone EX000352 20.2                  20                0.03    0.0303000
+ 8:  Rotenone EX000352 20.2                  20                 0.1    0.1010000
+ 9:  Rotenone EX000352 20.2                  20                 0.3    0.3030000
+10:  Rotenone EX000352 20.2                  20                   1    1.0100000
+11:  Rotenone EX000352 20.2                  20                   3    3.0300000
+12:  Rotenone EX000352 20.2                  20                  10   10.1000000
+13:  Rotenone EX000352 20.2                  20                  20   20.2000000
+
+Final Checks
+Number of cultures dates: 5
+Range of culture dates: 20160720 20170913
+Number of plates tested: 30
+Number of compounds tested: 50
+Any NA rvals?    wllq     N
+1:    1 15147
+2:    0     8
+
+Wllq breakdown for all points:
+   wllq      N
+1:    1 125193
+2:    0     87
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min  median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB       0   19023  33237      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0       1    2.9      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0      80    131      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0      16     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0       2     14      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0       9     16      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0      14     16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0     3.5     42      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12   0.097    0.35    7.2    135
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5   0.071    0.48    5.9    907
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.12    0.56     19    330
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.08    0.64    5.3    163
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0      16     77      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0     4.4     13      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0       0     28      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0     1.5    7.9      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0     2.2     10      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0      67    126      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0      15     16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0       0     12      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0       6     16      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0      13     16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0061     1.1    2.9      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12  -0.004    0.33    0.7      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0063       0   0.17      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0046   0.051   0.36      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9       0    0.18   0.42      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0     7.8     24      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0     1.6    5.3      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0    0.23    3.6      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0    0.79    4.5      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0     1.1    4.1      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0     162   1680      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     1.7     8.4    277    144
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      21      95    550   1364
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     2.2      45    791    461
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9       2      25    436    179
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0     192    538      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.4      15    117    135
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.3      39    125    907
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7     1.3      34    117    330
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.2      29    125    163
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.03   0.15      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0   0.012  0.058      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0       0  0.004      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.00021 0.0075      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0  0.0037  0.024      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0    0.36    1.1      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12  0.0077   0.068   0.22    144
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5  0.0021   0.034    0.1   1364
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7  0.0025    0.05   0.17    461
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9  0.0025   0.079   0.32    179
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0     258   1802      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0      95    520      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0       0     42      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0      11     91      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0      31    441      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0      67    118      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5      13     16    142
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5       5     7.8     11   1341
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5      11     16    429
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5      12     16    170
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0    0.29   0.93      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0094   0.025   0.16    135
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.014    0.08   0.28    907
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7    0.02   0.054   0.23    330
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9   0.013   0.039   0.16    163
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0     390    693      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0      79     96      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0       0     92      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0      45     97      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0      68     92      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0     207    510      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12       8      51    128    142
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       8      11     24   1341
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8      23     95    429
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9       9      38    106    170
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0      69    212      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0      24     51      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0       0     23      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0     2.6     46      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0      10     35      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0     1.1    2.2      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12    0.07    0.17   0.45    142
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5    0.07    0.15   0.35   1341
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.055     0.2   0.43    429
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.058    0.21   0.49    170
+                                                             acsn     min  median    max num_NA
+[1] 0

@@ -1,0 +1,258 @@
+- Extract the cytotoxicity data from Calculations files:
+Continue? (y/n): y
+1 files already exist. ( Brown2014_cytotox.csv )
+Do you want to Continue with only the current files, Remake all files, Append to existing files, or Quit? (c/r/a/q): r
+
+Starting cytotoxicity data collection...
+Any negative blank-corrected values will be set to 0.
+
+Reading from Brown2014_files_log_2020-09-28.txt...
+Got 0 Calculations files.
+
+Reading from Brown2014_files_log_2020-09-28.txt...
+Got 4 Summary files.
+
+Reading from Brown2014_files_log_2020-09-28.txt...
+Got 1 MaestroExperimentLog files.
+MW1007-26 AB 
+no corrected for blank-corrected data found for MW1007-26 AB 
+                  X1                          X2     X3     X4     X5     X6     X7     X8     X9                                   X10      X11      X12      X13      X14      X15        X16         X17      X18
+1           Chemical                        <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>                      Concentration mM       NA       NA       NA       NA       NA         NA          NA       NA
+2             Column                        <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>                                Column       NA       NA       NA       NA       NA         NA          NA       NA
+3                Row                           1      2      3      4      5      6      7      8                                   Row 1.000000 2.000000 3.000000 4.000000 5.000000  6.0000000 7.00000e+00 8.000000
+4                  A                        Acet   Acet   Acet   Acet   Acet   Acet   Acet   Acet                                     A 0.000000 0.100000 0.300000 1.000000 3.000000 10.0000000 3.00000e+01 0.000000
+5                  B                       Bis 1  Bis 1  Bis 1  Bis 1  Bis 1  Bis 1  Bis 1  Bis 1                                     B 0.000000 0.030000 0.100000 0.300000 1.000000  3.0000000 1.00000e+01 0.000000
+6                  C                      Domoic Domoic Domoic Domoic Domoic Domoic Domoic Domoic                                     C 0.000000 0.000300 0.001000 0.003000 0.010000  0.0300000 1.00000e-01 0.000000
+7                  D                         Lop    Lop    Lop    Lop    Lop    Lop    Lop    Lop                                     D 0.000000 0.100000 0.300000 1.000000 3.000000 10.0000000 3.00000e+01 0.000000
+8                  E                         Mev    Mev    Mev    Mev    Mev    Mev    Mev    Mev                                     E 0.000000 0.100000 0.300000 1.000000 3.000000 10.0000000 3.00000e+01 0.000000
+9                  F                         Van    Van    Van    Van    Van    Van    Van    Van                                     F 0.000000 0.030000 0.100000 0.300000 1.000000  3.0000000 1.00000e+01 0.000000
+10 Active Electrodes                        <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA> Mean spike rate of active electrodes        NA       NA       NA       NA       NA         NA          NA       NA
+11            Column Number of Active Electrodes   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>                                Column       NA       NA       NA       NA       NA         NA          NA       NA
+12               Row                           1      2      3      4      5      6      7      8                                   Row 1.000000 2.000000 3.000000 4.000000 5.000000  6.0000000 7.00000e+00 8.000000
+13                 A                       53511  54510  51033  53374  51072  49620  51933  57229                                     A 0.965412 0.984513 0.918032 0.962792 0.918778  0.8910155 9.35240e-01 1.036500
+14                 B                       54884  54216  46452  51622  49717  39218   5901  58382                                     B 0.991664 0.978891 0.830443 0.929294 0.892870  0.6921283 5.51041e-02 1.058546
+15                 C                       52440  49983  47367  50772  49154  52971  49592  60595                                     C 0.944934 0.897956 0.847938 0.913042 0.882106  0.9550869 8.90480e-01 1.100858
+16                 D                       52511  49377  41594  45943  43316   7201   3064  53942                                     D 0.946292 0.886369 0.737558 0.820711 0.770482  0.0799602 8.60404e-04 0.973653
+17                 E                       53874  49956  45669  30836  28669  22220  13951  59955                                     E 0.972352 0.897440 0.815472 0.531864 0.490430  0.3671249 2.09021e-01 1.088622
+18                 F                       55893  55232  58963  54951  51395  54567  49168  50624                                     F 1.010956 0.998317 1.069654 0.992945 0.924954  0.9856026 8.82373e-01 0.910212
+19              <NA>                        3023   3014   3026   3013   <NA>   <NA>   <NA>   <NA>                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+20               Row                           1      2      3      4      5      6      7      8                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+21                 A                       50492  51491  48014  50355  48053  46601  48914  54210                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+22                 B                       51865  51197  43433  48603  46698  36199   2882  55363                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+23                 C                       49421  46964  44348  47753  46135  49952  46573  57576                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+24                 D                       49492  46358  38575  42924  40297   4182     45  50923                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+25                 E                       50855  46937  42650  27817  25650  19201  10932  56936                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+26                 F                       52874  52213  55944  51932  48376  51548  46149  47605                                  <NA>       NA       NA       NA       NA       NA         NA          NA       NA
+Enter the Row number in table above corresponding to well A1 of the blank-corrected values: 21
+Enter the Column number in table above corresponding to well A1 of the blank-corrected values : 2
+Enter name of tab in ON_20140205_MW1007-26Summary.xlsx for LDH data, or 'skip' to not include any LDH data for this plate: skip
+MW1007-27 AB 
+no corrected for blank-corrected data found for MW1007-27 AB 
+                  X1                          X2        X3        X4        X5        X6        X7        X8        X9                                   X10      X11      X12      X13      X14         X15
+1           Chemical                        <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>                      Concentration mM       NA       NA       NA       NA          NA
+2             Column                        <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>                                Column       NA       NA       NA       NA          NA
+3                Row                           1         2         3         4         5         6         7         8                                   Row 1.000000 2.000000 3.000000 4.000000  5.00000000
+4                  A                        Acet      Acet      Acet      Acet      Acet      Acet      Acet      Acet                                     A 0.000000 0.100000 0.300000 1.000000  3.00000000
+5                  B                       Bis 1     Bis 1     Bis 1     Bis 1     Bis 1     Bis 1     Bis 1     Bis 1                                     B 0.000000 0.030000 0.100000 0.300000  1.00000000
+6                  C                      Domoic    Domoic    Domoic    Domoic    Domoic    Domoic    Domoic    Domoic                                     C 0.000000 0.000300 0.001000 0.003000  0.01000000
+7                  D                         Lop       Lop       Lop       Lop       Lop       Lop       Lop       Lop                                     D 0.000000 0.100000 0.300000 1.000000  3.00000000
+8                  E                         Mev       Mev       Mev       Mev       Mev       Mev       Mev       Mev                                     E 0.000000 0.100000 0.300000 1.000000  3.00000000
+9                  F                         Van       Van       Van       Van       Van       Van       Van       Van                                     F 0.000000 0.030000 0.100000 0.300000  1.00000000
+10 Active Electrodes                        <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA> Mean spike rate of active electrodes        NA       NA       NA       NA          NA
+11            Column Number of Active Electrodes      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>      <NA>                                Column       NA       NA       NA       NA          NA
+12               Row                           1         2         3         4         5         6         7         8                                   Row 1.000000 2.000000 3.000000 4.000000  5.00000000
+13                 A                       57036     57115     54999     59767      5055     56200     63858     62239                                     A 0.986525 0.988026 0.947815 1.038423 -0.00128985
+14                 B                       61780     54300     45921     56509     53513     46753      7111     58012                                     B 1.076677 0.934532 0.775302 0.976510  0.91957610
+15                 C                       63377     56806     47168     58269     61201     52965     55341     48852                                     C 1.107025 0.982154 0.799000 1.009956  1.06567411
+16                 D                       51488     57055     49252     49727     46809      6932      5140     54258                                     D 0.881094 0.986886 0.838603 0.847629  0.79217742
+17                 E                       56366     51542     49835     31367     37532     20164     19554     56718                                     E 0.973793 0.882120 0.849682 0.498727  0.61588303
+18                 F                       60299     54571     51114     62552     54910     37450     58333     62516                                     F 1.048533 0.939682 0.873987 1.091348  0.94612382
+19              <NA>                        5045      5072      5105      5137      5159      5167      5162      5136                                  <NA>       NA       NA       NA       NA          NA
+20               Row                           1         2         3         4         5         6         7         8                                  <NA>       NA       NA       NA       NA          NA
+21                 A                   51913.125 51992.125 49876.125 54644.125   -67.875 51077.125 58735.125 57116.125                                  <NA>       NA       NA       NA       NA          NA
+22                 B                   56657.125 49177.125 40798.125 51386.125 48390.125 41630.125  1988.125 52889.125                                  <NA>       NA       NA       NA       NA          NA
+23                 C                   58254.125 51683.125 42045.125 53146.125 56078.125 47842.125 50218.125 43729.125                                  <NA>       NA       NA       NA       NA          NA
+24                 D                   46365.125 51932.125 44129.125 44604.125 41686.125  1809.125    17.125 49135.125                                  <NA>       NA       NA       NA       NA          NA
+25                 E                   51243.125 46419.125 44712.125 26244.125 32409.125 15041.125 14431.125 51595.125                                  <NA>       NA       NA       NA       NA          NA
+26                 F                   55176.125 49448.125 45991.125 57429.125 49787.125 32327.125 53210.125 57393.125                                  <NA>       NA       NA       NA       NA          NA
+          X16         X17      X18
+1          NA          NA       NA
+2          NA          NA       NA
+3   6.0000000 7.00000e+00 8.000000
+4  10.0000000 3.00000e+01 0.000000
+5   3.0000000 1.00000e+01 0.000000
+6   0.0300000 1.00000e-01 0.000000
+7  10.0000000 3.00000e+01 0.000000
+8  10.0000000 3.00000e+01 0.000000
+9   3.0000000 1.00000e+01 0.000000
+10         NA          NA       NA
+11         NA          NA       NA
+12  6.0000000 7.00000e+00 8.000000
+13  0.9706382 1.11617e+00 1.085400
+14  0.7911132 3.77811e-02 1.005072
+15  0.9091622 9.54314e-01 0.831001
+16  0.0343795 3.25433e-04 0.933734
+17  0.2858323 2.74240e-01 0.980482
+18  0.6143248 1.01117e+00 1.090664
+19         NA          NA       NA
+20         NA          NA       NA
+21         NA          NA       NA
+22         NA          NA       NA
+23         NA          NA       NA
+24         NA          NA       NA
+25         NA          NA       NA
+26         NA          NA       NA
+Enter the Row number in table above corresponding to well A1 of the blank-corrected values: 21
+Enter the Column number in table above corresponding to well A1 of the blank-corrected values : 2
+Enter name of tab in ON_20140212_MW1007-27Summary.xlsx for LDH data, or 'skip' to not include any LDH data for this plate: skip
+MW1007-27 AB 
+no corrected for blank-corrected data found for MW1007-27 AB 
+                  X1                          X2      X3      X4      X5      X6      X7      X8      X9                                   X10      X11     X12      X13      X14      X15       X16         X17
+1           Chemical                        <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>                      Concentration mM       NA      NA       NA       NA       NA        NA          NA
+2             Column                        <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>                                Column       NA      NA       NA       NA       NA        NA          NA
+3                Row                           1       2       3       4       5       6       7       8                                   Row 1.000000 2.00000 3.000000 4.000000 5.000000  6.000000  7.00000000
+4                  A                        Acet    Acet    Acet    Acet    Acet    Acet    Acet    Acet                                     A 0.000000 0.10000 0.300000 1.000000 3.000000 10.000000 30.00000000
+5                  B                       Bis 1   Bis 1   Bis 1   Bis 1   Bis 1   Bis 1   Bis 1   Bis 1                                     B 0.000000 0.03000 0.100000 0.300000 1.000000  3.000000 10.00000000
+6                  C                      Domoic  Domoic  Domoic  Domoic  Domoic  Domoic  Domoic  Domoic                                     C 0.000000 0.00030 0.001000 0.003000 0.010000  0.030000  0.10000000
+7                  D                         Lop     Lop     Lop     Lop     Lop     Lop     Lop     Lop                                     D 0.000000 0.10000 0.300000 1.000000 3.000000 10.000000 30.00000000
+8                  E                         Mev     Mev     Mev     Mev     Mev     Mev     Mev     Mev                                     E 0.000000 0.10000 0.300000 1.000000 3.000000 10.000000 30.00000000
+9                  F                         Van     Van     Van     Van     Van     Van     Van     Van                                     F 0.000000 0.03000 0.100000 0.300000 1.000000  3.000000 10.00000000
+10 Active Electrodes                        <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA> Mean spike rate of active electrodes        NA      NA       NA       NA       NA        NA          NA
+11            Column Number of Active Electrodes    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>    <NA>                                Column       NA      NA       NA       NA       NA        NA          NA
+12               Row                           1       2       3       4       5       6       7       8                                   Row 1.000000 2.00000 3.000000 4.000000 5.000000  6.000000  7.00000000
+13                 A                       59606   63910   61683   63265   64717   61054   61483   64158                                     A 0.943943 1.01789 0.979626 1.006805 1.031750  0.968820  0.97619003
+14                 B                       64237   63901   64452   64207   65000   62643    9105   61636                                     B 1.023504 1.01773 1.027197 1.022988 1.036612  0.996119  0.07633907
+15                 C                       65000   65000   65000   65000   64740   64764   64806   64601                                     C 1.036612 1.03661 1.036612 1.036612 1.032145  1.032557  1.03327898
+16                 D                       64573   65000   65000   61009   60686   14834    4579   62751                                     D 1.029276 1.03661 1.036612 0.968047 0.962498  0.174763 -0.00141735
+17                 E                       60663   64952   62517   44764   42087   29140   25479   61733                                     E 0.962102 1.03579 0.993954 0.688959 0.642968  0.420539  0.35764343
+18                 F                       64422   65000   64427   61994   63541   64743   52018   61047                                     F 1.026682 1.03661 1.026768 0.984969 1.011546  1.032197  0.81358189
+19              <NA>                        4597    4642    4646    4653    4653    4706    4695    4700                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+20               Row                           1       2       3       4       5       6       7       8                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+21                 A                     54944.5 59248.5 57021.5 58603.5 60055.5 56392.5 56821.5 59496.5                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+22                 B                     59575.5 59239.5 59790.5 59545.5 60338.5 57981.5  4443.5 56974.5                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+23                 C                     60338.5 60338.5 60338.5 60338.5 60078.5 60102.5 60144.5 59939.5                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+24                 D                     59911.5 60338.5 60338.5 56347.5 56024.5 10172.5   -82.5 58089.5                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+25                 E                     56001.5 60290.5 57855.5 40102.5 37425.5 24478.5 20817.5 57071.5                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+26                 F                     59760.5 60338.5 59765.5 57332.5 58879.5 60081.5 47356.5 56385.5                                  <NA>       NA      NA       NA       NA       NA        NA          NA
+        X18
+1        NA
+2        NA
+3  8.000000
+4  0.000000
+5  0.000000
+6  0.000000
+7  0.000000
+8  0.000000
+9  0.000000
+10       NA
+11       NA
+12 8.000000
+13 1.022146
+14 0.978819
+15 1.029757
+16 0.997974
+17 0.980485
+18 0.968700
+19       NA
+20       NA
+21       NA
+22       NA
+23       NA
+24       NA
+25       NA
+26       NA
+Enter the Row number in table above corresponding to well A1 of the blank-corrected values: 21
+Enter the Column number in table above corresponding to well A1 of the blank-corrected values : 2
+Enter name of tab in ON_20140402_MW1007-27Summary.xlsx for LDH data, or 'skip' to not include any LDH data for this plate: skip
+MW1007-38 AB 
+no corrected for blank-corrected data found for MW1007-38 AB 
+                  X1                          X2     X3     X4     X5     X6     X7     X8     X9                                   X10      X11      X12      X13      X14      X15       X16         X17      X18
+1           Chemical                        <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>                      Concentration mM       NA       NA       NA       NA       NA        NA          NA       NA
+2             Column                        <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>                                Column       NA       NA       NA       NA       NA        NA          NA       NA
+3                Row                           1      2      3      4      5      6      7      8                                   Row 1.000000 2.000000 3.000000 4.000000 5.000000  6.000000  7.00000000 8.000000
+4                  A                        Acet   Acet   Acet   Acet   Acet   Acet   Acet   Acet                                     A 0.000000 0.100000 0.300000 1.000000 3.000000 10.000000 30.00000000 0.000000
+5                  B                       Bis 1  Bis 1  Bis 1  Bis 1  Bis 1  Bis 1  Bis 1  Bis 1                                     B 0.000000 0.030000 0.100000 0.300000 1.000000  3.000000 10.00000000 0.000000
+6                  C                      Domoic Domoic Domoic Domoic Domoic Domoic Domoic Domoic                                     C 0.000000 0.000300 0.001000 0.003000 0.010000  0.030000  0.10000000 0.000000
+7                  D                         Lop    Lop    Lop    Lop    Lop    Lop    Lop    Lop                                     D 0.000000 0.100000 0.300000 1.000000 3.000000 10.000000 30.00000000 0.000000
+8                  E                         Mev    Mev    Mev    Mev    Mev    Mev    Mev    Mev                                     E 0.000000 0.100000 0.300000 1.000000 3.000000 10.000000 30.00000000 0.000000
+9                  F                         Van    Van    Van    Van    Van    Van    Van    Van                                     F 0.000000 0.030000 0.100000 0.300000 1.000000  3.000000 10.00000000 0.000000
+10 Active Electrodes                        <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA> Mean spike rate of active electrodes        NA       NA       NA       NA       NA        NA          NA       NA
+11            Column Number of Active Electrodes   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>   <NA>                                Column       NA       NA       NA       NA       NA        NA          NA       NA
+12               Row                           1      2      3      4      5      6      7      8                                   Row 1.000000 2.000000 3.000000 4.000000 5.000000  6.000000  7.00000000 8.000000
+13                 A                       59084  50016  50613  54123  49935  50705  51816  56577                                     A 1.179895 0.987178 0.999865 1.074462 0.985456  1.001821  1.02543213 1.126615
+14                 B                       46959  61167  62867  58417  58682  51921  19136  59465                                     B 0.922209 1.224164 1.260293 1.165720 1.171352  1.027664  0.33090111 1.187992
+15                 C                       49609  55883  60873  62433  53948  49253  49398  62061                                     C 0.978528 1.111866 1.217916 1.251070 1.070742  0.970962  0.97404364 1.243164
+16                 D                       45573  56421  53124  46041  39695   9815   3999  50426                                     D 0.892753 1.123300 1.053230 0.902699 0.767831  0.132807  0.00920232 0.995891
+17                 E                       50622  42699  39601  40058  31218  22788  17541  45742                                     E 1.000057 0.831673 0.765833 0.775545 0.587674  0.408515  0.29700340 0.896345
+18                 F                       40591  52566  56566  56282  58806  62412  27429  40723                                     F 0.786873 1.041371 1.126381 1.120346 1.173987  1.250623  0.50714792 0.789678
+19              <NA>                        3529   3554   3497   3591   3540   3605   3614   3598                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+20               Row                           1      2      3      4      5      6      7      8                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+21                 A                       55518  46450  47047  50557  46369  47139  48250  53011                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+22                 B                       43393  57601  59301  54851  55116  48355  15570  55899                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+23                 C                       46043  52317  57307  58867  50382  45687  45832  58495                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+24                 D                       42007  52855  49558  42475  36129   6249    433  46860                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+25                 E                       47056  39133  36035  36492  27652  19222  13975  42176                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+26                 F                       37025  49000  53000  52716  55240  58846  23863  37157                                  <NA>       NA       NA       NA       NA       NA        NA          NA       NA
+Enter the Row number in table above corresponding to well A1 of the blank-corrected values: 21
+Enter the Column number in table above corresponding to well A1 of the blank-corrected values : 2
+Enter name of tab in ON_20140423_MW1007-38Summary.xlsx for LDH data, or 'skip' to not include any LDH data for this plate: skip
+Wllq summary:
+   src_acsn wllq wllq_notes   N
+1:       AB    1            192
+Brown2014_cytotox.csv is ready
+
+'source_steps.R' is complete.
+
+
+-------------------------------------
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+The concentrations for the following compounds might need to be corrected:
+       spid stkc expected_stock_conc    spidmap_guess_concs             treatment                          source_concs num_concs
+1: EX000404   20                  20 0.03,0.1,0.3,1,3,10,30         Acetaminophen                     0.1,0.3,1,3,10,30         6
+2: EX000475  100                 100 0.03,0.1,0.3,1,3,10,30 Bisindolylmaleimide I                   0.03,0.1,0.3,1,3,10         6
+3: EX000492  100                 100 0.03,0.1,0.3,1,3,10,30            Loperamide                     0.1,0.3,1,3,10,30         6
+4: EX000498  100                 100 0.03,0.1,0.3,1,3,10,30            Mevastatin                     0.1,0.3,1,3,10,30         6
+5: EX000487  100                 100 0.03,0.1,0.3,1,3,10,30         L-Domoic acid 3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1         8
+Update conc's for these compounds with conc := signif(stkc/expected_stock_conc*conc, 3)? (y/n): y
+Correcting conc's...
+View the table 'update_summary' to confirm that the concentration-corrections are correct.
+If it looks correct, enter c to continue. Else Q to quit and fix.
+Called from: confirm_concs(dat, spidmap, expected_target_concs = c(0.03, 0.1, 
+    0.3, 1, 3, 10, 30))
+Browse[1]> update_summary
+                treatment     spid stkc expected_stock_conc concs_in_source_dat conc_updated
+ 1:         Acetaminophen EX000404   20                  20                 0.1       0.1000
+ 2:         Acetaminophen EX000404   20                  20                 0.3       0.3000
+ 3:         Acetaminophen EX000404   20                  20                   1       1.0000
+ 4:         Acetaminophen EX000404   20                  20                   3       3.0000
+ 5:         Acetaminophen EX000404   20                  20                  10      10.0000
+ 6:         Acetaminophen EX000404   20                  20                  30      30.0000
+ 7: Bisindolylmaleimide I EX000475  100                 100                0.03       0.0300
+ 8: Bisindolylmaleimide I EX000475  100                 100                 0.1       0.1000
+ 9: Bisindolylmaleimide I EX000475  100                 100                 0.3       0.3000
+10: Bisindolylmaleimide I EX000475  100                 100                   1       1.0000
+11: Bisindolylmaleimide I EX000475  100                 100                   3       3.0000
+12: Bisindolylmaleimide I EX000475  100                 100                  10      10.0000
+13:         L-Domoic acid EX000487  100                 100               3e-04       0.0003
+14:         L-Domoic acid EX000487  100                 100               0.001       0.0010
+15:         L-Domoic acid EX000487  100                 100               0.003       0.0030
+16:         L-Domoic acid EX000487  100                 100                0.01       0.0100
+17:         L-Domoic acid EX000487  100                 100                0.03       0.0300
+18:         L-Domoic acid EX000487  100                 100                 0.1       0.1000
+19:         L-Domoic acid EX000487  100                 100                 0.3       0.3000
+20:         L-Domoic acid EX000487  100                 100                   1       1.0000
+21:            Loperamide EX000492  100                 100                 0.1       0.1000
+22:            Loperamide EX000492  100                 100                 0.3       0.3000
+23:            Loperamide EX000492  100                 100                   1       1.0000
+24:            Loperamide EX000492  100                 100                   3       3.0000
+25:            Loperamide EX000492  100                 100                  10      10.0000
+26:            Loperamide EX000492  100                 100                  30      30.0000
+27:            Mevastatin EX000498  100                 100                 0.1       0.1000
+28:            Mevastatin EX000498  100                 100                 0.3       0.3000
+29:            Mevastatin EX000498  100                 100                   1       1.0000
+30:            Mevastatin EX000498  100                 100                   3       3.0000
+31:            Mevastatin EX000498  100                 100                  10      10.0000
+32:            Mevastatin EX000498  100                 100                  30      30.0000

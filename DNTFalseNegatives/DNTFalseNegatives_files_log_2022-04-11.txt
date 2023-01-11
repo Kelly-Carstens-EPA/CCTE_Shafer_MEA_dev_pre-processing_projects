@@ -1,0 +1,31 @@
+DNTFalseNegatives files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2022-04-11 15:07:06
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA/Project - DNT  False Negatives 
+Collected 16 files from 4 sub-directories.
+
+L:/Lab/NHEERL_MEA/Project - DNT  False Negatives
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\20210818_NFA_False_Negatice_Repeats_ Calculations.xlsx
+
+20210818_False_Negatives_Repeats/75-9205
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9205\csv Files\NFA_20210818_MW75-9205_05(000)(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9205\csv Files\NFA_20210818_MW75-9205_07(000)(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9205\csv Files\NFA_20210818_MW75-9205_09(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9205\csv Files\NFA_20210818_MW75-9205_12(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9205\csv Files\NFA_20210818_MW75-9205_MaestroExperimentLog_Ontogeny.csv
+
+20210818_False_Negatives_Repeats/75-9206
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9206\csv Files\NFA_20210818_MW75-9206_05(000)(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9206\csv Files\NFA_20210818_MW75-9206_07(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9206\csv Files\NFA_20210818_MW75-9206_09(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9206\csv Files\NFA_20210818_MW75-9206_12(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9206\csv Files\NFA_20210818_MW75-9206_MaestroExperimentLog_Ontogeny.csv
+
+20210818_False_Negatives_Repeats/75-9207
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9207\csv Files\NFA_20210818_MW75-9207_05(000)(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9207\csv Files\NFA_20210818_MW75-9207_07(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9207\csv Files\NFA_20210818_MW75-9207_09(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9207\csv Files\NFA_20210818_MW75-9207_12(000)_spike_counts.csv
+L:\Lab\NHEERL_MEA\Project - DNT  False Negatives\20210818_False_Negatives_Repeats\75-9207\csv Files\NFA_20210818_MW75-9207_MaestroExperimentLog_Ontogeny.csv

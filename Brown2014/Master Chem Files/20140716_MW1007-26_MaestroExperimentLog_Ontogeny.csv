@@ -1,0 +1,49 @@
+Project,Experiment Date,Plate SN,Well,Treatment,Dose ,Units
+ON,20140716,MW1007-26,A1,Glyphosate,0,uM
+ON,20140716,MW1007-26,A2,Glyphosate,0.1,uM
+ON,20140716,MW1007-26,A3,Glyphosate,0.3,uM
+ON,20140716,MW1007-26,A4,Glyphosate,1,uM
+ON,20140716,MW1007-26,A5,Glyphosate,3,uM
+ON,20140716,MW1007-26,A6,Glyphosate,10,uM
+ON,20140716,MW1007-26,A7,Glyphosate,30,uM
+ON,20140716,MW1007-26,A8,Glyphosate,100,uM
+ON,20140716,MW1007-26,B1,Bisindolymaleimide 1,0,uM
+ON,20140716,MW1007-26,B2,Bisindolymaleimide 1,0.03,uM
+ON,20140716,MW1007-26,B3,Bisindolymaleimide 1,0.1,uM
+ON,20140716,MW1007-26,B4,Bisindolymaleimide 1,0.3,uM
+ON,20140716,MW1007-26,B5,Bisindolymaleimide 1,1,uM
+ON,20140716,MW1007-26,B6,Bisindolymaleimide 1,3,uM
+ON,20140716,MW1007-26,B7,Bisindolymaleimide 1,0,uM
+ON,20140716,MW1007-26,B8,Bisindolymaleimide 1,10,uM
+ON,20140716,MW1007-26,C1,Sodium Orthovanadate,0,uM
+ON,20140716,MW1007-26,C2,Sodium Orthovanadate,0.01,uM
+ON,20140716,MW1007-26,C3,Sodium Orthovanadate,0.03,uM
+ON,20140716,MW1007-26,C4,Sodium Orthovanadate,0.1,uM
+ON,20140716,MW1007-26,C5,Sodium Orthovanadate,0.3,uM
+ON,20140716,MW1007-26,C6,Sodium Orthovanadate,1,uM
+ON,20140716,MW1007-26,C7,Sodium Orthovanadate,3,uM
+ON,20140716,MW1007-26,C8,Sodium Orthovanadate,10,uM
+ON,20140716,MW1007-26,D1,Glyphosate,0,uM
+ON,20140716,MW1007-26,D2,Glyphosate,0.1,uM
+ON,20140716,MW1007-26,D3,Glyphosate,0.3,uM
+ON,20140716,MW1007-26,D4,Glyphosate,1,uM
+ON,20140716,MW1007-26,D5,Glyphosate,3,uM
+ON,20140716,MW1007-26,D6,Glyphosate,10,uM
+ON,20140716,MW1007-26,D7,Glyphosate,30,uM
+ON,20140716,MW1007-26,D8,Glyphosate,100,uM
+ON,20140716,MW1007-26,E1,Bisindolymaleimide 1,0,uM
+ON,20140716,MW1007-26,E2,Bisindolymaleimide 1,0.03,uM
+ON,20140716,MW1007-26,E3,Bisindolymaleimide 1,0.1,uM
+ON,20140716,MW1007-26,E4,Bisindolymaleimide 1,0.3,uM
+ON,20140716,MW1007-26,E5,Bisindolymaleimide 1,1,uM
+ON,20140716,MW1007-26,E6,Bisindolymaleimide 1,3,uM
+ON,20140716,MW1007-26,E7,Bisindolymaleimide 1,10,uM
+ON,20140716,MW1007-26,E8,Bisindolymaleimide 1,0,uM
+ON,20140716,MW1007-26,F1,Sodium Orthovanadate,0,uM
+ON,20140716,MW1007-26,F2,Sodium Orthovanadate,0.01,uM
+ON,20140716,MW1007-26,F3,Sodium Orthovanadate,0.03,uM
+ON,20140716,MW1007-26,F4,Sodium Orthovanadate,0.1,uM
+ON,20140716,MW1007-26,F5,Sodium Orthovanadate,0.3,uM
+ON,20140716,MW1007-26,F6,Sodium Orthovanadate,1,uM
+ON,20140716,MW1007-26,F7,Sodium Orthovanadate,3,uM
+ON,20140716,MW1007-26,F8,Sodium Orthovanadate,10,uM

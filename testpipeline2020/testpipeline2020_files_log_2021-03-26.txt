@@ -1,0 +1,26 @@
+testpipeline2020 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2021-03-26 10:04:41
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+- Select files for files_log:
+1 files already exist. ( Chlorpyrafos Oxon_files_log_2021-03-22.txt )
+- Create h5 files:
+12 files already exist.
+- Calculate the components:
+3 files already exist.
+- Calculate the Mutual Information:
+3 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( Chlorpyrafos Oxon_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( Chlorpyrafos Oxon_cytotox.csv )
+'source_steps.R' is complete.
+
+- Select files for files_log:
+1 files already exist. ( Chlorpyrafos Oxon_files_log_2021-03-22.txt )
+- Select files for files_log:
+1 files already exist. ( Chlorpyrafos Oxon_files_log_2021-03-22.txt )
+- Select files for files_log:
+1 files already exist. ( Chlorpyrafos Oxon_files_log_2021-03-22.txt )
+- Select files for files_log:
+Writing 0 files to Clorpyrafos Oxon_files_log_2021-03-26.txt ...

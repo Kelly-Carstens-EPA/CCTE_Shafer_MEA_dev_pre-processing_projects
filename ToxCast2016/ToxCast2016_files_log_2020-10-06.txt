@@ -1,0 +1,368 @@
+ToxCast2016 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2020-10-05 17:11:07
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory:  
+Collected 347 files from 3 sub-directories.
+
+C:Users/selin/OneDrive/Desktop/work/All files(seline)
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-40_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-40_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-40_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-40_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-43_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-43_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-43_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1159-43_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-23_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-23_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-23_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-23_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-24_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-24_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-24_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-24_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-25_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-25_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-25_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-25_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-26_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-26_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-26_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20160921_MW1160-26_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-19_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-19_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-19_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-19_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-20_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-20_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-20_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-20_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-21_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-21_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-21_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-21_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-22_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-22_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-22_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-22_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-23_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-23_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-23_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-23_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-24_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-24_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-24_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20161109_MW1144-24_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-22_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-22_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-22_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-22_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-23_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-23_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-23_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-23_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-24_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-24_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-24_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-24_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-25_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-25_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-25_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-25_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-26_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-26_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-26_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-26_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-27_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-27_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-27_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170201_MW1145-27_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-3_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-3_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-3_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-3_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-4_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-4_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-4_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-4_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-5_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-5_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-5_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170222_MW1146-5_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-06_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-06_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-06_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-06_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-07_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-07_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-07_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-07_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-08_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-08_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-08_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-08_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-09_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-09_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-09_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-09_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-10_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-10_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-10_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-10_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-11_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-11_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-11_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170412_MW1146-11_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-20_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-20_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-20_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-20_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-21_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-21_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-21_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-21_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-22_05_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-22_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-22_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170628_MW1146-22_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-23_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-23_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-23_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-23_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-24_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-24_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-24_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-24_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-25_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-25_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-25_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-25_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-26_05_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-26_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-26_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-26_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-27_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-27_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-27_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170712_MW1146-27_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-29_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-29_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-29_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-29_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-30_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-30_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-30_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-31_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-31_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-31_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-31_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-32_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-32_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-32_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-32_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-33_05_00(000)_Spike Detector (6 x STD)(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-33_07_00(000)_Spike Detector (6 x STD)(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-33_09_00(000)_Spike Detector (6 x STD)(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-33_12_00(001)_Spike Detector (6 x STD)(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-34_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-34_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-34_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170809_MW1146-34_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1146-35_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1146-35_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1146-35_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1146-35_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-1_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-1_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-1_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-1_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-2_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-2_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-2_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-2_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-3_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-3_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-3_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-3_12_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-4_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-4_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-4_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-4_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-5_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-5_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-5_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170816_MW1147-5_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-13_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-13_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-13_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-13_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-14_05_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-14_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-14_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-14_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-15_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-15_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-15_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-15_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-17_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-17_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-17_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-17_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-18_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-18_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-18_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-18_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-19_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-19_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-19_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20170920_MW1147-19_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-20_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-20_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-20_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-20_12_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-21_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-21_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-21_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-21_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-22_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-22_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-22_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-22_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-23_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-23_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-23_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-23_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-24_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-24_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-24_09_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-24_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-25_05_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-25_07_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-25_09_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171004_MW1147-25_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-16_12_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-16_5_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-16_7_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-16_9_00(001)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-26_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-26_5_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-26_7_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-26_9_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-27_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-27_5_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-27_7_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-27_9_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-28_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-28_5_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-28_7_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-28_9_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-29_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-29_5_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-29_7_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-29_9_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-30_12_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-30_5_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-30_7_00(000)_spike_list.csv
+C:\Users\selin\OneDrive\Desktop\work\All files(seline)\Spike list file\ON_20171011_MW1147-30_9_00(000)_spike_list.csv
+
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20160921 Culture TC Group 6/Group 1/1159-40/csv Files/20160921_MW1159-40_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20160921 Culture TC Group 6/Group 1/1159-43/csv Files/20160921_MW1159-43_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20160921 Culture TC Group 6/Group 1/1160-23/csv Files/20160921_MW1160-23_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20160921 Culture TC Group 6/Group 2/1160-24/csv Files/20160921_MW1160-24_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20160921 Culture TC Group 6/Group 2/1160-25/csv Files/20160921_MW1160-25_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20160921 Culture TC Group 6/Group 2/1160-26/csv Files/20160921_MW1160-26_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20161109 Culture TC Group 1/Group 1/1144-19/csv Files/20161109_MW1144-19_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20161109 Culture TC Group 1/Group 1/1144-20/csv Files/20161109_MW1144-20_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20161109 Culture TC Group 1/Group 1/1144-21/csv Files/20161109_MW1144-21_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20161109 Culture TC Group 1/Group 2/1144-22/csv Files/20161109_MW1144-22_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20161109 Culture TC Group 1/Group 2/1144-23/csv Files/20161109_MW1144-23_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20161109 Culture TC Group 1/Group 2/1144-24/csv Files/20161109_MW1144-24_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170201 Culture TC Group 5/Group 1/1145-22/csv Files/20170201_MW1145-22_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170201 Culture TC Group 5/Group 1/1145-23/csv Files/20170201_MW1145-23_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170201 Culture TC Group 5/Group 1/1145-24/csv Files/20170201_MW1145-24_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170201 Culture TC Group 5/Group 2/1145-25/csv Files/20170201_MW1145-25_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170201 Culture TC Group 5/Group 2/1145-26/csv Files/20170201_MW1145-26_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170201 Culture TC Group 5/Group 2/1145-27/csv Files/20170201_MW1145-27_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170222 Culture TC Group 7/Group 2/1146-3/csv Files/20170222_MW1146-3_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170222 Culture TC Group 7/Group 2/1146-4/csv Files/20170222_MW1146-4_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170222 Culture TC Group 7/Group 2/1146-5/csv Files/20170222_MW1146-5_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170412 Culture TC Group 8/Group 1/1146-6/csv Files/ON_20170412_MW1146-06_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170412 Culture TC Group 8/Group 1/1146-7/csv Files/ON_20170412_MW1146-07_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170412 Culture TC Group 8/Group 1/1146-8/csv Files/ON_20170412_MW1146-08_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170412 Culture TC Group 8/Group 2/1146-10/csv Files/ON_20170412_MW1146-10_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170412 Culture TC Group 8/Group 2/1146-11/csv Files/ON_20170412_MW1146-11_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170412 Culture TC Group 8/Group 2/1146-9/csv Files/ON_20170412_MW1146-09_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170628 Culture Group 6_1r5/1146-20/csv Files/20170628_MW1146-20_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170628 Culture Group 6_1r5/1146-21/csv Files/20170628_MW1146-21_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170628 Culture Group 6_1r5/1146-22/csv Files/20170628_MW1146-22_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_1/1146-23/csv Files/20170712_MW1146-23_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_1/1146-24/csv Files/20170712_MW1146-24_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_1/1146-25/csv Files/20170712_MW1146-25_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_2/1146-26/csv Files/20170712_MW1146-26_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_2/1146-27/csv Files/20170712_MW1146-27_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_2/1146-28/csv Files/20170712_MW1146-28_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_1/1146-29/csv Files/20170809_MW1146-29_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_1/1146-30/csv Files/20170809_MW1146-30_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_1/1146-31/csv Files/20170809_MW1146-31_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_2/1146-32/csv Files/20170809_MW1146-32_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_2/1146-33/csv Files/20170809_MW1146-33_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_2/1146-34/csv Files/20170809_MW1146-34_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170816 Culture Group 4 r2/Group 4_1/MW1146-35/csv Files/20170816_MW1146-35_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170816 Culture Group 4 r2/Group 4_1/MW1147-1/csv Files/20170816_MW1147-1_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170816 Culture Group 4 r2/Group 4_1/MW1147-2/csv Files/20170816_MW1147-2_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170816 Culture Group 4 r2/Group 4_2/MW1147-3/csv Files/20170816_MW1147-3_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170816 Culture Group 4 r2/Group 4_2/MW1147-4/csv Files/20170816_MW1147-4_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170816 Culture Group 4 r2/Group 4_2/MW1147-5/csv Files/20170816_MW1147-5_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170920 Culture Group 5 r2/Group 5_1/MW1147-13/csvFiles/20170920_MW1147-13_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170920 Culture Group 5 r2/Group 5_1/MW1147-14/csvFiles/20170920_MW1147-14_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170920 Culture Group 5 r2/Group 5_1/MW1147-15/csvFiles/20170920_MW1147-15_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170920 Culture Group 5 r2/Group 5_2/MW1147-17/csvFiles/20170920_MW1147-17_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170920 Culture Group 5 r2/Group 5_2/MW1147-18/csvFiles/20170920_MW1147-18_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170920 Culture Group 5 r2/Group 5_2/MW1147-19/csvFiles/20170920_MW1147-19_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171004 Culture Group 7 r2/Group_1/MW1147-20/csv Files/20171004_MW1147-20_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171004 Culture Group 7 r2/Group_1/MW1147-21/csv Files/20171004_MW1147-21_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171004 Culture Group 7 r2/Group_1/MW1147-22/csv Files/20171004_MW1147-22_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171004 Culture Group 7 r2/Group_2/MW1147-23/csv Files/20171004_MW1147-23_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171004 Culture Group 7 r2/Group_2/MW1147-24/csv Files/20171004_MW1147-24_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171004 Culture Group 7 r2/Group_2/MW1147-25/csv Files/20171004_MW1147-25_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171011 Culture Group 4_2 r3 Group 8 disulfiram/Group 1/MW1147-16/csv Files/20171011_MW1147-16_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171011 Culture Group 4_2 r3 Group 8 disulfiram/Group 1/MW1147-26/csv Files/20171011_MW1147-26_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171011 Culture Group 4_2 r3 Group 8 disulfiram/Group 1/MW1147-27/csv Files/20171011_MW1147-27_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171011 Culture Group 4_2 r3 Group 8 disulfiram/Group 2/MW1147-28/csv Files/20171011_MW1147-28_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171011 Culture Group 4_2 r3 Group 8 disulfiram/Group 2/MW1147-29/csv Files/20171011_MW1147-29_MaestroExperimentLog_Ontogeny.csv
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20171011 Culture Group 4_2 r3 Group 8 disulfiram/Group 2/MW1147-30/csv Files/20171011_MW1147-30_MaestroExperimentLog_Ontogeny.csv
+
+L:Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170809 Culture Group 3 r2/Group 3_1/1146-30
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast Compounds\20170809 Culture Group 3 r2\Group 3_1\1146-30\Spike List Files\ON_20170809_MW1146-30_05_00(000)_spike_list.csv
+
+L:/Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast Compounds/20170712 Culture Group 2 r2/Group 2_2/1146-28
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast Compounds\20170712 Culture Group 2 r2\Group 2_2\1146-28\Spike List Files\ON_20170712_MW1146-28_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast Compounds\20170712 Culture Group 2 r2\Group 2_2\1146-28\Spike List Files\ON_20170712_MW1146-28_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast Compounds\20170712 Culture Group 2 r2\Group 2_2\1146-28\Spike List Files\ON_20170712_MW1146-28_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast Compounds\20170712 Culture Group 2 r2\Group 2_2\1146-28\Spike List Files\ON_20170712_MW1146-28_12_00(000)_spike_list.csv
+
+L:Lab/NHEERL_MEA/PIP3 - Project/Data/ToxCast tcpl prep/All files(seline)
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20160921_ON G6_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20160921_ON G6_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20161109_ON G1_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20161109_ON G1_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170201_ON G5_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170201_ON G5_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170222_ON G7_2 Calculations(Abamectin).xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170412_ON G8_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170412_ON G8_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170628_ON Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170712_ON G2_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170712_ON G2_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170809_ON G3_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170809_ON G3_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170816_ON G4_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170816_ON G4_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170920_ON G5_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20170920_ON G5_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20171004_ON G7_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20171004_ON G7_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20171011_ON G4_2 Calculations.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\ToxCast tcpl prep\All files(seline)\Cyto\20171011_ON G8_2 Calculations.xlsx

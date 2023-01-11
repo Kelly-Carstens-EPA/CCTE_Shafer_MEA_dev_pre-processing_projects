@@ -1,0 +1,85 @@
+Frank2017 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2020-10-13 11:26:50
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA/PIP3 - Project/Data 
+Collected 54 files from 12 sub-directories.
+
+DNT Reference Compounds/20150422_DNT ref set 2(2) Culture/1060-35
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\csvFiles\20150422_MW1060-35_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\spike_list_files\ON_20150422_MW1060-35_12_00(000)_spike_list.csv
+
+DNT Reference Compounds/20150422_DNT ref set 2(2) Culture
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-35\ON_20150422_MW1060-35 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\ON_20150422_MW1060-36 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\ON_20150422_MW1060-37 Summary.xlsx
+
+DNT Reference Compounds/20150422_DNT ref set 2(2) Culture/1060-36
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\csvFiles\20150422_MW1060-36_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-36\spike_list_files\ON_20150422_MW1060-36_12_00(000)_spike_list.csv
+
+DNT Reference Compounds/20150422_DNT ref set 2(2) Culture/1060-37
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\csvFiles\20150422_MW1060-37_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\DNT Reference Compounds\20150422_DNT ref set 2(2) Culture\1060-37\spike_list_files\ON_20150422_MW1060-37_12_00(000)_spike_list.csv
+
+Specific Aim 2/20141015 Ontogeny/MW 1007-107
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-107\csvfiles\ON_20141015_MW1007-107 MaestroExperimentLog.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-107\spkListFiles\ON_20141015_MW1007-107_05_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-107\spkListFiles\ON_20141015_MW1007-107_07_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-107\spkListFiles\ON_20141015_MW1007-107_09_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-107\spkListFiles\ON_20141015_MW1007-107_12_00_001_spike_list.csv
+
+Specific Aim 2/20141015 Ontogeny
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-107\ON_20141015_MW1007-107 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-108\ON_20141015_MW1007-108 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1008-39\ON_20141015_MW1008-39 Summary.xlsx
+
+Specific Aim 2/20141015 Ontogeny/MW 1007-108
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-108\csvfiles\ON_20141015_MW1007-108 MaestroExperimentLog.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-108\spkListFiles\ON_20141015_MW1007-108_05_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-108\spkListFiles\ON_20141015_MW1007-108_07_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-108\spkListFiles\ON_20141015_MW1007-108_09_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1007-108\spkListFiles\ON_20141015_MW1007-108_12_00_001_spike_list.csv
+
+Specific Aim 2/20141015 Ontogeny/MW 1008-39
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1008-39\csvfiles\ON_20141015_MW1008-39 MaestroExperimentLog.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1008-39\spkListFiles\ON_20141015_MW1008-39_05_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1008-39\spkListFiles\ON_20141015_MW1008-39_07_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1008-39\spkListFiles\ON_20141015_MW1008-39_09_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141015 Ontogeny\MW 1008-39\spkListFiles\ON_20141015_MW1008-39_12_00_001_spike_list.csv
+
+Specific Aim 2/20141029 Ontogeny/MW 1008-41
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-41\csvfiles\ON_20141029_MW1008-41 MaestroExperimentLog.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-41\spkListFiles\ON_20141029_MW1008-41_05_00(000)_Spike Detector (8 x STD)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-41\spkListFiles\ON_20141029_MW1008-41_07_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-41\spkListFiles\ON_20141029_MW1008-41_09_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-41\spkListFiles\ON_20141029_MW1008-41_12_00_001_spike_list.csv
+
+Specific Aim 2/20141029 Ontogeny
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-41\ON_20141029_MW1008-41 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-42\ON_20141029_MW1008-42 Summary.xlsx
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1036-8\ON_20141029_MW1036-8 Summary.xlsx
+
+Specific Aim 2/20141029 Ontogeny/MW 1008-42
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-42\csvfiles\ON_20141029_MW1008-42 MaestroExperimentLog.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-42\spkListFiles\ON_20141029_MW1008-42_05_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-42\spkListFiles\ON_20141029_MW1008-42_07_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-42\spkListFiles\ON_20141029_MW1008-42_09_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1008-42\spkListFiles\ON_20141029_MW1008-42_12_00_001_spike_list.csv
+
+Specific Aim 2/20141029 Ontogeny/MW 1036-8
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1036-8\csvfiles\ON_20141029_MW1036-8 MaestroExperimentLog.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1036-8\spkListFiles\ON_20141029_MW1036-8_05_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1036-8\spkListFiles\ON_20141029_MW1036-8_07_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1036-8\spkListFiles\ON_20141029_MW1036-8_09_00_001_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 2\20141029 Ontogeny\MW 1036-8\spkListFiles\ON_20141029_MW1036-8_12_00_001_spike_list.csv

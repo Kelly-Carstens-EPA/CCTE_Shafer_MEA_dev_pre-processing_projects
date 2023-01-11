@@ -1,0 +1,433 @@
+"dataset","mea_treatment_name","updated_treatment_name","PREFERRED_NAME","casn","dsstox_substance_id","spid","ALIQUOT_PLATE_BARCODE","filename","notes"
+"Brown2014","Acetaminophen","Acetaminophen","Acetaminophen","103-90-2","DTXSID2020006","EX000404","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"Brown2014","Bisindolymaleimide 1","Bisindolylmaleimide I","Bisindolylmaleimide I","133052-90-1","DTXSID50157932","EX000475","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","Shafer_42 list CASRN is 133052-90-1, which matches the casn shown in paper"
+"Brown2014","Domoic Acid","L-Domoic acid","L-Domoic acid","14277-97-5","DTXSID20274180","EX000487","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","Shafer_42 CASRN is 14277-97-5, which matches the casn shown in the paper"
+"Brown2014","Loperamide","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","34552-83-5","DTXSID00880006","EX000411","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","CASN and Product # in Brown et al., 2016 match Loperamide hydrochloride"
+"Brown2014","Mevastatin","Mevastatin","Mevastatin","73573-88-3","DTXSID4040684","EX000498","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx",NA
+"Brown2014","Sodium Orthovanadate","Sodium orthovanadate","Sodium orthovanadate","13721-39-6","DTXSID2037269","EX000499","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","just change in captilization"
+"DNTGF2019","100","100","?-Cyhalothrin","91465-08-6","DTXSID7032559","EPAPLT0167H06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","11","11","Ampicillin","69-53-4","DTXSID4022602","EPAPLT0167C02",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","12","12","Anthracene","120-12-7","DTXSID0023878","EPAPLT0167C05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","13","13","Aspartame","22839-47-0","DTXSID0020107","EPAPLT0167D08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","14","14","Aspirin","50-78-2","DTXSID5020108","EPAPLT0167G04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","15","15","Azinphos-methyl","86-50-0","DTXSID3020122","EPAPLT0167C10",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","16","16","Benomyl","17804-35-2","DTXSID5023900","EPAPLT0167E06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","17","17","beta-Cyfluthrin","1820573-27-0","DTXSID8032330","EPAPLT0167A11",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","18","18","Boscalid","188425-85-6","DTXSID6034392","EPAPLT0167D05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","19","19","Buspirone","36505-84-7","DTXSID2022707","EPAPLT0167A09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","20","20","Butylated hydroxyanisole","25013-16-5","DTXSID7020215","EPAPLT0167B11",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","21","21","Cadmium chloride","10108-64-2","DTXSID6020226","EPAPLT0167B04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","22","22","Captopril","62571-86-2","DTXSID1037197","EPAPLT0169G09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","23","23","Carbaryl","63-25-2","DTXSID9020247","EPAPLT0167D01",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","24","24","Chlorpheniramine maleate","113-92-8","DTXSID4020321","EPAPLT0167C07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","25","25","Chlorpyrifos-methyl","5598-13-0","DTXSID6032352","EPAPLT0167E05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","26","26","Clothianidin","210880-92-5","DTXSID2034465","EPAPLT0167C09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","27","27","Cyfluthrin","68359-37-5","DTXSID5035957","EPAPLT0167F10",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","28","28","Cymoxanil","57966-95-7","DTXSID6032358","EPAPLT0167D07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","29","29","Cypermethrin","52315-07-8","DTXSID1023998","EPAPLT0167G05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","3","3","5-Azacytidine","320-67-2","DTXSID9020116","EPAPLT0167A06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","3 Glufosinate-P Technical","Glufosinate-P","Glufosinate-P","35597-44-5","DTXSID401020544","EX000373","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"DNTGF2019","31","31","Cytarabine hydrochloride","69-74-9","DTXSID5024891","EPAPLT0167E09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","33","33","Dexamethasone","50-02-2","DTXSID3020384","EPAPLT0169F08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","34","34","D-Glucitol","50-70-4","DTXSID5023588","EPAPLT0169A05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","35","35","Diazinon","333-41-5","DTXSID9020407","EPAPLT0170D06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","36","36","Dimethoate","60-51-5","DTXSID7020479","EPAPLT0167G06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","37","37","Dinotefuran","165252-70-0","DTXSID7034549","EPAPLT0167H01",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","38","38","Disulfoton","298-04-4","DTXSID0022018","EPAPLT0167C04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","4 Glufosinate-P Technical","Glufosinate-P","Glufosinate-P","35597-44-5","DTXSID401020544","EX000372","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"DNTGF2019","40","40","Doxylamine succinate","562-10-7","DTXSID7020552","EPAPLT0167E08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","44","44","Ethylene thiourea","96-45-7","DTXSID5020601","EPAPLT0167C11",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","46","46","Famotidine","76824-35-6","DTXSID5023039","EPAPLT0167C01",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","47","47","Fenamidone","161326-34-7","DTXSID2034590","EPAPLT0167E02",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","49","49","Flubendiamide","272451-65-7","DTXSID4047672","EPAPLT0167F09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","5","5","Acephate","30560-19-1","DTXSID8023846","EPAPLT0167A01",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","50","50","Flufenacet","142459-58-3","DTXSID2032552","EPAPLT0167E04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","52","52","Galactosamine hydrochloride","1772-03-8","DTXSID4031356","EPAPLT0167B01",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","54","54","Heptachlor","76-44-8","DTXSID3020679","EPAPLT0170C04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","56","56","Ibuprofen","15687-27-1","DTXSID5020732","EPAPLT0167B06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","58","58","Indoxacarb","173584-44-6","DTXSID1032690","EPAPLT0167E10",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","61","61","Malathion","121-75-5","DTXSID4020791","EPAPLT0167G08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","62","62","Mancozeb","8018-01-7","DTXSID0034695","EPAPLT0167A10",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","63","63","1,1-Dimethylpiperidinium chloride","24307-26-4","DTXSID1024170","EPAPLT0167D03",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","64","64","Metaflumizone","139968-49-3","DTXSID6040373","EPAPLT0167A03",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","65","65","Metformin","657-24-9","DTXSID2023270","EPAPLT0167A02",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","66","66","Methamidophos","10265-92-6","DTXSID6024177","EPAPLT0167A08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","68","68","Methyl parathion","298-00-0","DTXSID1020855","EPAPLT0167H08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","69","69","Metoprolol","51384-51-1","DTXSID2023309","EPAPLT0167A04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","7","7","Acibenzolar-S-methyl","135158-54-2","DTXSID1032519","EPAPLT0167A05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","70","70","Mifepristone","84371-65-3","DTXSID5023322","EPAPLT0167D09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","71","71","Octamethylcyclotetrasiloxane","556-67-2","DTXSID7027205","EPAPLT0167H03",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","73","73","Penicillin VK","132-98-9","DTXSID7021102","EPAPLT0167C03",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","74","74","Potassium perfluorooctanesulfonate","2795-39-3","DTXSID8037706","EPAPLT0167H09",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","75","75","Pymetrozine","123312-89-0","DTXSID2032637","EPAPLT0167F07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","77","77","Selegiline hydrochloride","14611-52-0","DTXSID9044584","EPAPLT0167E07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","78","78","Sodium chlorite","7758-19-2","DTXSID8021272","EPAPLT0167B07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","79","79","Sodium L-glutamate hydrate","6106-04-3","DTXSID0047240","EPAPLT0167D11",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","8","8","Allethrin","584-79-2","DTXSID8035180","EPAPLT0167B05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","80","80","Spirodiclofen","148477-71-8","DTXSID6034928","EPAPLT0167D04",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","81","81","Sulfisoxazole","127-69-5","DTXSID6021292","EPAPLT0167C06",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","82","82","tau-Fluvalinate","102851-06-9","DTXSID7037555","EPAPLT0167G07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","83","83","Tembotrione","335104-84-2","DTXSID5047037","EPAPLT0167H07",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","84","84","tert-Butylphenyl diphenyl phosphate","56803-37-3","DTXSID6024701","EPAPLT0169B03",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","88","88","Topramezone","210631-68-8","DTXSID0034722","EPAPLT0167D10",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","89","89","Tri-allate","2303-17-5","DTXSID5024344","EPAPLT0167F05",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","9","9","alpha-Cypermethrin","67375-30-8","DTXSID7041201","EPAPLT0167F02",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","90","90","Triamcinolone","124-94-7","DTXSID1040742","EPAPLT0167F08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","93","93","Trichlorfon","52-68-6","DTXSID0021389","EPAPLT0170D03",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","94","94","Tri-o-cresyl phosphate","78-30-8","DTXSID6032192","EPAPLT0167B02",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","97","97","Tris(2-chloroisopropyl)phosphate","13674-84-5","DTXSID5026259","EPAPLT0167C08",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","99","99","Warfarin","81-81-2","DTXSID5023742","EPAPLT0167D02",NA,"All Assays_list_toxcast_OECD 20190524.xlsx",NA
+"DNTGF2019","Glufosinate Ammonium","Glufosinate-ammonium","Glufosinate-ammonium","77182-82-2","DTXSID1024120","EX000371","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"DNTGF2019","Glyphosate","Glyphosate","Glyphosate","1071-83-6","DTXSID1024122","EX000408","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"DNTGF2019","L-Glufosinate Ammonium","Glufosinate-P ammonium","Glufosinate-P ammonium","73777-50-1","DTXSID101020545","EX000374","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"DNTGF2019","Loperamide","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","34552-83-5","DTXSID00880006","EX000411","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"Frank2017","1-2-PropyleneGlycol","1,2-Propylene glycol","1,2-Propylene glycol","57-55-6","DTXSID0021206","EX000516","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","5-Fluorouracil","5-Fluorouracil","5-Fluorouracil","51-21-8","DTXSID2020634","EX000412","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Acetaminophen","Acetaminophen","Acetaminophen","103-90-2","DTXSID2020006","EX000404","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Acetamiprid","Acetamiprid","Acetamiprid","135410-20-7","DTXSID0034300","EX000521","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Acrylamide","Acrylamide","Acrylamide","79-06-1","DTXSID5020027","EX000427","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Aldicarb","Aldicarb","Aldicarb","116-06-3","DTXSID0039223","EX000429","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Aminonicotinamide","Aminonicotinamide","6-Aminonicotinamide","329-89-5","DTXSID5051446","EX000424","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Amoxacillin","Amoxicillin","Amoxicillin","26787-78-0","DTXSID3037044","EX000399","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Amphetamine","Amphetamine","Dextroamphetamine sulfate","51-63-8","DTXSID2057865","EX000402","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Bis (2-ethylhexyl) phthalate-DEHP","Bis (2-ethylhexyl) phthalate (DEHP)","Di(2-ethylhexyl) phthalate","117-81-7","DTXSID5020607","EX000422","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; DEHP in 20140827, longer name in 20141112"
+"Frank2017","Bis(tri-n-butylin) oxide","Bis(tri-n-butylin) oxide","Bis(tributyltin)oxide","56-35-9","DTXSID9020166","EX000447","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Bis1","Bisindolylmaleimide I (Bis 1)","Bisindolylmaleimide I","133052-90-1","DTXSID50157932","EX000475","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Bisphenol A","Bisphenol A","Bisphenol A","80-05-7","DTXSID7020182","EX000420","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Cadmium","Cadmium","Cadmium(II) chloride hydrate (2:5)","7790-78-5","DTXSID4040183","EX000388","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Caffeine","Caffeine","Caffeine","58-08-2","DTXSID0020232","EX000396","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Captopril","Captopril","Captopril","62571-86-2","DTXSID1037197","EX000456","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Carbamazepine","Carbamazepine","Carbamazepine","298-46-4","DTXSID4022731","EX000470","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Carbaryl","Carbaryl","Carbaryl","63-25-2","DTXSID9020247","EX000522","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Chloramben","Chloramben","Chloramben","133-90-4","DTXSID2020262","EX000460","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Chlordiazepoxide","Chlordiazepoxide","Chlordiazepoxide hydrochloride","438-41-5","DTXSID40880060","EX000390","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Chlorpromazine","Chlorpromazine","Chlorpromazine hydrochloride","69-09-0","DTXSID7024827","EX000469","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Chlorpyrifos","Chlorpyrifos","Chlorpyrifos","2921-88-2","DTXSID4020458","EX000384","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Chlorpyrifos oxon","Chlorpyrifos oxon","Chlorpyrifos oxon","5598-15-2","DTXSID1038666","EX000378","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Cocaine","Cocaine","Cocaine","50-36-2","DTXSID2038443","EX000382","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Colchicine","Colchicine","Colchicine","64-86-8","DTXSID5024845","EX000431","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Cotinine","Cotinine","Cotinine","486-56-6","DTXSID1047576","EX000459","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Cyclophosphamid","Cyclophosphamide","Cyclophosphamide monohydrate","6055-19-2","DTXSID6024888","EX000472","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Cypermethrin","Cypermethrin","Cypermethrin","52315-07-8","DTXSID1023998","EX000523","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Cytosine arabinoside","Cytosine Arabinoside","Cytarabine","147-94-4","DTXSID3022877","EX000413","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","DEHP","Bis (2-ethylhexyl) phthalate (DEHP)","Di(2-ethylhexyl) phthalate","117-81-7","DTXSID5020607","EX000422","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; DEHP in 20140827, longer name in 20141112"
+"Frank2017","Deltamethrin","Deltamethrin","Deltamethrin","52918-63-5","DTXSID8020381","EX000423","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Dexamethasone","Dexamethasone","Dexamethasone","50-02-2","DTXSID3020384","EX000395","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Diazepam","Diazepam","Diazepam","439-14-5","DTXSID4020406","EX000409","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Dieldrin","Dieldrin","Dieldrin","60-57-1","DTXSID9020453","EX000417","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Diethylene glycol","Diethylene glycol","Diethylene glycol","111-46-6","DTXSID8020462","EX000457","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Diethylstilbestrol","Diethylstilbestrol","Diethylstilbestrol","56-53-1","DTXSID3020465","EX000432","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Diphenylhydantoin","Diphenylhydantoin","5,5-Diphenylhydantoin","57-41-0","DTXSID8020541","EX000381","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Domoic Acid","Domoic Acid","L-Domoic acid","14277-97-5","DTXSID20274180","EX000487","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Emamectin benzoate","Emamectin benzoate","Emamectin benzoate","155569-91-8","DTXSID0034566","EX000524","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Fipronil","Fipronil","Fipronil","120068-37-3","DTXSID4034609","EX000525","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Fluconazole","Fluconazole","Fluconazole","86386-73-4","DTXSID3020627","EX000462","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Fluoxetine","Fluoxetine","Fluoxetine hydrochloride","56296-78-7","DTXSID7020635","EX000468","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Flusilazole","Flusilazole","Flusilazole","85509-19-9","DTXSID3024235","EX000518","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Glyphosate","Glyphosate","Glyphosate","1071-83-6","DTXSID1024122","EX000408","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Haloperidol","Haloperidol","Haloperidol","52-86-8","DTXSID4034150","EX000410","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Heptachlor epoxide","Heptachlor epoxide","Heptachlor epoxide B","1024-57-3","DTXSID1024126","EX000437","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Hexachlorophene","Hexachlorophene","Hexachlorophene","70-30-4","DTXSID6020690","EX000392","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Hydroxyurea","Hydroxyurea","Hydroxyurea","127-07-1","DTXSID6025438","EX000446","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Imidacloprid","Imidacloprid","Imidacloprid","138261-41-3","DTXSID5032442","EX000526","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Isoniazid","Isoniazid","Isoniazid","54-85-3","DTXSID8020755","EX000441","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Ketamine","Ketamine","L-Ketamine hydrochloride","33795-24-3","DTXSID90187455","EX000391","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Lactofen","Lactofen","Lactofen","77501-63-4","DTXSID7024160","EX000520","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Lead acetate","Lead Acetate","Lead(II) acetate trihydrate","6080-56-4","DTXSID3031521","EX000385","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Lindane","Lindane","Lindane","58-89-9","DTXSID2020686","EX000527","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Loperamide","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","34552-83-5","DTXSID00880006","EX000411","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","CASN in lab notebook (34552-83-5) matches Loperamide hydrochloride"
+"Frank2017","Maneb","Maneb","Maneb","12427-38-2","DTXSID9020794","EX000418","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Manganese","Manganese","Manganese dichloride","7773-01-5","DTXSID9040681","EX000467","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Methotrexate","Methotrexate","Methotrexate","59-05-2","DTXSID4020822","EX000445","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Methylchloroisothiazolinone","Methylchloroisothiazolinone","5-Chloro-2-methyl-3(2H)-isothiazolone","26172-55-4","DTXSID9034286","EX000517","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Methylmercury","Methylmercury","Methylmercuric(II) chloride","115-09-3","DTXSID5020813","EX000383","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; CAS # changed from 22967-92-6 (methylmercurcy) to 115-09-3 (Methylmercuric(II) chloride), based on the lab notebook"
+"Frank2017","Mevastatin","Mevastatin","Mevastatin","73573-88-3","DTXSID4040684","EX000498","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Naloxone","Naloxone","Naloxone hydrochloride dihydrate","51481-60-8","DTXSID90199452","EX000471","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Nicotine","Nicotine","Nicotine","54-11-5","DTXSID1020930","EX000416","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","PBDE-47","2,2'4,4'-Tetrabromodiphenyl ether (BDE-47)","2,2',4,4'-Tetrabromodiphenyl ether","5436-43-1","DTXSID3030056","EX000461","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; pubchem lists PBDE 47 as a synonym"
+"Frank2017","Paraquat","Paraquat","Paraquat dichloride","1910-42-5","DTXSID7024243","EX000464","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; CAS # changed from 4685-14-7 (Paraquat) to 1910-42-5 (Paraquat dichloride), based on the lab notebook"
+"Frank2017","Permethrin","Permethrin","Permethrin","52645-53-1","DTXSID8022292","EX000463","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Phenobarbital","Phenobarbital","Phenobarbital sodium","57-30-7","DTXSID0021123","EX000449","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Phenol","Phenol","Phenol","108-95-2","DTXSID5021124","EX000455","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Saccharin","Saccharin","Sodium saccharin hydrate","82385-42-0","DTXSID7021992","EX000403","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Sodium Arsenate","Sodium Arsenite","Sodium arsenite","7784-46-5","DTXSID5020104","EX000465","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; see notes"
+"Frank2017","Sodium Fluoride","Sodium Fluoride","Sodium fluoride","7681-49-4","DTXSID2020630","EX000466","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Sodium Orthovanadate","Sodium Orthovanadate","Sodium orthovanadate","13721-39-6","DTXSID2037269","EX000499","DNT_EXTRA","EPA_ES203_EPA-Shafer_42_20200110_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Sodium benzoate","Sodium benzoate","Sodium benzoate","532-32-1","DTXSID1020140","EX000458","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Sorbitol","Sorbitol","D-Glucitol","50-70-4","DTXSID5023588","EX000400","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Spiroxamine","Spiroxamine","Spiroxamine","118134-30-8","DTXSID1034212","EX000519","DNT_EXTRA2","EPA_ES204_EPA-Shafer_12_20200117_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","TBBPA","Tetrabromobisphenol A (TBBPA)","3,3',5,5'-Tetrabromobisphenol A","79-94-7","DTXSID1026081","EX000454","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","TCEP","Tris (2-chloroethyl) phosphate (TCEP)","Tris(2-chloroethyl) phosphate","115-96-8","DTXSID5021411","EX000361",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","TDCPP","Tris (1,3-dichloro-2-propyl) phosphate (TDCIPP)","Tris(1,3-dichloro-2-propyl) phosphate","13674-87-8","DTXSID9026261","EX000453","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","TPP","Triphenyl phosphate (TPHP)","Triphenyl phosphate","115-86-6","DTXSID1021952","EX000360",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Tebuconazole","Tebuconazole","Tebuconazole","107534-96-3","DTXSID9032113","EX000389","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Terbutaline","Terbutaline","Terbutaline hemisulfate","23031-32-5","DTXSID3045437","EX000393","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Tetrabromobisphenol A","Tetrabromobisphenol A (TBBPA)","3,3',5,5'-Tetrabromobisphenol A","79-94-7","DTXSID1026081","EX000454","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Thalidomide","Thalidomide","Thalidomide","50-35-1","DTXSID9022524","EX000440","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Thiouracil","Thiouracil","6-Propyl-2-thiouracil","51-52-5","DTXSID5021209","EX000421","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Triethyltin bromide","Triethyltin bromide","Triethyltin bromide","2767-54-6","DTXSID9040712","EX000473","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Trimethyltin","Trimethyltin","Trimethyltin hydroxide","56-24-6","DTXSID9032240","EX000419","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Triphenyl phosphate (TPP)","Triphenyl phosphate (TPHP)","Triphenyl phosphate","115-86-6","DTXSID1021952","EX000360",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Tris(1,3-dichloro-2-propyl) phosphate (TDCPP)","Tris (1,3-dichloro-2-propyl) phosphate (TDCIPP)","Tris(1,3-dichloro-2-propyl) phosphate","13674-87-8","DTXSID9026261","EX000453","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Tris(2-chloroethyl) phosphate (TCEP)","Tris (2-chloroethyl) phosphate (TCEP)","Tris(2-chloroethyl) phosphate","115-96-8","DTXSID5021411","EX000361",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx","Table1 links updated_treatment_name to correct casn; "
+"Frank2017","Valproate","Valproic acid","Sodium valproate","1069-66-5","DTXSID5037072","EX000439","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; after chat with Tim - the compounds named 'Valproate' and 'Valproic acid' are both refering to 'Sodium valproate' with cas number 1069-66-5"
+"Frank2017","t-retinoic acid","t-retinoic acid","all-trans-Retinoic acid","302-79-4","DTXSID7021239","EX000386","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Table1 links updated_treatment_name to correct casn; "
+"NTP91","1-Methyl-4-phenylpyridinium iodide","1-Methyl-4-phenylpyridinium iodide","1-Methyl-4-phenylpyridinium iodide","36913-39-0","DTXSID40880040","EX000279",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","1Ethyl3methylimidazolium diethylphosphate","1-Ethyl-3-methylimidazolium diethylphosphate","1-Ethyl-3-methylimidazolium diethylphosphate","848641-69-0","DTXSID9047889","EX000278",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","2-Methoxyethanol","2-Methoxyethanol","2-Methoxyethanol","109-86-4","DTXSID5024182","EX000282",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","2244 Tetrabromodiphenyl ether","2,2',4,4'-Tetrabromodiphenyl ether","2,2',4,4'-Tetrabromodiphenyl ether","5436-43-1","DTXSID3030056","EX000285",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","22445 Pentabromodiphenyl ether","2,2',4,4',5-Pentabromodiphenyl ether","2,2',4,4',5-Pentabromodiphenyl ether","60348-60-9","DTXSID9030048","EX000283",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","224455 Hexabromodiphenyl ether","2,2',4,4',5,5'-Hexabromodiphenyl ether","2,2',4,4',5,5'-Hexabromodiphenyl ether","68631-49-2","DTXSID4030047","EX000284",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","2Ethylhexyl 2345 tetrabromobenzoate","2-Ethylhexyl-2,3,4,5-tetrabromobenzoate","2-Ethylhexyl-2,3,4,5-tetrabromobenzoate","183658-27-7","DTXSID9052686","EX000281",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","2Ethylhexyl diphenyl phosphate","2-Ethylhexyl diphenyl phosphate","2-Ethylhexyl diphenyl phosphate","1241-94-7","DTXSID1025300","EX000280",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","3,3'-Iminobispropanenitrile","3,3'-Iminobispropanenitrile","3,3'-Iminobispropanenitrile","111-94-4","DTXSID2041464","EX000287",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","4HCyclopenta def phenanthrene","4-H-Cyclopenta(d,e,f)phenanthrene","4-H-Cyclopenta(d,e,f)phenanthrene","203-64-5","DTXSID1024887","EX000289",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","6 Hydroxydopamine hydrochloride","6-Hydroxydopamine hydrochloride","6-Hydroxydopamine hydrochloride","28094-15-7","DTXSID0045838","EX000291",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Acetic acid, manganese (2+) salt","Acetic acid, manganese (2+) salt","Acetic acid, manganese (2+) salt","638-38-0","DTXSID5027279","EX000296",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Acetylsalicylic acid","Acetylsalicylic acid","Acetylsalicylic acid","50-78-2","DTXSID5020108","EX000297",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Anthracene","Anthracene","Anthracene","120-12-7","DTXSID0023878","EX000301",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Auramine","Auramine O","Auramine O","2465-27-2","DTXSID9020114","EX000302",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Benzo a pyrene","Benzo(a)pyrene","Benzo(a)pyrene","50-32-8","DTXSID2020139","EX000304",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Benzo e pyrene","Benzo(e)pyrene","Benzo(e)pyrene","192-97-2","DTXSID3023764","EX000306",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Benzo ghi perylene","Benzo[g,h,i]perylene","Benzo[g,h,i]perylene","191-24-2","DTXSID5023908","EX000308",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Benzo k fluoranthene","Benzo(k)fluoranthene","Benzo(k)fluoranthene","207-08-9","DTXSID0023909","EX000307",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Berberine chloride","Berberine chloride","Berberine chloride","633-65-8","DTXSID8024602","EX000309",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Bis 2 ethylhexyl tetrabromophthalate","Bis(2-ethylhexyl) tetrabromophthalate","Bis(2-ethylhexyl) tetrabromophthalate","26040-51-7","DTXSID7027887","EX000310",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Bisphenol AF","Bisphenol AF","Bisphenol AF","1478-61-1","DTXSID7037717","EX000313",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Bisphenol S","Bisphenol S","Bisphenol S","80-09-1","DTXSID3022409","EX000314",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Captan","Captan","Captan","133-06-2","DTXSID9020243","EX000316",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Carbamic acid","Dibenz[a,c]anthracene","Dibenz[a,c]anthracene","215-58-7","DTXSID9049245","EX000327",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Carbamic acid butyl 3iodo2propynyl ester","Carbamic acid, butyl-, 3-iodo-2-propynyl ester","Carbamic acid, butyl-, 3-iodo-2-propynyl ester","55406-53-6","DTXSID0028038","EX000317",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Chrysene","Chrysene","Chrysene","218-01-9","DTXSID0022432","EX000320",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","D Glucitol","D-Glucitol","D-Glucitol","50-70-4","DTXSID5023588","EX000322",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Di 2ethylhexyl phthalate","Di(2-ethylhexyl) phthalate","Di(2-ethylhexyl) phthalate","117-81-7","DTXSID5020607","EX000324",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Dibenz ac anthracene","Dibenz[a,c]anthracene","Dibenz[a,c]anthracene","215-58-7","DTXSID9049245","EX000327",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Dibenz ah anthracene","Dibenz(a,h)anthracene","Dibenz(a,h)anthracene","53-70-3","DTXSID9020409","EX000326",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Dichlorodiphenyltrichloroethane","Dichlorodiphenyltrichloroethane","Dichlorodiphenyltrichloroethane","50-29-3","DTXSID4020375","EX000328",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Estradiol","Estradiol","Estradiol","50-28-2","DTXSID0020573","EX000331",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Firemaster","Firemaster 550","Firemaster 550","860302-33-6","DTXSID70880073","EX000332",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Hexachlorophene","Hexachlorophene","Hexachlorophene","70-30-4","DTXSID6020690","EX000335",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Isodecyl diphenyl phosphate","Isodecyl diphenyl phosphate","Isodecyl diphenyl phosphate","29761-21-5","DTXSID3025465","EX000337",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","L Ascorbic acid","L-Ascorbic acid","L-Ascorbic acid","50-81-7","DTXSID5020106","EX000338",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Manganese tricarbonyl 12345 eta 1 methyl 24 cyclopentadien 1 yl","Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-","Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-","12108-13-3","DTXSID9027738","EX000341",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Naphthalene","Naphthalene","Naphthalene","91-20-3","DTXSID8020913","EX000344",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Parathion","Parathion","Parathion","56-38-2","DTXSID7021100","EX000345",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Permethrin","Permethrin","Permethrin","52645-53-1","DTXSID8022292","EX000346",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Phenanthrene","Phenanthrene","Phenanthrene","85-01-8","DTXSID6024254","EX000347",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Phenobarbital","Phenobarbital","Phenobarbital","50-06-6","DTXSID5021122","EX000348",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Phenol isopropylated phosphate","Phenol, isopropylated, phosphate (3:1)","Phenol, isopropylated, phosphate (3:1)","68937-41-7","DTXSID4028880","EX000350",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx","this is the only phosphate in the spidmap that would make sense"
+"NTP91","Pyrene","Pyrene","Pyrene","129-00-0","DTXSID3024289","EX000351",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Rotenone","Rotenone","Rotenone","83-79-4","DTXSID6021248","EX000352",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Tetraethylthiuram disulfide","Tetraethylthiuram disulfide","Tetraethylthiuram disulfide","97-77-8","DTXSID1021322","EX000356",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Tricresyl phosphate","Tricresyl phosphate","Tricresyl phosphate","1330-78-5","DTXSID4021391","EX000359",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",NA
+"NTP91","Tris 2chloroisopropyl phosphate","Tris(2-chloroethyl) phosphate","Tris(2-chloroethyl) phosphate","115-96-8","DTXSID5021411","EX000361",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"NTP91","Valinomycin","Valinomycin","Valinomycin","2001-95-8","DTXSID9041150","EX000362",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx","adding row to differentiate between ToxCast2016 Valinomycin treatment name"
+"NTP91","tert Butylphenyl diphenyl phosphate","tert-Butylphenyl diphenyl phosphate","tert-Butylphenyl diphenyl phosphate","56803-37-3","DTXSID6024701","EX000355",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"OPP2015","Acephate","Acephate","Acephate","30560-19-1","DTXSID8023846","TT0000177A04","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Bensulide","Bensulide","Bensulide","741-58-2","DTXSID9032329","TT0000177A03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Chlorethoxyfos","Chlorethoxyfos","Chlorethoxyfos","54593-83-8","DTXSID2032344","TT0000177G03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Chlorpyrifos","Chlorpyrifos","Chlorpyrifos","2921-88-2","DTXSID4020458","TT0000177E02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Chlorpyrifos oxon","Chlorpyrifos oxon","Chlorpyrifos oxon","5598-15-2","DTXSID1038666","TT0000177G02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Coumaphos","Coumaphos","Coumaphos","56-72-4","DTXSID2020347","TT0000177A02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Diazonon","Diazinon","Diazinon","333-41-5","DTXSID9020407","TT0000177H01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx","when I google search for 'Diazonon', it redirects to 'Diazinon'"
+"OPP2015","Diazoxon","Diazoxon","Diazoxon","962-58-3","DTXSID5037523","TT0000177G01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Dichlorvos","Dichlorvos","Dichlorvos","62-73-7","DTXSID5020449","TT0000177C01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Dicrotophos","Dicrotophos","Dicrotophos","141-66-2","DTXSID9023914","TT0000177H03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Dimethoate","Dimethoate","Dimethoate","60-51-5","DTXSID7020479","TT0000177H02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Ethoprop","Ethoprop","Ethoprop","13194-48-4","DTXSID4032611","TT0000177D01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Fosthiazate","Fosthiazate","Fosthiazate","98886-44-3","DTXSID0034930","TT0000177B04","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Malathion","Malathion","Malathion","121-75-5","DTXSID4020791","TT0000177D02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Malaxon","Malaoxon","Malaoxon","1634-78-2","DTXSID9020790","TT0000177B03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx","'Malaxon' does not have any resutls in Google, I think this just a typo"
+"OPP2015","Methamidophos","Methamidophos","Methamidophos","10265-92-6","DTXSID6024177","TT0000177B02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Naled","Naled","Naled","300-76-5","DTXSID1024209","TT0000177E03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Omethoate","Omethoate","Omethoate","1113-02-6","DTXSID4037580","TT0000177C04","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Phorate","Phorate","Phorate","298-02-2","DTXSID4032459","TT0000177F02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Phosmet","Phosmet","Phosmet","732-11-6","DTXSID5024261","TT0000177C03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Pirimiphos-methyl","Pirimiphos-methyl","Pirimiphos-methyl","29232-93-7","DTXSID0024266","TT0000177D03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Profenofos","Profenofos","Profenofos","41198-08-7","DTXSID3032464","TT0000177A01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Tebupirimfos","Tebupirimfos","Tebupirimfos","96182-53-5","DTXSID1032482","TT0000177C02","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Terbufos","Terbufos","Terbufos","13071-79-9","DTXSID2022254","TT0000177E01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Tribufos","Tribufos","Tribufos","78-48-8","DTXSID1024174","TT0000177F03","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Trichlorfon","Trichlorfon","Trichlorfon","52-68-6","DTXSID0021389","TT0000177F01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx",NA
+"OPP2015","Z-tetrachlorvinphos","Z-Tetrachlorvinphos","Z-Tetrachlorvinphos","22248-79-9","DTXSID1032648","TT0000177B01","TT0000177","EPA_11118_EPA-Mundy_27FR_100mM_20150701_cg.xlsx","capitalization"
+"PFAS2018","1475812","1475812","2-Aminohexafluoropropan-2-ol","31253-34-6","DTXSID80382093","1475812",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475813","1475813","2-Vinylperfluorobutane","239795-57-4","DTXSID50379359","1475813",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475814","1475814","1H,1H,5H-Perfluoropentanol","355-80-6","DTXSID0059879","1475814",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475815","1475815","Methyl 2H,2H,3H,3H-perfluoroheptanoate","132424-36-3","DTXSID50441560","1475815",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475816","1475816","Heptafluorobutyramide","662-50-0","DTXSID2060965","1475816",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475817","1475817","4:4 Fluorotelomer alcohol","3792-02-7","DTXSID60377821","1475817",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475818","1475818","3,3-Bis(trifluoromethyl)-2-propenoic acid","1763-28-6","DTXSID30170109","1475818",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475819","1475819","Perfluoroisobutyl methyl ether","163702-08-7","DTXSID5042326","1475819",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475820","1475820","1H,1H,7H-Dodecafluoro-1-heptanol","335-99-9","DTXSID9059832","1475820",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475821","1475821","1-Pentafluoroethylethanol","374-40-3","DTXSID70880134","1475821",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475822","1475822","1H,1H-Heptafluorobutanol","375-01-9","DTXSID4059914","1475822",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475823","1475823","Perfluoropentanamide","355-81-7","DTXSID70366226","1475823",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475824","1475824","2-Amino-2H-perfluoropropane","1619-92-7","DTXSID70481246","1475824",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475825","1475825","1H,1H-Perfluoropentylamine","355-27-1","DTXSID60377826","1475825",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475826","1475826","Sevoflurane","28523-86-6","DTXSID8046614","1475826",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475827","1475827","3-(Perfluoro-2-butyl)propane-1,2-diol","125070-38-4","DTXSID10382147","1475827",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475828","1475828","Perfluoroglutaryl difluoride","678-78-4","DTXSID50218052","1475828",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475829","1475829","Nonafluoropentanamide","13485-61-5","DTXSID60400587","1475829",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475830","1475830","3H-Perfluoro-4-hydroxy-3-penten-2-one","1694-30-0","DTXSID90275806","1475830",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475831","1475831","3H-Perfluoro-2,2,4,4-tetrahydroxypentane","77953-71-0","DTXSID70379295","1475831",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475832","1475832","3-(Perfluoropropyl)propanol","679-02-7","DTXSID60379269","1475832",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475833","1475833","Bis(1H,1H-perfluoropropyl)amine","883498-76-8","DTXSID50381992","1475833",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475834","1475834","1-Propenylperfluoropropane","355-95-3","DTXSID70379270","1475834",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475835","1475835","1,1,1,3,3-Pentafluorobutane","406-58-6","DTXSID5073901","1475835",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475836","1475836","Perfluoro-3,6-dioxaoctane-1,8-dioic acid","55621-21-1","DTXSID20375106","1475836",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475837","1475837","3-(Perfluoroisopropyl)-2-propenoic acid","243139-64-2","DTXSID40380257","1475837",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475838","1475838","6H-Perfluorohex-1-ene","1767-94-8","DTXSID10379850","1475838",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475839","1475839","Octafluoroadipamide","355-66-8","DTXSID80310730","1475839",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475840","1475840","Pentafluoropropanoic anhydride","356-42-3","DTXSID70870515","1475840",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475841","1475841","Flurothyl","333-36-8","DTXSID5046516","1475841",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475842","1475842","tris(Trifluoroethoxy)methane","58244-27-2","DTXSID30395037","1475842",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475843","1475843","4:2 Fluorotelomer sulfonic acid","757124-72-4","DTXSID30891564","1475843",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475844","1475844","Perfluoro-3,6,9-trioxatridecanoic acid","330562-41-9","DTXSID50375114","1475844",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475845","1475845","Methyl perfluorohexanoate","424-18-0","DTXSID20335700","1475845",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475846","1475846","Perfluorooctanesulfonic acid","1763-23-1","DTXSID3031864","1475846",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475847","1475847","Perfluorononanoic acid","375-95-1","DTXSID8031863","1475847",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475848","1475848","Perfluoro-2-methyl-3-oxahexanoic acid","13252-13-6","DTXSID70880215","1475848",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475849","1475849","Perfluoro(propyl vinyl ether)","1623-05-8","DTXSID0061826","1475849",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475850","1475850","Perfluoro(4-methoxybutanoic) acid","863090-89-5","DTXSID60500450","1475850",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475851","1475851","4:2 Fluorotelomer alcohol","2043-47-2","DTXSID1062122","1475851",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475852","1475852","Perfluorobutyraldehyde","375-02-0","DTXSID10190946","1475852",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475853","1475853","Heptafluorobutyryl methyl ester","356-24-1","DTXSID4059881","1475853",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475854","1475854","2,2-Difluoroethyl triflate","74427-22-8","DTXSID30378880","1475854",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475855","1475855","N-Methylperfluorooctanesulfonamide","31506-32-8","DTXSID1067629","1475855",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475856","1475856","Potassium perfluorooctanesulfonate","2795-39-3","DTXSID8037706","1475856",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475857","1475857","1H,1H,8H,8H-Perfluoro-3,6-dioxaoctane-1,8-diol","129301-42-4","DTXSID70381090","1475857",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475858","1475858","11:1 Fluorotelomer alcohol","423-65-4","DTXSID80375107","1475858",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475859","1475859","Perfluorooctanesulfonamide","754-91-6","DTXSID3038939","1475859",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475860","1475860","8:2 Fluorotelomer alcohol","678-39-7","DTXSID7029904","1475860",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1475861","1475861","Potassium perfluorohexanesulfonate","3871-99-6","DTXSID3037709","1475861",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483026","1483026","6:2 Fluorotelomer methacrylate","2144-53-8","DTXSID3047558","1483026",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483027","1483027","3,3,4,4,5,5,6,6,6-Nonafluorohexene","19430-93-4","DTXSID6047575","1483027",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483028","1483028","2H,2H,3H,3H-Perfluorooctanoic acid","914637-49-3","DTXSID20874028","1483028",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483029","1483029","Perfluorobutanoic acid","375-22-4","DTXSID4059916","1483029",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483030","1483030","5H-Octafluoropentanoyl fluoride","813-03-6","DTXSID70379730","1483030",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483031","1483031","Perfluorobutanesulfonyl fluoride","375-72-4","DTXSID20861913","1483031",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483032","1483032","Difluoromethyl 1H,1H-perfluoropropyl ether","56860-81-2","DTXSID0074059","1483032",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483033","1483033","Hexafluoroamylene glycol","376-90-9","DTXSID3059927","1483033",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483034","1483034","5H-Perfluoropentanal","2648-47-7","DTXSID20337466","1483034",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483035","1483035","Perfluorobutanesulfonic acid","375-73-5","DTXSID5030030","1483035",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483036","1483036","N-Ethylperfluorooctanesulfonamide","4151-50-2","DTXSID1032646","1483036",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483037","1483037","Perfluorooctanesulfonamido ammonium iodide","1652-63-7","DTXSID8051419","1483037",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483038","1483038","4H-Perfluorobutanoic acid","679-12-9","DTXSID50892417","1483038",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483039","1483039","2-(Trifluoromethoxy)ethyl trifluoromethanesulfonate","329710-76-1","DTXSID00442840","1483039",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483040","1483040","Allyl perfluoroisopropyl ether","15242-17-8","DTXSID10370988","1483040",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483041","1483041","Ethyl perfluorobutyl ether","163702-05-4","DTXSID0073118","1483041",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483042","1483042","Methyl perfluoroethyl ketone","374-41-4","DTXSID90285748","1483042",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483043","1483043","Perfluoro-3,6-dioxaheptanoic acid","151772-58-6","DTXSID30382063","1483043",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483044","1483044","Potassium perfluorobutanesulfonate","29420-49-3","DTXSID3037707","1483044",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483045","1483045","6:2 Fluorotelomer alcohol","647-42-7","DTXSID5044572","1483045",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483051","1483051","Ammonium perfluorooctanoate","3825-26-1","DTXSID8037708","1483051",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483052","1483052","Perfluorooctanoic acid","335-67-1","DTXSID8031865","1483052",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483053","1483053","Perfluorohexanoic acid","307-24-4","DTXSID3031862","1483053",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483054","1483054","N-Ethyl-N-(2-hydroxyethyl)perfluorooctanesulfonamide","1691-99-2","DTXSID6027426","1483054",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","1483055","1483055","Potassium perfluorohexanesulfonate","3871-99-6","DTXSID3037709","1483055",NA,"EPA_9238_EPA-Shafer_75_20180511.xlsx",NA
+"PFAS2018","Acetaminophen","Acetaminophen","Acetaminophen","103-90-2","DTXSID2020006","EX000404","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"PFAS2018","Bisphenol A","Bisphenol A","Bisphenol A","80-05-7","DTXSID7020182","EX000420","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx",NA
+"PFAS2018","Loperamide","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","34552-83-5","DTXSID00880006","EX000411","HTP_LOG","EPA_ES202_EPA-Shafer_103_20191218_key.xlsx","Lot # BCBP2026 (see 2018114 lab notebook) matches Lot # in L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Loperamide_CoA.pdf"
+"ToxCast2016","1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411","Clotrimazole","Clotrimazole","23593-75-1","DTXSID7029871","TP0001411E01","TP0001411","EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx","See lab noteook 20171011. TP0001411 + ToxCast Plate Location E01 corresponds to Clotrimazole; Lab Notebook ToxCast Plate ID indicates TP0001411 E01"
+"ToxCast2016","17beta Estradiol","17beta-Estradiol","17beta-Estradiol","50-28-2","DTXSID0020573","TP0001649G08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","1H,1H,2H,2H-Perfluorooctyl iodide - TP0001413","1H,1H,2H,2H-Perfluorooctyl iodide","1H,1H,2H,2H-Perfluorooctyl iodide","2043-57-4","DTXSID2047565","TP0001413A04","TP0001413","EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx",""
+"ToxCast2016","3 Iodo 2 propynyl N butylcarbamate","3-Iodo-2-propynyl-N-butylcarbamate","3-Iodo-2-propynyl-N-butylcarbamate","55406-53-6","DTXSID0028038","TP0001649E01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","these names are listed in the same chemical row in the Shafer 2019 paper Table 1 as the PREFERRED_NAME and Common name"
+"ToxCast2016","6 Propyl 2 thiouracil","6-Propyl-2-thiouracil","6-Propyl-2-thiouracil","51-52-5","DTXSID5021209","TP0001649B07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","6-Methyl-2-thiouracil","6-Methyl-2-thiouracil","6-Methyl-2-thiouracil","56-04-2","DTXSID2020890","TP0001649A12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","6-propyl-2-thiouracil","6-Propyl-2-thiouracil","6-Propyl-2-thiouracil","51-52-5","DTXSID5021209","TP0001649B07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","Abamectin","Abamectin","Abamectin","71751-41-2","DTXSID8023892","TP0001649H03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Acenaphthene","Acenaphthene","Acenaphthene","83-32-9","DTXSID3021774","TP0001649D09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Acenaphthylene","Acenaphthylene","Acenaphthylene","208-96-8","DTXSID3023845","TP0001649H08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Aldrin","Aldrin","Aldrin","309-00-2","DTXSID8020040","TP0001649G11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Allethrin","Allethrin","Allethrin","584-79-2","DTXSID8035180","TP0001649F12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Aspirin","Aspirin","Aspirin","50-78-2","DTXSID5020108","TP0001649G04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Atrazine","Atrazine","Atrazine","1912-24-9","DTXSID9020112","TP0001649E05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Azoxystrobin","Azoxystrobin","Azoxystrobin","131860-33-8","DTXSID0032520","TP0001649G05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Benz(a)anthracene","Benz(a)anthracene","Benz(a)anthracene","56-55-3","DTXSID5023902","TP0001649B04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Benzo(b)fluoranthene","Benzo(b)fluoranthene","Benzo(b)fluoranthene","205-99-2","DTXSID0023907","TP0001649G02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Bifenthrin","Bifenthrin","Bifenthrin","82657-04-3","DTXSID9020160","TP0001649H07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Bisphenol AF","Bisphenol AF","Bisphenol AF","1478-61-1","DTXSID7037717","TP0001649A01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Bisphenol B","Bisphenol B","Bisphenol B","77-40-7","DTXSID4022442","TP0001649H02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Boric acid","Boric acid","Boric acid","10043-35-3","DTXSID1020194","TP0001649F05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Boscalid","Boscalid","Boscalid","188425-85-6","DTXSID6034392","TP0001649B09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Busulfan","Busulfan","Busulfan","55-98-1","DTXSID3020910","TP0001649A05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","CP-409092","CP-409092","CP-409092","194098-25-4","DTXSID2047276","TP0001649A06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","CP-457920","CP-457920","CP-457920","220860-50-4","DTXSID4047254","TP0001649C04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Captan","Captan","Captan","133-06-2","DTXSID9020243","TP0001649F11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Carbofuran","Carbofuran","Carbofuran","1563-66-2","DTXSID9020249","TP0001649E04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Cariporide mesylate","Cariporide mesylate","Cariporide mesylate","159138-81-5","DTXSID3047344","TP0001649G07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Chlordane","Chlordane","Chlordane","57-74-9","DTXSID7020267","TP0001649C05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Chlorendic acid","Chlorendic acid","Chlorendic acid","115-28-6","DTXSID2020268","TP0001649F01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Clodinafop-propargyl","Clodinafop-propargyl","Clodinafop-propargyl","105512-06-9","DTXSID6032354","TP0001649C01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Cloprop","Cloprop","Cloprop","101-10-0","DTXSID9034232","TP0001649D06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Clothiandin","Clothianidin","Clothianidin","210880-92-5","DTXSID2034465","TP0001649F07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","Clove leaf oil","Clove leaf oil","Clove leaf oil","8000-34-8","DTXSID8044175","TP0001649E02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Cyfluthrin","Cyfluthrin","Cyfluthrin","68359-37-5","DTXSID5035957","TP0001649F02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Cymoxanil","Cymoxanil","Cymoxanil","57966-95-7","DTXSID6032358","TP0001649H09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","D-Mannitol","D-Mannitol","D-Mannitol","69-65-8","DTXSID1023235","TP0001649B08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Diphenhydramine","Diphenhydramine hydrochloride","Diphenhydramine hydrochloride","147-24-0","DTXSID4020537","TP0001649G01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","these names are listed in the same chemical row in the Shafer 2019 paper as the PREFERRED_NAME and Common name"
+"ToxCast2016","Disulfiram - ToxCast G-8","Disulfiram","Disulfiram","97-77-8","DTXSID1021322","TP0001649E11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","this compound was tested in both the NTP and Toxcast groups. "
+"ToxCast2016","Disulfoton","Disulfoton","Disulfoton","298-04-4","DTXSID0022018","TP0001649F06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","EPTC","EPTC","EPTC","759-94-4","DTXSID1024091","TP0001649A04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Enadoline","Enadoline","Enadoline","124378-77-4","DTXSID4047258","TP0001649C12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Endosulfan","Endosulfan","Endosulfan","115-29-7","DTXSID1020560","TP0001649G06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Endrin","Endrin","Endrin","72-20-8","DTXSID6020561","TP0001649G09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Erythromycin","Erythromycin","Erythromycin","114-07-8","DTXSID4022991","TP0001649D07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Esfenvalerate","Esfenvalerate","Esfenvalerate","66230-04-4","DTXSID4032667","TP0001649C10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Etofenprox","Etofenprox","Etofenprox","80844-07-1","DTXSID9032610","TP0001649H10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Eugenol","Eugenol","Eugenol","97-53-0","DTXSID9020617","TP0001649B10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","FR140423","FR140423","FR140423","151506-44-4","DTXSID6048175","TP0001649H06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Fenamiphos","Fenamiphos","Fenamiphos","22224-92-6","DTXSID3024102","TP0001649D05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Fenitrothion","Fenitrothion","Fenitrothion","122-14-5","DTXSID4032613","TP0001649F08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Fenpropathrin","Fenpropathrin","Fenpropathrin","39515-41-8","DTXSID0024002","TP0001649B05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Flufenacet","Flufenacet","Flufenacet","142459-58-3","DTXSID2032552","TP0001649F04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Fluorene","Fluorene","Fluorene","86-73-7","DTXSID8024105","TP0001649H04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Fluoxastrobin","Fluoxastrobin","Fluoxastrobin","361377-29-9","DTXSID2034625","TP0001649C07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Folic acid","Folic acid","Folic acid","59-30-3","DTXSID0022519","TP0001649H05","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Glycerol","Glycerol","Glycerol","56-81-5","DTXSID9020663","TP0001649C06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","HPTE","2,2-Bis(4-hydroxyphenyl)-1,1,1-trichloroethane","2,2-Bis(4-hydroxyphenyl)-1,1,1-trichloroethane","2971-36-0","DTXSID8022325","TP0001649F03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","these names are listed in the same chemical row in the Shafer 2019 paper as teh PREFERRED_NAME and Common name"
+"ToxCast2016","IPBC","3-Iodo-2-propynyl-N-butylcarbamate","3-Iodo-2-propynyl-N-butylcarbamate","55406-53-6","DTXSID0028038","TP0001649E01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","these names are listed in the same chemical row in the Shafer 2019 paper Table 1 as the PREFERRED_NAME and Common name"
+"ToxCast2016","Kepone","Kepone","Kepone","143-50-0","DTXSID1020770","TP0001649G12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Lovastatin","Lovastatin","Lovastatin","75330-75-5","DTXSID5020784","TP0001649D08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","MGK 264","MGK-264","MGK-264","113-48-4","DTXSID6032562","TP0001649H11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","Mancozeb","Mancozeb","Mancozeb","8018-01-7","DTXSID0034695","TP0001649B02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Mercuric chloride","Mercuric chloride","Mercuric chloride","7487-94-7","DTXSID5020811","TP0001649C11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Methadone","Methadone hydrochloride","Methadone hydrochloride","1095-90-5","DTXSID2020501","TP0001649D10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","these names are listed in the same chemical row in the Shafer 2019 paper as teh PREFERRED_NAME and Common name"
+"ToxCast2016","Methimazole","Methimazole","Methimazole","60-56-0","DTXSID4020820","TP0001649D01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Methoxychlor","Methoxychlor","Methoxychlor","72-43-5","DTXSID9020827","TP0001649E06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Mirex","Mirex","Mirex","2385-85-5","DTXSID7020895","TP0001649A02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Molinate","Molinate","Molinate","2212-67-1","DTXSID6024206","TP0001649A10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Parathion","Parathion","Parathion","56-38-2","DTXSID7021100","TP0001649B11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Perfluoroundecanoic acid - TP0001411","Perfluoroundecanoic acid","Perfluoroundecanoic acid","2058-94-8","DTXSID8047553","TP0001411E11","TP0001411","EPA_11024_TShafer_384ph2_75ul_13May2015.xlsx",""
+"ToxCast2016","PharmaGSID_47330","PharmaGSID_47330","PharmaGSID_47330","NOCAS_47330","DTXSID9047330","TP0001649B06","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Phenanthrene","Phenanthrene","Phenanthrene","85-01-8","DTXSID6024254","TP0001649D02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Phenylmercuric acetate","Phenylmercuric acetate","Phenylmercuric acetate","62-38-4","DTXSID7021150","TP0001649D11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Picoxystrobin","Picoxystrobin","Picoxystrobin","117428-22-5","DTXSID9047542","TP0001649A07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Piperonyl butoxide","Piperonyl butoxide","Piperonyl butoxide","51-03-6","DTXSID1021166","TP0001649A08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Prallethrin","Prallethrin","Prallethrin","23031-36-9","DTXSID0032572","TP0001649F10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Pravastatin","Pravastatin sodium","Pravastatin sodium","81131-70-6","DTXSID6047525","TP0001649E12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","Pravastatin was not used in this dataset, only Pravastain sodium"
+"ToxCast2016","Pravastin sodium","Pravastatin sodium","Pravastatin sodium","81131-70-6","DTXSID6047525","TP0001649E12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","Pravastatin was not used in this dataset, only Pravastain sodium"
+"ToxCast2016","Pyraclostrobin","Pyraclostrobin","Pyraclostrobin","175013-18-0","DTXSID7032638","TP0001649F09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Reserpine","Reserpine","Reserpine","50-55-5","DTXSID7021237","TP0001649A03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Resmethrin","Resmethrin","Resmethrin","10453-86-8","DTXSID7022253","TP0001649B12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Rotenone - ToxCast G-8","Rotenone","Rotenone","83-79-4","DTXSID6021248","TP0001649H01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","this compound was tested in both the NTP and Toxcast groups."
+"ToxCast2016","S-Bioallethrin","S-Bioallethrin","S-Bioallethrin","28434-00-6","DTXSID2039336","TP0001649B01","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Simvastatin","Simvastatin","Simvastatin","79902-63-9","DTXSID0023581","TP0001649C08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Spirodiclofen","Spirodiclofen","Spirodiclofen","148477-71-8","DTXSID6034928","TP0001649D12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","TBHQ","tert-Butylhydroquinone","tert-Butylhydroquinone","1948-33-0","DTXSID6020220","TP0001649C03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","these names are listed in the same chemical row in the Shafer 2019 paper as teh PREFERRED_NAME and Common name"
+"ToxCast2016","Tamoxifen","Tamoxifen","Tamoxifen","10540-29-1","DTXSID1034187","TP0001649B03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Tefluthrin","Tefluthrin","Tefluthrin","79538-32-2","DTXSID5032577","TP0001649E08","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Tetracycline","Tetracycline","Tetracycline","60-54-8","DTXSID7023645","TP0001649E03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Tetramethrin","Tetramethrin","Tetramethrin","7696-12-0","DTXSID6032649","TP0001649A11","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Thiacloprid","Thiacloprid","Thiacloprid","111988-49-9","DTXSID7034961","TP0001649E07","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Thiamethoxam","Thiamethoxam","Thiamethoxam","153719-23-4","DTXSID2034962","TP0001649E10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Tributyltin chloride","Tributyltin chloride","Tributyltin chloride","1461-22-9","DTXSID3027403","TP0001649C09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Tributyltin methylacrylate","Tributyltin methacrylate","Tributyltin methacrylate","2155-70-6","DTXSID9035204","TP0001649D04","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx","'Tributyltin methylacrylate' does not seem to be a chemical at all"
+"ToxCast2016","Triclosan","Triclosan","Triclosan","3380-34-5","DTXSID5032498","TP0001649H12","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Trifloxystrobin","Trifloxystrobin","Trifloxystrobin","141517-21-7","DTXSID4032580","TP0001649G10","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Triphenyl phosphite","Triphenyl phosphite","Triphenyl phosphite","101-02-0","DTXSID0026252","TP0001649E09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",NA
+"ToxCast2016","Valinomycin - NTP","Valinomycin","Valinomycin","2001-95-8","DTXSID9041150","EX000362",NA,"Copy of NTP91_Compounds_4NHEERL_MEA_dev_cg.xlsx",""
+"ToxCast2016","op-DDT","o,p'-DDT","o,p'-DDT","789-02-6","DTXSID6022345","TP0001649G03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","pp-DDD","p,p'-DDD","p,p'-DDD","72-54-8","DTXSID4020373","TP0001649A09","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","pp-DDE","p,p'-DDE","p,p'-DDE","72-55-9","DTXSID9020374","TP0001649C02","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""
+"ToxCast2016","pp-DDT","p,p'-DDT","p,p'-DDT","50-29-3","DTXSID4020375","TP0001649D03","TP0001649","EPA_12088_EPA-Shafer_96misc_75ul_20160826_key.xlsx",""

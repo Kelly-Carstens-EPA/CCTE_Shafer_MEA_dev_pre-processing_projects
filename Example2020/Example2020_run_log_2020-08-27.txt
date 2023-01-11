@@ -1,0 +1,93 @@
+Output from the script run_me_Example2020.R
+Date: 2020-08-27 
+USER INPUT settings:
+$dataset_title
+[1] "Example2020"
+
+$default_ControlTreatmentName
+[1] "DMSO"
+
+$different_vehicleControlCompounds
+NULL
+
+$different_vehicleControls
+NULL
+
+$pause_between_steps
+[1] FALSE
+
+$root_output_dir
+[1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl"
+
+$save_notes_graphs
+[1] TRUE
+
+$scripts.dir
+[1] "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R"
+
+$spid_sheet
+[1] "Worksheet1 (2)"
+
+$spidmap_file
+[1] "L:/Lab/NHEERL_MEA/Project PFAS 2018/EPA_9238_EPA-Shafer_75_20180511_key_MW Waste Calculations.xlsx"
+
+
+- Select files for files_log:
+2 files already exist.
+- Create h5 files:
+20 files already exist.
+- Calculate the components:
+6 files already exist.
+- Calculate the Mutual Information:
+6 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( Example2020_AUC.csv )
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( Example2020_cytotox.csv )
+'source_steps.R' is complete.
+Checking conc's:
+
+All compounds are assumed to have conc's 0.03 0.1 0.3 1 3 10 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+All compounds have the expected concetration-corrected values
+Example2020_longfile.csv is ready
+
+Final Checks
+Number of cultures dates: 2
+Range of culture dates: 20180801 20180815
+Number of plates tested: 6
+Number of compounds tested: 12
+Any NA rvals? Empty data.table (0 rows and 2 cols): wllq,N
+
+Wllq breakdown:
+   wllq    N
+1:    0  912
+2:    1 4560
+Number of unique acsn's present: 19 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                              acsn    min median   max
+ 1:                           CCTE_Shafer_MEA_dev_firing_rate_mean    2.2    6.7    20
+ 2:                                 CCTE_Shafer_MEA_dev_burst_rate    3.4     12    35
+ 3:              CCTE_Shafer_MEA_dev_per_burst_interspike_interval    0.1   0.32  0.99
+ 4:                    CCTE_Shafer_MEA_dev_per_burst_spike_percent    142    262   479
+ 5:                        CCTE_Shafer_MEA_dev_burst_duration_mean    1.3    3.3   108
+ 6:                   CCTE_Shafer_MEA_dev_interburst_interval_mean     80    210   531
+ 7:                   CCTE_Shafer_MEA_dev_active_electrodes_number     23     60    90
+ 8:                 CCTE_Shafer_MEA_dev_bursting_electrodes_number     16     45    76
+ 9:                       CCTE_Shafer_MEA_dev_network_spike_number     20     97   764
+10:                         CCTE_Shafer_MEA_dev_network_spike_peak     23     43    76
+11:                        CCTE_Shafer_MEA_dev_spike_duration_mean   0.44   0.71   1.7
+12:            CCTE_Shafer_MEA_dev_per_network_spike_spike_percent    6.8     28    64
+13: CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean     31    222  2112
+14:                 CCTE_Shafer_MEA_dev_network_spike_duration_std  0.053   0.24  0.68
+15:        CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean     68    140   302
+16:               CCTE_Shafer_MEA_dev_correlation_coefficient_mean  0.047   0.38   1.1
+17:                    CCTE_Shafer_MEA_dev_mutual_information_norm 0.0008 0.0075 0.028
+18:                                         CCTE_Shafer_MEA_dev_AB  13085  20013 35968
+19:                                        CCTE_Shafer_MEA_dev_LDH   0.61   0.86   1.4

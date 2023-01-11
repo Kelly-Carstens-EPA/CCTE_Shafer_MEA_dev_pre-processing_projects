@@ -1,0 +1,25 @@
+Discovered the location of the data from Brown et al 2016 via this file: o	L:\Lab\NHEERL_MEA\Jasmine\Location of Data.docx
+
+File name: Final_Data_Set_SA1_DNT_Paper1 (2)(updated).csv
+File taken from: L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\Prepared Data (Brown et al. 2016)
+
+h5files 
+23 file total
+Total from the base folder L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1
+\[culture date] Ontogeny\h5Files
+20140205 MW1007-26 - 4 files
+20140212 MW1007-27 - 4 files
+20140402 MW1007-27 - 4 files
+20140423 MW1007-38 - 4 files
+20140716 MW1007-26 - 4 files
+20140730 MW1007-104 - 3 files (DIV 9 is missing)
+No h5Files labelled 12_01 are included. I am assuming that these correspond to Bicuculline-treated wells. No recordings corresponding to DIV 2 were included either.
+
+Location of Sourced Cytotoxicity data:
+The summary files (named as ON_date_MWplateSummary.xlsx) were taken from the following folders:
+20140205 - L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140205 Ontogeny
+20140212 - L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140212 Ontogeny
+20140402 - L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140402 Ontogeny
+20140423 - L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140423 Ontogeny
+20140716 - L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140716 Ontogeny
+20140730 - L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Specific Aim 1\20140730 Ontogeny

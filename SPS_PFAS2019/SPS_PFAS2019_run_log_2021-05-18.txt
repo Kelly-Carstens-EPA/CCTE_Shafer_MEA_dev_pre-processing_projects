@@ -1,0 +1,298 @@
+Output from the script run_me_SPS_PFAS2019.R
+Date Ran: 2021-05-18 
+R version 3.6.1 (2019-07-05) 
+USER INPUT settings:
+                                                                 copy_maestro_exp_log_treatments 
+                                                                                         "FALSE" 
+                                                                                   dataset_title 
+                                                                                  "SPS_PFAS2019" 
+                                                                    default_ControlTreatmentName 
+                                                                                          "DMSO" 
+                                                                             pause_between_steps 
+                                                                                          "TRUE" 
+                                                                                 root_output_dir 
+                                  "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                               save_notes_graphs 
+                                                                                          "TRUE" 
+                                                                                     scripts.dir 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                      spid_sheet 
+                                                                                              "" 
+                                                                                    spidmap_file 
+                                                                                              "" 
+                                                                     update_concs_without_prompt 
+                                                                                          "TRUE" 
+
+- Select files for files_log:
+1 files already exist. ( SPS_PFAS2019_files_log_2020-12-24.txt )
+- Create h5 files:
+40 files already exist.
+- Calculate the components:
+10 files already exist.
+- Calculate the Mutual Information:
+10 files already exist.
+- Check over component values by DIV, calculate AUC:
+1 files already exist. ( SPS_PFAS2019_AUC.csv )
+Starting AUC preparations...
+Got 10 parameter csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/SPS_PFAS2019/prepared_data 
+Got 10 MI csv files from L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/SPS_PFAS2019/All_MI 
+
+Updating wllq...
+The following data rows will be removed because wllq==0 and DIV is not 'all':
+Empty data.table (0 rows and 12 cols): date,Plate.SN,well,DIV,full_id,trt...
+Wllq summary:
+   wllq                                                                                                                                      wllq_notes
+1:    1                                                            Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC; 
+2:    1 Momentarily misdosed on DIV5, then aspirated and redosed;  Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC; 
+3:    1                                                                                                                                                
+   number_of_well_recordings
+1:                       512
+2:                        64
+3:                      1344
+Empty data.table (0 rows and 10 cols): date,Plate.SN,well,trt,dose,DIV...
+
+Checking for any DIV other than 5 7 9 12 ...
+
+Checking that every plate has a recording for DIV 5 7 9 12 ...
+Every well has data from DIVs 5 7 9 12 
+
+SPS_PFAS2019_AUC.csv is ready
+
+- Extract the cytotoxicity data from Calculations files:
+1 files already exist. ( SPS_PFAS2019_cytotox.csv )
+Starting cytotoxicity data collection...
+Any negative blank-corrected values will be set to 0.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 4 Calculations files.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 0 Summary files.
+
+Reading from SPS_PFAS2019_files_log_2020-12-24.txt...
+Got 10 MaestroExperimentLog files.
+MW71-7107 AB 
+MW71-7108 AB 
+MW71-7109 AB 
+MW71-7107 LDH 
+MW71-7108 LDH 
+MW71-7109 LDH 
+MW71-7211 AB 
+MW71-7213 AB 
+MW71-7214 AB 
+MW71-7211 LDH 
+MW71-7213 LDH 
+MW71-7214 LDH 
+MW71-7215 AB 
+MW71-7217 AB 
+MW72-8203 AB 
+MW71-7215 LDH 
+MW71-7217 LDH 
+MW72-8203 LDH 
+MW72-8207 AB 
+MW72-8207 LDH 
+Wllq summary:
+   src_acsn wllq
+1:       AB    1
+2:       AB    1
+3:       AB    1
+4:      LDH    0
+5:      LDH    1
+6:      LDH    1
+7:      LDH    1
+                                                                                                                                      wllq_notes   N
+1:                                                                                                                                               336
+2:                                                            Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC 128
+3: Momentarily misdosed on DIV5, then aspirated and redosed;  Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC  16
+4:                                                                                    Exceptionally high optical density values in control wells  48
+5:                                                                                                                                               288
+6:                                                            Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC 128
+7: Momentarily misdosed on DIV5, then aspirated and redosed;  Incubator CO2 supply cutoff for a period of time during DIV10 8 DIV11. 11.30.20 SC  16
+SPS_PFAS2019_cytotox.csv is ready
+
+'source_steps.R' is complete.
+long-format data is ready.
+[1] "DMSO"     "Media"    "3360 G12"
+                 apid rowi coli                                             srcf conc
+1: 20201209_MW71-7211    1    6 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   30
+2: 20201209_MW71-7213    2    6 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   30
+3: 20201209_MW71-7214    3    6 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   30
+4: 20201209_MW71-7211    1    6               SPS_PFAS2019_parameters_by_DIV.csv    0
+5: 20201209_MW71-7213    2    6               SPS_PFAS2019_parameters_by_DIV.csv    0
+6: 20201209_MW71-7214    3    6               SPS_PFAS2019_parameters_by_DIV.csv    0
+7: 20201209_MW71-7211    1    6                             SPS_PFAS2019_AUC.csv    0
+8: 20201209_MW71-7213    2    6                             SPS_PFAS2019_AUC.csv    0
+9: 20201209_MW71-7214    3    6                             SPS_PFAS2019_AUC.csv    0
+[1] "DMSO"  "Media"
+[1] "n"
+Empty data.table (0 rows and 3 cols): apid,rowi,coli
+Empty data.table (0 rows and 6 cols): apid,srcf,rowi,coli,conc,V1
+   conc                                             srcf   N
+1:   30 20201118_NFA_PFAS_Group_1_SPS__Calculations.xlsx   6
+2:   30               SPS_PFAS2019_parameters_by_DIV.csv 680
+3:   30                             SPS_PFAS2019_AUC.csv 170
+4:   30 20201209_NFA_PFAS_Group_2_SPS__Calculations.xlsx   6
+5:   30 20201209_NFA_PFAS_Group_3_SPS__Calculations.xlsx   6
+6:   30 20201209_NFA_PFAS_Group_4_SPS__Calculations.xlsx   2
+[1] "3360" "3361" "3612"
+[1] "mM"
+[1] 30  5 20 10
+   treatment       spid
+1:  3360 A01 1210309389
+2:  3360 A02 1210314354
+3:  3360 A03 1210314362
+4:  3360 A04 1210314370
+5:  3360 A05 1210314378
+6:  3360 A06 1210314386
+[1] "DMSO"      "Media"     "Bisphenol"
+Empty data.table (0 rows and 2 cols): treatment,N
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+character(0)
+Empty data.table (0 rows and 4 cols): spid,treatment,srcf,V1
+Empty data.table (0 rows and 2 cols): spid,V1
+Checking conc's:
+
+All compounds are assumed to have conc's 30 
+(You can change this by updating the argument 'expected_target_concs' of the function confirm_concs()).
+
+FYI, the following stock conc's pulled from invitrodb do not match the expected stock conc:
+Empty data.table (0 rows and 7 cols): spid,treatment,stkc,expected_stock_conc,spidmap_guess_concs,source_concs...
+The concentrations for the following compounds might need to be corrected:
+          spid stkc expected_stock_conc spidmap_guess_concs treatment source_concs num_concs
+ 1: 1208990398   10                  10                  30  3612 D02           10         1
+ 2: 1208990403   10                  10                  30  3612 A03           10         1
+ 3: 1208990411   10                  10                  30  3612 A04           10         1
+ 4: 1208990413   10                  10                  30  3612 C04           10         1
+ 5: 1210313675   20                  20                  30  3361 B01           20         1
+ 6: 1210313676   10                  10                  30  3361 C01           10         1
+ 7: 1210313677   10                  10                  30  3361 D01           10         1
+ 8: 1210313678   10                  10                  30  3361 E01           10         1
+ 9: 1210313679   10                  10                  30  3361 F01           10         1
+10: 1210313680   10                  10                  30  3361 G01           10         1
+11: 1210313681   10                  10                  30  3361 H01           10         1
+12: 1210313706    5                   5                  30  3361 A05            5         1
+13: 1210313707    5                   5                  30  3361 B05            5         1
+14: 1210313708    5                   5                  30  3361 C05            5         1
+15: 1210313709    5                   5                  30  3361 D05            5         1
+16: 1210313710    5                   5                  30  3361 E05            5         1
+17: 1210313711    5                   5                  30  3361 F05            5         1
+Correcting conc's...
+[1] "conc's that changed:\n"
+Empty data.table (0 rows and 6 cols): treatment,spid,stkc,expected_stock_conc,concs_in_source_dat,conc_updated
+
+Final Checks
+Number of cultures dates: 2
+Range of culture dates: 20201118 20201209
+Number of plates tested: 10
+Number of compounds tested: 131
+Any NA rvals?
+   wllq    N
+1:    1 6884
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 41712
+2:    0    48
+Number of unique acsn's present: 87 
+The following plates don't have the expected number of points (48):
+(all plates have the expected number of points for each assay component)
+
+Apid/acsn pairs without 6 control wells:
+Empty data.table (0 rows and 3 cols): acsn,apid,N
+
+Range of rval's by acsn:
+                                                             acsn     min   median      max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB     447    26875    45113      0
+ 2:                                       CCTE_Shafer_MEA_dev_LDH       0     0.64      1.9      0
+ 3:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       52      112      0
+ 4:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       13       16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        0        8      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        4       15      0
+ 7:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0        9       16      0
+ 8:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      3.7      137      0
+ 9:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.14     0.54       14     50
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5     0.2     0.78       12    439
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.16     0.89       68    178
+12:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.17      0.8       49    133
+13:                                CCTE_Shafer_MEA_dev_burst_rate       0      5.9       35      0
+14:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      1.1      9.7      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0      5.8      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0     0.56      7.5      0
+17:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0     0.58        6      0
+18:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       25       90      0
+19:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       12       16      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0        2      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        1       12      0
+22:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0        2       16      0
+23:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0048     0.87      2.2      0
+24:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 -0.0028     0.34     0.62      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0064        0     0.09      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0035   0.0014    0.088      0
+27:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0041     0.14      0.6      0
+28:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      5.6       34      0
+29:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      0.7      9.4      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0        0      5.1      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.88      8.7      0
+32:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0     0.63      5.8      0
+33:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      628     2748      0
+34:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12       2       62      601     42
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5     Inf       NA     -Inf    480
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7     6.5      275      785    362
+37:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9      23      194      804     65
+38:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      206      715      0
+39:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     1.2       57      122     50
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.6       30      116    439
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7     1.1       26      101    178
+42:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     1.9       46      117    133
+43:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0    0.012    0.052      0
+44:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0   0.0064     0.02      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.000027      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000004   0.0024      0
+47:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0  0.00086   0.0099      0
+48:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.22      1.4      0
+49:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12 0.00034    0.073     0.39     42
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5     Inf       NA     -Inf    480
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.025     0.21    362
+52:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9       0    0.044     0.35     65
+53:                      CCTE_Shafer_MEA_dev_network_spike_number       0       30      389      0
+54:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       13      241      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0        0      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        0       29      0
+57:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0        4       39      0
+58:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       58       95      0
+59:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12       5       13       16     36
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     Inf       NA     -Inf    480
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       10       16    302
+62:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       14       16     44
+63:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.31      1.2      0
+64:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12    0.01    0.022     0.12     50
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.016     0.14     0.27    439
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7    0.02      0.1     0.25    178
+67:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9    0.01    0.056     0.17    133
+68:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      249      644      0
+69:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       77       99      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0       99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       15      100      0
+72:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       38       97      0
+73:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      403      954      0
+74: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12      16       98      213     36
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5     Inf       NA     -Inf    480
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       29      142    302
+77:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9      11       98      196     44
+78:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       43      167      0
+79:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       17       51      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0        0      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0        0       18      0
+82:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0      6.4       41      0
+83:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0      1.1      2.8      0
+84:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.053     0.24     0.64     36
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5     Inf       NA     -Inf    480
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.054     0.12     0.51    302
+87:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.062     0.27      0.7     44
+                                                             acsn     min   median      max num_NA
+[1] 0
+     treatment rep_count
+1: Bisphenol A        10
+2:        DMSO        60
+3:       Media        17
+Empty data.table (0 rows and 14 cols): spid,treatment,mea_treatment_name,apid,rowi,coli...

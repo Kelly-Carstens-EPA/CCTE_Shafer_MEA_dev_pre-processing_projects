@@ -1,0 +1,411 @@
+Output from the script run_me_Brown2014.R
+Date: 2020-11-10 
+USER INPUT settings:
+                                                                                                      dataset_title 
+                                                                                                        "Brown2014" 
+                                                                                       default_ControlTreatmentName 
+                                                                                                             "DMSO" 
+                                                                                                pause_between_steps 
+                                                                                                             "TRUE" 
+                                                                                                    root_output_dir 
+                                                     "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl" 
+                                                                                                  save_notes_graphs 
+                                                                                                             "TRUE" 
+                                                                                                        scripts.dir 
+                   "L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/nfa-spike-list-to-mc0-r-scripts/R" 
+                                                                                                         spid_sheet 
+                                                                                                                "1" 
+                                                                                                       spidmap_file 
+"L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/Sample IDs/EPA_ES203_EPA-Shafer_42_20200110_key.xlsx" 
+                                                                                        update_concs_without_prompt 
+                                                                                                             "TRUE" 
+long-format data is ready.
+              treatment    N
+1:        Acetaminophen 2752
+2: Bisindolymaleimide 1 5504
+3:          Domoic Acid 2752
+4:           Loperamide 2752
+5:           Mevastatin 2752
+6: Sodium Orthovanadate 5504
+7:           Glyphosate 2752
+              treatment rowi
+1:        Acetaminophen    1
+2:          Domoic Acid    3
+3: Sodium Orthovanadate    6
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140205_MW1007-26      DMSO    1    1    0
+2: 20140205_MW1007-26      DMSO    1    8    0
+3: 20140205_MW1007-26      DMSO    3    1    0
+4: 20140205_MW1007-26      DMSO    3    8    0
+5: 20140205_MW1007-26      DMSO    6    1    0
+6: 20140205_MW1007-26      DMSO    6    8    0
+              treatment rowi
+1:        Acetaminophen    1
+2:          Domoic Acid    3
+3: Sodium Orthovanadate    6
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140212_MW1007-27      DMSO    1    1    0
+2: 20140212_MW1007-27      DMSO    1    8    0
+3: 20140212_MW1007-27      DMSO    3    1    0
+4: 20140212_MW1007-27      DMSO    3    8    0
+5: 20140212_MW1007-27      DMSO    6    1    0
+6: 20140212_MW1007-27      DMSO    6    8    0
+              treatment rowi
+1:        Acetaminophen    1
+2:          Domoic Acid    3
+3: Sodium Orthovanadate    6
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140402_MW1007-27      DMSO    1    1    0
+2: 20140402_MW1007-27      DMSO    1    8    0
+3: 20140402_MW1007-27      DMSO    3    1    0
+4: 20140402_MW1007-27      DMSO    3    8    0
+5: 20140402_MW1007-27      DMSO    6    1    0
+6: 20140402_MW1007-27      DMSO    6    8    0
+              treatment rowi
+1:        Acetaminophen    1
+2:          Domoic Acid    3
+3: Sodium Orthovanadate    6
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140423_MW1007-38      DMSO    1    1    0
+2: 20140423_MW1007-38      DMSO    1    8    0
+3: 20140423_MW1007-38      DMSO    3    1    0
+4: 20140423_MW1007-38      DMSO    3    8    0
+5: 20140423_MW1007-38      DMSO    6    1    0
+6: 20140423_MW1007-38      DMSO    6    8    0
+              treatment rowi
+1:           Glyphosate    1
+2:           Glyphosate    4
+3: Sodium Orthovanadate    3
+4: Sodium Orthovanadate    6
+Control treatment will be updated to Water for the following wells:
+                 apid treatment rowi coli conc
+1: 20140716_MW1007-26      DMSO    1    1    0
+2: 20140716_MW1007-26      DMSO    3    1    0
+3: 20140716_MW1007-26      DMSO    4    1    0
+4: 20140716_MW1007-26      DMSO    6    1    0
+              treatment rowi
+1:           Glyphosate    2
+2:           Glyphosate    5
+3: Sodium Orthovanadate    3
+4: Sodium Orthovanadate    6
+Control treatment will be updated to Water for the following wells:
+                  apid treatment rowi coli conc
+1: 20140730_MW1007-104      DMSO    2    1    0
+2: 20140730_MW1007-104      DMSO    3    1    0
+3: 20140730_MW1007-104      DMSO    5    1    0
+4: 20140730_MW1007-104      DMSO    6    1    0
+   rowi   N
+1:    2 602
+2:    5 602
+   rowi                apid   N
+1:    1  20140716_MW1007-26 602
+2:    4  20140716_MW1007-26 602
+3:    2 20140730_MW1007-104 602
+4:    5 20140730_MW1007-104 602
+    treatment rowi   N
+ 1:     Water    1 774
+ 2:      DMSO    2 860
+ 3:     Water    3 860
+ 4:      DMSO    4 860
+ 5:      DMSO    5 860
+ 6:     Water    6 860
+ 7:     Water    4  86
+ 8:      DMSO    1 172
+ 9:     Water    2  86
+10:     Water    5  86
+   ALIQUOT_PLATE_BARCODE ALIQUOT_WELL_ID ALIQUOT_CONCENTRATION ALIQUOT_CONCENTRATION_UNIT TARGET_CONCENTRATION TARGET_CONCENTRATION_UNIT EPA_SAMPLE_ID ALIQUOT_VOLUME ALIQUOT_VOLUME_UNIT
+1:             DNT_EXTRA               1                   100                         mM                  100                        mM      EX000474            100                  uL
+2:             DNT_EXTRA              10                   100                         mM                  100                        mM      EX000483            100                  uL
+3:             DNT_EXTRA              11                   100                         mM                  100                        mM      EX000484            100                  uL
+4:             DNT_EXTRA              12                   100                         mM                  100                        mM      EX000485            100                  uL
+5:             DNT_EXTRA              13                   100                         mM                  100                        mM      EX000486            100                  uL
+6:             DNT_EXTRA              14                   100                         mM                  100                        mM      EX000487            100                  uL
+   ALIQUOT_SOLVENT ALIQUOT_DATE BOTTLE_ID         DTXSID      CASRN PREFERRED_NAME
+1:               -            -  EX000474  DTXSID8023846 30560-19-1       Acephate
+2:               -            -  EX000483  DTXSID5037523   962-58-3       Diazoxon
+3:               -            -  EX000484  DTXSID5020449    62-73-7     Dichlorvos
+4:               -            -  EX000485  DTXSID9023914   141-66-2    Dicrotophos
+5:               -            -  EX000486  DTXSID7020479    60-51-5     Dimethoate
+6:               -            -  EX000487 DTXSID20274180 14277-97-5  L-Domoic acid
+[1] "mM"
+   ALIQUOT_PLATE_BARCODE ALIQUOT_WELL_ID stock_conc ALIQUOT_CONCENTRATION_UNIT expected_stock_conc TARGET_CONCENTRATION_UNIT     spid ALIQUOT_VOLUME ALIQUOT_VOLUME_UNIT ALIQUOT_SOLVENT
+1:             DNT_EXTRA              26        100                         mM                 100                        mM EX000499            100                  uL               -
+   ALIQUOT_DATE BOTTLE_ID        DTXSID      CASRN            treatment
+1:            -  EX000499 DTXSID2037269 13721-39-6 Sodium orthovanadate
+                                                                                                 treatment   mea_treatment_name    N
+1:                                                                                           Acetaminophen        Acetaminophen 2064
+2:                                                                                   Bisindolylmaleimide 1 Bisindolymaleimide 1 4128
+3:                                                                                                    DMSO                 DMSO 2752
+4:                                                                                             Domoic Acid          Domoic Acid 2064
+5: 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride           Loperamide 2064
+6:                                                                                              Mevastatin           Mevastatin 2064
+7:                                                                                    Sodium orthovanadate Sodium Orthovanadate 4472
+8:                                                                                                   Water                Water 2752
+             spid                                                                                               treatment stock_conc expected_stock_conc
+ 1:      EX000411 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride         20                  20
+ 2: MEA20201109A6                                                                                           Acetaminophen        100                 100
+ 3:      EX000475                                                                          Bisindolylmaleimide 1_20140205         10                  10
+ 4:      EX000475                                                                          Bisindolylmaleimide 1_20140212         10                  10
+ 5: MEA20201109A1                                                                          Bisindolylmaleimide 1_20140402         10                  10
+ 6: MEA20201109A1                                                                          Bisindolylmaleimide 1_20140423         10                  10
+ 7: MEA20201109A2                                                                          Bisindolylmaleimide 1_20140716         10                  10
+ 8: MEA20201109A2                                                                          Bisindolylmaleimide 1_20140730         10                  10
+ 9:      EX000487                                                                                             Domoic Acid         10                  10
+10:      EX000498                                                                                              Mevastatin         30                  30
+11:      EX000499                                                                                    Sodium orthovanadate        100                 100
+               treatment               apid rowi coli num_unique_concs_in_well
+ 1:        Acetaminophen 20140212_MW1007-27    1    6                        2
+ 2:        Acetaminophen 20140212_MW1007-27    1    7                        2
+ 3:          Domoic Acid 20140212_MW1007-27    3    2                        2
+ 4:          Domoic Acid 20140212_MW1007-27    3    3                        2
+ 5:          Domoic Acid 20140212_MW1007-27    3    4                        2
+ 6:          Domoic Acid 20140212_MW1007-27    3    5                        2
+ 7:          Domoic Acid 20140212_MW1007-27    3    6                        2
+ 8:          Domoic Acid 20140212_MW1007-27    3    7                        2
+ 9:          Domoic Acid 20140402_MW1007-27    3    2                        2
+10:          Domoic Acid 20140402_MW1007-27    3    3                        2
+11:          Domoic Acid 20140402_MW1007-27    3    4                        2
+12:          Domoic Acid 20140402_MW1007-27    3    5                        2
+13:          Domoic Acid 20140402_MW1007-27    3    6                        2
+14:          Domoic Acid 20140402_MW1007-27    3    7                        2
+15:          Domoic Acid 20140423_MW1007-38    3    2                        2
+16:          Domoic Acid 20140423_MW1007-38    3    3                        2
+17:          Domoic Acid 20140423_MW1007-38    3    4                        2
+18:          Domoic Acid 20140423_MW1007-38    3    5                        2
+19:          Domoic Acid 20140423_MW1007-38    3    6                        2
+20:          Domoic Acid 20140423_MW1007-38    3    7                        2
+21: Sodium orthovanadate 20140212_MW1007-27    6    2                        2
+22: Sodium orthovanadate 20140212_MW1007-27    6    3                        2
+23: Sodium orthovanadate 20140212_MW1007-27    6    4                        2
+24: Sodium orthovanadate 20140212_MW1007-27    6    5                        2
+25: Sodium orthovanadate 20140212_MW1007-27    6    6                        2
+26: Sodium orthovanadate 20140212_MW1007-27    6    7                        2
+27: Sodium orthovanadate 20140402_MW1007-27    6    2                        2
+28: Sodium orthovanadate 20140402_MW1007-27    6    3                        2
+29: Sodium orthovanadate 20140402_MW1007-27    6    4                        2
+30: Sodium orthovanadate 20140402_MW1007-27    6    5                        2
+31: Sodium orthovanadate 20140402_MW1007-27    6    6                        2
+32: Sodium orthovanadate 20140402_MW1007-27    6    7                        2
+33: Sodium orthovanadate 20140423_MW1007-38    6    2                        2
+34: Sodium orthovanadate 20140423_MW1007-38    6    3                        2
+35: Sodium orthovanadate 20140423_MW1007-38    6    4                        2
+36: Sodium orthovanadate 20140423_MW1007-38    6    5                        2
+37: Sodium orthovanadate 20140423_MW1007-38    6    6                        2
+38: Sodium orthovanadate 20140423_MW1007-38    6    7                        2
+               treatment               apid rowi coli num_unique_concs_in_well
+[1] "Acetaminophen"        "Domoic Acid"          "Sodium orthovanadate"
+              treatment                                    V1
+1:        Acetaminophen                     0.1,0.3,1,3,10,30
+2:          Domoic Acid 3e-04,0.001,0.003,0.01,0.03,0.1,0.3,1
+3: Sodium orthovanadate           0.01,0.03,0.1,0.3,1,3,10,30
+                  apid            treatment rowi coli   AUC  Calc   DIV
+ 1: 20140212_MW1007-27        Acetaminophen    1    6 30.00 1e+01 30.00
+ 2: 20140212_MW1007-27        Acetaminophen    1    7 10.00 3e+01 10.00
+ 3: 20140212_MW1007-27          Domoic Acid    3    3  0.01 1e-03  0.01
+ 4: 20140212_MW1007-27          Domoic Acid    3    4  0.03 3e-03  0.03
+ 5: 20140212_MW1007-27          Domoic Acid    3    5  0.10 1e-02  0.10
+ 6: 20140212_MW1007-27          Domoic Acid    3    6  0.30 3e-02  0.30
+ 7: 20140212_MW1007-27          Domoic Acid    3    7  1.00 1e-01  1.00
+ 8: 20140212_MW1007-27 Sodium orthovanadate    6    2  0.10 3e-02  0.10
+ 9: 20140212_MW1007-27 Sodium orthovanadate    6    3  0.30 1e-01  0.30
+10: 20140212_MW1007-27 Sodium orthovanadate    6    4  1.00 3e-01  1.00
+11: 20140212_MW1007-27 Sodium orthovanadate    6    5  3.00 1e+00  3.00
+12: 20140212_MW1007-27 Sodium orthovanadate    6    6 10.00 3e+00 10.00
+13: 20140212_MW1007-27 Sodium orthovanadate    6    7 30.00 1e+01 30.00
+14: 20140402_MW1007-27          Domoic Acid    3    3  0.01 1e-03  0.01
+15: 20140402_MW1007-27          Domoic Acid    3    4  0.03 3e-03  0.03
+16: 20140402_MW1007-27          Domoic Acid    3    5  0.10 1e-02  0.10
+17: 20140402_MW1007-27          Domoic Acid    3    6  0.30 3e-02  0.30
+18: 20140402_MW1007-27          Domoic Acid    3    7  1.00 1e-01  1.00
+19: 20140402_MW1007-27 Sodium orthovanadate    6    2  0.10 3e-02  0.10
+20: 20140402_MW1007-27 Sodium orthovanadate    6    3  0.30 1e-01  0.30
+21: 20140402_MW1007-27 Sodium orthovanadate    6    4  1.00 3e-01  1.00
+22: 20140402_MW1007-27 Sodium orthovanadate    6    5  3.00 1e+00  3.00
+23: 20140402_MW1007-27 Sodium orthovanadate    6    6 10.00 3e+00 10.00
+24: 20140402_MW1007-27 Sodium orthovanadate    6    7 30.00 1e+01 30.00
+25: 20140423_MW1007-38          Domoic Acid    3    3  0.01 1e-03  0.01
+26: 20140423_MW1007-38          Domoic Acid    3    4  0.03 3e-03  0.03
+27: 20140423_MW1007-38          Domoic Acid    3    5  0.10 1e-02  0.10
+28: 20140423_MW1007-38          Domoic Acid    3    6  0.30 3e-02  0.30
+29: 20140423_MW1007-38          Domoic Acid    3    7  1.00 1e-01  1.00
+30: 20140423_MW1007-38 Sodium orthovanadate    6    2  0.10 3e-02  0.10
+31: 20140423_MW1007-38 Sodium orthovanadate    6    3  0.30 1e-01  0.30
+32: 20140423_MW1007-38 Sodium orthovanadate    6    4  1.00 3e-01  1.00
+33: 20140423_MW1007-38 Sodium orthovanadate    6    5  3.00 1e+00  3.00
+34: 20140423_MW1007-38 Sodium orthovanadate    6    6 10.00 3e+00 10.00
+35: 20140423_MW1007-38 Sodium orthovanadate    6    7 30.00 1e+01 30.00
+                  apid            treatment rowi coli   AUC  Calc   DIV
+[1] "20140212_MW1007-27" "20140402_MW1007-27" "20140423_MW1007-38"
+Empty data.table (0 rows and 7 cols): apid,treatment,rowi,coli,AUC,Calc...
+    rowi coli    V1
+ 1:    2    2  0.03
+ 2:    2    3  0.10
+ 3:    2    4  0.30
+ 4:    2    5  1.00
+ 5:    2    6  3.00
+ 6:    2    8 10.00
+ 7:    5    2  0.03
+ 8:    5    3  0.10
+ 9:    5    4  0.30
+10:    5    5  1.00
+11:    5    6  3.00
+12:    5    7 10.00
+    rowi coli    V1
+ 1:    2    2  0.03
+ 2:    2    3  0.10
+ 3:    2    4  0.30
+ 4:    2    5  1.00
+ 5:    2    6  3.00
+ 6:    2    8 10.00
+ 7:    5    2  0.03
+ 8:    5    3  0.10
+ 9:    5    4  0.30
+10:    5    5  1.00
+11:    5    6  3.00
+12:    5    7 10.00
+Empty data.table (0 rows and 5 cols): treatment,apid,rowi,coli,num_unique_concs_in_well
+                                                                                                  treatment                concs_tested
+ 1: 4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride           0.1,0.3,1,3,10,30
+ 2:                                                                                           Acetaminophen           0.1,0.3,1,3,10,30
+ 3:                                                                          Bisindolylmaleimide 1_20140205         0.03,0.1,0.3,1,3,10
+ 4:                                                                          Bisindolylmaleimide 1_20140212         0.03,0.1,0.3,1,3,10
+ 5:                                                                          Bisindolylmaleimide 1_20140402         0.03,0.1,0.3,1,3,10
+ 6:                                                                          Bisindolylmaleimide 1_20140423         0.03,0.1,0.3,1,3,10
+ 7:                                                                          Bisindolylmaleimide 1_20140716         0.03,0.1,0.3,1,3,10
+ 8:                                                                          Bisindolylmaleimide 1_20140730         0.03,0.1,0.3,1,3,10
+ 9:                                                                                                    DMSO                       0.001
+10:                                                                                             Domoic Acid   0.003,0.01,0.03,0.1,0.3,1
+11:                                                                                              Mevastatin           0.1,0.3,1,3,10,30
+12:                                                                                    Sodium orthovanadate 0.01,0.03,0.1,0.3,1,3,10,30
+13:                                                                                                   Water                       0.001
+
+Final Checks
+Number of cultures dates: 6
+Range of culture dates: 20140205 20140730
+Number of plates tested: 6
+Number of compounds tested: 8
+Any NA rvals?    wllq    N
+1:    1 3111
+2:    0   34
+
+Wllq breakdown for all points:
+   wllq     N
+1:    1 22102
+2:    0   258
+Number of unique acsn's present: 86 
+The following plates don't have the expected number of points (48):
+                 apid AB MEA_pts
+1: 20140716_MW1007-26 34      34
+                  apid AB MEA_pts
+1: 20140730_MW1007-104 34        
+
+Apid/acsn pairs without 6 control wells:
+                                                       acsn                apid  N
+  1:                                 CCTE_Shafer_MEA_dev_AB  20140205_MW1007-26 12
+  2:                   CCTE_Shafer_MEA_dev_burst_rate_DIV12  20140205_MW1007-26 12
+  3:                    CCTE_Shafer_MEA_dev_burst_rate_DIV5  20140205_MW1007-26 12
+  4:                    CCTE_Shafer_MEA_dev_burst_rate_DIV7  20140205_MW1007-26 12
+  5:                    CCTE_Shafer_MEA_dev_burst_rate_DIV9  20140205_MW1007-26 12
+ ---                                                                              
+512: CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12 20140730_MW1007-104  8
+513:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 20140730_MW1007-104  8
+514:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 20140730_MW1007-104  8
+515:  CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 20140730_MW1007-104  8
+516:       CCTE_Shafer_MEA_dev_correlation_coefficient_mean 20140730_MW1007-104  8
+
+Range of rval's by acsn:
+                                                             acsn     min   median    max num_NA
+ 1:                                        CCTE_Shafer_MEA_dev_AB       0    49382  60339      0
+ 2:                  CCTE_Shafer_MEA_dev_active_electrodes_number       0       69    136      0
+ 3:            CCTE_Shafer_MEA_dev_active_electrodes_number_DIV12       0       15     16      0
+ 4:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV5       0        1     16      0
+ 5:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV7       0        6     16      0
+ 6:             CCTE_Shafer_MEA_dev_active_electrodes_number_DIV9       0       13     16      0
+ 7:                       CCTE_Shafer_MEA_dev_burst_duration_mean       0      3.5    127      0
+ 8:                 CCTE_Shafer_MEA_dev_burst_duration_mean_DIV12    0.13     0.36    3.7     31
+ 9:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV5    0.15     0.65    8.7    187
+10:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV7    0.11     0.68     28     74
+11:                  CCTE_Shafer_MEA_dev_burst_duration_mean_DIV9    0.16      0.6     50     37
+12:                                CCTE_Shafer_MEA_dev_burst_rate       0       13     57      0
+13:                          CCTE_Shafer_MEA_dev_burst_rate_DIV12       0      3.4     16      0
+14:                           CCTE_Shafer_MEA_dev_burst_rate_DIV5       0        0     13      0
+15:                           CCTE_Shafer_MEA_dev_burst_rate_DIV7       0        1    8.2      0
+16:                           CCTE_Shafer_MEA_dev_burst_rate_DIV9       0      1.9    5.4      0
+17:                CCTE_Shafer_MEA_dev_bursting_electrodes_number       0       58    134      0
+18:          CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV12       0       14     16      0
+19:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV5       0        0     15      0
+20:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV7       0        3     16      0
+21:           CCTE_Shafer_MEA_dev_bursting_electrodes_number_DIV9       0       12     16      0
+22:              CCTE_Shafer_MEA_dev_correlation_coefficient_mean -0.0055      1.2    3.3      0
+23:        CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV12       0     0.37   0.69      0
+24:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV5 -0.0037        0   0.24      0
+25:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV7 -0.0019    0.023   0.34      0
+26:         CCTE_Shafer_MEA_dev_correlation_coefficient_mean_DIV9 -0.0048     0.22   0.56      0
+27:                          CCTE_Shafer_MEA_dev_firing_rate_mean       0      7.3     22      0
+28:                    CCTE_Shafer_MEA_dev_firing_rate_mean_DIV12       0      1.3    4.4      0
+29:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV5       0     0.21    3.1      0
+30:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV7       0     0.75    6.2      0
+31:                     CCTE_Shafer_MEA_dev_firing_rate_mean_DIV9       0     0.96    4.6      0
+32:         CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean       0      161   1423      0
+33:   CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV12     1.7      8.2    126     37
+34:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV5      64      105    214    239
+35:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV7      20       56    659    114
+36:    CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean_DIV9     3.3       27    179     42
+37:                  CCTE_Shafer_MEA_dev_interburst_interval_mean       0      204    487      0
+38:            CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV12     3.9       20     78     31
+39:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV5     1.4       33    108    187
+40:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV7    0.94       41    108     74
+41:             CCTE_Shafer_MEA_dev_interburst_interval_mean_DIV9     2.8       37     97     37
+42:                   CCTE_Shafer_MEA_dev_mutual_information_norm       0     0.03   0.11      0
+43:             CCTE_Shafer_MEA_dev_mutual_information_norm_DIV12       0    0.012  0.034      0
+44:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV5       0        0 0.0013      0
+45:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV7       0 0.000021 0.0091      0
+46:              CCTE_Shafer_MEA_dev_mutual_information_norm_DIV9       0   0.0032  0.022      0
+47:                CCTE_Shafer_MEA_dev_network_spike_duration_std       0     0.26    1.1      0
+48:          CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV12   0.011    0.053   0.25     37
+49:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV5   0.014     0.03  0.074    239
+50:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV7       0    0.044   0.12    114
+51:           CCTE_Shafer_MEA_dev_network_spike_duration_std_DIV9  0.0092    0.067   0.35     42
+52:                      CCTE_Shafer_MEA_dev_network_spike_number       0      269    938      0
+53:                CCTE_Shafer_MEA_dev_network_spike_number_DIV12       0       89    519      0
+54:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV5       0        0     13      0
+55:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV7       0        3     45      0
+56:                 CCTE_Shafer_MEA_dev_network_spike_number_DIV9       0       28    271      0
+57:                        CCTE_Shafer_MEA_dev_network_spike_peak       0       58    124      0
+58:                  CCTE_Shafer_MEA_dev_network_spike_peak_DIV12     6.4       12     16     37
+59:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV5     6.5      8.5     16    236
+60:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV7       5       12     16    106
+61:                   CCTE_Shafer_MEA_dev_network_spike_peak_DIV9       5       12     16     41
+62:             CCTE_Shafer_MEA_dev_per_burst_interspike_interval       0     0.27   0.95      0
+63:       CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV12  0.0092    0.023   0.13     31
+64:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV5   0.031    0.094   0.25    187
+65:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV7   0.017    0.059    0.2     74
+66:        CCTE_Shafer_MEA_dev_per_burst_interspike_interval_DIV9   0.013    0.034   0.16     37
+67:                   CCTE_Shafer_MEA_dev_per_burst_spike_percent       0      360    673      0
+68:             CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV12       0       74     98      0
+69:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV5       0        0     84      0
+70:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV7       0       40     99      0
+71:              CCTE_Shafer_MEA_dev_per_burst_spike_percent_DIV9       0       65     96      0
+72:       CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean       0      183    887      0
+73: CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV12      16       49    157     37
+74:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV5       9       12     99    236
+75:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV7       8       27    129    106
+76:  CCTE_Shafer_MEA_dev_per_network_spike_spike_number_mean_DIV9      10       42    133     41
+77:           CCTE_Shafer_MEA_dev_per_network_spike_spike_percent       0       81    195      0
+78:     CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV12       0       28     58      0
+79:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV5       0        0     10      0
+80:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV7       0     0.98     42      0
+81:      CCTE_Shafer_MEA_dev_per_network_spike_spike_percent_DIV9       0       13     50      0
+82:                       CCTE_Shafer_MEA_dev_spike_duration_mean       0     0.79    2.6      0
+83:                 CCTE_Shafer_MEA_dev_spike_duration_mean_DIV12   0.073     0.14   0.36     37
+84:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV5   0.073     0.13   0.24    236
+85:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV7   0.079      0.2   0.49    106
+86:                  CCTE_Shafer_MEA_dev_spike_duration_mean_DIV9   0.075     0.17   0.46     41
+                                                             acsn     min   median    max num_NA
+[1] 0
+[1] "20140716_MW1007-26"  "20140730_MW1007-104"
+Empty data.table (0 rows and 3 cols): apid,acsn,N

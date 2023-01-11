@@ -1,0 +1,74 @@
+mea_treatment_name,updated_treatment_name,notes,dataset
+1Ethyl3methylimidazolium diethylphosphate,1-Ethyl-3-methylimidazolium diethylphosphate,,NTP91
+2Ethylhexyl 2345 tetrabromobenzoate,"2-Ethylhexyl-2,3,4,5-tetrabromobenzoate",,NTP91
+2Ethylhexyl diphenyl phosphate,2-Ethylhexyl diphenyl phosphate,,NTP91
+4HCyclopenta def phenanthrene,"4-H-Cyclopenta(d,e,f)phenanthrene",,NTP91
+6 Hydroxydopamine hydrochloride,6-Hydroxydopamine hydrochloride,,NTP91
+Auramine,Auramine O,,NTP91
+Benzo a pyrene,Benzo(a)pyrene,,NTP91
+Benzo e pyrene,Benzo(e)pyrene,,NTP91
+Benzo ghi perylene,"Benzo[g,h,i]perylene",,NTP91
+Benzo k fluoranthene,Benzo(k)fluoranthene,,NTP91
+Bis 2 ethylhexyl tetrabromophthalate,Bis(2-ethylhexyl) tetrabromophthalate,,NTP91
+Carbamic acid,"Carbamic acid, butyl-, 3-iodo-2-propynyl ester","20160907 - labelled as ""Carbamic acid"" in maestro experiment log, but as ""Carbamic acid, butyl-, 3-iodo-2-propynyl ester"" in lab notebook",NTP91
+Carbamic acid butyl 3iodo2propynyl ester,"Carbamic acid, butyl-, 3-iodo-2-propynyl ester",,NTP91
+D Glucitol,D-Glucitol,,NTP91
+Di 2ethylhexyl phthalate,Di(2-ethylhexyl) phthalate,,NTP91
+Dibenz ac anthracene,"Dibenz[a,c]anthracene",,NTP91
+Dibenz ah anthracene,"Dibenz(a,h)anthracene",,NTP91
+Firemaster,Firemaster 550,,NTP91
+L Ascorbic acid,L-Ascorbic acid,,NTP91
+Manganese tricarbonyl 12345 eta 1 methyl 24 cyclopentadien 1 yl,"Manganese, tricarbonyl[(1,2,3,4,5-.eta.)-1-methyl-2,4-cyclopentadien-1-yl]-",,NTP91
+Tris 2chloroisopropyl phosphate,Tris(2-chloroisopropyl) phosphate,,NTP91
+tert Butylphenyl diphenyl phosphate,tert-Butylphenyl diphenyl phosphate,,NTP91
+Phenol isopropylated phosphate,"Phenol, isopropylated, phosphate (3:1)",this is the only phosphate in the spidmap that would make sense,NTP91
+1-2-PropyleneGlycol,"1,2-Propylene glycol",,Frank2017
+Amoxacillin,Amoxicillin,,Frank2017
+DEHP,Bis (2-ethylhexyl) phthalate (DEHP),"DEHP in 20140827, longer name in 20141112",Frank2017
+Bis (2-ethylhexyl) phthalate-DEHP,Bis (2-ethylhexyl) phthalate (DEHP),"DEHP in 20140827, longer name in 20141112",Frank2017
+Bis1,Bisindolylmaleimide I (Bis 1),,Frank2017
+Cyclophosphamid,Cyclophosphamide,,Frank2017
+Cytosine arabinoside,Cytosine Arabinoside,,Frank2017
+Lead acetate,Lead Acetate,,Frank2017
+PBDE-47,"2,2'4,4'-Tetrabromodiphenyl ether (BDE-47)",pubchem lists PBDE 47 as a synonym,Frank2017
+Sodium Arsenate,Sodium Arsenite,"Even though these are different, only Sodium Arsenite, not Sodium Arsenate, is listed in Table 1 of all compounds tested. No SPID for Sodium Arsenate has been registered.",Frank2017
+Tetrabromobisphenol A,Tetrabromobisphenol A (TBBPA),,Frank2017
+TBBPA,Tetrabromobisphenol A (TBBPA),,Frank2017
+Tris(2-chloroethyl) phosphate (TCEP),Tris (2-chloroethyl) phosphate (TCEP),,Frank2017
+TCEP,Tris (2-chloroethyl) phosphate (TCEP),,Frank2017
+"Tris(1,3-dichloro-2-propyl) phosphate (TDCPP)","Tris (1,3-dichloro-2-propyl) phosphate (TDCIPP)",,Frank2017
+TDCPP,"Tris (1,3-dichloro-2-propyl) phosphate (TDCIPP)",,Frank2017
+Triphenyl phosphate (TPP),Triphenyl phosphate (TPHP),,Frank2017
+TPP,Triphenyl phosphate (TPHP),,Frank2017
+Valproate,Valproic acid,"after chat with Tim - the compounds named 'Valproate' and 'Valproic acid' are both refering to 'Sodium valproate' with cas number 1069-66-5. ""Valproic acid"" will map to the correct CASN in Table 1",Frank2017
+6 Propyl 2 thiouracil,6-Propyl-2-thiouracil,,ToxCast2016
+3 Iodo 2 propynyl N butylcarbamate,3-Iodo-2-propynyl-N-butylcarbamate,these names are listed in the same chemical row in the Shafer 2019 paper Table 1 as the PREFERRED_NAME and Common name,ToxCast2016
+Pravastin sodium,Pravastatin sodium,spelling,ToxCast2016
+Clothiandin,Clothianidin,spelling,ToxCast2016
+17beta Estradiol,17beta-Estradiol,,ToxCast2016
+MGK 264,MGK-264,,ToxCast2016
+Tributyltin methylacrylate,Tributyltin methacrylate,'Tributyltin methylacrylate' does not seem to be a chemical at all,ToxCast2016
+Rotenone - ToxCast G-8,Rotenone,"In 20171011, Rotenone was tested alongside compounds from other sources. This sample of Rotenone is from ToxCast, plate location: E11",ToxCast2016
+Disulfiram - ToxCast G-8,Disulfiram,"In 20171011, Disulfiram was tested alongside compounds from other sources. This sample of Disulfiram is from ToxCast, plate location: H1",ToxCast2016
+Valinomycin - NTP,Valinomycin,"In 20171011, Valinomycin was tested alongside compounds from other sources. This sample of Valinomycin is from NTP91, plate location: H1",ToxCast2016
+"1,1,2,2-Tetrahydroperfluoro-1-decanol - TP0001411",Clotrimazole,See lab noteook 20171011. TP0001411 + ToxCast Plate Location E01 corresponds to Clotrimazole,ToxCast2016
+"1H,1H,2H,2H-Perfluorooctyl iodide - TP0001413","1H,1H,2H,2H-Perfluorooctyl iodide",,ToxCast2016
+Perfluoroundecanoic acid - TP0001411,Perfluoroundecanoic acid,,ToxCast2016
+Bisindolymaleimide 1,Bisindolylmaleimide I,"spelling; Shafer_42 list CASRN is 133052-90-1, which matches the casn shown in Brown et al., 2016",Brown2014
+Domoic Acid,L-Domoic acid,"Shafer_42 CASRN is 14277-97-5, which matches the casn shown in the Brown et al., 2016",Brown2014
+Sodium Orthovanadate,Sodium orthovanadate,captilization,Brown2014
+Diazonon,Diazinon,"when I google search for 'Diazonon', it redirects to 'Diazinon'",OPP2015
+Malaxon,Malaoxon,"'Malaxon' does not have any resutls in Google, I think this just a typo",OPP2015
+Z-tetrachlorvinphos,Z-Tetrachlorvinphos,capitalization,OPP2015
+2244 Tetrabromodiphenyl ether,"2,2',4,4'-Tetrabromodiphenyl ether",,NTP91
+22445 Pentabromodiphenyl ether,"2,2',4,4',5-Pentabromodiphenyl ether",,NTP91
+224455 Hexabromodiphenyl ether,"2,2',4,4',5,5'-Hexabromodiphenyl ether",,NTP91
+Valinomycin,Valinomycin,adding row to differentiate between ToxCast2016 Valinomycin treatment name,NTP91
+op-DDT,"o,p'-DDT",,ToxCast2016
+pp-DDD,"p,p'-DDD",,ToxCast2016
+pp-DDE,"p,p'-DDE",,ToxCast2016
+pp-DDT,"p,p'-DDT",,ToxCast2016
+Loperamide,"4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","CASN and Product # in Brown et al., 2016 match Loperamide hydrochloride",Brown2014
+Loperamide,"4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride","Listed as Loperamide hydrochloride in L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Loperamide_CoA.pdf (Product: L4762, Batch: BCBP2026)",DNTFGF2019
+Loperamide,Loperamide,"CASN in lab notebook (34552-83-5) indicates that Loperamide hydrochloride was tested. ""Loperamide"" in Table 1 will map to correct CASN",Frank2017
+Loperamide,"4-(4-Chlorophenyl)-4-hydroxy-N,N-dimethyl-alpha,alpha-diphenylpiperidine-1-butyramide monohydrochloride",Lot # BCBP2026 (see 2018114 lab notebook) matches Lot # in L:\Lab\NHEERL_MEA\Project - Glufosinate\Documents\Loperamide_CoA.pdf,PFAS2018

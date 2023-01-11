@@ -1,0 +1,55 @@
+Example2020 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2020-08-27 15:48:38
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA/Project PFAS 2018 
+Collected 32 files from 8 sub-directories.
+
+L:/Lab/NHEERL_MEA/Project PFAS 2018
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\20180801_ON PFAS G1_1 Calculations.xlsx
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\20180815_ON PFAS G2-1_1 Calculations.xlsx
+
+20180801 Culture PFAS Group_1/MW1207-21
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-21\csv Files\20180801_MW1207-21_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-21\Spike List Files\ON_20180801_MW1207-21_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-21\Spike List Files\ON_20180801_MW1207-21_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-21\Spike List Files\ON_20180801_MW1207-21_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-21\Spike List Files\ON_20180801_MW1207-21_12_00(000)_spike_list.csv
+
+20180801 Culture PFAS Group_1/MW1207-22
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-22\csv Files\20180801_MW1207-22_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-22\Spike List Files\ON_20180801_MW1207-22_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-22\Spike List Files\ON_20180801_MW1207-22_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-22\Spike List Files\ON_20180801_MW1207-22_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-22\Spike List Files\ON_20180801_MW1207-22_12_00(000)_spike_list.csv
+
+20180801 Culture PFAS Group_1/MW1207-23
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-23\csv Files\20180801_MW1207-23_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-23\Spike List Files\ON_20180801_MW1207-23_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-23\Spike List Files\ON_20180801_MW1207-23_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-23\Spike List Files\ON_20180801_MW1207-23_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180801 Culture PFAS Group_1\MW1207-23\Spike List Files\ON_20180801_MW1207-23_12_00(000)_spike_list.csv
+
+20180815 Culture PFAS Group_2-1/MW1207-24
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-24\csv Files\20180815_MW1207-24_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-24\Spike List Files\ON_20180815_MW1207-24_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-24\Spike List Files\ON_20180815_MW1207-24_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-24\Spike List Files\ON_20180815_MW1207-24_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-24\Spike List Files\ON_20180815_MW1207-24_12_00(000)_spike_list.csv
+
+20180815 Culture PFAS Group_2-1/MW1207-25
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-25\csv Files\20180815_MW1207-25_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-25\Spike List Files\ON_20180815_MW1207-25_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-25\Spike List Files\ON_20180815_MW1207-25_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-25\Spike List Files\ON_20180815_MW1207-25_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-25\Spike List Files\ON_20180815_MW1207-25_12_00(001)_spike_list.csv
+
+20180815 Culture PFAS Group_2-1/MW1207-26
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-26\csv Files\20180815_MW1207-26_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-26\Spike List Files\ON_20180815_MW1207-26_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\MW1207-26\Spike List Files\ON_20180815_MW1207-26_09_00(000)_spike_list.csv
+
+20180815 Culture PFAS Group_2-1
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\Original Files (Spike Counts)\ON_20180815_MW1207-26_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project PFAS 2018\20180815 Culture PFAS Group_2-1\Original Files (Spike Counts)\ON_20180815_MW1207-26_12_00(000)_spike_list.csv

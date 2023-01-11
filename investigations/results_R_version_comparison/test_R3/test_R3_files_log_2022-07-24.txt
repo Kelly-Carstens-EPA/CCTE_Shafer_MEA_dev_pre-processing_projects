@@ -1,0 +1,91 @@
+test_R3 files used for MEA NFA pre-processing for TCPL
+Created with the script gather_files-functions.R
+Date created: 2022-07-24 17:14:34
+Every line ending in '.csv' or '.xlsx' or '.xls' will be read as an input file
+
+Main directory: L:/Lab/NHEERL_MEA 
+Collected 59 files from 12 sub-directories.
+
+PIP3 - Project/Data/Organophosphates/20151209 Culture/1056-28
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-28\csv Files\20151209_MW1056-28_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-28\Spike list Files\ON_20151209_MW1056-28_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-28\Spike list Files\ON_20151209_MW1056-28_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-28\Spike list Files\ON_20151209_MW1056-28_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-28\Spike list Files\ON_20151209_MW1056-28_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20151209 Culture/1056-29
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-29\csv Files\20151209_MW1056-29_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-29\Spike list Files\ON_20151209_MW1056-29_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-29\Spike list Files\ON_20151209_MW1056-29_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-29\Spike list Files\ON_20151209_MW1056-29_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-29\Spike list Files\ON_20151209_MW1056-29_12_00(000)_spike_list.csv
+
+PIP3 - Project/Data/Organophosphates/20151209 Culture/1056-36
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-36\csv Files\20151209_MW1056-36_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-36\Spike list Files\ON_20151209_MW1056-36_05_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-36\Spike list Files\ON_20151209_MW1056-36_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-36\Spike list Files\ON_20151209_MW1056-36_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\PIP3 - Project\Data\Organophosphates\20151209 Culture\1056-36\Spike list Files\ON_20151209_MW1056-36_12_00(000)_spike_list.csv
+
+Project - DNT 2019/Project DNT 2019 NFA MEA/20190807 Culture DNT Group 1/MW 69-3715
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\csv Files\20190807_MW69-3715_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_07_00(001)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3715\Spike List Files\NFA_20190807_MW69-3715_12_00(000)_spike_list.csv
+
+Project - DNT 2019/Project DNT 2019 NFA MEA/20190807 Culture DNT Group 1/MW 69-3802
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\csv Files\20190807_MW69-3802_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3802\Spike List Files\NFA_20190807_MW69-3802_12_00(000)_spike_list.csv
+
+Project - DNT 2019/Project DNT 2019 NFA MEA/20190807 Culture DNT Group 1/MW 69-3803
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\csv Files\20190807_MW69-3803_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT 2019\Project DNT 2019 NFA MEA\20190807 Culture DNT Group 1\MW 69-3803\Spike List Files\NFA_20190807_MW69-3803_12_00(000)_spike_list.csv
+
+Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 1/75-9217
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9217\csv Files\20210915_MW75-9217_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9217\Spike List Files\NFA_20210915_MW75-9217_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9217\Spike List Files\NFA_20210915_MW75-9217_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9217\Spike List Files\NFA_20210915_MW75-9217_09_00(000)(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9217\Spike List Files\NFA_20210915_MW75-9217_12_00(000)_spike_list.csv
+
+Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 1/75-9218
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9218\csv Files\20210915_MW75-9218_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9218\Spike List Files\NFA_20210915_MW75-9218_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9218\Spike List Files\NFA_20210915_MW75-9218_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9218\Spike List Files\NFA_20210915_MW75-9218_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9218\Spike List Files\NFA_20210915_MW75-9218_12_00(000)_spike_list.csv
+
+Project - DNT_NTP_2021/20210915_NFA_DNT 2021_Group 1/75-9219
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9219\csv Files\20210915_MW75-9219_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9219\Spike List Files\NFA_20210915_MW75-9219_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9219\Spike List Files\NFA_20210915_MW75-9219_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9219\Spike List Files\NFA_20210915_MW75-9219_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - DNT_NTP_2021\20210915_NFA_DNT 2021_Group 1\75-9219\Spike List Files\NFA_20210915_MW75-9219_12_00(000)_spike_list.csv
+
+Project - Glufosinate/Network Formation Assay/20190710 Culture Glufosinate/69-0210
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0210\csv Files\20190710_MW69-0210_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0210\Spike List Files\NFA_20190710_MW69-0210_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0210\Spike List Files\NFA_20190710_MW69-0210_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0210\Spike List Files\NFA_20190710_MW69-0210_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0210\Spike List Files\NFA_20190710_MW69-0210_12_00(001)_spike_list.csv
+
+Project - Glufosinate/Network Formation Assay/20190710 Culture Glufosinate/69-0212
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0212\csv Files\20190710_MW69-0212_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0212\Spike List Files\NFA_20190710_MW69-0212_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0212\Spike List Files\NFA_20190710_MW69-0212_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0212\Spike List Files\NFA_20190710_MW69-0212_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0212\Spike List Files\NFA_20190710_MW69-0212_12_00(001)_spike_list.csv
+
+Project - Glufosinate/Network Formation Assay/20190710 Culture Glufosinate/69-0213
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0213\csv Files\20190710_MW69-0213_MaestroExperimentLog_Ontogeny.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0213\Spike List Files\NFA_20190710_MW69-0213_05_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0213\Spike List Files\NFA_20190710_MW69-0213_07_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0213\Spike List Files\NFA_20190710_MW69-0213_09_00(000)_spike_list.csv
+L:\Lab\NHEERL_MEA\Project - Glufosinate\Network Formation Assay\20190710 Culture Glufosinate\69-0213\Spike List Files\NFA_20190710_MW69-0213_12_00(001)_spike_list.csv
