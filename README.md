@@ -7,3 +7,7 @@
 * */prepared_data/*
 
 (these are just numerous and sometimes large data files, so I didn't want to push these to remote to clone. But may need to eventually, we'll see)
+
+
+# NOTE Jan 12, 2023
+There may be some files with secrets in the commit history. So don't make the commit history go public.
