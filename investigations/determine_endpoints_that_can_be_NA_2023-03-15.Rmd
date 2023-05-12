@@ -1,0 +1,164 @@
+---
+title: "Understand Occurence of NAs and empirical/derived endpoints"
+output: 
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: true
+    code_folding: hide
+date: "2023-03-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, output.width = '100%')
+```
+
+```{r}
+library(data.table)
+library(ggplot2)
+```
+
+
+# Prepare data
+
+```{r}
+load('lvl0_snapshots/mea_nfa_lvl0_extra_cols_2021-05-05.RData')
+mea_nfa_lvl0[, .N, by = .(dataset)]
+
+dat <- mea_nfa_lvl0
+rm(mea_nfa_lvl0)
+dat[, acnm_sub := sub('CCTE_Shafer_MEA_','',acnm)]
+```
+
+
+# Which endpoints do appear to be NA in some DIV 12 endpoints?
+
+```{r}
+dat[grepl('DIV12',acnm), .(na_sum = sum(is.na(rval[wllq == 1]))), by = .(acnm_sub)][order(-na_sum)]
+
+#                                        acnm_sub na_sum
+# 1:          dev_network_spike_duration_std_DIV12   1224
+# 2:   dev_inter_network_spike_interval_mean_DIV12   1224
+# 3:                 dev_spike_duration_mean_DIV12   1186
+# 4: dev_per_network_spike_spike_number_mean_DIV12   1186
+# 5:                  dev_network_spike_peak_DIV12   1186
+# 6:            dev_interburst_interval_mean_DIV12   1147
+# 7:                 dev_burst_duration_mean_DIV12   1147
+# 8:       dev_per_burst_interspike_interval_DIV12   1147
+```
+
+# What does create_burst_ont_Data tell us about NAs?
+
+If any of the following endpoints are NA, then they are set to 0 in the scritp `create_burst_ont_Data.R` (this is the script that produces the endpoint values by DIV)
+```{r}
+may.be.zero<-c("nAE", "nABE", "meanfiringrate", "burst.per.min",
+               "per.spikes.in.burst", 
+               "ns.percent.of.spikes.in.ns","ns.n", 
+                "r")
+may.be.zero
+```
+
+below endpoints are labelled "may not be zero"; therefore, these values can be NA in the data by DIV
+```{r}
+
+may.not.be.zero <- c("mean.isis", "mean.dur", "mean.IBIs",
+                     "ns.peak.m", "ns.durn.m", "ns.mean.insis",
+                     "ns.durn.sd", "ns.mean.spikes.in.ns")
+may.not.be.zero
+```
+
+Then there is the MI endpoint - which I don't think can be NA.
+
+# Merge endpoint names to create table
+
+```{r}
+acsn.map <- as.data.table(read.csv('mea_nfa_component_name_map.csv'))
+acnm.tb <- acsn.map[grepl('_DIV12',src_acsn)]
+
+setnames(acnm.tb, old = 'acsn', new = 'acnm')
+
+acnm.tb <- merge(acnm.tb, dat[grepl('DIV12',acnm), .(na_sum = sum(is.na(rval[wllq == 1]))), by = .(acnm)][order(-na_sum)], by = 'acnm', all = T)
+
+# Add info from scripts
+acnm.tb[, simple_acsn := sub('_.*$','',src_acsn)]
+acnm.tb[, scripts_can_be_NA := ifelse(simple_acsn %in% c(may.not.be.zero), TRUE, FALSE)]
+View(acnm.tb[order(scripts_can_be_NA)])
+```
+
+
+# How does the presence of NAs interface with the table that Kelly sent?
+
+```{r}
+empirical.endpoints <- paste0('CCTE_Shafer_MEA_dev_',
+                         c('firing_rate_mean',
+                           'burst_rate',
+                           'active_electrodes_number',
+                           'bursting_electrodes_number',
+                           'per_burst_spike_percent',
+                           'network_spike_number',
+                           'per_network_spike_spike_percent',
+                           'correlation_coefficient_mean',
+                           'mutual_information_norm'),
+                         '_DIV12')
+setdiff(empirical.endpoints, acnm.tb$acnm)
+acnm.tb[, type := ifelse(acnm %in% empirical.endpoints,'Emp','Der')]
+
+acnm.tb[order(scripts_can_be_NA), .(acnm, simple_acsn, na_sum, scripts_can_be_NA, type)]
+
+```
+
+Looks like there is perfect agreement!
+
+
+Get the list of endpoints that Diana said could be imputed with a 0
+
+```{r}
+acnm.tb[scripts_can_be_NA == FALSE, cat(sub('_DIV12','',acnm), sep = '\n')]
+```
+
+
+
+# Convo's on specific endpoints
+
+Hey, sorry it took me so long to get back to you on this. 
+
+**Observation of NAs at the DIV-level**
+In terms of endpoints that have any instances of being "NA" at DIV12 in the data prepare to date, there is perfect agreement with the endpoints labelled as "derived" in the table that you sent. 
+
+**Calculation of the endpoints at the DIV-level**
+At the script-level, the presence of NAs comes down to the mechanics of how the endpoints are calculated. Diana Hall's script 'create_burst_ont_Data.R', developed ~2015, handles the calculation of all DIV-level endpoints (except mutual information). In the first step of the endpoint calculation, if there is no activity in a well, then all endpoints are initially NA for that well. Similarly, if there is some activity but no active electrodes, then endpoints that depend on the AE are all NA. However, Diana added steps to set the following set of 8 endpoints to 0 wherever they initially appear as NA:
+
+CCTE_Shafer_MEA_dev_active_electrodes_number
+CCTE_Shafer_MEA_dev_burst_rate
+CCTE_Shafer_MEA_dev_bursting_electrodes_number
+CCTE_Shafer_MEA_dev_correlation_coefficient_mean
+CCTE_Shafer_MEA_dev_firing_rate_mean
+CCTE_Shafer_MEA_dev_network_spike_number
+CCTE_Shafer_MEA_dev_per_burst_spike_percent
+CCTE_Shafer_MEA_dev_per_network_spike_spike_percent
+
+In other words, ANY of the 16 core NFA endpoints "could" be NA if there is no activity in the well. But the above 8 endpoints will never be NA at the DIV-level with our scripts fundamentally because that is how Diana Hall designed the calculation. 
+
+The mutual information was developed later and is a more complicated, but my understanding is that this endpoint will never be NA.
+
+**Conceptual notes on empirical vs derived**
+
+For the most part, I agree with Diana's identification of the 8 endpoints that should be set to 0 if they are NA. But I see how the 2 you identified are more debatable, and perhaps should be treated similarly. 
+
+'per_network_spike_spike_number_mean'
+Definition: the average number of individual-electrode spikes that occur in a network spike
+Conceptually, this endpoint calculates (total # of spikes in network spikes) / (total number of network spikes).
+If there are no network spikes, then this fraction is 0/0. Therefore, I think we could make the case that this endpoint is "derived" because it is undefined if there are no network spikes.
+
+'per_network_spike_spike_percent'
+This endpoint calculates:
+(total # of individual-electrode spikes that occur in a network spike) / (total # of individual electrode spikes from any electrode throughout the entire recording) * 100%
+If there are no network spikes, then this fraction is 0 / (total # of individual electrode spikes from any electrode). Assuming that there is at least some activity, then this fraction is 0.
+
+
+
+# How are NAs handled in the acute data?
+
+* "level 1" data extraction - seems like there can be NAs at the well-level
+* level 2 - doesn't look like I do anything to handle NAs
+* level 4 processing - ah, all inf and NA rvals have wllq set to 0!

@@ -1,4 +1,38 @@
-(last updated Dec 9, 2022)
+Last updated April 14, 2023
 
 NOTE:
-Before pipelining any new data, review the relevant OneNote notebook page in the pre-processing lab notebook to confirm there are no outstanding to-do items!!
+Before writing any new lvl 0 data, review the relevant OneNote notebook page in the pre-processing lab notebook to confirm there are no outstanding to-do items!!
+
+
+# ------------------------------------------ #
+# To do (critical)
+# ------------------------------------------ #
+
+# ------------------------------------------ #
+# To do (important but not critical)
+# ------------------------------------------ #
+
+* it would probably be helpful to rename the spike_duration_mean to the network_spike_duration_mean
+* For every snapshot, save a clean wllq table that would be easy to map the mc0 with all the wllq notes that won't set the wllq to 0, but still important for us to note. So, if anyone every has a question on the TCPL data, that info will be available.
+
+
+# ------------------------------------------ #
+# Completed
+# ------------------------------------------ #
+
+Date note created: May 14, 2021
+Date I discovered that the aenm was corrected to "CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean": April 14, 2023
+Note:
+"Next time Katie repipelines any mea nfa data, ask if she can update the aenm for acid 2483 (aeid 2518 and 2519)
+Currently, the acnm is correct, but the aenm still reflects the incorrect definition
+tcplLoadAeid(fld = 'aenm', val = c('CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean_up',
++                                    'CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean_dn'), add.fld = c('acnm','acid'))
+                                                                aenm aeid                                                  acnm acid
+1: CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean_dn 2518 CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean 2483
+2: CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean_up 2519 CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean 2483
+
+# confirmation that lvl0 dat is currently correct, and that nothing would have been dropped...
+load('L:/Lab/NHEERL_MEA/Carpenter_Amy/pre-process_mea_nfa_for_tcpl/lvl0_snapshots/mea_nfa_lvl0_2021-05-05.RData')
+mea_nfa_lvl0[acnm == 'CCTE_Shafer_MEA_dev_inter_network_spike_interval_mean', .N] # 13268
+mea_nfa_lvl0[acnm == 'CCTE_Shafer_MEA_dev_per_network_spike_interspike_interval_mean', .N] # 0
+# cool, lvl0 dat is correct"
