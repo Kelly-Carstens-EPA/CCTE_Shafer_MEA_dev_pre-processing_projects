@@ -1,0 +1,3 @@
+May 26 2023
+Functions in this folder represent modified versions that may or may not have been used in the preparation of the Impedance2023 data to accommodate irregularities (e.g., non-standard DIV) (I'm not sure if Seline ended up using this modified script directly, or copy-pasted parts of it into the run_me script, or saved a modified version of this function elsewhere). Scripts containing functions in the main function folder (pre-process_mea_nfa_for_tcpl\nfa-spike-list-to-mc0-r-scripts\R) have been reset to the state before the updates for the Impedance2023 data. 
+-Amy Carpenter
