@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+#########################
+# Files types to ignore # 
+#########################
+*.h5
+*/All_MI/*
+*/prepared_data/*
+*/source_data/*

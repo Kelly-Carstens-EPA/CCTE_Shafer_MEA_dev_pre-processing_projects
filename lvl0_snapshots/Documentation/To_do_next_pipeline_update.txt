@@ -1,7 +1,7 @@
 Last updated April 14, 2023
 
 NOTE:
-Before writing any new lvl 0 data, review the relevant OneNote notebook page in the pre-processing lab notebook to confirm there are no outstanding to-do items!!
+Before writing any new lvl 0 data, review the relevant OneNote notebook page for the newly pre-processed project in the pre-processing lab notebook to confirm there are no outstanding to-do items!!
 
 
 # ------------------------------------------ #
