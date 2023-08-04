@@ -1,10 +1,11 @@
----
-output:
-  pdf_document: default
-  word_document: default
-  html_document: default
----
 # Microelectrode Array Network Formation Assay Pre-Processing Scripts
+
+**Aug 4, 2023: 
+
+This folder of scripts is deprecated. Moving forward, use the functions and run_me templates located under L:\Lab\NHEERL_MEA\CCTE_Shafer pre-process for TCPL\MEA_dev\CCTE_Shafer_MEA_dev_pre-processing_scripts\R (or on GitHub https://github.com/amycarpenter/CCTE_Shafer_MEA_dev_pre-processing_scripts). 
+The run_me scripts that were in this folder have been moved to the corresponding project-specific folders (e.g. 'run_me_Brown2014.R' is now located unnder 'Brown2014/run_me_Brown2014.R'). 
+
+# Old notes:
 
 ## Purpose
 

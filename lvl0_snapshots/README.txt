@@ -1,0 +1,2 @@
+Aug 4, 2023
+The lvl0_snapshots folder documents the preparation/synthesis of mc0/sc0 files for TCPL. However, this approach is no longer needed and the final output in the project folders can be added to the mc0/sc0 in invitroDB instead.
